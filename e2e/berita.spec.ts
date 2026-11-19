@@ -30,6 +30,8 @@ test.describe("Berita page", () => {
       page.getByRole("heading", { name: "Gelar KIPK" }),
     ).toBeVisible();
     await expect(page.getByText(/Total 5 berita dipublikasikan/)).toBeVisible();
-    await expect(page.getByText("Halaman 2 dari 2")).toBeVisible();
+    await expect(
+      page.getByText("Halaman 2 dari 2", { exact: true }),
+    ).toBeVisible();
   });
 });

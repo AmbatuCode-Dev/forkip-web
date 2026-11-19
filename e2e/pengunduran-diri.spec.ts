@@ -9,9 +9,15 @@ test.describe("Pengunduran diri page", () => {
     await expect(
       page.getByRole("heading", { level: 1, name: "Pengunduran diri KIPK" }),
     ).toBeVisible();
-    await expect(page.getByText("Beranda")).toBeVisible();
     await expect(
-      page.getByText("Form Pengunduran diri dari KIPK"),
+      page
+        .getByRole("navigation", { name: "Breadcrumb" })
+        .getByRole("link", { name: "Beranda" }),
+    ).toBeVisible();
+    await expect(
+      page
+        .getByRole("navigation", { name: "Breadcrumb" })
+        .getByText("Form Pengunduran diri dari KIPK"),
     ).toBeVisible();
 
     await expect(

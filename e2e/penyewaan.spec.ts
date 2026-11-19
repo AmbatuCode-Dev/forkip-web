@@ -11,7 +11,9 @@ test.describe("Penyewaan page", () => {
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("link", { name: "Pertanyaan & Pengaduan" }),
+      page
+        .getByRole("banner")
+        .getByRole("link", { name: "Pertanyaan & Pengaduan" }),
     ).toBeVisible();
     await expect(
       page.getByRole("heading", { name: "Inventaris yang kami sewakan" }),
