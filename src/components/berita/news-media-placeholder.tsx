@@ -1,0 +1,49 @@
+import type { ComponentProps } from "react";
+import { cn } from "@/utils/cn";
+
+export interface NewsMediaPlaceholderProps extends ComponentProps<"div"> {
+  label: string;
+  /**
+   * Visual variation of the gold gradient so adjacent cards differ,
+   * mirroring the Figma placeholder tiles.
+   */
+  variant?: 1 | 2 | 3;
+}
+
+const VARIANT_GRADIENTS: Record<1 | 2 | 3, string> = {
+  1: "bg-gradient-to-br from-[#F6EFAF] via-[#FBF6DF] to-white",
+  2: "bg-gradient-to-b from-white via-[#FBF6DF] to-[#F6EFAF]",
+  3: "bg-gradient-to-tr from-[#F6EFAF] via-[#FBF6DF] to-[#F8F3D3]",
+};
+
+/**
+ * Gold gradient media placeholder with the bottom-left white pill label
+ * + gold dot used across marquee, galeri and news cards (specs §5–§7).
+ * Purely presentational; no external images.
+ */
+export function NewsMediaPlaceholder({
+  label,
+  variant = 1,
+  className,
+  ...props
+}: NewsMediaPlaceholderProps) {
+  return (
+    <div
+      className={cn(
+        "relative flex items-center justify-center rounded-2xl",
+        VARIANT_GRADIENTS[variant],
+        className,
+      )}
+      {...props}
+    >
+      <span className="text-sm text-[#666666]">Foto {label} (placeholder)</span>
+      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pl-3 pr-4 text-xs font-semibold text-[#1C1C1C] shadow-xs">
+        <span
+          aria-hidden="true"
+          className="h-2 w-2 rounded-full bg-[#F6D34A]"
+        />
+        {label}
+      </span>
+    </div>
+  );
+}
