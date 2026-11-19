@@ -1,10 +1,15 @@
+import { PageHero } from "@/components/layout/page-hero";
 import { arsipHero, direktoriRail, divisionArchives } from "../data";
-import { ArsipPageHero } from "./arsip-page-hero";
 
 export function ArsipDataView() {
   return (
     <>
-      <ArsipPageHero content={arsipHero} />
+      <PageHero
+        titleSize="lg"
+        breadcrumb={{ label: arsipHero.breadcrumbLabel, href: "/" }}
+        title={arsipHero.title}
+        subtitle={arsipHero.description}
+      />
 
       <div className="mx-auto w-full max-w-[1200px] px-4 py-16 sm:px-6">
         <section

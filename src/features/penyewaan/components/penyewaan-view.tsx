@@ -1,3 +1,4 @@
+import { PageHero as SharedPageHero } from "@/components/layout/page-hero";
 import { buttonVariants } from "@/components/ui/button";
 import { InventarisAccordion } from "@/components/ui/inventaris-accordion";
 import { cn } from "@/utils/cn";
@@ -8,12 +9,15 @@ import {
   inventarisItems,
   penyewaanHero,
 } from "../data";
-import { PageHero } from "./page-hero";
 
 export function PenyewaanView() {
   return (
     <>
-      <PageHero content={penyewaanHero} />
+      <SharedPageHero
+        breadcrumb={{ label: penyewaanHero.breadcrumbLabel, href: "/" }}
+        title={penyewaanHero.title}
+        subtitle={penyewaanHero.description}
+      />
 
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-6 px-4 py-12 sm:px-6">
         {/* Note card */}

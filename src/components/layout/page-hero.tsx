@@ -1,17 +1,39 @@
 import Link from "next/link";
-import type { ArsipHeroContent } from "../types";
+import { cn } from "@/utils/cn";
 
-interface ArsipPageHeroProps {
-  readonly content: ArsipHeroContent;
+export interface PageHeroProps {
+  /** Breadcrumb trail: "Beranda / {label}" — label must match the page title. */
+  readonly breadcrumb: {
+    readonly label: string;
+    readonly href: string;
+  };
+  readonly title: string;
+  readonly subtitle: string;
+  /** "md" → 34/44px (penyewaan), "lg" → 36/48px (arsip). Default "md". */
+  readonly titleSize?: "md" | "lg";
+  readonly className?: string;
 }
 
 /**
- * Page hero shared look with Beranda: gradient cream→gold, batik accent
- * right, breadcrumb 13px muted, H1 48px bold ink900.
+ * Shared service-page hero (penyewaan/arsip/berita/pengunduran-diri family):
+ * horizontal cream→gold gradient, batik kawung SVG accent on the right,
+ * breadcrumb via next/link, large H1 and muted subtitle. Beranda keeps its
+ * own unique hero layout.
  */
-export function ArsipPageHero({ content }: ArsipPageHeroProps) {
+export function PageHero({
+  breadcrumb,
+  title,
+  subtitle,
+  titleSize = "md",
+  className,
+}: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-[#FBF6DF] via-[#FAE9A8] to-[#F6D34A]">
+    <section
+      className={cn(
+        "relative overflow-hidden bg-gradient-to-r from-[#FBF6DF] via-[#FAE9A8] to-[#F6D34A]",
+        className,
+      )}
+    >
       {/* Batik accent approximation (kawung motif, right side) */}
       <svg
         aria-hidden="true"
@@ -40,20 +62,27 @@ export function ArsipPageHero({ content }: ArsipPageHeroProps) {
         <nav aria-label="Breadcrumb">
           <p className="text-[13px] font-medium text-[#666666]">
             <Link
-              href="/"
+              href={breadcrumb.href}
               className="rounded-sm transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               Beranda
             </Link>
             <span aria-hidden="true"> / </span>
-            <span aria-current="page">{content.breadcrumbLabel}</span>
+            <span aria-current="page">{breadcrumb.label}</span>
           </p>
         </nav>
-        <h1 className="text-[36px] leading-[1.15] font-bold tracking-[-0.5px] text-[#1C1C1C] sm:text-[48px]">
-          {content.title}
+        <h1
+          className={cn(
+            "leading-[1.15] font-bold tracking-[-0.5px] text-[#1C1C1C]",
+            titleSize === "lg"
+              ? "text-[36px] sm:text-[48px]"
+              : "text-[34px] sm:text-[44px]",
+          )}
+        >
+          {title}
         </h1>
         <p className="max-w-[760px] text-base leading-relaxed text-[#404040]">
-          {content.description}
+          {subtitle}
         </p>
       </div>
     </section>
