@@ -6,8 +6,6 @@ export {
   PengunduranDiriHero,
 } from "./components/pengunduran-diri-hero";
 export { TemplateSuratCard } from "./components/template-surat-card";
-export { alurSteps } from "./data/alur-steps";
-export { fakultasKontak } from "./data/fakultas-kontak";
 export type {
   AlurStep,
   AlurStepIconId,

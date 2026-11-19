@@ -18,6 +18,3 @@ export interface NewsPost {
 
 /** Page-size of the /berita paginated news list. */
 export const BERITA_PAGE_SIZE = 3;
-
-/** Total number of published posts across all pages ("Total 5 berita…"). */
-export const BERITA_TOTAL_ITEMS = 5;

@@ -113,23 +113,26 @@ describe("BerandaPage", () => {
       "INDIKASI: Ikatan Dedikasi KIPK Mengabdi Sepenuh Hati",
       "KIP-K UNJ: Informasi Beasiswa Kampus",
     ]) {
-      expect(screen.getAllByText(title).length).toBeGreaterThan(0);
+      // Each card title appears exactly once (marquee uses different labels).
+      expect(screen.getAllByText(title)).toHaveLength(1);
     }
   });
-
   it("renders the berita feature and editorial teasers", () => {
     render(<BerandaPage />);
 
     expect(
       screen.getByRole("heading", { level: 3, name: "Explore KIP-K" }),
     ).toBeInTheDocument();
-    for (const title of [
-      "Pelatihan KIF",
-      "BUSAMAKIP",
-      "Verifikasi KIPK SNBP",
-      "Gelar KIPK",
-    ]) {
-      expect(screen.getAllByText(title).length).toBeGreaterThan(0);
+    // Exact counts: teasers render once; BUSAMAKIP, Verifikasi KIPK SNBP and
+    // Gelar KIPK also appear twice more as duplicated marquee card labels.
+    const expectedCounts: Record<string, number> = {
+      "Pelatihan KIF": 1,
+      BUSAMAKIP: 3,
+      "Verifikasi KIPK SNBP": 3,
+      "Gelar KIPK": 3,
+    };
+    for (const [title, count] of Object.entries(expectedCounts)) {
+      expect(screen.getAllByText(title)).toHaveLength(count);
     }
     expect(
       screen.getByRole("link", { name: "Lihat semua Berita" }),

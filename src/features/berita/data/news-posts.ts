@@ -1,4 +1,4 @@
-import { BERITA_PAGE_SIZE, type NewsPost } from "../types";
+import type { NewsPost } from "../types";
 
 /**
  * News posts, copy verbatim from docs/figma-specs/pages/berita-spec.md,
@@ -74,7 +74,8 @@ export function getNewsPage(page: number): readonly NewsPost[] {
   return newsPosts.filter((post) => post.page === page);
 }
 
+/** Highest page number across posts; pages are explicit in the data. */
 export const totalNewsPages = Math.max(
   1,
-  Math.ceil(newsPosts.length / BERITA_PAGE_SIZE),
+  ...newsPosts.map((post) => post.page),
 );

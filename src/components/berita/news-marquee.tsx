@@ -15,26 +15,10 @@ export interface NewsMarqueeProps extends ComponentProps<"div"> {
   fase?: "A" | "B";
 }
 
-export const MARQUEE_LABELS_FASE_A: NewsMarqueeItem[] = [
-  { label: "Explore KIPK 2026" },
-  { label: "Pelatihan Divisi KIF" },
-  { label: "BUSAMAKIP" },
-  { label: "Verifikasi KIPK SNBP" },
-  { label: "Gelar KIPK" },
-];
-
-export const MARQUEE_LABELS_FASE_B: NewsMarqueeItem[] = [
-  { label: "BUSAMAKIP" },
-  { label: "Verifikasi KIPK SNBP" },
-  { label: "Gelar KIPK" },
-  { label: "Explore KIPK 2026" },
-  { label: "Pelatihan Divisi KIF" },
-];
-
 function MarqueeCard({ label }: NewsMarqueeItem) {
   return (
     <div
-      className="relative flex h-[300px] w-[340px] shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FBF6DF] to-[#F6EFAF]"
+      className="relative flex h-[300px] w-[340px] shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FBF6DF] to-[#F6EFAF] pr-6"
       data-testid="marquee-card"
     >
       <span className="text-sm text-[#666666]">Foto {label} (placeholder)</span>
@@ -79,7 +63,7 @@ export function NewsMarquee({
       {...props}
     >
       <div
-        className="marquee-track flex w-max gap-6 will-change-transform group-hover/marquee:[animation-play-state:paused]"
+        className="marquee-track flex w-max will-change-transform group-hover/marquee:[animation-play-state:paused]"
         data-testid="marquee-strip"
       >
         {loop.map(({ item, key }) => (

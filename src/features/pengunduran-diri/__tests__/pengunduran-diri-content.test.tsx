@@ -1,11 +1,9 @@
 import { cleanup } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
-import {
-  alurSteps,
-  fakultasKontak,
-  PengunduranDiriContent,
-} from "@/features/pengunduran-diri";
+import { PengunduranDiriContent } from "@/features/pengunduran-diri";
 import { renderWithProviders, screen, within } from "@/testing/test-utils";
+import { alurSteps } from "../data/alur-steps";
+import { fakultasKontak } from "../data/fakultas-kontak";
 
 afterEach(cleanup);
 
@@ -54,7 +52,8 @@ describe("PengunduranDiriContent", () => {
         name: `Hubungi delegasi KIF ${faculty.code} via WhatsApp`,
       });
       expect(link).toBeInTheDocument();
-      expect(link).toHaveAttribute("href", faculty.href);
+      // Placeholder hrefs until real WhatsApp numbers are provided.
+      expect(link).toHaveAttribute("href", "#");
       expect(within(link).getByText(faculty.code)).toBeInTheDocument();
       expect(
         within(link).getByText("Hubungi via WhatsApp"),

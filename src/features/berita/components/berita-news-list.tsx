@@ -1,6 +1,7 @@
 import { NewsCard } from "@/components/berita/news-card";
 import { NewsPagination } from "@/components/berita/news-pagination";
-import { BERITA_TOTAL_ITEMS, type NewsPost } from "../types";
+import { newsPosts } from "../data/news-posts";
+import type { NewsPost } from "../types";
 import { NewsMediaOnlyCard } from "./news-media-only-card";
 
 function NewsListItem({ post }: { post: NewsPost }) {
@@ -49,7 +50,7 @@ export function BeritaNewsList({
       <NewsPagination
         page={page}
         totalPages={totalPages}
-        totalItems={BERITA_TOTAL_ITEMS}
+        totalItems={newsPosts.length}
         basePath="/berita"
       />
     </section>
