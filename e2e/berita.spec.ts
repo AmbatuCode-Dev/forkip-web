@@ -20,7 +20,9 @@ test.describe("Berita page", () => {
     await expect(page.getByRole("link", { name: "Halaman 2" })).toBeVisible();
   });
 
-  test("renders page 2 via ?halaman=2 with stub cards", async ({ page }) => {
+  test("renders page 2 via ?halaman=2 with transcribed cards", async ({
+    page,
+  }) => {
     await page.goto("/berita?halaman=2");
 
     await expect(
