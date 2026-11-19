@@ -1,5 +1,5 @@
-import { HomeOverview } from "@/features/home";
+import { BerandaPage } from "@/features/home";
 
 export default function HomePage() {
-  return <HomeOverview />;
+  return <BerandaPage />;
 }
