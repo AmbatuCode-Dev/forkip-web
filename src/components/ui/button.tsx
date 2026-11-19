@@ -13,11 +13,13 @@ export const buttonVariants = cva(
         outline:
           "border border-border bg-surface text-surface-foreground hover:bg-accent hover:text-accent-foreground",
         ghost: "text-foreground hover:bg-accent hover:text-accent-foreground",
+        gold: "rounded-full bg-gold font-semibold text-ink hover:bg-gold/90",
       },
       size: {
         sm: "h-8 px-3 text-xs",
         md: "h-9 px-4 text-sm",
         lg: "h-10 px-5 text-sm",
+        cta: "h-[50px] px-6 text-[15px]",
       },
     },
     defaultVariants: {
