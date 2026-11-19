@@ -253,30 +253,29 @@ export const programSection = {
 export const programSpotlight: ProgramSpotlight = {
   title: "Kampung KIP-K UNJ",
   paragraphs: [
-    // TODO: verify transcription against Figma text dump when available.
-    "Kampung KIP-K UNJ adalah agenda tahunan strategis yang diselenggarakan oleh Direktorat Kemahasiswaan dan Alumni UNJ sebagai kawah candradimuka bagi para awardee KIP Kuliah. Berlokasi di Bumi Perkemahan Buperti Cibubur, kegiatan ini mengusung nilai usaha untuk menumbuhkan resiliensi atau ketahanmblastan sebagai soft skill krusial dalam menyelesaikan studi dan menghadapi tantangan dunia kerja.",
-    "Selama tiga hari, sebanyak ribuan peserta dilompa melalui serangkaian kegiatan intensif yang dirancang untuk menumbuhkan kemandirian dan solidaritas, antara lain:",
+    "Kampung KIP-K UNJ adalah agenda tahunan strategis yang diselenggarakan oleh Direktorat Kemahasiswaan dan Alumni UNJ sebagai kawah candradimuka bagi para awardee KIP Kuliah. Berlokasi di Bumi Perkemahan (Buperta) Cibubur, kegiatan ini mengusung misi utama untuk menumbuhkan resiliensi atau ketahanmalangan sebagai soft skill krusial dalam menyelesaikan studi dan menghadapi tantangan dunia kerja.",
+    "Selama tiga hari, sebanyak ribuan peserta ditempa melalui serangkaian kegiatan intensif yang dirancang untuk membangun kemandirian dan soliditas, antara lain:",
   ],
   bullets: [
     {
       label: "Resiliensi & Kemandirian",
-      text: "Konus aura bertahan tetap dalam tekanan; mengejawantahkan para pendamping secara mandiri, melatih daya juang dan kemampuan beradaptasi dalam kondisi terbatas.",
+      text: "Simulasi bertahan hidup di alam terbuka dengan membangun tenda secara mandiri, melatih daya juang dan kemampuan beradaptasi dalam keterbatasan.",
     },
     {
       label: "Talk Show Akademik",
-      text: "Perhelatan malam biasa diangkat dari para Wikil Duta Bickjarig 1ur-lingkungan UNJ mengenai strategi sukses kuliah tepat waktu dan tips navigasi akademik.",
+      text: "Pembekalan materi khusus dari para Wakil Dekan Bidang I se-lingkungan UNJ mengenai strategi sukses lulus tepat waktu dan tips navigasi akademik.",
     },
     {
       label: "Kepemimpinan & Karakter",
-      text: 'Rangkaian aktivitas yang mengasah jiwa kepemimpinan sesuai tema "Lead The Future", guna mencetak pemimpin perubahan di masa depan.',
+      text: 'Sesi motivasi untuk menanamkan jiwa kepemimpinan sesuai tema "Lead The Future", guna mencetak pemimpin perubahan di masa depan.',
     },
     {
       label: "Solidaritas & Kreativitas",
-      text: "Mempertemukan silaturahmi melalui kegiatan bermain, kompetisi antar peserta, dan malam pesta seni sebagai ruang ekspresi bakat mahasiswa.",
+      text: "Mempererat silaturahmi melalui kegiatan olahraga, kompetisi antar peserta, dan malam pentas seni sebagai ruang ekspresi bakat mahasiswa.",
     },
   ],
   closing:
-    "Melalui Kampung KIP-K, kami berkomitmen memastikan bahwa mahasiswa penerima beasiswa tidak hanya anggap secara akademik, tetapi juga memiliki resiliensi tinggi, karakter yang kuat, dan optimisme tinggi dalam menempuh perjalanan akademik di Universitas Negeri Jakarta.",
+    "Melalui Kampung KIP-K, kami berkomitmen memastikan bahwa mahasiswa penerima beasiswa tidak hanya unggul secara akademis, tetapi juga memiliki mentalitas tangguh, karakter yang kuat, dan optimisme tinggi dalam menempuh perjalanan akademik di Universitas Negeri Jakarta.",
   cta: "Arsip Kegiatan",
   photoLabel: "Foto Kampung KIP-K UNJ",
 };
@@ -286,7 +285,7 @@ export const programCards: readonly ProgramCard[] = [
     title: "Explore KIPK UNJ: Jembatan Informasi Menuju Pendidikan Tinggi",
     // TODO: verify transcription against Figma text dump when available.
     excerpt:
-      "Explore KIPK 2026 adalah program sosialisasi strategis yang diselenggarakan oleh FORKIP-K UNJ sebagai wujud komitmen dedikasi...",
+      "Explore KIPK 2026 adalah program sosialisasi strategis yang diselenggarakan oleh FORUM KIP-K UNJ sebagai manifestasi dedikasi…",
     cta: "Arsip Kegiatan",
     photoLabel: "Foto Explore KIPK",
   },
@@ -294,7 +293,7 @@ export const programCards: readonly ProgramCard[] = [
     title: "INDIKASI: Ikatan Dedikasi KIPK Mengabdi Sepenuh Hati",
     // TODO: verify transcription against Figma text dump when available.
     excerpt:
-      "INDIKASI merupakan agenda tahunan unggulan Forum KIP-K UNJ yang menjadi wujud nyata kepedulian sosial mahasiswa penerima KIP-K...",
+      "INDIKASI merupakan agenda tahunan unggulan Forum KIP-K UNJ yang menjadi wujud nyata kepedulian sosial mahasiswa penerima KIP Kuliah…",
     cta: "Arsip Kegiatan",
     photoLabel: "Foto INDIKASI",
   },
@@ -302,7 +301,7 @@ export const programCards: readonly ProgramCard[] = [
     title: "KIP-K UNJ: Informasi Beasiswa Kampus",
     // TODO: verify transcription against Figma text dump when available.
     excerpt:
-      "Forum KIP-K UNJ menyediakan informasi dan pendampingan bagi calon mahasiswa penerima KIP-K di Universitas Negeri Jakarta.",
+      "Forum KIP-K UNJ menyediakan informasi dan pendampingan bagi calon mahasiswa penerima KIP Kuliah di Universitas Negeri Jakarta.",
     cta: "Arsip Kegiatan",
     photoLabel: "Foto KIP-K UNJ",
   },
@@ -322,17 +321,17 @@ export const beritaSection = {
     {
       title: "Pelatihan KIF",
       // TODO: verify transcription against Figma text dump when available.
-      summary: "Pelaksanaan 27 Februari 2026, Divisi KIF melakukan pelatihan.",
+      summary: "Pada tanggal 21 Februari 2026, Divisi KIF melakukan pelatihan.",
     },
     {
       title: "BUSAMAKIP",
       // TODO: verify transcription against Figma text dump when available.
-      summary: "Pada tanggal 05 Maret 2026, kami telah melaksanakannya acara.",
+      summary: "Pada tanggal 05 Maret 2026, kami telah melaksanakan acara.",
     },
     {
       title: "Verifikasi KIPK SNBP",
       // TODO: verify transcription against Figma text dump when available.
-      summary: "Terlaksana pada 6–12 April.",
+      summary: "Terlaksana pada 6-10 April.",
     },
     {
       title: "Gelar KIPK",
