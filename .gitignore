@@ -41,6 +41,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# worktrees (oh-my-opencode-slim)
+.slim/worktrees/
+.slim/worktrees.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
