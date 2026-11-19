@@ -1,6 +1,6 @@
 # forkip-web
 
-Next.js 16 App Router boilerplate configured with TypeScript, Tailwind CSS v4, Zod environment validation, Biome, Vitest, Playwright, and Lefthook.
+Next.js 16 App Router boilerplate configured with TypeScript, Tailwind CSS v4, feature-based architecture, Zod environment validation, Biome, Vitest, Playwright, and Lefthook.
 
 See [ARCHITECTURE.md](./ARCHITECTURE.md) for architectural conventions, module boundaries, and design decisions.
 
@@ -42,22 +42,36 @@ pnpm dev
 | `pnpm test:e2e:ui`   | Open Playwright interactive UI test runner                 |
 | `pnpm hooks:install` | Install Lefthook git hooks                                 |
 
-## Git Hooks
+## Git Hooks & Branch Protection
 
 Managed by [Lefthook](./lefthook.yml):
 
-- **`pre-commit`** (parallel): Runs Biome (`biome check --write` with `stage_fixed: true`) on staged JS/TS/JSON/CSS files and runs `pnpm typecheck`.
-- **`pre-push`**: Runs `pnpm test` (Vitest unit tests).
+- **`pre-commit`** (parallel): Blocks direct commits to `main` (`scripts/protect-main.mjs commit`), runs Biome (`biome check --write` with `stage_fixed: true`) on staged JS/TS/JSON/CSS files, and runs `pnpm typecheck`.
+- **`pre-push`**: Blocks direct pushes to `main` (`scripts/protect-main.mjs push`) and runs `pnpm test` (Vitest unit tests).
+
+### GitHub Branch Ruleset
+
+Once a GitHub remote is linked, apply the `main` branch ruleset template in [`.github/rulesets/protect-main.json`](./.github/rulesets/protect-main.json) using the GitHub CLI:
+
+```bash
+gh api repos/{owner}/{repo}/rulesets --method POST --input .github/rulesets/protect-main.json
+```
+
+This enforces pull requests (1 approving review, stale review dismissal, resolved review threads), blocks branch deletion and force-pushes, and requires the `Lint, Typecheck, Unit Tests & Build` and `Playwright E2E` CI checks.
 
 ## Project Structure
 
 ```text
 e2e/                # Playwright end-to-end test specs
 src/
-├── app/            # Next.js App Router pages, layouts, and global styles
-├── components/     # Reusable UI components
-├── config/         # Site metadata and navigation configuration
+├── app/            # Thin App Router routes, layouts, providers, boundaries
+├── components/     # Shared UI primitives and layout shells
+├── config/         # Site metadata and Zod-validated environment config
+├── features/       # Self-contained feature modules with public barrels
 ├── hooks/          # Custom React hooks (e.g. useMounted)
-├── lib/            # Utilities, Zod env validation, and unit tests
-└── types/          # Shared TypeScript interfaces and types
+├── testing/        # Shared Vitest + Testing Library helpers
+├── types/          # Shared TypeScript interfaces and types
+└── utils/          # Pure shared utilities (e.g. cn)
 ```
+
+Features are self-contained and imported through their public barrels (`src/features/<name>`); Biome enforces unidirectional imports (`src/app` → `src/features` → shared layers). See [ARCHITECTURE.md](./ARCHITECTURE.md) for details.

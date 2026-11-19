@@ -1,6 +1,8 @@
 pre-commit:
   parallel: true
   jobs:
+    - name: protect-main
+      run: node scripts/protect-main.mjs commit
     - name: biome
       glob: "*.{js,jsx,ts,tsx,json,jsonc,css}"
       run: pnpm exec biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
@@ -10,5 +12,8 @@ pre-commit:
 
 pre-push:
   jobs:
+    - name: protect-main
+      use_stdin: true
+      run: node scripts/protect-main.mjs push
     - name: test
       run: pnpm test

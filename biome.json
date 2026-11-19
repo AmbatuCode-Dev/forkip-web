@@ -17,7 +17,8 @@
       "!next-env.d.ts",
       "!public",
       "!playwright-report",
-      "!test-results"
+      "!test-results",
+      "!docs"
     ]
   },
   "formatter": {
@@ -52,5 +53,85 @@
         "organizeImports": "on"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["src/app/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": ["@/features/*/*", "@/features/*/**"],
+                    "message": "Import features through their public barrel (e.g. @/features/home) instead of deep imports."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["src/features/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": ["@/app/*", "@/app/*/*", "@/app/*/**"],
+                    "message": "Features must not import from app routes. Keep features framework-agnostic and let routes import features."
+                  },
+                  {
+                    "group": ["@/features/*/*", "@/features/*/**"],
+                    "message": "Import other features through their public barrel (@/features/<name>) instead of deep imports."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "src/components/**",
+        "src/config/**",
+        "src/hooks/**",
+        "src/testing/**",
+        "src/types/**",
+        "src/utils/**"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": [
+                      "@/features/*",
+                      "@/features/*/*",
+                      "@/app/*",
+                      "@/app/*/*",
+                      "@/features/*/**",
+                      "@/app/*/**"
+                    ],
+                    "message": "Shared layers must not import from features or app routes. Move the dependency into a shared layer or invert it."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }
