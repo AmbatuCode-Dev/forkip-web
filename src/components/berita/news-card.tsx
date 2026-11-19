@@ -82,7 +82,7 @@ export function NewsCard({
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center rounded-full bg-[#FBF6DF] px-3 py-1.5 text-xs font-semibold text-[#7A5B00]">
-            Diunggah pada: {dateLabel}
+            Diupload pada: {dateLabel}
           </span>
           <span className="inline-flex items-center rounded-full border border-[#E8E5DA] bg-white px-3 py-1.5 text-xs font-semibold text-[#404040]">
             {photoCount} Foto

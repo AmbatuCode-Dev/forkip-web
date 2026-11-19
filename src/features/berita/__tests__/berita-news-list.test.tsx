@@ -1,7 +1,7 @@
 import { cleanup } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import { BeritaNewsList, getNewsPage } from "@/features/berita";
-import { renderWithProviders, screen, within } from "@/testing/test-utils";
+import { renderWithProviders, screen } from "@/testing/test-utils";
 
 afterEach(cleanup);
 
@@ -67,7 +67,7 @@ describe("BeritaNewsList", () => {
     ).toHaveAttribute("href", "/berita?halaman=2");
   });
 
-  it("renders page 2 stub cards marked TODO", () => {
+  it("renders page 2 cards with verbatim copy", () => {
     renderWithProviders(
       <BeritaNewsList page={2} totalPages={2} posts={getNewsPage(2)} />,
     );
@@ -79,7 +79,12 @@ describe("BeritaNewsList", () => {
       screen.getByRole("heading", { name: "Gelar KIPK" }),
     ).toBeInTheDocument();
 
-    const firstCard = screen.getByTestId("news-card-verifikasi-kipk-snbp");
-    expect(within(firstCard).getByText(/TODO/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Diupload pada: Rabu 08 April 2026/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Pengelola KIPK Universitas Negeri Jakarta \(UNJ\)/),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId("news-media-only-card")).toBeInTheDocument();
   });
 });

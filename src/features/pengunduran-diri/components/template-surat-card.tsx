@@ -18,7 +18,8 @@ export function TemplateSuratCard() {
       </h2>
       {/* TODO(template): replace with the real template document URL. */}
       <a
-        href="#unduh-surat"
+        // biome-ignore lint/a11y/useValidAnchor: placeholder href until the real template URL exists.
+        href="#"
         className={buttonVariants({ variant: "gold", size: "lg" })}
         aria-label="Unduh Surat pengunduran diri (tautan belum tersedia)"
       >

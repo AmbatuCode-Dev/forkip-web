@@ -24,7 +24,7 @@ describe("NewsCard", () => {
       screen.getByRole("heading", { name: "Explore KIPK 2026" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Diunggah pada: Rabu, 18 Februari 2026/),
+      screen.getByText(/Diupload pada: Rabu, 18 Februari 2026/),
     ).toBeInTheDocument();
     expect(screen.getByText("8 Foto")).toBeInTheDocument();
     expect(screen.getByText(PARAGRAPHS[0])).toBeInTheDocument();

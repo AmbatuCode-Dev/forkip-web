@@ -12,10 +12,8 @@ export interface NewsPost {
   readonly tag?: string;
   /** Page the post appears on (1-based) in the /berita list. */
   readonly page: number;
-  /** Media-only card (BUSAMAKIP): dark gradient tile, no photo strip. */
+  /** Media-only card (BUSAMAKIP, Gelar KIPK): dark gradient tile, no photo strip. */
   readonly mediaOnly?: boolean;
-  /** TODO(page-2): stub entries awaiting real copy from the Figma frame. */
-  readonly stub?: boolean;
 }
 
 /** Page-size of the /berita paginated news list. */

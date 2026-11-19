@@ -26,7 +26,8 @@ export const alurSteps: readonly AlurStep[] = [
   },
   {
     step: 8,
-    title: "Bawa dokumen asli ke Direktorat Kemahasiswaan (gedung FIP L.1)",
+    title:
+      "Bawa dokumen asli ke Direktorat Kemahasiswaan (Jl. Kayu Jati IV No.35, Rawamangun, Pulo Gadung, Jakarta Timur)",
     icon: "building",
   },
 ];

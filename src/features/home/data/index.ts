@@ -231,7 +231,7 @@ export const divisions: readonly Division[] = [
   },
   {
     chip: "BKK",
-    title: "BKK — Biro Kreatif dan Keuangan",
+    title: "BKK — Biro Kebendaharaan dan keuangan",
     // TODO: replace with real copy from Figma when available.
     body: "BKK mengelola keuangan, perkantoran, dan penyewaan inventaris FORKIP UNJ secara transparan dan akuntabel.",
   },

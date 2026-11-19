@@ -1,8 +1,9 @@
 import { BERITA_PAGE_SIZE, type NewsPost } from "../types";
 
 /**
- * News posts, copy verbatim from docs/figma-specs/pages/berita-spec.md and
- * the reference frame berita.png. Page 2 entries are stubs (TODO copy).
+ * News posts, copy verbatim from docs/figma-specs/pages/berita-spec.md,
+ * the reference frame berita.png, and the page-2 frame in
+ * docs/figma-specs/pagination-screenshot.png.
  */
 export const newsPosts: readonly NewsPost[] = [
   {
@@ -46,20 +47,26 @@ export const newsPosts: readonly NewsPost[] = [
   {
     slug: "verifikasi-kipk-snbp",
     title: "Verifikasi KIPK SNBP",
-    uploadedLabel: "TODO",
-    photoCount: 0,
+    uploadedLabel: "Rabu 08 April 2026",
+    photoCount: 3,
     page: 2,
-    stub: true,
-    paragraphs: [],
+    paragraphs: [
+      "Pengelola KIPK Universitas Negeri Jakarta (UNJ) menyelenggarakan proses verifikasi berkas bagi calon mahasiswa baru penerima Kartu Indonesia Pintar Kuliah (KIP-K) melalui jalur Seleksi Nasional Berdasarkan Prestasi (SNBP) tahun 2026. Kegiatan yang berlangsung selama lima hari ini bertujuan untuk memastikan validitas data serta kelayakan dokumen pendukung yang telah diunggah oleh para calon mahasiswa.",
+      "Dalam tahapan ini, para peserta diwajibkan hadir atau mengirim berkas sesuai dengan jadwal (6–10 April) yang telah ditentukan dengan membawa dokumen asli serta salinan legalisir, seperti Kartu Peserta KIP-K, bukti pendaftaran SNBP, data penghasilan orang tua, serta dokumen pendukung lainnya. Proses verifikasi dilakukan secara teliti oleh tim verifikator untuk menjamin bahwa bantuan pendidikan tepat sasaran bagi mahasiswa yang memiliki potensi akademik tinggi namun memiliki keterbatasan ekonomi.",
+    ],
   },
   {
     slug: "gelar-kipk",
     title: "Gelar KIPK",
-    uploadedLabel: "TODO",
+    uploadedLabel: "Rabu 24 April 2026",
     photoCount: 0,
     page: 2,
-    stub: true,
-    paragraphs: [],
+    mediaOnly: true,
+    paragraphs: [
+      "Telah terlaksana kegiatan Gelar KIP-K 2026 yang diselenggarakan oleh Forum KIP-Kuliah UNJ sebagai wadah pengembangan kompetensi mahasiswa di bidang kreatif dan digital. Kegiatan ini menghadirkan sesi sharing interaktif yang membahas fotografi digital serta desain menggunakan Canva yang dikombinasikan dengan pemanfaatan teknologi AI.",
+      "Materi yang disampaikan tidak hanya bersifat teoritis, tetapi juga langsung dipraktikkan oleh peserta sehingga memberikan pengalaman belajar yang lebih aplikatif dan mudah dipahami.",
+      "Diharapkan kegiatan ini dapat menjadi langkah awal bagi mahasiswa KIP-K untuk terus mengembangkan potensi diri serta mampu beradaptasi dengan perkembangan dunia digital yang semakin pesat.",
+    ],
   },
 ];
 

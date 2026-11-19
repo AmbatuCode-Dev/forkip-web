@@ -79,7 +79,7 @@ describe("BerandaPage", () => {
       "KIF — Koordinator Integrasi Fakultas",
       "ADVOKASI — Divisi Advokasi",
       "SOSDIKLAT — Sosial, Pendidikan, dan Pelatihan",
-      "BKK — Biro Kreatif dan Keuangan",
+      "BKK — Biro Kebendaharaan dan keuangan",
     ];
     for (const title of titles) {
       const toggle = screen.getByRole("button", { name: new RegExp(title) });
