@@ -13,6 +13,7 @@ export default defineConfig({
       ...configDefaults.exclude,
       ".next/**",
       "node_modules/**",
+      ".slim/**",
       "e2e/**",
     ],
   },
