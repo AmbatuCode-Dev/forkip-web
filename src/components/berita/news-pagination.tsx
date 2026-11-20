@@ -49,7 +49,7 @@ export function NewsPagination({
       aria-label="Halaman sebelumnya"
       className={cn(
         controlClassName,
-        "border border-[#E8E5DA] bg-white text-[#404040]",
+        "border border-border-sand bg-white text-body",
         prevDisabled && "pointer-events-none opacity-50",
       )}
     >
@@ -63,7 +63,7 @@ export function NewsPagination({
       onClick={() => onPageChange?.(page - 1)}
       className={cn(
         controlClassName,
-        "cursor-pointer border border-[#E8E5DA] bg-white text-[#404040]",
+        "cursor-pointer border border-border-sand bg-white text-body",
         prevDisabled && "cursor-not-allowed opacity-50",
       )}
     >
@@ -78,7 +78,7 @@ export function NewsPagination({
       aria-label="Halaman berikutnya"
       className={cn(
         controlClassName,
-        "border border-[#E8E5DA] bg-white text-[#404040]",
+        "border border-border-sand bg-white text-body",
         nextDisabled && "pointer-events-none opacity-50",
       )}
     >
@@ -92,7 +92,7 @@ export function NewsPagination({
       onClick={() => onPageChange?.(page + 1)}
       className={cn(
         controlClassName,
-        "cursor-pointer border border-[#E8E5DA] bg-white text-[#404040]",
+        "cursor-pointer border border-border-sand bg-white text-body",
         nextDisabled && "cursor-not-allowed opacity-50",
       )}
     >
@@ -110,10 +110,10 @@ export function NewsPagination({
       {...props}
     >
       <div className="flex flex-col gap-2.5">
-        <p className="text-xs font-bold text-[#1C1C1C] uppercase">
+        <p className="text-xs font-bold text-ink uppercase">
           Halaman {page} dari {totalPages}
         </p>
-        <p className="text-sm font-medium text-[#404040]">
+        <p className="text-sm font-medium text-body">
           Total {totalItems} berita dipublikasikan
         </p>
       </div>
@@ -125,7 +125,7 @@ export function NewsPagination({
               <span
                 key={pageNumber}
                 aria-current="page"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F6D34A] text-[13px] font-semibold text-[#1C1C1C]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold text-13 font-semibold text-ink"
               >
                 {pageNumber}
               </span>
@@ -134,7 +134,7 @@ export function NewsPagination({
                 key={pageNumber}
                 href={pageHref(basePath, pageNumber)}
                 aria-label={`Halaman ${pageNumber}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#E8E5DA] bg-white text-[13px] font-medium text-[#404040] hover:bg-[#FBF6DF]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-sand bg-white text-13 font-medium text-body hover:bg-gold-soft"
               >
                 {pageNumber}
               </Link>
@@ -144,7 +144,7 @@ export function NewsPagination({
                 type="button"
                 aria-label={`Halaman ${pageNumber}`}
                 onClick={() => onPageChange?.(pageNumber)}
-                className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#E8E5DA] bg-white text-[13px] font-medium text-[#404040] hover:bg-[#FBF6DF]"
+                className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border-sand bg-white text-13 font-medium text-body hover:bg-gold-soft"
               >
                 {pageNumber}
               </button>

@@ -61,7 +61,7 @@ describe("NewsCard", () => {
 
     fireEvent.click(second);
     expect(second).toHaveAttribute("aria-pressed", "true");
-    expect(second.className).toContain("ring-[#F6D34A]");
+    expect(second.className).toContain("ring-gold");
   });
 
   it("renders lead title, stage badge and caption when given", () => {
@@ -78,8 +78,8 @@ describe("NewsCard", () => {
     );
 
     const heading = screen.getByRole("heading", { name: "Explore KIPK 2026" });
-    expect(heading.className).toContain("text-[38px]");
-    expect(heading.className).toContain("leading-[48px]");
+    expect(heading.className).toContain("text-38");
+    expect(heading.className).toContain("leading-12");
     expect(screen.getByText("01 / 04 · Foto")).toBeInTheDocument();
     expect(
       screen.getByText("Suasana sosialisasi Explore KIPK 2026"),
@@ -99,14 +99,12 @@ describe("NewsCard", () => {
       />,
     );
 
-    expect(screen.getByText("01 / 04 · Foto").className).toContain(
-      "text-[11px]",
-    );
+    expect(screen.getByText("01 / 04 · Foto").className).toContain("text-11");
     expect(screen.getByText("Suasana sosialisasi").className).toContain(
-      "leading-[16px]",
+      "leading-4",
     );
     expect(
       screen.getByRole("heading", { name: "Explore KIPK 2026" }).className,
-    ).toContain("text-[28px]");
+    ).toContain("text-28");
   });
 });

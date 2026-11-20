@@ -30,7 +30,7 @@ describe("NewsPagination", () => {
 
     const current = screen.getByText("2");
     expect(current).toHaveAttribute("aria-current", "page");
-    expect(current.className).toContain("bg-[#F6D34A]");
+    expect(current.className).toContain("bg-gold");
   });
 
   it("disables Sebelumnya on page 1 (callback mode)", () => {

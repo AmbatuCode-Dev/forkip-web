@@ -52,7 +52,7 @@ export function NewsCard({
   return (
     <article
       className={cn(
-        "grid grid-cols-1 gap-8 border-b border-[#E8E5DA] pb-10 lg:grid-cols-[minmax(0,420px)_1fr]",
+        "grid grid-cols-1 gap-8 border-b border-border-sand pb-10 lg:grid-cols-420",
         className,
       )}
       {...props}
@@ -62,14 +62,14 @@ export function NewsCard({
           <NewsMediaPlaceholder
             label={title}
             variant={((selected % 3) + 1) as 1 | 2 | 3}
-            className="h-[300px] w-full"
+            className="h-75 w-full"
             data-testid="news-card-stage"
           />
           {stageBadge ? (
             <span
               className={cn(
-                "absolute top-4 left-4 inline-flex items-center rounded-full bg-[#1F2937] px-3 py-1.5 font-bold text-white shadow-xs",
-                small ? "text-[11px]" : "text-xs",
+                "absolute top-4 left-4 inline-flex items-center rounded-full bg-slate px-3 py-1.5 font-bold text-white shadow-xs",
+                small ? "text-11" : "text-xs",
               )}
             >
               {stageBadge}
@@ -79,8 +79,8 @@ export function NewsCard({
         {caption ? (
           <p
             className={cn(
-              "font-semibold text-[#1C1C1C]",
-              small ? "text-xs leading-[16px]" : "text-[13px] leading-[18px]",
+              "font-semibold text-ink",
+              small ? "text-xs leading-4" : "text-13 leading-18",
             )}
           >
             {caption}
@@ -100,7 +100,7 @@ export function NewsCard({
               className={cn(
                 "h-16 w-24 cursor-pointer rounded-lg transition-shadow",
                 selected === thumbnail.position
-                  ? "ring-2 ring-[#F6D34A] ring-offset-2 ring-offset-white"
+                  ? "ring-2 ring-gold ring-offset-2 ring-offset-white"
                   : "opacity-90 hover:opacity-100",
               )}
             >
@@ -115,32 +115,29 @@ export function NewsCard({
       </div>
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center rounded-full bg-[#FBF6DF] px-3 py-1.5 text-xs font-bold text-[#7A5B00]">
+          <span className="inline-flex items-center rounded-full bg-gold-soft px-3 py-1.5 text-xs font-bold text-gold-ink">
             Diupload pada: {dateLabel}
           </span>
-          <span className="inline-flex items-center rounded-full border border-[#E8E5DA] bg-white px-3 py-1.5 text-xs font-semibold text-[#404040]">
+          <span className="inline-flex items-center rounded-full border border-border-sand bg-white px-3 py-1.5 text-xs font-semibold text-body">
             {photoCount} Foto
           </span>
         </div>
         {tag ? (
-          <span className="inline-flex items-center rounded-full bg-[#FFF3C4] px-3 py-1.5 text-xs font-semibold text-[#7A5B00]">
+          <span className="inline-flex items-center rounded-full bg-gold-pale px-3 py-1.5 text-xs font-semibold text-gold-ink">
             {tag}
           </span>
         ) : null}
         <h3
           className={cn(
-            "font-extrabold tracking-tight text-[#1C1C1C]",
-            lead ? "text-[38px] leading-[48px]" : "text-[28px] leading-[36px]",
+            "font-extrabold tracking-tight text-ink",
+            lead ? "text-38 leading-12" : "text-28 leading-9",
           )}
         >
           {title}
         </h3>
         <div className="space-y-3">
           {paragraphs.map((paragraph) => (
-            <p
-              key={paragraph}
-              className="text-[15px] leading-[24px] text-[#404040]"
-            >
+            <p key={paragraph} className="text-15 leading-6 text-body">
               {paragraph}
             </p>
           ))}

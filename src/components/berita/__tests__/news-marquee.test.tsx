@@ -54,16 +54,10 @@ describe("NewsMarquee", () => {
     render(<NewsMarquee items={FASE_A_ITEMS} />);
 
     const cards = screen.getAllByTestId("marquee-card");
-    const expected = [
-      "w-[460px]",
-      "w-[280px]",
-      "w-[440px]",
-      "w-[300px]",
-      "w-[420px]",
-    ];
+    const expected = ["w-115", "w-70", "w-110", "w-75", "w-105"];
     cards.forEach((card, index) => {
       expect(card.className).toContain(expected[index % expected.length]);
-      expect(card.className).toContain("h-[380px]");
+      expect(card.className).toContain("h-95");
       expect(card.className).toContain("rounded-3xl");
     });
   });

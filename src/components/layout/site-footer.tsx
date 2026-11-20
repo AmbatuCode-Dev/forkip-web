@@ -66,9 +66,9 @@ const socialLinks: readonly SocialLink[] = [
 export function SiteFooter() {
   return (
     <footer className="bg-surface-100">
-      <div className="mx-auto w-full max-w-[1200px] px-4 pt-20 pb-9 sm:px-6 xl:px-0">
+      <div className="mx-auto w-full max-w-300 px-4 pt-20 pb-9 sm:px-6 xl:px-0">
         <div className="flex flex-col gap-12 md:flex-row md:gap-14">
-          <div className="flex w-full flex-col md:w-[340px] md:shrink-0">
+          <div className="flex w-full flex-col md:w-85 md:shrink-0">
             <div className="flex items-center gap-2.5">
               <Image
                 src="/images/logo-kipk-unj.png"
@@ -77,11 +77,11 @@ export function SiteFooter() {
                 height={48}
                 className="size-12 object-contain"
               />
-              <span className="text-[19px] font-extrabold tracking-[-0.4px] text-ink">
+              <span className="text-19 font-extrabold tracking-t04 text-ink">
                 Forum KIPK UNJ
               </span>
             </div>
-            <p className="mt-4 text-sm leading-[22px] font-normal text-body">
+            <p className="mt-4 text-sm leading-22 font-normal text-body">
               Forum KIPK UNJ merupakan sebuah wadah untuk mengurus berbagai hal
               yang berhubungan dengan mahasiswa penerima KIP-K di UNJ
             </p>
@@ -113,15 +113,15 @@ export function SiteFooter() {
           </div>
 
           <nav aria-label="Menu footer" className="flex-1">
-            <h2 className="text-[13px] font-bold tracking-[1.2px] text-ink uppercase">
+            <h2 className="text-13 font-bold tracking-wide12 text-ink uppercase">
               Menu
             </h2>
-            <ul className="mt-[10px] flex flex-col gap-3.5 leading-[20px]">
+            <ul className="mt-2.5 flex flex-col gap-3.5 leading-5">
               {menuLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm leading-[20px] font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="text-sm leading-5 font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {link.label}
                   </Link>
@@ -131,15 +131,15 @@ export function SiteFooter() {
           </nav>
 
           <nav aria-label="Lainnya footer" className="flex-1">
-            <h2 className="text-[13px] font-bold tracking-[1.2px] text-ink uppercase">
+            <h2 className="text-13 font-bold tracking-wide12 text-ink uppercase">
               Lainnya
             </h2>
-            <ul className="mt-[10px] flex flex-col gap-3.5 leading-[20px]">
+            <ul className="mt-2.5 flex flex-col gap-3.5 leading-5">
               {lainnyaLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm leading-[20px] font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="text-sm leading-5 font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {link.label}
                   </Link>
@@ -149,29 +149,29 @@ export function SiteFooter() {
           </nav>
 
           <div className="flex-1">
-            <h2 className="text-[13px] font-bold tracking-[1.2px] text-ink uppercase">
+            <h2 className="text-13 font-bold tracking-wide12 text-ink uppercase">
               Kontak
             </h2>
-            <ul className="mt-[10px] flex flex-col gap-3.5 leading-[20px]">
+            <ul className="mt-2.5 flex flex-col gap-3.5 leading-5">
               {kontakItems.map((item) => (
                 <li
                   key={item.label}
-                  className="text-sm leading-[20px] font-medium text-body"
+                  className="text-sm leading-5 font-medium text-body"
                 >
                   {item.label} {item.value}
                 </li>
               ))}
             </ul>
-            <div className="mt-4 flex h-[140px] items-center justify-center rounded-2xl border border-border-sand bg-surface-200">
-              <span className="text-[13px] font-semibold text-ink-soft">
+            <div className="mt-4 flex h-35 items-center justify-center rounded-2xl border border-border-sand bg-surface-200">
+              <span className="text-13 font-semibold text-ink-soft">
                 Peta lokasi
               </span>
             </div>
           </div>
         </div>
 
-        <div className="mt-[47px] h-px bg-surface-200" />
-        <p className="mt-12 text-[13px] leading-[17px] font-medium text-body-muted">
+        <div className="mt-11.75 h-px bg-surface-200" />
+        <p className="mt-12 text-13 leading-17 font-medium text-body-muted">
           © 2026 Forum KIP-K Universitas Negeri Jakarta
         </p>
       </div>

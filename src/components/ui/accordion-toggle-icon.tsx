@@ -8,7 +8,7 @@ export function AccordionToggleIcon({ expanded }: { expanded: boolean }) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      className="h-7 w-7 shrink-0 text-[#1C1C1C]"
+      className="h-7 w-7 shrink-0 text-ink"
     >
       <line x1="5" y1="14" x2="23" y2="14" />
       {expanded ? null : <line x1="14" y1="5" x2="14" y2="23" />}
