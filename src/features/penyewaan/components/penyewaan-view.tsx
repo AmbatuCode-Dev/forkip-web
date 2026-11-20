@@ -19,27 +19,26 @@ export function PenyewaanView() {
         subtitle={penyewaanHero.description}
       />
 
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-6 px-4 py-12 sm:px-6">
-        {/* Note card */}
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-10 px-4 pt-[72px] pb-24 sm:px-4 lg:px-0">
+        {/* Note card — 1200×96, gold tint #FFF3C4 (Figma frame 224:2568) */}
         <section
           aria-label="Catatan penyewaan"
-          className="flex flex-col gap-4 rounded-[14px] bg-[#FBF6DF] px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6"
+          className="flex flex-col gap-4 rounded-[14px] bg-[#FFF3C4] py-6 pr-12 pl-[30px] sm:flex-row sm:items-center sm:justify-between sm:gap-6"
         >
-          <p className="max-w-xl text-sm leading-6 text-[#2B2B2B]">
+          <p className="max-w-[800px] text-base leading-6 font-medium text-[#2B2B2B]">
             Penyewaan barang, harap menghubungi admin BKK dengan klik tombol
             berikut sebelum isi form di bawah.
           </p>
-          <div className="flex shrink-0 flex-wrap items-center gap-3">
-            {adminContactLinks.map((link) => (
+          <div className="flex shrink-0 flex-wrap items-center gap-7">
+            {adminContactLinks.map((link, index) => (
               <a
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  buttonVariants({
-                    variant: "outline",
-                    size: "md",
-                    className: "rounded-full border-[#C9A227] px-5 text-sm",
-                  }),
+                  "inline-flex h-10 items-center justify-center rounded-full px-5 text-[13px] font-semibold text-[#1C1C1C] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7A5B00]",
+                  index === 0
+                    ? "bg-[#F6D34A] hover:bg-[#E0B400]"
+                    : "border border-[#C9A227] bg-white hover:bg-[#FBF6DF]",
                 )}
               >
                 {link.label}
@@ -48,7 +47,7 @@ export function PenyewaanView() {
           </div>
         </section>
 
-        {/* Google Form embed placeholder */}
+        {/* Google Form embed placeholder — 1200×260 white card */}
         <section
           aria-label={googleFormEmbed.title}
           className="flex h-[260px] flex-col items-center justify-center gap-2 rounded-2xl border border-border-sand bg-white px-6 text-center"
@@ -65,7 +64,7 @@ export function PenyewaanView() {
         {/* Inventaris list */}
         <section
           aria-labelledby="inventaris-heading"
-          className="flex flex-col gap-4 pt-2"
+          className="flex flex-col gap-8"
         >
           <h2
             id="inventaris-heading"
@@ -88,10 +87,10 @@ export function PenyewaanView() {
           </div>
         </section>
 
-        {/* Contact CTA */}
+        {/* Contact CTA — 1200×187 solid #FFF3C4 (Figma frame 224:2568) */}
         <section
           aria-label={contactCta.title}
-          className="mt-2 flex flex-col items-center gap-2 rounded-2xl bg-gradient-to-r from-[#FBF6DF] to-[#F6EFAF] px-6 py-12 text-center"
+          className="flex flex-col items-center gap-2 rounded-2xl bg-[#FFF3C4] px-6 py-9 text-center"
         >
           <h2 className="text-[20px] font-bold text-[#1C1C1C]">
             {contactCta.title}
