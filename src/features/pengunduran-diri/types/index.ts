@@ -20,4 +20,6 @@ export interface FacultyContact {
   readonly color: string;
   /** WhatsApp contact link; TODO: replace with the real delegation numbers. */
   readonly href: string;
+  /** FIKK is an outlined white tile in the reference; the rest are filled. */
+  readonly variant?: "filled" | "outline";
 }

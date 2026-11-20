@@ -13,5 +13,5 @@ export const fakultasKontak: readonly FacultyContact[] = [
   { code: "FT", color: "#005088", href: "#" },
   { code: "FPsi", color: "#00A4E4", href: "#" },
   { code: "FEB", color: "#B25A14", href: "#" },
-  { code: "FIKK", color: "#0F766E", href: "#" },
+  { code: "FIKK", color: "#0F766E", href: "#", variant: "outline" },
 ];
