@@ -10,11 +10,11 @@ import { beritaMarqueeItems, beritaSection } from "../data";
 export function BeritaSection() {
   return (
     <section className="bg-white pt-24">
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
         <h2 className="text-center text-[34px] leading-[44px] font-extrabold tracking-[-0.8px] text-ink sm:text-[42px] sm:leading-[50px]">
           {beritaSection.title}
         </h2>
-        <p className="mx-auto mt-4 max-w-[720px] text-center text-sm/5 text-body-muted sm:text-base/6">
+        <p className="mx-auto mt-4 max-w-[720px] text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
           {beritaSection.subtitle}
         </p>
       </div>
@@ -23,7 +23,7 @@ export function BeritaSection() {
         <NewsMarquee items={[...beritaMarqueeItems]} />
       </div>
 
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
         <div className="mt-14 grid gap-10 pb-16 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)]">
           <article className="flex flex-col gap-4">
             <NewsMediaPlaceholder
@@ -33,7 +33,7 @@ export function BeritaSection() {
             <h3 className="mt-2 text-3xl leading-9 font-bold text-ink">
               {beritaSection.feature.title}
             </h3>
-            <p className="text-[15px]/6 text-body-muted">
+            <p className="text-[15px] leading-6 text-body-muted">
               {beritaSection.feature.summary}
             </p>
             <Link
@@ -60,7 +60,7 @@ export function BeritaSection() {
                   <h3 className="text-xl leading-7 font-bold text-ink">
                     {teaser.title}
                   </h3>
-                  <p className="mt-2 text-sm/5 text-body-muted">
+                  <p className="mt-2 text-sm leading-5 text-body-muted">
                     {teaser.summary}
                   </p>
                   <Link

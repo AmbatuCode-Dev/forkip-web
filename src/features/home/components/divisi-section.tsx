@@ -10,11 +10,11 @@ import { dikelolaSection, divisions, divisiSection } from "../data";
 export function DivisiSection() {
   return (
     <section className="bg-surface-50 py-24">
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
         <h2 className="text-center text-[34px] leading-[44px] font-extrabold tracking-[-0.8px] text-ink sm:text-[42px] sm:leading-[50px]">
           {divisiSection.title}
         </h2>
-        <p className="mx-auto mt-4 max-w-[760px] text-center text-sm/5 text-body-muted sm:text-base/6">
+        <p className="mx-auto mt-4 max-w-[760px] text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
           {divisiSection.subtitle}
         </p>
 
@@ -34,7 +34,7 @@ export function DivisiSection() {
           <p className="text-[13px] font-medium tracking-wide text-body-muted uppercase">
             {dikelolaSection.eyebrow}
           </p>
-          <p className="text-base/6 font-semibold text-ink sm:text-lg/7">
+          <p className="text-base leading-6 font-semibold text-ink sm:text-lg sm:leading-7">
             {dikelolaSection.title}
           </p>
           <Link
