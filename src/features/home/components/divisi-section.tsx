@@ -9,7 +9,7 @@ import { dikelolaSection, divisions, divisiSection } from "../data";
  */
 export function DivisiSection() {
   return (
-    <section className="bg-surface-50 py-24">
+    <section id="divisi" className="bg-surface-50 py-24">
       <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
         <h2 className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50">
           {divisiSection.title}
