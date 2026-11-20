@@ -11,13 +11,13 @@ export function ArsipDataView() {
         subtitle={arsipHero.description}
       />
 
-      <div className="mx-auto w-full max-w-[1200px] px-4 py-16 sm:px-6">
+      <div className="mx-auto w-full max-w-[1200px] px-4 pt-[72px] pb-24 sm:px-4 lg:px-0">
         <section
           aria-labelledby="direktori-heading"
-          className="flex flex-col gap-12 lg:flex-row lg:gap-16"
+          className="flex flex-col gap-12 lg:flex-row lg:gap-12"
         >
-          {/* Left rail */}
-          <div className="flex w-full flex-col gap-4 lg:w-[300px] lg:shrink-0">
+          {/* Left rail — 240px, 3-line heading (Figma frame 224:3597) */}
+          <div className="flex w-full flex-col gap-4 lg:w-[240px] lg:shrink-0">
             <p className="text-xs font-bold tracking-[1.2px] text-[#7A5B00] uppercase">
               {direktoriRail.eyebrow}
             </p>
@@ -27,17 +27,17 @@ export function ArsipDataView() {
             >
               {direktoriRail.heading}
             </h2>
-            <p className="text-[13px] leading-5 text-[#666666]">
+            <p className="max-w-[185px] text-[13px] leading-6 text-[#666666]">
               {direktoriRail.caption}
             </p>
           </div>
 
-          {/* Numbered division rows */}
+          {/* Numbered division rows — 7 × 96px, bottom-only rules */}
           <ol className="flex min-w-0 flex-1 flex-col">
             {divisionArchives.map((division) => (
               <li
                 key={division.number}
-                className="flex min-h-[88px] items-center justify-between gap-6 border-t border-[#E8E5DA] py-4 last:border-b"
+                className="flex min-h-24 items-center justify-between gap-6 border-b border-[#E8E5DA]"
               >
                 <div className="flex min-w-0 items-baseline gap-4 sm:gap-6">
                   <span className="w-8 shrink-0 text-[13px] text-[#666666] tabular-nums">
@@ -53,7 +53,7 @@ export function ArsipDataView() {
                   </span>
                   <a
                     href={division.href}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#7A5B00] transition-colors hover:text-[#5c4400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#7A5B00] transition-colors hover:text-[#5c4400] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {division.linkLabel}
                     <span aria-hidden="true">→</span>
