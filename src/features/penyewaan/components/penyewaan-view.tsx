@@ -19,7 +19,7 @@ export function PenyewaanView() {
         subtitle={penyewaanHero.description}
       />
 
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-10 px-4 pt-[72px] pb-24 sm:px-4 lg:px-0">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-10 px-4 pt-[72px] pb-24 sm:px-4 xl:px-0">
         {/* Note card — 1200×96, gold tint #FFF3C4 (Figma frame 224:2568) */}
         <section
           aria-label="Catatan penyewaan"
@@ -68,7 +68,7 @@ export function PenyewaanView() {
         >
           <h2
             id="inventaris-heading"
-            className="text-[28px] leading-9 font-semibold text-[#1C1C1C]"
+            className="text-[32px] leading-9 font-semibold text-[#1C1C1C]"
           >
             Inventaris yang kami sewakan
           </h2>
