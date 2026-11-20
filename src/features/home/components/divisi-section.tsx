@@ -42,7 +42,7 @@ export function DivisiSection() {
             className={buttonVariants({
               variant: "gold",
               size: "cta",
-              className: "h-9 px-6 text-[15px]",
+              className: "px-6 text-[15px]",
             })}
           >
             {dikelolaSection.cta}

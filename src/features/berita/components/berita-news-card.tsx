@@ -143,8 +143,8 @@ export function BeritaNewsCard({ post }: { readonly post: NewsPost }) {
   const [selected, setSelected] = useState(0);
   const titleClass =
     post.slug === "explore-kipk-2026"
-      ? "text-[38px] leading-[48px] font-bold tracking-tight text-[#1C1C1C]"
-      : "text-[28px] leading-[36px] font-bold tracking-tight text-[#1C1C1C]";
+      ? "text-[38px] leading-[48px] font-extrabold tracking-tight text-[#1C1C1C]"
+      : "text-[28px] leading-[36px] font-extrabold tracking-tight text-[#1C1C1C]";
   const thumbCount = Math.max(1, Math.min(4, post.photoCount));
   const gallery = post.gallery;
   const badge =
@@ -158,11 +158,11 @@ export function BeritaNewsCard({ post }: { readonly post: NewsPost }) {
       <div className="space-y-3">
         <div className="relative rounded-2xl border border-[#E8E5DA] bg-[#F4F2EA] p-3">
           <StageIllustration post={post} selected={selected} />
-          <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-[#1F2937] px-4 py-2 text-xs font-semibold text-white shadow-sm">
+          <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-[#1F2937] px-4 py-2 text-xs font-bold text-white shadow-sm">
             {badge}
           </span>
           <div className="mt-3 flex items-center justify-between gap-3 rounded-xl bg-white px-4 py-3 shadow-[0_-2px_6px_rgba(0,0,0,0.04)]">
-            <span className="truncate text-[13px] font-medium text-[#1C1C1C]">
+            <span className="truncate text-[13px] leading-[18px] font-semibold text-[#1C1C1C]">
               {gallery?.caption ?? post.title}
             </span>
             <span className="flex shrink-0 items-center gap-2">
@@ -218,7 +218,7 @@ export function BeritaNewsCard({ post }: { readonly post: NewsPost }) {
 
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center rounded-full bg-[#FBF6DF] px-3 py-1.5 text-xs font-semibold text-[#7A5B00]">
+          <span className="inline-flex items-center rounded-full bg-[#FBF6DF] px-3 py-1.5 text-xs font-bold text-[#7A5B00]">
             Diupload pada: {post.uploadedLabel}
           </span>
           <span className="inline-flex items-center rounded-full border border-[#E8E5DA] bg-white px-3 py-1.5 text-xs font-semibold text-[#404040]">
@@ -230,7 +230,7 @@ export function BeritaNewsCard({ post }: { readonly post: NewsPost }) {
           {post.paragraphs.map((paragraph) => (
             <p
               key={paragraph}
-              className="text-sm leading-[22px] text-[#404040]"
+              className="text-[15px] leading-[24px] text-[#404040]"
             >
               {paragraph}
             </p>
