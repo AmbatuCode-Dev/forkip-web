@@ -13,7 +13,7 @@ export function TemplateSuratCard() {
     >
       <h2
         id="template-surat-heading"
-        className="text-[15px] leading-6 font-bold text-ink"
+        className="text-[26px] leading-[32px] font-bold text-ink"
       >
         Klik tombol di bawah untuk download template surat pengunduran diri
       </h2>

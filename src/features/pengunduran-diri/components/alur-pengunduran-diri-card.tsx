@@ -60,7 +60,7 @@ export function AlurPengunduranDiriCard() {
     >
       <h2
         id="alur-pengunduran-diri-heading"
-        className="text-xl font-bold tracking-tight text-ink"
+        className="text-[30px] leading-[40px] font-bold tracking-tight text-ink"
       >
         Alur pengunduran diri KIPK 2026
       </h2>

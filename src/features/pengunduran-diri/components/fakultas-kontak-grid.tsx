@@ -35,7 +35,7 @@ export function FakultasKontakGrid() {
               aria-label={`Hubungi delegasi KIF ${faculty.code} via WhatsApp`}
             >
               <span className="flex flex-col gap-1 text-left">
-                <span className="text-base font-bold">{faculty.code}</span>
+                <span className="text-[22px] font-bold">{faculty.code}</span>
                 <span className="text-xs font-normal">
                   Hubungi via WhatsApp
                 </span>

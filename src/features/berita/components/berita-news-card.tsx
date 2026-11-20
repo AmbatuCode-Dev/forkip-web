@@ -141,6 +141,10 @@ function ThumbnailIllustration({
  */
 export function BeritaNewsCard({ post }: { readonly post: NewsPost }) {
   const [selected, setSelected] = useState(0);
+  const titleClass =
+    post.slug === "explore-kipk-2026"
+      ? "text-[38px] leading-[48px] font-bold tracking-tight text-[#1C1C1C]"
+      : "text-[28px] leading-[36px] font-bold tracking-tight text-[#1C1C1C]";
   const thumbCount = Math.max(1, Math.min(4, post.photoCount));
   const gallery = post.gallery;
   const badge =
@@ -221,9 +225,7 @@ export function BeritaNewsCard({ post }: { readonly post: NewsPost }) {
             {post.photoCount} Foto
           </span>
         </div>
-        <h3 className="text-[26px] leading-9 font-bold tracking-tight text-[#1C1C1C]">
-          {post.title}
-        </h3>
+        <h3 className={titleClass}>{post.title}</h3>
         <div className="space-y-4">
           {post.paragraphs.map((paragraph) => (
             <p

@@ -111,7 +111,7 @@ export function NewsMediaOnlyCard({ post }: { post: NewsPost }) {
             Diupload pada: {post.uploadedLabel}
           </span>
         </div>
-        <h3 className="text-[26px] leading-9 font-bold tracking-tight text-[#1C1C1C]">
+        <h3 className="text-[28px] leading-[36px] font-bold tracking-tight text-[#1C1C1C]">
           {post.title}
         </h3>
         <div className="space-y-4">

@@ -14,7 +14,7 @@ export default async function BeritaPage({
   return (
     <>
       <BeritaHero />
-      <div className="mx-auto w-full max-w-[1200px] px-4 pt-12 pb-20 sm:px-6">
+      <div className="mx-auto w-full max-w-[1200px] px-4 pt-12 pb-20 sm:px-6 xl:px-0">
         <Suspense
           fallback={<p className="text-sm text-body-muted">Memuat berita…</p>}
         >
