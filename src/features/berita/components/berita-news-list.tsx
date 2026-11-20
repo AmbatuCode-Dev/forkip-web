@@ -1,22 +1,14 @@
-import { NewsCard } from "@/components/berita/news-card";
-import { NewsPagination } from "@/components/berita/news-pagination";
 import { newsPosts } from "../data/news-posts";
 import type { NewsPost } from "../types";
+import { BeritaNewsCard } from "./berita-news-card";
+import { BeritaPagination } from "./berita-pagination";
 import { NewsMediaOnlyCard } from "./news-media-only-card";
 
 function NewsListItem({ post }: { post: NewsPost }) {
   if (post.mediaOnly) {
     return <NewsMediaOnlyCard post={post} />;
   }
-  return (
-    <NewsCard
-      dateLabel={post.uploadedLabel}
-      photoCount={post.photoCount}
-      title={post.title}
-      paragraphs={[...post.paragraphs]}
-      data-testid={`news-card-${post.slug}`}
-    />
-  );
+  return <BeritaNewsCard post={post} />;
 }
 
 export interface BeritaNewsListProps {
@@ -26,8 +18,9 @@ export interface BeritaNewsListProps {
 }
 
 /**
- * Paginated news list (spec §2–§3): cards grid + pagination bar wired to
- * ?halaman=N links via the shared NewsPagination.
+ * Paginated news list (spec §2-§3): cards grid + pagination bar wired to
+ * ?halaman=N links. The -mx offset cancels the app-level padding so the
+ * cards span the Figma 1200px content column.
  */
 export function BeritaNewsList({
   page,
@@ -37,7 +30,7 @@ export function BeritaNewsList({
   return (
     <section
       aria-labelledby="berita-list-heading"
-      className="flex flex-col gap-10"
+      className="-mx-4 flex flex-col gap-10 sm:-mx-6"
     >
       <h2 id="berita-list-heading" className="sr-only">
         Daftar berita
@@ -47,11 +40,10 @@ export function BeritaNewsList({
           <NewsListItem key={post.slug} post={post} />
         ))}
       </div>
-      <NewsPagination
+      <BeritaPagination
         page={page}
         totalPages={totalPages}
         totalItems={newsPosts.length}
-        basePath="/berita"
       />
     </section>
   );

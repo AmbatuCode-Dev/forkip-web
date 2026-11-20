@@ -8,12 +8,17 @@ export interface NewsPost {
   readonly uploadedLabel: string;
   readonly photoCount: number;
   readonly paragraphs: readonly string[];
-  /** Pill above the title, e.g. "Selesai dilaksanakan & sosialisasi…". */
+  /** Pill above the title, e.g. "Selesai dilaksanakan & sosialisasi.". */
   readonly tag?: string;
   /** Page the post appears on (1-based) in the /berita list. */
   readonly page: number;
   /** Media-only card (BUSAMAKIP, Gelar KIPK): dark gradient tile, no photo strip. */
   readonly mediaOnly?: boolean;
+  /** Badge + caption shown on the media stage in the Figma reference. */
+  readonly gallery?: {
+    readonly badge: string;
+    readonly caption: string;
+  };
 }
 
 /** Page-size of the /berita paginated news list. */
