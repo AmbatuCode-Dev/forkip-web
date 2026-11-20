@@ -52,7 +52,7 @@ export function InventarisAccordion({
             {chip}
           </span>
           <span className="min-w-0">
-            <span className="block truncate text-[15px] font-semibold leading-6 text-[#1C1C1C]">
+            <span className="block truncate text-[22px] leading-[32px] font-semibold text-[#1C1C1C]">
               {title}
             </span>
             <span className="block truncate text-xs leading-5 text-[#666666]">

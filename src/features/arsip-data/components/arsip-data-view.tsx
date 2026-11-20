@@ -23,7 +23,7 @@ export function ArsipDataView() {
             </p>
             <h2
               id="direktori-heading"
-              className="text-[28px] leading-[34px] font-semibold text-[#1C1C1C] sm:text-[32px] sm:leading-[38px]"
+              className="text-[28px] leading-[38px] font-semibold text-[#1C1C1C]"
             >
               {direktoriRail.heading}
             </h2>
@@ -43,7 +43,7 @@ export function ArsipDataView() {
                   <span className="w-8 shrink-0 text-[13px] text-[#666666] tabular-nums">
                     {division.number}
                   </span>
-                  <span className="text-[17px] font-bold tracking-wide text-[#1C1C1C] uppercase sm:text-[20px]">
+                  <span className="text-[22px] leading-[32px] font-bold tracking-wide text-[#1C1C1C] uppercase">
                     {division.name}
                   </span>
                 </div>
