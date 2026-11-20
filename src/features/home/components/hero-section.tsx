@@ -48,14 +48,14 @@ function PlayCircle({ className }: { className?: string }) {
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-white">
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
         <div className="grid items-center gap-12 py-14 lg:min-h-[644px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-8 lg:py-16">
           <div className="flex flex-col items-start gap-6">
             <h1 className="text-[44px] leading-[1.05] tracking-[-2px] text-ink sm:text-[56px] lg:text-[72px] lg:leading-[1.1]">
               <span className="block font-light">{heroCopy.titleLight}</span>
               <span className="block font-extrabold">{heroCopy.titleBold}</span>
             </h1>
-            <p className="max-w-[560px] text-base/6 text-body">
+            <p className="max-w-[560px] text-base leading-6 text-body">
               {heroCopy.subtitle}
             </p>
 
@@ -95,7 +95,7 @@ export function HeroSection() {
                     href={link.href}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="flex items-center gap-2 rounded-md text-base/6 text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="flex items-center gap-2 rounded-md text-base leading-6 text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <span
                       aria-hidden="true"

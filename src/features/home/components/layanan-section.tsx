@@ -9,11 +9,11 @@ import { ServiceIconGlyph } from "./service-icon";
 export function LayananSection() {
   return (
     <section className="bg-white py-24">
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
         <h2 className="text-center text-[34px] leading-[44px] font-extrabold tracking-[-0.8px] text-ink sm:text-[42px] sm:leading-[50px]">
           {layananSection.title}
         </h2>
-        <p className="mx-auto mt-3 max-w-[640px] text-center text-sm/5 text-body-muted sm:text-base/6">
+        <p className="mx-auto mt-3 max-w-[640px] text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
           {layananSection.subtitle}
         </p>
 
@@ -38,7 +38,7 @@ export function LayananSection() {
                 <h3 className="text-xl leading-7 font-semibold text-ink">
                   {service.title}
                 </h3>
-                <p className="text-sm/5 text-body-muted">
+                <p className="text-sm leading-5 text-body-muted">
                   {service.description}
                 </p>
               </div>

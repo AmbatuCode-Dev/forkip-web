@@ -6,7 +6,7 @@ import { misiItems, visiItems, visiMisiSection } from "../data";
 export function VisiMisiSection() {
   return (
     <section className="bg-surface-50 py-24">
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
+      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
         <h2 className="text-center text-[34px] leading-[44px] font-extrabold tracking-[-0.8px] text-ink sm:text-[42px] sm:leading-[50px]">
           {visiMisiSection.title}
         </h2>
@@ -22,7 +22,7 @@ export function VisiMisiSection() {
                   <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-gold text-[13px] font-bold text-ink">
                     {index + 1}
                   </span>
-                  <p className="text-[15px]/6 text-body">{item.text}</p>
+                  <p className="text-[15px] leading-6 text-body">{item.text}</p>
                 </li>
               ))}
             </ol>
@@ -38,7 +38,7 @@ export function VisiMisiSection() {
                   <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-gold-soft text-[13px] font-bold text-gold-ink">
                     {index + 1}
                   </span>
-                  <p className="text-[15px]/6 text-body">{item.text}</p>
+                  <p className="text-[15px] leading-6 text-body">{item.text}</p>
                 </li>
               ))}
             </ol>
