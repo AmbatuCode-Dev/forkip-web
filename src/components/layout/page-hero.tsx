@@ -9,7 +9,7 @@ export interface PageHeroProps {
   };
   readonly title: string;
   readonly subtitle: string;
-  /** "md" → 34/44px (penyewaan), "lg" → 36/48px (arsip). Default "md". */
+  /** "md" → 34/40px mobile, "lg" → 36/44px mobile; both 52/60px desktop. Default "md". */
   readonly titleSize?: "md" | "lg";
   readonly className?: string;
 }
@@ -73,10 +73,10 @@ export function PageHero({
         </nav>
         <h1
           className={cn(
-            "leading-[1.15] font-bold tracking-[-0.5px] text-[#1C1C1C]",
+            "font-bold tracking-[-0.5px] text-[#1C1C1C]",
             titleSize === "lg"
-              ? "text-[36px] sm:text-[48px]"
-              : "text-[34px] sm:text-[44px]",
+              ? "text-[36px] leading-[44px] sm:text-[52px] sm:leading-[60px]"
+              : "text-[34px] leading-[40px] sm:text-[52px] sm:leading-[60px]",
           )}
         >
           {title}

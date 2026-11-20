@@ -11,7 +11,7 @@ export function ArsipDataView() {
         subtitle={arsipHero.description}
       />
 
-      <div className="mx-auto w-full max-w-[1200px] px-4 pt-[72px] pb-24 sm:px-4 lg:px-0">
+      <div className="mx-auto w-full max-w-[1200px] px-4 pt-[72px] pb-24 sm:px-4 xl:px-0">
         <section
           aria-labelledby="direktori-heading"
           className="flex flex-col gap-12 lg:flex-row lg:gap-12"
