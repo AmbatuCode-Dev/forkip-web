@@ -202,8 +202,8 @@ export function SiteHeader() {
                         : "/images/chevron-down.svg"
                     }
                     alt=""
-                    width={10.6}
-                    height={6.4}
+                    width={9}
+                    height={4.5}
                     unoptimized
                     className={cn(
                       "transition-transform duration-200",
@@ -216,7 +216,7 @@ export function SiteHeader() {
                     id={`${entry.id}-menu`}
                     className="absolute -left-[58px] top-full z-50 w-[420px] rounded-[18px] border border-border-sand bg-white p-6 shadow-dropdown"
                   >
-                    <p className="text-[13px] font-semibold text-body-muted">
+                    <p className="text-[13px] leading-[20px] font-semibold text-body-muted">
                       {entry.heading}
                     </p>
                     <ul className="mt-2 flex flex-col gap-3">
@@ -227,14 +227,14 @@ export function SiteHeader() {
                             onClick={closeMenu}
                             className="flex items-center gap-3 rounded-[10px] p-2 transition-colors hover:bg-surface-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                           >
-                            <span className="inline-flex h-7 shrink-0 items-center justify-center rounded-md bg-surface-50 px-2.5 text-[9px] font-semibold text-ink-soft">
+                            <span className="inline-flex h-7 shrink-0 items-center justify-center rounded-[6px] bg-surface-50 px-2.5 text-[9px] leading-[20px] font-semibold text-ink-soft">
                               {item.chip}
                             </span>
                             <span className="flex min-w-0 flex-col gap-1">
-                              <span className="text-[15px] leading-5 font-semibold text-ink">
+                              <span className="text-[15px] leading-[24px] font-semibold text-ink">
                                 {item.title}
                               </span>
-                              <span className="text-sm leading-5 text-body-muted">
+                              <span className="text-sm leading-[20px] text-body-muted">
                                 {item.description}
                               </span>
                             </span>
@@ -252,7 +252,10 @@ export function SiteHeader() {
         <Link
           href="/pertanyaan-pengaduan"
           onClick={closeMenu}
-          className={cn(buttonVariants({ variant: "gold", size: "cta" }))}
+          className={cn(
+            buttonVariants({ variant: "gold", size: "cta" }),
+            "h-[45px] py-[13px]",
+          )}
         >
           Pertanyaan &amp; Pengaduan
         </Link>
