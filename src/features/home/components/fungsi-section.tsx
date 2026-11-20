@@ -7,10 +7,10 @@ import { fungsiItems, fungsiSection } from "../data";
 export function FungsiSection() {
   return (
     <section className="bg-white py-24">
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
+      <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
+        <div className="grid items-center gap-12 lg:cols-hero-b">
           <div>
-            <h2 className="text-[34px] leading-[44px] font-extrabold tracking-[-0.8px] text-ink sm:text-[42px] sm:leading-[50px]">
+            <h2 className="text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50">
               {fungsiSection.title}
             </h2>
             <p className="mt-3 text-base leading-6 text-body-muted">
@@ -19,10 +19,10 @@ export function FungsiSection() {
             <ol className="mt-8 flex flex-col gap-6">
               {fungsiItems.map((item, index) => (
                 <li key={item.text} className="flex items-start gap-4">
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gold-soft text-[15px] font-bold text-gold-ink">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gold-soft text-15 font-bold text-gold-ink">
                     {index + 1}
                   </span>
-                  <p className="text-[15px] leading-6 text-body">{item.text}</p>
+                  <p className="text-15 leading-6 text-body">{item.text}</p>
                 </li>
               ))}
             </ol>

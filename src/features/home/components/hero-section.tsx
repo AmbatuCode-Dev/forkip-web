@@ -5,16 +5,14 @@ import type { HeroStat } from "../types";
 
 function StatCard({ stat }: { stat: HeroStat }) {
   return (
-    <div className="pointer-events-auto w-[230px] max-w-full rounded-[14px] bg-white p-4 shadow-[0px_16px_24px_rgba(51,36,31,0.12)]">
-      <p className="text-[10px] font-semibold tracking-[1.2px] text-body-muted uppercase">
+    <div className="pointer-events-auto w-57.5 max-w-full rounded-14 bg-white p-4 shadow-dropdown">
+      <p className="text-10 font-semibold tracking-wide12 text-body-muted uppercase">
         {stat.eyebrow}
       </p>
-      <p className="mt-1 text-2xl leading-8 font-extrabold tracking-[-0.5px] text-ink">
+      <p className="mt-1 text-2xl leading-8 font-extrabold tracking-t05 text-ink">
         {stat.value}
       </p>
-      <p className="mt-1 text-[11px] leading-4 text-body-muted">
-        {stat.detail}
-      </p>
+      <p className="mt-1 text-11 leading-4 text-body-muted">{stat.detail}</p>
     </div>
   );
 }
@@ -25,7 +23,7 @@ function PlayCircle({ className }: { className?: string }) {
       aria-hidden="true"
       className={
         className ??
-        "inline-flex size-[46px] shrink-0 items-center justify-center rounded-full bg-gold"
+        "inline-flex size-11.5 shrink-0 items-center justify-center rounded-full bg-gold"
       }
     >
       <svg
@@ -48,14 +46,14 @@ function PlayCircle({ className }: { className?: string }) {
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-white">
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
-        <div className="grid items-center gap-12 py-14 lg:min-h-[644px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-8 lg:py-16">
+      <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
+        <div className="grid items-center gap-12 py-14 lg:min-h-161 lg:cols-hero-a lg:gap-8 lg:py-16">
           <div className="flex flex-col items-start gap-6">
-            <h1 className="text-[44px] leading-[1.05] tracking-[-2px] text-ink sm:text-[56px] lg:text-[72px] lg:leading-[1.1]">
+            <h1 className="text-44 leading-hero tracking-t2 text-ink sm:text-56 lg:text-7xl lg:leading-hero-lg">
               <span className="block font-light">{heroCopy.titleLight}</span>
               <span className="block font-extrabold">{heroCopy.titleBold}</span>
             </h1>
-            <p className="max-w-[560px] text-base leading-6 text-body">
+            <p className="max-w-140 text-base leading-6 text-body">
               {heroCopy.subtitle}
             </p>
 
@@ -65,7 +63,7 @@ export function HeroSection() {
                 className={buttonVariants({
                   variant: "gold",
                   size: "cta",
-                  className: "h-9 px-6 text-[15px]",
+                  className: "h-9 px-6 text-15",
                 })}
               >
                 {heroCopy.cta}
@@ -76,9 +74,9 @@ export function HeroSection() {
                 rel="noreferrer noopener"
                 className="group flex items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <PlayCircle className="inline-flex size-[46px] shrink-0 items-center justify-center rounded-full bg-gold transition-transform group-hover:scale-105" />
+                <PlayCircle className="inline-flex size-11.5 shrink-0 items-center justify-center rounded-full bg-gold transition-transform group-hover:scale-105" />
                 <span className="flex flex-col gap-0.5">
-                  <span className="text-[15px] leading-5 font-semibold text-ink">
+                  <span className="text-15 leading-5 font-semibold text-ink">
                     {heroCopy.videoLabelStrong}
                   </span>
                   <span className="text-xs leading-4 text-body-muted">
@@ -108,10 +106,10 @@ export function HeroSection() {
             </ul>
           </div>
 
-          <div className="relative flex min-h-[420px] items-center justify-center lg:min-h-[560px]">
+          <div className="relative flex min-h-105 items-center justify-center lg:min-h-140">
             <div
               aria-hidden="true"
-              className="absolute inset-0 rounded-[24px] lg:-inset-y-6"
+              className="absolute inset-0 rounded-3xl lg:-inset-y-6"
               style={{
                 background:
                   "radial-gradient(circle at center, rgba(246,211,74,0.14) 0%, rgba(246,211,74,0.34) 68%, rgba(224,180,0,0.5) 100%)",
@@ -133,11 +131,11 @@ export function HeroSection() {
             />
             <div
               aria-hidden="true"
-              className="absolute rounded-full border-[10px] border-white/70 shadow-[0_0_40px_rgba(246,211,74,0.45)]"
+              className="absolute rounded-full border-10 border-white/70 shadow-glow"
               style={{ width: 400, height: 400 }}
             />
 
-            <div className="relative z-10 flex h-[380px] w-[340px] max-w-full items-center justify-center rounded-[16px] bg-gradient-to-br from-[#FBF6DF] via-[#FBF6DF] to-[#F6EFAF] shadow-[0px_16px_24px_rgba(51,36,31,0.12)]">
+            <div className="relative z-10 flex h-95 w-85 max-w-full items-center justify-center rounded-2xl bg-gradient-to-br from-gold-soft via-gold-soft to-gold-soft-strong shadow-dropdown">
               <span className="px-6 text-center text-sm text-body-muted">
                 {heroCopy.photoLabel}
               </span>

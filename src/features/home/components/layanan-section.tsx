@@ -9,11 +9,11 @@ import { ServiceIconGlyph } from "./service-icon";
 export function LayananSection() {
   return (
     <section className="bg-white py-24">
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
-        <h2 className="text-center text-[34px] leading-[44px] font-extrabold tracking-[-0.8px] text-ink sm:text-[42px] sm:leading-[50px]">
+      <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
+        <h2 className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50">
           {layananSection.title}
         </h2>
-        <p className="mx-auto mt-3 max-w-[640px] text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
+        <p className="mx-auto mt-3 max-w-160 text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
           {layananSection.subtitle}
         </p>
 
@@ -30,7 +30,7 @@ export function LayananSection() {
                     className="size-6 text-gold-ink"
                   />
                 </span>
-                <span className="rounded-full bg-gold-soft px-3 py-1.5 text-[9px] font-semibold text-gold-ink">
+                <span className="rounded-full bg-gold-soft px-3 py-1.5 text-9 font-semibold text-gold-ink">
                   {service.division}
                 </span>
               </div>
@@ -44,7 +44,7 @@ export function LayananSection() {
               </div>
               <Link
                 href={service.href}
-                className="group inline-flex items-center gap-2 self-start rounded-md text-[15px] font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="group inline-flex items-center gap-2 self-start rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 Buka halaman
                 <span
