@@ -143,11 +143,8 @@ export function SiteHeader() {
   };
 
   return (
-    <header
-      ref={headerRef}
-      className="sticky top-0 z-40 border-b border-border-sand bg-white"
-    >
-      <div className="mx-auto flex h-[72px] w-full max-w-[1200px] items-center justify-between gap-6 px-4 sm:px-6">
+    <header ref={headerRef} className="sticky top-0 z-40 bg-white">
+      <div className="mx-auto flex h-[72px] w-full max-w-[1200px] items-center justify-between gap-6 px-4 sm:px-6 xl:px-0">
         <Link
           href="/"
           onClick={closeMenu}
@@ -217,12 +214,12 @@ export function SiteHeader() {
                 {openMenu === entry.id ? (
                   <div
                     id={`${entry.id}-menu`}
-                    className="absolute left-0 top-full z-50 w-[420px] rounded-[18px] border border-border-sand bg-white p-6 shadow-dropdown"
+                    className="absolute -left-[58px] top-full z-50 w-[420px] rounded-[18px] border border-border-sand bg-white p-6 shadow-dropdown"
                   >
                     <p className="text-[13px] font-semibold text-body-muted">
                       {entry.heading}
                     </p>
-                    <ul className="mt-2 flex flex-col gap-2">
+                    <ul className="mt-2 flex flex-col gap-3">
                       {entry.items.map((item) => (
                         <li key={item.href}>
                           <Link
@@ -237,7 +234,7 @@ export function SiteHeader() {
                               <span className="text-[15px] leading-5 font-semibold text-ink">
                                 {item.title}
                               </span>
-                              <span className="text-sm leading-[18px] text-body-muted">
+                              <span className="text-sm leading-5 text-body-muted">
                                 {item.description}
                               </span>
                             </span>
