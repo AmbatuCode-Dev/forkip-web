@@ -23,7 +23,7 @@ export function ArsipDataView() {
             </p>
             <h2
               id="direktori-heading"
-              className="text-[28px] leading-[1.2] font-semibold text-[#1C1C1C] sm:text-[32px]"
+              className="text-[28px] leading-[34px] font-semibold text-[#1C1C1C] sm:text-[32px] sm:leading-[38px]"
             >
               {direktoriRail.heading}
             </h2>
