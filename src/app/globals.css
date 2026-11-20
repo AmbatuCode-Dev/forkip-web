@@ -73,6 +73,127 @@
   --radius-lg: var(--radius);
 }
 
+/* Exact-value tokens for former arbitrary utilities (Figma parity). */
+@theme {
+  --color-gold-outline: #c9a227;
+  --color-gold-pale: #fff3c4;
+  --color-gold-mid: #fae9a8;
+  --color-gold-bright: #e9c94f;
+  --color-gold-deep: #5c4400;
+  --color-teal: #0f766e;
+  --color-teal-ink: #1e6e5e;
+  --color-teal-pale: #dceeea;
+  --color-navy: #122338;
+  --color-slate: #1f2937;
+  --color-cream: #fdfcf8;
+  --color-sand: #f3f0e7;
+  --color-sand-line: #d4d0c0;
+  --color-tan: #e8c4a0;
+  --color-olive: #f6e6a8;
+  --color-clay: #c2705a;
+  --color-stone: #9c9c8c;
+  --color-wheat: #e8d9a0;
+  --color-night-1: #6d5a2c;
+  --color-night-2: #3b2e13;
+  --color-night-3: #1d1709;
+
+  --text-6: 6px;
+  --text-7: 7px;
+  --text-8: 8px;
+  --text-9: 9px;
+  --text-10: 10px;
+  --text-11: 11px;
+  --text-13: 13px;
+  --text-15: 15px;
+  --text-19: 19px;
+  --text-22: 22px;
+  --text-26: 26px;
+  --text-28: 28px;
+  --text-32: 32px;
+  --text-34: 34px;
+  --text-38: 38px;
+  --text-40: 40px;
+  --text-42: 42px;
+  --text-44: 44px;
+  --text-52: 52px;
+  --text-56: 56px;
+
+  --leading-14: 14px;
+  --leading-17: 17px;
+  --leading-18: 18px;
+  --leading-22: 22px;
+  --leading-26: 26px;
+  --leading-38: 38px;
+  --leading-50: 50px;
+  --leading-hero: 46.2px;
+  --leading-hero-lg: 79.2px;
+
+  --tracking-t04: -0.4px;
+  --tracking-t05: -0.5px;
+  --tracking-t08: -0.8px;
+  --tracking-t2: -2px;
+  --tracking-wide12: 1.2px;
+
+  --radius-10: 10px;
+  --radius-14: 14px;
+  --radius-18: 18px;
+  --radius-20: 20px;
+
+  --shadow-glow: 0 0 40px rgba(246, 211, 74, 0.45);
+  --shadow-card-sm: 0 2px 0 rgba(0, 0, 0, 0.04);
+  --shadow-card-up: 0 -2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-stamp-4: 4px 4px 0 #e0b400;
+  --shadow-stamp-6: 6px 6px 0 #e0b400;
+}
+
+@utility w-62p {
+  width: 62%;
+}
+@utility w-78p {
+  width: 78%;
+}
+@utility w-86p {
+  width: 86%;
+}
+@utility cols-hero-a {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+}
+@utility cols-hero-b {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+}
+@utility cols-spotlight {
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+}
+@utility cols-420 {
+  grid-template-columns: minmax(0, 420px) 1fr;
+}
+@utility cols-420f {
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+}
+@utility cols-440 {
+  grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
+}
+@utility cols-580 {
+  grid-template-columns: minmax(0, 580px) 1fr;
+}
+@utility bg-night-radial {
+  background-image: radial-gradient(
+    ellipse at 50% 35%,
+    var(--color-night-1) 0%,
+    var(--color-night-2) 52%,
+    var(--color-night-3) 100%
+  );
+}
+@utility text-clamp-hero {
+  font-size: clamp(1.1rem, 2.7vw, 2.6rem);
+}
+@utility backdrop-blur-2 {
+  backdrop-filter: blur(2px);
+}
+@utility transition-height {
+  transition-property: height;
+}
+
 @layer base {
   * {
     border-color: var(--border);

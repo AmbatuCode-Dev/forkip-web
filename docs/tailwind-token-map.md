@@ -1,0 +1,41 @@
+# Tailwind arbitrary-value → token/utility map (Figma parity)
+
+Replace EVERY arbitrary class in your assigned files with the right-hand side. Preserve prefixes (sm:, lg:, hover:, focus-visible:, etc.) and class order semantics. Tokens/utilities already exist in src/app/globals.css — do NOT edit globals.css.
+
+## Colors
+bg-[#F6D34A]→bg-gold · bg-[#E0B400]→bg-gold-dark · bg-[#FBF6DF]→bg-gold-soft · bg-[#FBFAF6]→bg-surface-50 · bg-[#F4F2EA]→bg-surface-100 · bg-[#FFF3C4]→bg-gold-pale · bg-[#1E6E5E]→bg-teal-ink · bg-[#DCEEEA]→bg-teal-pale · bg-[#122338]→bg-navy · bg-[#1F2937]→bg-slate · bg-[#FDFCF8]→bg-cream · bg-[#F3F0E7]→bg-sand · bg-[#E8C4A0]→bg-tan · bg-[#F6E6A8]→bg-olive
+text-[#1C1C1C]→text-ink · text-[#2B2B2B]→text-ink-soft · text-[#404040]→text-body · text-[#666666]→text-body-muted · text-[#7A5B00]→text-gold-ink · text-[#E9C94F]→text-gold-bright · text-[#5c4400]→text-gold-deep · text-[#1E6E5E]→text-teal-ink
+border-[#E8E5DA]→border-border-sand · border-[#C9A227]→border-gold-outline · border-[#F6D34A]→border-gold · border-[#0F766E]→border-teal · border-[#1E6E5E]→border-teal-ink · border-[#D4D0C0]→border-sand-line
+ring-[#7A5B00]→ring-gold-ink · ring-[#F6D34A]→ring-gold
+from-[#FBF6DF]→from-gold-soft · from-[#C2705A]→from-clay · via-[#FBF6DF]→via-gold-soft · via-[#F6EFAF]→via-gold-soft-strong · via-[#FAE9A8]→via-gold-mid · via-[#C2705A]→via-clay · to-[#F6EFAF]→to-gold-soft-strong · to-[#F6D34A]→to-gold · to-[#9C9C8C]→to-stone · to-[#E8D9A0]→to-wheat
+
+## Font size (text-[Npx]→text-N unless standard)
+6→text-6 7→text-7 8→text-8 9→text-9 10→text-10 11→text-11 13→text-13 15→text-15 19→text-19 22→text-22 26→text-26 28→text-28 32→text-32 34→text-34 38→text-38 40→text-40 42→text-42 44→text-44 52→text-52 56→text-56
+Standard: 20→text-xl 30→text-3xl 36→text-4xl 72→text-7xl
+
+## Line height
+14→leading-14 16→leading-4 17→leading-17 18→leading-18 20→leading-5 22→leading-22 24→leading-6 26→leading-26 32→leading-8 36→leading-9 38→leading-38 40→leading-10 44→leading-11 48→leading-12 50→leading-50 60→leading-15
+leading-[1.05]→leading-hero · lg:leading-[1.1]→lg:leading-hero-lg
+
+## Tracking
+-0.4px→tracking-t04 · -0.5px→tracking-t05 · -0.8px→tracking-t08 · -2px→tracking-t2 · 1.2px→tracking-wide12
+
+## Radius
+6px→rounded-md · 10px→rounded-10 · 14px→rounded-14 · 16px→rounded-2xl · 18px→rounded-18 · 20px→rounded-20 · 24px→rounded-3xl
+
+## Shadow
+0px_16px_24px_rgba(51,36,31,0.12)→shadow-dropdown · 0_0_40px_rgba(246,211,74,0.45)→shadow-glow · 0_2px_0_rgba(0,0,0,0.04)→shadow-card-sm · 0_-2px_6px_rgba(0,0,0,0.04)→shadow-card-up · 4px_4px_0_#E0B400→shadow-stamp-4 · 6px_6px_0_#E0B400→shadow-stamp-6
+
+## Spacing (px/4)
+h-104→h-26 h-140→h-35 h-170→h-42.5 h-188→h-47 h-190→h-47.5 h-260→h-65 h-300→h-75 h-380→h-95 h-420→h-105 h-45→h-11.25 h-51→h-12.75 h-560→h-140 h-72→h-18 h-74→h-18.5
+w-230→w-57.5 w-240→w-60 w-280→w-70 w-300→w-75 w-340→w-85 w-420→w-105 w-440→w-110 w-460→w-115 w-640→w-160
+w-[62%]→w-62p w-[78%]→w-78p w-[86%]→w-86p
+max-w-1100→max-w-275 max-w-1200→max-w-300 max-w-1248→max-w-312 max-w-185→max-w-46.25 max-w-560→max-w-140 max-w-640→max-w-160 max-w-720→max-w-180 max-w-760→max-w-190 max-w-800→max-w-200 max-w-820→max-w-205
+min-h-260→min-h-65 min-h-420→min-h-105 min-h-560→min-h-140 min-h-644→min-h-161 min-h-72→min-h-18 min-w-88→min-w-22
+mt-10→mt-2.5 mt-47→mt-11.75 pl-144→pl-36 pl-30→pl-7.5 pt-72→pt-18 py-11→py-2.75 py-13→py-3.25 size-38→size-9.5 size-46→size-11.5 -left-58→-left-14.5 top-132→top-33
+
+## Grid templates (keep lg: prefix)
+[minmax(0,1fr)_minmax(0,1.05fr)]→cols-hero-a · [minmax(0,1.05fr)_minmax(0,1fr)]→cols-hero-b · [minmax(0,1.45fr)_minmax(0,1fr)]→cols-spotlight · [minmax(0,420px)_1fr]→cols-420 · [minmax(0,420px)_minmax(0,1fr)]→cols-420f · [minmax(0,440px)_minmax(0,1fr)]→cols-440 · [minmax(0,580px)_1fr]→cols-580
+
+## Misc
+bg-[radial-gradient(ellipse_at_50%_35%,#6D5A2C_0%,#3B2E13_52%,#1D1709_100%)]→bg-night-radial · text-[clamp(1.1rem,2.7vw,2.6rem)]→text-clamp-hero · backdrop-blur-[2px]→backdrop-blur-2 · transition-[height]→transition-height · border-[10px]→border-10
