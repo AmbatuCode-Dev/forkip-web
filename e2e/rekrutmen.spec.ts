@@ -11,7 +11,14 @@ test.describe("Rekrutmen page", () => {
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("banner").getByRole("link", { name: "Rekrutmen" }),
+      page
+        .getByRole("navigation", { name: "Breadcrumb" })
+        .getByText("Rekrutmen Anggota Baru", { exact: true }),
+    ).toBeVisible();
+    const banner = page.getByRole("banner");
+    await banner.getByRole("button", { name: "Organisasi" }).click();
+    await expect(
+      banner.getByRole("link", { name: /^SDM Rekrutmen Anggota Baru/ }),
     ).toBeVisible();
     await expect(page.getByText("SUDAH DITUTUP").first()).toBeVisible();
     await expect(

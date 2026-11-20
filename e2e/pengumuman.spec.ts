@@ -19,12 +19,14 @@ test.describe("Pengumuman page", () => {
       page.getByRole("heading", {
         level: 2,
         name: "Pengumuman Hasil Verifikasi Berkas KIPK Jalur SNBP (Eligible)",
+        exact: true,
       }),
     ).toBeVisible();
     await expect(
       page.getByRole("heading", {
         level: 2,
         name: "Verifikasi Berkas KIPK Jalur SNBP",
+        exact: true,
       }),
     ).toBeVisible();
 
@@ -32,7 +34,9 @@ test.describe("Pengumuman page", () => {
       page.getByText(/Jika nama tidak tercantum di dalam surat/),
     ).toBeVisible();
     await expect(page.getByText("Tanggal:")).toBeVisible();
-    await expect(page.getByText("6 – 10 April 2026")).toBeVisible();
+    await expect(
+      page.getByText("6 – 10 April 2026", { exact: true }),
+    ).toBeVisible();
 
     for (const label of [
       "Narahubung KIF Forkip UNJ",
