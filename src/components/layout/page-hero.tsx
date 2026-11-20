@@ -58,7 +58,7 @@ export function PageHero({
           )}
         </g>
       </svg>
-      <div className="relative mx-auto flex w-full max-w-[1200px] flex-col gap-3 px-4 py-16 sm:px-6">
+      <div className="relative mx-auto flex w-full max-w-[1200px] flex-col gap-3 px-4 py-16 sm:px-6 xl:px-0">
         <nav aria-label="Breadcrumb">
           <p className="text-[13px] font-medium text-[#666666]">
             <Link
