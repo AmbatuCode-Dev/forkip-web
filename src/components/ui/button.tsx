@@ -11,7 +11,7 @@ export const buttonVariants = cva(
           "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
         secondary: "bg-muted text-foreground hover:bg-muted/80",
         outline:
-          "border border-[#C9A227] bg-white text-surface-foreground hover:bg-accent hover:text-accent-foreground",
+          "border border-gold-outline bg-white text-surface-foreground hover:bg-accent hover:text-accent-foreground",
         ghost: "text-foreground hover:bg-accent hover:text-accent-foreground",
         gold: "rounded-full bg-gold font-semibold text-ink hover:bg-gold-dark",
       },
@@ -19,7 +19,7 @@ export const buttonVariants = cva(
         sm: "h-8 px-3 text-xs",
         md: "h-9 px-4 text-sm",
         lg: "h-10 px-5 text-sm",
-        cta: "px-6 py-[13px] text-[15px] leading-[18px]",
+        cta: "px-6 py-3.25 text-15 leading-18",
       },
     },
     defaultVariants: {

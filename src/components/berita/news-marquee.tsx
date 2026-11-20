@@ -16,13 +16,7 @@ export interface NewsMarqueeProps extends ComponentProps<"div"> {
 }
 
 /** Figma card widths cycle [460, 280, 440, 300, 420] across the strip. */
-const CARD_WIDTHS = [
-  "w-[460px]",
-  "w-[280px]",
-  "w-[440px]",
-  "w-[300px]",
-  "w-[420px]",
-];
+const CARD_WIDTHS = ["w-115", "w-70", "w-110", "w-75", "w-105"];
 
 function MarqueeCard({
   label,
@@ -31,19 +25,16 @@ function MarqueeCard({
   return (
     <div
       className={cn(
-        "relative flex h-[380px] shrink-0 items-center justify-center rounded-3xl bg-gradient-to-br from-[#FBF6DF] to-[#F6EFAF]",
+        "relative flex h-95 shrink-0 items-center justify-center rounded-3xl bg-gradient-to-br from-gold-soft to-gold-soft-strong",
         widthClass,
       )}
       data-testid="marquee-card"
     >
-      <span className="text-sm font-semibold text-[#666666]">
+      <span className="text-sm font-semibold text-body-muted">
         Foto {label} (placeholder)
       </span>
-      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pl-3 pr-4 text-sm font-bold text-[#1C1C1C] shadow-xs">
-        <span
-          aria-hidden="true"
-          className="h-2 w-2 rounded-full bg-[#F6D34A]"
-        />
+      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pl-3 pr-4 text-sm font-bold text-ink shadow-xs">
+        <span aria-hidden="true" className="h-2 w-2 rounded-full bg-gold" />
         {label}
       </span>
     </div>
@@ -73,7 +64,7 @@ export function NewsMarquee({
   return (
     <div
       className={cn(
-        "group/marquee w-full overflow-hidden bg-[#FBFAF6] py-10",
+        "group/marquee w-full overflow-hidden bg-surface-50 py-10",
         className,
       )}
       data-fase={fase}

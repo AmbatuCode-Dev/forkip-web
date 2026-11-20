@@ -144,7 +144,7 @@ export function SiteHeader() {
 
   return (
     <header ref={headerRef} className="sticky top-0 z-40 bg-white">
-      <div className="mx-auto flex h-[72px] w-full max-w-[1200px] items-center justify-between gap-6 px-4 sm:px-6 xl:px-0">
+      <div className="mx-auto flex h-18 w-full max-w-300 items-center justify-between gap-6 px-4 sm:px-6 xl:px-0">
         <Link
           href="/"
           onClick={closeMenu}
@@ -156,9 +156,9 @@ export function SiteHeader() {
             width={38}
             height={38}
             priority
-            className="size-[38px] object-contain"
+            className="size-9.5 object-contain"
           />
-          <span className="text-[19px] font-extrabold tracking-[-0.4px] text-ink max-sm:hidden">
+          <span className="text-19 font-extrabold tracking-t04 text-ink max-sm:hidden">
             {siteConfig.name}
           </span>
         </Link>
@@ -173,22 +173,19 @@ export function SiteHeader() {
                 key={entry.href}
                 href={entry.href}
                 onClick={closeMenu}
-                className="rounded-md py-[11px] text-sm font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="rounded-md py-2.75 text-sm font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {entry.label}
               </Link>
             ) : (
-              <div
-                key={entry.id}
-                className="relative flex h-[72px] items-center"
-              >
+              <div key={entry.id} className="relative flex h-18 items-center">
                 <button
                   type="button"
                   aria-expanded={openMenu === entry.id}
                   aria-controls={`${entry.id}-menu`}
                   onClick={() => toggleMenu(entry.id)}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-md py-[11px] text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    "flex items-center gap-1.5 rounded-md py-2.75 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     openMenu === entry.id
                       ? "text-gold-ink"
                       : "text-body hover:text-ink",
@@ -214,9 +211,9 @@ export function SiteHeader() {
                 {openMenu === entry.id ? (
                   <div
                     id={`${entry.id}-menu`}
-                    className="absolute -left-[58px] top-full z-50 w-[420px] rounded-[18px] border border-border-sand bg-white p-6 shadow-dropdown"
+                    className="absolute -left-14.5 top-full z-50 w-105 rounded-18 border border-border-sand bg-white p-6 shadow-dropdown"
                   >
-                    <p className="text-[13px] leading-[20px] font-semibold text-body-muted">
+                    <p className="text-13 leading-5 font-semibold text-body-muted">
                       {entry.heading}
                     </p>
                     <ul className="mt-2 flex flex-col gap-3">
@@ -225,16 +222,16 @@ export function SiteHeader() {
                           <Link
                             href={item.href}
                             onClick={closeMenu}
-                            className="flex items-center gap-3 rounded-[10px] p-2 transition-colors hover:bg-surface-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            className="flex items-center gap-3 rounded-10 p-2 transition-colors hover:bg-surface-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                           >
-                            <span className="inline-flex h-7 shrink-0 items-center justify-center rounded-[6px] bg-surface-50 px-2.5 text-[9px] leading-[20px] font-semibold text-ink-soft">
+                            <span className="inline-flex h-7 shrink-0 items-center justify-center rounded-md bg-surface-50 px-2.5 text-9 leading-5 font-semibold text-ink-soft">
                               {item.chip}
                             </span>
                             <span className="flex min-w-0 flex-col gap-1">
-                              <span className="text-[15px] leading-[24px] font-semibold text-ink">
+                              <span className="text-15 leading-6 font-semibold text-ink">
                                 {item.title}
                               </span>
-                              <span className="text-sm leading-[20px] text-body-muted">
+                              <span className="text-sm leading-5 text-body-muted">
                                 {item.description}
                               </span>
                             </span>
@@ -254,7 +251,7 @@ export function SiteHeader() {
           onClick={closeMenu}
           className={cn(
             buttonVariants({ variant: "gold", size: "cta" }),
-            "h-[45px] py-[13px]",
+            "h-11.25 py-3.25",
           )}
         >
           Pertanyaan &amp; Pengaduan

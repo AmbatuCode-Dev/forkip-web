@@ -11,9 +11,9 @@ export interface NewsMediaPlaceholderProps extends ComponentProps<"div"> {
 }
 
 const VARIANT_GRADIENTS: Record<1 | 2 | 3, string> = {
-  1: "bg-gradient-to-br from-[#FBF6DF] to-[#F6EFAF]",
-  2: "bg-gradient-to-b from-[#FBF6DF] to-[#F6EFAF]",
-  3: "bg-gradient-to-tr from-[#FBF6DF] to-[#F6EFAF]",
+  1: "bg-gradient-to-br from-gold-soft to-gold-soft-strong",
+  2: "bg-gradient-to-b from-gold-soft to-gold-soft-strong",
+  3: "bg-gradient-to-tr from-gold-soft to-gold-soft-strong",
 };
 
 /**
@@ -37,14 +37,11 @@ export function NewsMediaPlaceholder({
       )}
       {...props}
     >
-      <span className="text-sm font-semibold text-[#666666]">
+      <span className="text-sm font-semibold text-body-muted">
         Foto {label} (placeholder)
       </span>
-      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pl-3 pr-4 text-xs font-semibold text-[#1C1C1C] shadow-xs">
-        <span
-          aria-hidden="true"
-          className="h-2 w-2 rounded-full bg-[#F6D34A]"
-        />
+      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pl-3 pr-4 text-xs font-semibold text-ink shadow-xs">
+        <span aria-hidden="true" className="h-2 w-2 rounded-full bg-gold" />
         {label}
       </span>
     </div>

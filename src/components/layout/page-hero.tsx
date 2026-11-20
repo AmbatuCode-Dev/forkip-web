@@ -30,7 +30,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-gradient-to-r from-[#FBF6DF] via-[#FAE9A8] to-[#F6D34A]",
+        "relative overflow-hidden bg-gradient-to-r from-gold-soft via-gold-mid to-gold",
         className,
       )}
     >
@@ -39,7 +39,7 @@ export function PageHero({
         aria-hidden="true"
         focusable="false"
         viewBox="0 0 640 294"
-        className="pointer-events-none absolute inset-y-0 right-0 h-full w-[640px] text-[#E9C94F]"
+        className="pointer-events-none absolute inset-y-0 right-0 h-full w-160 text-gold-bright"
       >
         <g fill="none" stroke="currentColor" strokeWidth="1.5">
           {[0, 1, 2, 3, 4].map((row) =>
@@ -58,9 +58,9 @@ export function PageHero({
           )}
         </g>
       </svg>
-      <div className="relative mx-auto flex w-full max-w-[1200px] flex-col gap-3 px-4 py-16 sm:px-6 xl:px-0">
+      <div className="relative mx-auto flex w-full max-w-300 flex-col gap-3 px-4 py-16 sm:px-6 xl:px-0">
         <nav aria-label="Breadcrumb">
-          <p className="text-[13px] font-medium text-[#666666]">
+          <p className="text-13 font-medium text-body-muted">
             <Link
               href={breadcrumb.href}
               className="rounded-sm transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -73,17 +73,15 @@ export function PageHero({
         </nav>
         <h1
           className={cn(
-            "font-bold tracking-[-0.5px] text-[#1C1C1C]",
+            "font-bold tracking-t05 text-ink",
             titleSize === "lg"
-              ? "text-[36px] leading-[44px] sm:text-[52px] sm:leading-[60px]"
-              : "text-[34px] leading-[40px] sm:text-[52px] sm:leading-[60px]",
+              ? "text-4xl leading-11 sm:text-52 sm:leading-15"
+              : "text-34 leading-10 sm:text-52 sm:leading-15",
           )}
         >
           {title}
         </h1>
-        <p className="max-w-[760px] text-base leading-[26px] text-[#404040]">
-          {subtitle}
-        </p>
+        <p className="max-w-190 text-base leading-26 text-body">{subtitle}</p>
       </div>
     </section>
   );
