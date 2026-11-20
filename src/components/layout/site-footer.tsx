@@ -69,7 +69,7 @@ export function SiteFooter() {
       <div className="mx-auto w-full max-w-[1200px] px-4 pt-20 pb-9 sm:px-6 xl:px-0">
         <div className="flex flex-col gap-12 md:flex-row md:gap-14">
           <div className="flex w-full flex-col md:w-[340px] md:shrink-0">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               <Image
                 src="/images/logo-kipk-unj.png"
                 alt=""
@@ -85,7 +85,7 @@ export function SiteFooter() {
               Forum KIPK UNJ merupakan sebuah wadah untuk mengurus berbagai hal
               yang berhubungan dengan mahasiswa penerima KIP-K di UNJ
             </p>
-            <div className="mt-[14px] flex items-center gap-2.5">
+            <div className="mt-4 flex items-center gap-2.5">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -116,12 +116,12 @@ export function SiteFooter() {
             <h2 className="text-[13px] font-bold tracking-[1.2px] text-ink uppercase">
               Menu
             </h2>
-            <ul className="mt-[10px] flex flex-col gap-3.5 leading-5">
+            <ul className="mt-[10px] flex flex-col gap-3.5 leading-[20px]">
               {menuLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm leading-5 font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="text-sm leading-[20px] font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {link.label}
                   </Link>
@@ -134,12 +134,12 @@ export function SiteFooter() {
             <h2 className="text-[13px] font-bold tracking-[1.2px] text-ink uppercase">
               Lainnya
             </h2>
-            <ul className="mt-[10px] flex flex-col gap-3.5 leading-5">
+            <ul className="mt-[10px] flex flex-col gap-3.5 leading-[20px]">
               {lainnyaLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm leading-5 font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="text-sm leading-[20px] font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {link.label}
                   </Link>
@@ -152,11 +152,11 @@ export function SiteFooter() {
             <h2 className="text-[13px] font-bold tracking-[1.2px] text-ink uppercase">
               Kontak
             </h2>
-            <ul className="mt-[10px] flex flex-col gap-3.5 leading-5">
+            <ul className="mt-[10px] flex flex-col gap-3.5 leading-[20px]">
               {kontakItems.map((item) => (
                 <li
                   key={item.label}
-                  className="text-sm leading-5 font-medium text-body"
+                  className="text-sm leading-[20px] font-medium text-body"
                 >
                   {item.label} {item.value}
                 </li>

@@ -81,7 +81,7 @@ export function PageHero({
         >
           {title}
         </h1>
-        <p className="max-w-[760px] text-base leading-relaxed text-[#404040]">
+        <p className="max-w-[760px] text-base leading-[26px] text-[#404040]">
           {subtitle}
         </p>
       </div>
