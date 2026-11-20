@@ -10,11 +10,11 @@ import { beritaMarqueeItems, beritaSection } from "../data";
 export function BeritaSection() {
   return (
     <section className="bg-white pt-24">
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
-        <h2 className="text-center text-[34px] leading-[44px] font-extrabold tracking-[-0.8px] text-ink sm:text-[42px] sm:leading-[50px]">
+      <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
+        <h2 className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50">
           {beritaSection.title}
         </h2>
-        <p className="mx-auto mt-4 max-w-[720px] text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
+        <p className="mx-auto mt-4 max-w-180 text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
           {beritaSection.subtitle}
         </p>
       </div>
@@ -23,22 +23,22 @@ export function BeritaSection() {
         <NewsMarquee items={[...beritaMarqueeItems]} />
       </div>
 
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
-        <div className="mt-14 grid gap-10 pb-16 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)]">
+      <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
+        <div className="mt-14 grid gap-10 pb-16 lg:cols-440">
           <article className="flex flex-col gap-4">
             <NewsMediaPlaceholder
               label={beritaSection.feature.photoLabel}
-              className="h-[260px]"
+              className="h-65"
             />
             <h3 className="mt-2 text-3xl leading-9 font-bold text-ink">
               {beritaSection.feature.title}
             </h3>
-            <p className="text-[15px] leading-6 text-body-muted">
+            <p className="text-15 leading-6 text-body-muted">
               {beritaSection.feature.summary}
             </p>
             <Link
               href="/berita"
-              className="group mt-auto inline-flex items-center gap-2 self-start rounded-md text-[15px] font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="group mt-auto inline-flex items-center gap-2 self-start rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               Baca selengkapnya
               <span
@@ -65,7 +65,7 @@ export function BeritaSection() {
                   </p>
                   <Link
                     href="/berita"
-                    className="group mt-3 inline-flex items-center gap-2 rounded-md text-[15px] font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="group mt-3 inline-flex items-center gap-2 rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     Baca selengkapnya
                     <span
@@ -85,7 +85,7 @@ export function BeritaSection() {
               </p>
               <Link
                 href={beritaSection.ctaHref}
-                className="mt-4 inline-flex h-9 items-center justify-center rounded-full bg-gold px-6 text-[15px] font-semibold text-ink transition-colors hover:bg-gold-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="mt-4 inline-flex h-9 items-center justify-center rounded-full bg-gold px-6 text-15 font-semibold text-ink transition-colors hover:bg-gold-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {beritaSection.ctaButton}
               </Link>

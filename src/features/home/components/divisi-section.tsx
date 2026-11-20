@@ -10,11 +10,11 @@ import { dikelolaSection, divisions, divisiSection } from "../data";
 export function DivisiSection() {
   return (
     <section className="bg-surface-50 py-24">
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
-        <h2 className="text-center text-[34px] leading-[44px] font-extrabold tracking-[-0.8px] text-ink sm:text-[42px] sm:leading-[50px]">
+      <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
+        <h2 className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50">
           {divisiSection.title}
         </h2>
-        <p className="mx-auto mt-4 max-w-[760px] text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
+        <p className="mx-auto mt-4 max-w-190 text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
           {divisiSection.subtitle}
         </p>
 
@@ -31,7 +31,7 @@ export function DivisiSection() {
         </div>
 
         <div className="mt-10 flex flex-col items-center gap-4 rounded-2xl bg-gold-soft px-6 py-12 text-center">
-          <p className="text-[13px] font-medium tracking-wide text-body-muted uppercase">
+          <p className="text-13 font-medium tracking-wide text-body-muted uppercase">
             {dikelolaSection.eyebrow}
           </p>
           <p className="text-base leading-6 font-semibold text-ink sm:text-lg sm:leading-7">
@@ -42,7 +42,7 @@ export function DivisiSection() {
             className={buttonVariants({
               variant: "gold",
               size: "cta",
-              className: "px-6 text-[15px]",
+              className: "px-6 text-15",
             })}
           >
             {dikelolaSection.cta}

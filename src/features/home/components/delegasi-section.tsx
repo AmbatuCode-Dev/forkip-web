@@ -18,13 +18,13 @@ const FIKK_OUTLINE_COLOR = "#87BBB7";
  */
 export function DelegasiSection() {
   return (
-    <section className="bg-gradient-to-b from-[#FBF6DF]/70 to-[#F6EFAF]/70 py-20">
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 xl:px-0">
-        <div className="rounded-[20px] bg-white/60 px-6 py-12 text-center backdrop-blur-[2px] sm:px-12">
-          <h2 className="mx-auto max-w-[720px] text-[28px] leading-9 font-semibold tracking-[-0.5px] text-ink sm:text-[34px] sm:leading-[44px] lg:text-[38px] lg:leading-[48px]">
+    <section className="bg-gradient-to-b from-gold-soft/70 to-gold-soft-strong/70 py-20">
+      <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
+        <div className="rounded-20 bg-white/60 px-6 py-12 text-center backdrop-blur-2 sm:px-12">
+          <h2 className="mx-auto max-w-180 text-28 leading-9 font-semibold tracking-t05 text-ink sm:text-34 sm:leading-11 lg:text-38 lg:leading-12">
             {delegasiSection.title}
           </h2>
-          <p className="mx-auto mt-3 max-w-[640px] text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
+          <p className="mx-auto mt-3 max-w-160 text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
             {delegasiSection.subtitle}
           </p>
           <ul className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -33,7 +33,7 @@ export function DelegasiSection() {
               return (
                 <li
                   key={faculty.code}
-                  className={`flex h-[51px] min-w-[88px] items-center justify-center rounded-2xl border px-5 text-base font-semibold shadow-xs ${
+                  className={`flex h-12.75 min-w-22 items-center justify-center rounded-2xl border px-5 text-base font-semibold shadow-xs ${
                     isFikk ? "text-ink" : "text-white"
                   }`}
                   style={{
