@@ -12,6 +12,10 @@ export const newsPosts: readonly NewsPost[] = [
     uploadedLabel: "Rabu 18 Februari 2026",
     photoCount: 4,
     page: 1,
+    gallery: {
+      badge: "01 / 04 · Dokumentasi",
+      caption: "Sesi pembukaan & sosialisasi program KIP-K UNJ",
+    },
     paragraphs: [
       "Pada tanggal 12 Februari 2026, Explore KIPK 2026 merupakan program sosialisasi yang diselenggarakan oleh FORUM KIP-K UNJ sebagai bentuk komitmen dalam memperluas akses informasi mengenai Program Kartu Indonesia Pintar Kuliah (KIP-K). Kegiatan ini menghadirkan perwakilan mahasiswa dari berbagai sekolah di wilayah Jakarta dan sekitarnya untuk mendapatkan pemahaman yang komprehensif terkait KIP-K.",
       "Melalui kegiatan ini, FORUM KIP-K UNJ memberikan penjelasan mengenai mekanisme pendaftaran, persyaratan, alur seleksi, serta manfaat yang diperoleh sebagai penerima KIP-K. Sosialisasi dilakukan secara interaktif agar peserta tidak hanya menerima informasi, tetapi juga dapat berdiskusi dan menyampaikan pertanyaan secara langsung.",
@@ -24,6 +28,10 @@ export const newsPosts: readonly NewsPost[] = [
     uploadedLabel: "Minggu 22 Februari 2026",
     photoCount: 3,
     page: 1,
+    gallery: {
+      badge: "01 / 03 · Foto",
+      caption: "Pembekalan peran & tanggung jawab Staff KIF",
+    },
     paragraphs: [
       "Pelatihan Divisi KIF (Koordinator Integrasi Fakultas) FORUM KIP-K UNJ 2026, merupakan agenda persiapan yang diselenggarakan untuk membekali Staff KIF dengan pemahaman yang komprehensif mengenai peran, fungsi, serta tanggung jawab dalam struktur organisasi FORKIP UNJ.",
       "Dalam pelatihan ini, peserta diberikan materi terkait tugas utama KIF sebagai penghubung informasi antara pengelola KIF dan mahasiswa KIP-K di masing-masing fakultas Universitas Negeri Jakarta. Staff KIF dituntut untuk mampu menyampaikan informasi secara tepat, jelas, dan bertanggung jawab, serta memastikan tidak terjadi miskomunikasi antar pihak.",

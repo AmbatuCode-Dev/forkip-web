@@ -17,10 +17,7 @@ export function GoogleFormEmbedCard() {
       <p className="text-base font-bold text-ink">
         Pendataan Pengunduran KIP-K UNJ 2026
       </p>
-      <p className="text-sm text-body-muted">
-        {/* TODO(gform): embed the actual Google Form iframe here. */}
-        Google Form akan tertanam di sini.
-      </p>
+      {/* TODO(gform): embed the actual Google Form iframe here. */}
     </section>
   );
 }

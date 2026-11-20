@@ -24,7 +24,7 @@ export function PengunduranDiriHero() {
  */
 export function PengunduranDiriContent() {
   return (
-    <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-6 px-4 pt-12 pb-20 sm:px-6">
+    <div className="mx-auto flex w-full max-w-[1248px] flex-col gap-9 px-6 pt-12 pb-20">
       <AlurPengunduranDiriCard />
       <TemplateSuratCard />
       <GoogleFormEmbedCard />
