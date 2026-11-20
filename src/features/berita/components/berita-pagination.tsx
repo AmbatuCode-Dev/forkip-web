@@ -11,7 +11,7 @@ function pageHref(page: number) {
 }
 
 const CONTROL =
-  "inline-flex h-10 items-center gap-2 rounded-full border border-[#E8E5DA] bg-white px-4 text-sm font-semibold text-[#404040]";
+  "inline-flex h-10 items-center gap-2 rounded-full border border-border-sand bg-white px-4 text-sm font-semibold text-body";
 
 /**
  * Figma pagination bar: "ARSIP LIPUTAN & KEGIATAN" eyebrow + page/total
@@ -34,10 +34,10 @@ export function BeritaPagination({
       className="flex flex-wrap items-center justify-between gap-4 pt-8"
     >
       <div className="flex flex-col gap-2.5">
-        <p className="text-xs font-bold text-[#1C1C1C] uppercase">
+        <p className="text-xs font-bold text-ink uppercase">
           ARSIP LIPUTAN & KEGIATAN
         </p>
-        <p className="text-sm font-medium text-[#404040]">
+        <p className="text-sm font-medium text-body">
           <span className="sr-only">
             Halaman {page} dari {totalPages} -{" "}
           </span>
@@ -70,7 +70,7 @@ export function BeritaPagination({
               <span
                 key={number}
                 aria-current="page"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F6D34A] text-[13px] font-semibold text-[#1C1C1C]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold text-13 font-semibold text-ink"
               >
                 {number}
               </span>
@@ -79,7 +79,7 @@ export function BeritaPagination({
                 key={number}
                 href={pageHref(number)}
                 aria-label={`Halaman ${number}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#E8E5DA] bg-white text-[13px] font-medium text-[#404040] hover:bg-[#FBF6DF]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-sand bg-white text-13 font-medium text-body hover:bg-gold-soft"
               >
                 {number}
               </Link>

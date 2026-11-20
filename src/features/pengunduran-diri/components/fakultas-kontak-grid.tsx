@@ -13,7 +13,7 @@ export function FakultasKontakGrid() {
     >
       <h2
         id="fakultas-kontak-heading"
-        className="text-[13px] font-normal text-[#404040]"
+        className="text-13 font-normal text-body"
       >
         Klik tombol di bawah untuk menghubungi delegasi KIF Fakultas:
       </h2>
@@ -22,9 +22,9 @@ export function FakultasKontakGrid() {
           <li key={faculty.code}>
             <a
               href={faculty.href}
-              className={`flex h-[74px] items-center justify-between gap-2 rounded-[10px] px-5 py-3 transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+              className={`flex h-18.5 items-center justify-between gap-2 rounded-10 px-5 py-3 transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 faculty.variant === "outline"
-                  ? "border border-[#0F766E] bg-white text-ink"
+                  ? "border border-teal bg-white text-ink"
                   : "border border-transparent text-white"
               }`}
               style={
@@ -35,7 +35,7 @@ export function FakultasKontakGrid() {
               aria-label={`Hubungi delegasi KIF ${faculty.code} via WhatsApp`}
             >
               <span className="flex flex-col gap-1 text-left">
-                <span className="text-[22px] font-bold">{faculty.code}</span>
+                <span className="text-22 font-bold">{faculty.code}</span>
                 <span className="text-xs font-normal">
                   Hubungi via WhatsApp
                 </span>

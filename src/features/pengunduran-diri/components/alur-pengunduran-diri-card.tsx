@@ -60,16 +60,16 @@ export function AlurPengunduranDiriCard() {
     >
       <h2
         id="alur-pengunduran-diri-heading"
-        className="text-[30px] leading-[40px] font-bold tracking-tight text-ink"
+        className="text-3xl leading-10 font-bold tracking-tight text-ink"
       >
         Alur pengunduran diri KIPK 2026
       </h2>
 
       <div className="rounded-2xl border border-border-sand bg-white p-5 sm:p-8">
-        <div className="rounded-2xl bg-[#FDFCF8] px-4 py-16 sm:px-8">
+        <div className="rounded-2xl bg-cream px-4 py-16 sm:px-8">
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:justify-start sm:gap-8">
             <KipkMark />
-            <p className="relative rounded-2xl bg-[#122338] px-5 py-10 text-center text-[clamp(1.1rem,2.7vw,2.6rem)] leading-tight font-extrabold tracking-tight text-white shadow-[6px_6px_0_#E0B400] sm:px-12">
+            <p className="relative rounded-2xl bg-navy px-5 py-10 text-center text-clamp-hero leading-tight font-extrabold tracking-tight text-white shadow-stamp-6 sm:px-12">
               ALUR PENGUNDURAN DIRI KIPK 2026
             </p>
           </div>
@@ -81,7 +81,7 @@ export function AlurPengunduranDiriCard() {
                 className={`relative flex flex-col items-center text-center ${STEP_POSITION[item.step]}`}
               >
                 <AlurStepIcon icon={item.icon} className="size-24 sm:size-28" />
-                <p className="mt-8 w-full rounded-xl bg-[#122338] px-3 py-9 text-[13px] leading-snug font-bold text-white shadow-[4px_4px_0_#E0B400] sm:text-[15px]">
+                <p className="mt-8 w-full rounded-xl bg-navy px-3 py-9 text-13 leading-snug font-bold text-white shadow-stamp-4 sm:text-15">
                   {item.title}
                 </p>
                 {item.step <= 3 ? (
