@@ -148,7 +148,7 @@ export function SiteHeader() {
         <Link
           href="/"
           onClick={closeMenu}
-          className="flex shrink-0 items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="flex shrink-0 items-center gap-2.5 rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
         >
           <Image
             src="/images/logo-kipk-unj.png"
@@ -173,7 +173,7 @@ export function SiteHeader() {
                 key={entry.href}
                 href={entry.href}
                 onClick={closeMenu}
-                className="rounded-md py-2.75 text-sm font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="rounded-md py-2.75 text-sm font-medium text-body transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
               >
                 {entry.label}
               </Link>
@@ -185,7 +185,7 @@ export function SiteHeader() {
                   aria-controls={`${entry.id}-menu`}
                   onClick={() => toggleMenu(entry.id)}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-md py-2.75 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    "flex items-center gap-1.5 rounded-md py-2.75 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
                     openMenu === entry.id
                       ? "text-gold-ink"
                       : "text-body hover:text-ink",
@@ -211,7 +211,7 @@ export function SiteHeader() {
                 {openMenu === entry.id ? (
                   <div
                     id={`${entry.id}-menu`}
-                    className="absolute -left-14.5 top-full z-50 w-105 rounded-18 border border-border-sand bg-white p-6 shadow-dropdown"
+                    className="absolute top-full -left-14.5 z-50 w-105 rounded-18 border border-border-sand bg-white p-6 shadow-dropdown"
                   >
                     <p className="text-13 leading-5 font-semibold text-body-muted">
                       {entry.heading}
@@ -222,7 +222,7 @@ export function SiteHeader() {
                           <Link
                             href={item.href}
                             onClick={closeMenu}
-                            className="flex items-center gap-3 rounded-10 p-2 transition-colors hover:bg-surface-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            className="flex items-center gap-3 rounded-10 p-2 transition-colors hover:bg-surface-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                           >
                             <span className="inline-flex h-7 shrink-0 items-center justify-center rounded-md bg-surface-50 px-2.5 text-9 leading-5 font-semibold text-ink-soft">
                               {item.chip}

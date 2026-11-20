@@ -40,7 +40,7 @@ export function NewsMediaPlaceholder({
       <span className="text-sm font-semibold text-body-muted">
         Foto {label} (placeholder)
       </span>
-      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pl-3 pr-4 text-xs font-semibold text-ink shadow-xs">
+      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pr-4 pl-3 text-xs font-semibold text-ink shadow-xs">
         <span aria-hidden="true" className="h-2 w-2 rounded-full bg-gold" />
         {label}
       </span>

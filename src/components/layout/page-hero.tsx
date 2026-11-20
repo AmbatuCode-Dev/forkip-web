@@ -63,7 +63,7 @@ export function PageHero({
           <p className="text-13 font-medium text-body-muted">
             <Link
               href={breadcrumb.href}
-              className="rounded-sm transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="rounded-sm transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               Beranda
             </Link>

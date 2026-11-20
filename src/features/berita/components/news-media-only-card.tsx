@@ -49,7 +49,7 @@ function BusamakipStage() {
         <circle cx="290" cy="82" r="26" fill="#F6D34A" />
         <circle cx="300" cy="76" r="24" fill="#2B2417" />
       </svg>
-      <div className="absolute left-1/2 top-33 w-62p -translate-x-1/2 rounded-md bg-sand px-4 py-3 text-center shadow-sm">
+      <div className="absolute top-33 left-1/2 w-62p -translate-x-1/2 rounded-md bg-sand px-4 py-3 text-center shadow-sm">
         <p className="text-10 font-bold text-ink">
           BUSAMAKIP - Harmoni Ramadhan
         </p>

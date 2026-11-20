@@ -22,7 +22,7 @@ export function FakultasKontakGrid() {
           <li key={faculty.code}>
             <a
               href={faculty.href}
-              className={`flex h-18.5 items-center justify-between gap-2 rounded-10 px-5 py-3 transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+              className={`flex h-18.5 items-center justify-between gap-2 rounded-10 px-5 py-3 transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none ${
                 faculty.variant === "outline"
                   ? "border border-teal bg-white text-ink"
                   : "border border-transparent text-white"

@@ -72,7 +72,7 @@ export function HeroSection() {
                 href="https://www.youtube.com/watch?v=G338TUmvp1Q"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group flex items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="group flex items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
               >
                 <PlayCircle className="inline-flex size-11.5 shrink-0 items-center justify-center rounded-full bg-gold transition-transform group-hover:scale-105" />
                 <span className="flex flex-col gap-0.5">
@@ -93,7 +93,7 @@ export function HeroSection() {
                     href={link.href}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="flex items-center gap-2 rounded-md text-base leading-6 text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="flex items-center gap-2 rounded-md text-base leading-6 text-body transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     <span
                       aria-hidden="true"
@@ -148,7 +148,7 @@ export function HeroSection() {
               <div className="absolute top-1/2 left-0 hidden -translate-y-1/2 sm:block lg:-left-2">
                 <StatCard stat={heroStats[1]} />
               </div>
-              <div className="absolute right-2 bottom-2 hidden sm:block lg:bottom-0 lg:-right-4">
+              <div className="absolute right-2 bottom-2 hidden sm:block lg:-right-4 lg:bottom-0">
                 <StatCard stat={heroStats[2]} />
               </div>
             </div>

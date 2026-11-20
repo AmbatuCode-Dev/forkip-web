@@ -14,7 +14,7 @@ function Person({
   return (
     <span className={`relative inline-block h-7 w-4 ${className ?? ""}`}>
       <span
-        className="absolute left-1/2 top-0 size-2 -translate-x-1/2 rounded-full bg-tan"
+        className="absolute top-0 left-1/2 size-2 -translate-x-1/2 rounded-full bg-tan"
         aria-hidden="true"
       />
       <span
@@ -158,7 +158,7 @@ export function BeritaNewsCard({ post }: { readonly post: NewsPost }) {
       <div className="space-y-3">
         <div className="relative rounded-2xl border border-border-sand bg-surface-100 p-3">
           <StageIllustration post={post} selected={selected} />
-          <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-slate px-4 py-2 text-xs font-bold text-white shadow-sm">
+          <span className="absolute top-6 left-6 inline-flex items-center gap-2 rounded-full bg-slate px-4 py-2 text-xs font-bold text-white shadow-sm">
             {badge}
           </span>
           <div className="mt-3 flex items-center justify-between gap-3 rounded-xl bg-white px-4 py-3 shadow-card-up">

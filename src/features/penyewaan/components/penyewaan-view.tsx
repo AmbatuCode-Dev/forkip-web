@@ -35,7 +35,7 @@ export function PenyewaanView() {
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  "inline-flex h-10 items-center justify-center rounded-full px-5 text-13 font-semibold text-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-ink",
+                  "inline-flex h-10 items-center justify-center rounded-full px-5 text-13 font-semibold text-ink transition-colors focus-visible:ring-2 focus-visible:ring-gold-ink focus-visible:outline-none",
                   index === 0
                     ? "bg-gold hover:bg-gold-dark"
                     : "border border-gold-outline bg-white hover:bg-gold-soft",

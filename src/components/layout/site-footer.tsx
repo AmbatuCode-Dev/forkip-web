@@ -97,7 +97,7 @@ export function SiteFooter() {
                       ? "noreferrer noopener"
                       : undefined
                   }
-                  className="inline-flex size-10 items-center justify-center rounded-full border border-border-sand bg-white transition-colors hover:bg-surface-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-border-sand bg-white transition-colors hover:bg-surface-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
                   <Image
                     src={social.icon}
@@ -121,7 +121,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm leading-5 font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="text-sm leading-5 font-medium text-body transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     {link.label}
                   </Link>
@@ -139,7 +139,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm leading-5 font-medium text-body transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="text-sm leading-5 font-medium text-body transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     {link.label}
                   </Link>

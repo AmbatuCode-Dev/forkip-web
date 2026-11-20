@@ -33,7 +33,7 @@ function MarqueeCard({
       <span className="text-sm font-semibold text-body-muted">
         Foto {label} (placeholder)
       </span>
-      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pl-3 pr-4 text-sm font-bold text-ink shadow-xs">
+      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pr-4 pl-3 text-sm font-bold text-ink shadow-xs">
         <span aria-hidden="true" className="h-2 w-2 rounded-full bg-gold" />
         {label}
       </span>
@@ -71,7 +71,7 @@ export function NewsMarquee({
       {...props}
     >
       <div
-        className="marquee-track flex w-max gap-5 will-change-transform group-hover/marquee:[animation-play-state:paused]"
+        className="flex w-max gap-5 will-change-transform group-hover/marquee:[animation-play-state:paused] motion-safe:animate-marquee-scroll"
         data-testid="marquee-strip"
       >
         {loop.map(({ item, key }, index) => (
@@ -82,18 +82,6 @@ export function NewsMarquee({
           />
         ))}
       </div>
-      <style>{`
-				@media (prefers-reduced-motion: no-preference) {
-					.marquee-track {
-						animation: marquee-scroll 30s linear infinite;
-					}
-					@keyframes marquee-scroll {
-						from { transform: translateX(0); }
-						/* -50% minus half the 20px track gap keeps the loop seamless. */
-						to { transform: translateX(calc(-50% - 10px)); }
-					}
-				}
-			`}</style>
     </div>
   );
 }

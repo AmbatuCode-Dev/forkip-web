@@ -3,7 +3,7 @@
 :root {
   --background: #fbfaf6;
   --foreground: #1c1c1c;
-  --surface: #ffffff;
+  --surface: #fff;
   --surface-foreground: #111113;
   --muted: #f4f4f5;
   --muted-foreground: #52525b;
@@ -26,7 +26,7 @@
   --ink: #1c1c1c;
   --ink-soft: #2b2b2b;
   --text-body: #404040;
-  --text-body-muted: #666666;
+  --text-body-muted: #666;
   --border-sand: #e8e5da;
   --surface-50: #fbfaf6;
   --surface-100: #f4f2ea;
@@ -67,7 +67,7 @@
     var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono:
     ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-  --shadow-dropdown: 0px 16px 24px rgba(51, 36, 31, 0.12);
+  --shadow-dropdown: 0px 16px 24px rgb(51 36 31 / 12%);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -96,7 +96,6 @@
   --color-night-1: #6d5a2c;
   --color-night-2: #3b2e13;
   --color-night-3: #1d1709;
-
   --text-6: 6px;
   --text-7: 7px;
   --text-8: 8px;
@@ -117,7 +116,6 @@
   --text-44: 44px;
   --text-52: 52px;
   --text-56: 56px;
-
   --leading-14: 14px;
   --leading-17: 17px;
   --leading-18: 18px;
@@ -127,55 +125,63 @@
   --leading-50: 50px;
   --leading-hero: 46.2px;
   --leading-hero-lg: 79.2px;
-
   --tracking-t04: -0.4px;
   --tracking-t05: -0.5px;
   --tracking-t08: -0.8px;
   --tracking-t2: -2px;
   --tracking-wide12: 1.2px;
-
   --radius-10: 10px;
   --radius-14: 14px;
   --radius-18: 18px;
   --radius-20: 20px;
-
-  --shadow-glow: 0 0 40px rgba(246, 211, 74, 0.45);
-  --shadow-card-sm: 0 2px 0 rgba(0, 0, 0, 0.04);
-  --shadow-card-up: 0 -2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 40px rgb(246 211 74 / 45%);
+  --shadow-card-sm: 0 2px 0 rgb(0 0 0 / 4%);
+  --shadow-card-up: 0 -2px 6px rgb(0 0 0 / 4%);
   --shadow-stamp-4: 4px 4px 0 #e0b400;
   --shadow-stamp-6: 6px 6px 0 #e0b400;
+  --animate-marquee-scroll: marquee-scroll 30s linear infinite;
 }
 
 @utility w-62p {
   width: 62%;
 }
+
 @utility w-78p {
   width: 78%;
 }
+
 @utility w-86p {
   width: 86%;
 }
+
 @utility cols-hero-a {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
 }
+
 @utility cols-hero-b {
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
 }
+
 @utility cols-spotlight {
   grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
 }
+
 @utility cols-420 {
   grid-template-columns: minmax(0, 420px) 1fr;
 }
+
 @utility cols-420f {
   grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
 }
+
 @utility cols-440 {
   grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
 }
+
 @utility cols-580 {
   grid-template-columns: minmax(0, 580px) 1fr;
 }
+
 @utility bg-night-radial {
   background-image: radial-gradient(
     ellipse at 50% 35%,
@@ -184,14 +190,29 @@
     var(--color-night-3) 100%
   );
 }
+
 @utility text-clamp-hero {
   font-size: clamp(1.1rem, 2.7vw, 2.6rem);
 }
+
 @utility backdrop-blur-2 {
   backdrop-filter: blur(2px);
 }
+
 @utility transition-height {
   transition-property: height;
+}
+
+/* News marquee loop (NewsMarquee); applied via motion-safe:animate-marquee-scroll. */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  /* -50% minus half the 20px track gap keeps the loop seamless. */
+  to {
+    transform: translateX(calc(-50% - 10px));
+  }
 }
 
 @layer base {

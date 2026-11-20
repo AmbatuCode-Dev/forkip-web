@@ -55,20 +55,20 @@ export function InventarisAccordion({
         aria-controls={regionId}
         id={headingId}
         onClick={() => setExpanded((value) => !value)}
-        className="flex h-26 w-full cursor-pointer items-center justify-between gap-6 px-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-ink sm:px-6"
+        className="flex h-26 w-full cursor-pointer items-center justify-between gap-6 px-4 text-left focus-visible:ring-2 focus-visible:ring-gold-ink focus-visible:outline-none sm:px-6"
       >
         <span className="flex min-w-0 items-center gap-6">
           {imageLabel ? (
-            <span className="flex h-16 w-24 shrink-0 items-center justify-center rounded bg-surface-50 text-10 font-semibold leading-14 text-body-muted">
+            <span className="flex h-16 w-24 shrink-0 items-center justify-center rounded bg-surface-50 text-10 leading-14 font-semibold text-body-muted">
               {imageLabel}
             </span>
           ) : (
-            <span className="shrink-0 rounded-md bg-surface-50 px-3 py-1.5 text-9 font-semibold leading-5 text-ink-soft">
+            <span className="shrink-0 rounded-md bg-surface-50 px-3 py-1.5 text-9 leading-5 font-semibold text-ink-soft">
               {chip}
             </span>
           )}
           <span className="min-w-0">
-            <span className="block truncate text-22 font-extrabold leading-8 text-ink">
+            <span className="block truncate text-22 leading-8 font-extrabold text-ink">
               {title}
             </span>
             <span className="block truncate text-13 leading-5">

@@ -93,7 +93,7 @@ export function AlurPengunduranDiriCard() {
                 {item.step === 4 ? (
                   <AlurArrow
                     direction="down"
-                    className="absolute -bottom-11 right-2 hidden h-10 w-7 lg:block"
+                    className="absolute right-2 -bottom-11 hidden h-10 w-7 lg:block"
                   />
                 ) : null}
                 {item.step >= 5 && item.step <= 7 ? (

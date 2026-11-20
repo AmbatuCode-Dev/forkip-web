@@ -53,7 +53,7 @@ export function ArsipDataView() {
                   </span>
                   <a
                     href={division.href}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-gold-ink transition-colors hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-gold-ink transition-colors hover:text-gold-deep focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     {division.linkLabel}
                     <span aria-hidden="true">→</span>

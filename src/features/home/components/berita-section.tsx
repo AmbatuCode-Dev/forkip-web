@@ -38,7 +38,7 @@ export function BeritaSection() {
             </p>
             <Link
               href="/berita"
-              className="group mt-auto inline-flex items-center gap-2 self-start rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="group mt-auto inline-flex items-center gap-2 self-start rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               Baca selengkapnya
               <span
@@ -65,7 +65,7 @@ export function BeritaSection() {
                   </p>
                   <Link
                     href="/berita"
-                    className="group mt-3 inline-flex items-center gap-2 rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="group mt-3 inline-flex items-center gap-2 rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     Baca selengkapnya
                     <span
@@ -85,7 +85,7 @@ export function BeritaSection() {
               </p>
               <Link
                 href={beritaSection.ctaHref}
-                className="mt-4 inline-flex h-9 items-center justify-center rounded-full bg-gold px-6 text-15 font-semibold text-ink transition-colors hover:bg-gold-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="mt-4 inline-flex h-9 items-center justify-center rounded-full bg-gold px-6 text-15 font-semibold text-ink transition-colors hover:bg-gold-dark focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
               >
                 {beritaSection.ctaButton}
               </Link>

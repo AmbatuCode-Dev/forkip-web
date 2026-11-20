@@ -132,6 +132,212 @@
           }
         }
       }
+    },
+    {
+      "includes": ["src/components/ui/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": [
+                      "@/config",
+                      "@/config/*",
+                      "@/config/*/*",
+                      "@/config/*/**",
+                      "@/hooks",
+                      "@/hooks/*",
+                      "@/hooks/*/*",
+                      "@/hooks/*/**",
+                      "@/features",
+                      "@/features/*",
+                      "@/features/*/*",
+                      "@/features/*/**",
+                      "@/app",
+                      "@/app/*",
+                      "@/app/*/*",
+                      "@/app/*/**"
+                    ],
+                    "message": "UI primitives must stay pure: no imports from config, hooks, features, or app routes. Pass data in via props."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "src/app/**",
+        "!**/__tests__/**",
+        "!**/*.test.*",
+        "!**/*.spec.*"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": ["@/features/*/*", "@/features/*/**"],
+                    "message": "Import features through their public barrel (e.g. @/features/home) instead of deep imports."
+                  },
+                  {
+                    "group": [
+                      "@/testing",
+                      "@/testing/*",
+                      "@/testing/*/*",
+                      "@/testing/*/**"
+                    ],
+                    "message": "Test helpers (@/testing/*) may only be imported from test files (__tests__/ or *.test.*)."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "src/features/**",
+        "!**/__tests__/**",
+        "!**/*.test.*",
+        "!**/*.spec.*"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": ["@/app/*", "@/app/*/*", "@/app/*/**"],
+                    "message": "Features must not import from app routes. Keep features framework-agnostic and let routes import features."
+                  },
+                  {
+                    "group": ["@/features/*/*", "@/features/*/**"],
+                    "message": "Import other features through their public barrel (@/features/<name>) instead of deep imports."
+                  },
+                  {
+                    "group": [
+                      "@/testing",
+                      "@/testing/*",
+                      "@/testing/*/*",
+                      "@/testing/*/**"
+                    ],
+                    "message": "Test helpers (@/testing/*) may only be imported from test files (__tests__/ or *.test.*)."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "src/components/**",
+        "src/config/**",
+        "src/hooks/**",
+        "src/testing/**",
+        "src/types/**",
+        "src/utils/**",
+        "!**/__tests__/**",
+        "!**/*.test.*",
+        "!**/*.spec.*"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": [
+                      "@/features/*",
+                      "@/features/*/*",
+                      "@/app/*",
+                      "@/app/*/*",
+                      "@/features/*/**",
+                      "@/app/*/**"
+                    ],
+                    "message": "Shared layers must not import from features or app routes. Move the dependency into a shared layer or invert it."
+                  },
+                  {
+                    "group": [
+                      "@/testing",
+                      "@/testing/*",
+                      "@/testing/*/*",
+                      "@/testing/*/**"
+                    ],
+                    "message": "Test helpers (@/testing/*) may only be imported from test files (__tests__/ or *.test.*)."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "src/components/ui/**",
+        "!**/__tests__/**",
+        "!**/*.test.*",
+        "!**/*.spec.*"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": [
+                      "@/config",
+                      "@/config/*",
+                      "@/config/*/*",
+                      "@/config/*/**",
+                      "@/hooks",
+                      "@/hooks/*",
+                      "@/hooks/*/*",
+                      "@/hooks/*/**",
+                      "@/features",
+                      "@/features/*",
+                      "@/features/*/*",
+                      "@/features/*/**",
+                      "@/app",
+                      "@/app/*",
+                      "@/app/*/*",
+                      "@/app/*/**"
+                    ],
+                    "message": "UI primitives must stay pure: no imports from config, hooks, features, or app routes. Pass data in via props."
+                  },
+                  {
+                    "group": [
+                      "@/testing",
+                      "@/testing/*",
+                      "@/testing/*/*",
+                      "@/testing/*/**"
+                    ],
+                    "message": "Test helpers (@/testing/*) may only be imported from test files (__tests__/ or *.test.*)."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
     }
   ]
 }
