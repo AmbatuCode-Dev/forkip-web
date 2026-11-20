@@ -11,15 +11,16 @@ export interface NewsMediaPlaceholderProps extends ComponentProps<"div"> {
 }
 
 const VARIANT_GRADIENTS: Record<1 | 2 | 3, string> = {
-  1: "bg-gradient-to-br from-[#F6EFAF] via-[#FBF6DF] to-white",
-  2: "bg-gradient-to-b from-white via-[#FBF6DF] to-[#F6EFAF]",
-  3: "bg-gradient-to-tr from-[#F6EFAF] via-[#FBF6DF] to-[#F8F3D3]",
+  1: "bg-gradient-to-br from-[#FBF6DF] to-[#F6EFAF]",
+  2: "bg-gradient-to-b from-[#FBF6DF] to-[#F6EFAF]",
+  3: "bg-gradient-to-tr from-[#FBF6DF] to-[#F6EFAF]",
 };
 
 /**
- * Gold gradient media placeholder with the bottom-left white pill label
- * + gold dot used across marquee, galeri and news cards (specs §5–§7).
- * Purely presentational; no external images.
+ * Gold gradient media placeholder (#FBF6DF → #F6EFAF) with the bottom-left
+ * white pill label + gold dot used across marquee, galeri and news cards
+ * (specs §5–§7). Defaults to r16 for cards; the marquee overrides to r24
+ * via className. Purely presentational; no external images.
  */
 export function NewsMediaPlaceholder({
   label,
@@ -36,7 +37,9 @@ export function NewsMediaPlaceholder({
       )}
       {...props}
     >
-      <span className="text-sm text-[#666666]">Foto {label} (placeholder)</span>
+      <span className="text-sm font-semibold text-[#666666]">
+        Foto {label} (placeholder)
+      </span>
       <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pl-3 pr-4 text-xs font-semibold text-[#1C1C1C] shadow-xs">
         <span
           aria-hidden="true"

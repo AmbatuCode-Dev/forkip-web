@@ -76,4 +76,21 @@ describe("DivisiAccordion", () => {
     const region = screen.getByRole("region");
     expect(region).toHaveAttribute("aria-labelledby", toggle.id);
   });
+
+  it("renders the image placeholder instead of the chip when imageLabel is given", () => {
+    render(
+      <DivisiAccordion
+        chip="BPHI"
+        imageLabel="Foto BPHI"
+        title="BPHI — Badan Pengurus Harian Inti"
+        body={BPHI_BODY}
+      />,
+    );
+
+    expect(screen.getByText("Foto BPHI")).toBeInTheDocument();
+    expect(screen.queryByText("BPHI")).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /BPHI — Badan Pengurus Harian Inti/ }),
+    ).toBeInTheDocument();
+  });
 });

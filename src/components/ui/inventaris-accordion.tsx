@@ -6,6 +6,11 @@ import { cn } from "@/utils/cn";
 
 export interface InventarisAccordionProps extends ComponentProps<"div"> {
   chip: string;
+  /**
+   * When given, renders the 96×64 r4 image placeholder (Figma) in place
+   * of the chip. `chip` remains the fallback for existing callers.
+   */
+  imageLabel?: string;
   title: string;
   meta: string;
   paragraphs: string[];
@@ -15,10 +20,12 @@ export interface InventarisAccordionProps extends ComponentProps<"div"> {
 
 /**
  * Accordion bar for inventory items (spec §4, Handy Talky pattern).
- * Collapsed: chip + title + meta + plus icon. Expanded: paragraphs + footnote, minus icon.
+ * Collapsed: 104px row with image placeholder (or chip) + title + meta +
+ * plus icon. Expanded: paragraphs + footnote, minus icon.
  */
 export function InventarisAccordion({
   chip,
+  imageLabel,
   title,
   meta,
   paragraphs,
@@ -30,6 +37,9 @@ export function InventarisAccordion({
   const [expanded, setExpanded] = useState(defaultExpanded);
   const headingId = useId();
   const regionId = useId();
+  const colonIndex = meta.indexOf(":");
+  const metaLabel = colonIndex === -1 ? meta : meta.slice(0, colonIndex + 1);
+  const metaValue = colonIndex === -1 ? "" : meta.slice(colonIndex + 1).trim();
 
   return (
     <div
@@ -45,18 +55,27 @@ export function InventarisAccordion({
         aria-controls={regionId}
         id={headingId}
         onClick={() => setExpanded((value) => !value)}
-        className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7A5B00] sm:px-6"
+        className="flex h-[104px] w-full cursor-pointer items-center justify-between gap-6 px-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7A5B00] sm:px-6"
       >
-        <span className="flex min-w-0 items-center gap-3">
-          <span className="shrink-0 rounded-md bg-[#FBFAF6] px-3 py-1.5 text-[9px] font-semibold leading-5 text-[#2B2B2B]">
-            {chip}
-          </span>
+        <span className="flex min-w-0 items-center gap-6">
+          {imageLabel ? (
+            <span className="flex h-16 w-24 shrink-0 items-center justify-center rounded bg-[#FBFAF6] text-[10px] font-semibold leading-[14px] text-[#666666]">
+              {imageLabel}
+            </span>
+          ) : (
+            <span className="shrink-0 rounded-md bg-[#FBFAF6] px-3 py-1.5 text-[9px] font-semibold leading-5 text-[#2B2B2B]">
+              {chip}
+            </span>
+          )}
           <span className="min-w-0">
-            <span className="block truncate text-[22px] leading-[32px] font-semibold text-[#1C1C1C]">
+            <span className="block truncate text-[22px] font-extrabold leading-[32px] text-[#1C1C1C]">
               {title}
             </span>
-            <span className="block truncate text-xs leading-5 text-[#666666]">
-              {meta}
+            <span className="block truncate text-[13px] leading-[20px]">
+              <span className="font-medium text-[#666666]">{metaLabel}</span>
+              {metaValue ? (
+                <span className="font-bold text-[#1C1C1C]"> {metaValue}</span>
+              ) : null}
             </span>
           </span>
         </span>
@@ -68,16 +87,17 @@ export function InventarisAccordion({
         hidden={!expanded}
         className="overflow-hidden transition-[height] duration-300 motion-reduce:transition-none"
       >
-        <div className="max-w-[1100px] space-y-3 px-4 pb-4 sm:px-6">
+        <div className="flex max-w-[1100px] flex-col gap-3 pr-6 pb-7 pl-6 sm:pr-12 sm:pl-[144px]">
           {paragraphs.map((paragraph) => (
-            <p key={paragraph} className="text-[13px] leading-5 text-[#666666]">
+            <p
+              key={paragraph}
+              className="text-[15px] leading-[24px] text-[#404040]"
+            >
               {paragraph}
             </p>
           ))}
           {footnote ? (
-            <p className="text-xs italic leading-5 text-[#666666]">
-              {footnote}
-            </p>
+            <p className="text-xs leading-[24px] text-[#666666]">{footnote}</p>
           ) : null}
         </div>
       </section>

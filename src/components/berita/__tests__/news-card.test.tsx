@@ -63,4 +63,50 @@ describe("NewsCard", () => {
     expect(second).toHaveAttribute("aria-pressed", "true");
     expect(second.className).toContain("ring-[#F6D34A]");
   });
+
+  it("renders lead title, stage badge and caption when given", () => {
+    render(
+      <NewsCard
+        dateLabel="Rabu, 18 Februari 2026"
+        photoCount={8}
+        title="Explore KIPK 2026"
+        paragraphs={PARAGRAPHS}
+        lead
+        stageBadge="01 / 04 · Foto"
+        caption="Suasana sosialisasi Explore KIPK 2026"
+      />,
+    );
+
+    const heading = screen.getByRole("heading", { name: "Explore KIPK 2026" });
+    expect(heading.className).toContain("text-[38px]");
+    expect(heading.className).toContain("leading-[48px]");
+    expect(screen.getByText("01 / 04 · Foto")).toBeInTheDocument();
+    expect(
+      screen.getByText("Suasana sosialisasi Explore KIPK 2026"),
+    ).toBeInTheDocument();
+  });
+
+  it("uses the small badge and caption sizes in the small variant", () => {
+    render(
+      <NewsCard
+        dateLabel="Rabu, 18 Februari 2026"
+        photoCount={8}
+        title="Explore KIPK 2026"
+        paragraphs={PARAGRAPHS}
+        small
+        stageBadge="01 / 04 · Foto"
+        caption="Suasana sosialisasi"
+      />,
+    );
+
+    expect(screen.getByText("01 / 04 · Foto").className).toContain(
+      "text-[11px]",
+    );
+    expect(screen.getByText("Suasana sosialisasi").className).toContain(
+      "leading-[16px]",
+    );
+    expect(
+      screen.getByRole("heading", { name: "Explore KIPK 2026" }).className,
+    ).toContain("text-[28px]");
+  });
 });

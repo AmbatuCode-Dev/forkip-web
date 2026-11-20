@@ -21,8 +21,9 @@ describe("InventarisAccordion", () => {
     );
 
     expect(screen.getByText("Handy Talky")).toBeInTheDocument();
+    expect(screen.getByText(/Jumlah yang tersedia:/)).toBeInTheDocument();
     expect(
-      screen.getByText(/Jumlah yang tersedia: banyak pcs/),
+      screen.getByText(/banyak pcs \(include earpiece\)/),
     ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Handy Talky/ })).toHaveAttribute(
       "aria-expanded",
@@ -67,5 +68,24 @@ describe("InventarisAccordion", () => {
     expect(
       screen.getByRole("button", { name: /Speaker dan Mic/ }),
     ).toHaveAttribute("aria-expanded", "true");
+  });
+
+  it("renders the image placeholder instead of the chip when imageLabel is given", () => {
+    render(
+      <InventarisAccordion
+        chip="Penyewaan HT"
+        imageLabel="Foto HT"
+        title="Handy Talky"
+        meta="Jumlah yang tersedia: banyak pcs (include earpiece)"
+        paragraphs={HT_PARAGRAPHS}
+      />,
+    );
+
+    expect(screen.getByText("Foto HT")).toBeInTheDocument();
+    expect(screen.queryByText("Penyewaan HT")).not.toBeInTheDocument();
+    expect(screen.getByText(/Jumlah yang tersedia:/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/banyak pcs \(include earpiece\)/),
+    ).toBeInTheDocument();
   });
 });

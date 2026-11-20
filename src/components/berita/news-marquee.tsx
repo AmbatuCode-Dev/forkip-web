@@ -15,14 +15,31 @@ export interface NewsMarqueeProps extends ComponentProps<"div"> {
   fase?: "A" | "B";
 }
 
-function MarqueeCard({ label }: NewsMarqueeItem) {
+/** Figma card widths cycle [460, 280, 440, 300, 420] across the strip. */
+const CARD_WIDTHS = [
+  "w-[460px]",
+  "w-[280px]",
+  "w-[440px]",
+  "w-[300px]",
+  "w-[420px]",
+];
+
+function MarqueeCard({
+  label,
+  widthClass,
+}: NewsMarqueeItem & { widthClass: string }) {
   return (
     <div
-      className="relative flex h-[300px] w-[340px] shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FBF6DF] to-[#F6EFAF] pr-6"
+      className={cn(
+        "relative flex h-[380px] shrink-0 items-center justify-center rounded-3xl bg-gradient-to-br from-[#FBF6DF] to-[#F6EFAF]",
+        widthClass,
+      )}
       data-testid="marquee-card"
     >
-      <span className="text-sm text-[#666666]">Foto {label} (placeholder)</span>
-      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pl-3 pr-4 text-xs font-semibold text-[#1C1C1C] shadow-xs">
+      <span className="text-sm font-semibold text-[#666666]">
+        Foto {label} (placeholder)
+      </span>
+      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pl-3 pr-4 text-sm font-bold text-[#1C1C1C] shadow-xs">
         <span
           aria-hidden="true"
           className="h-2 w-2 rounded-full bg-[#F6D34A]"
@@ -63,11 +80,15 @@ export function NewsMarquee({
       {...props}
     >
       <div
-        className="marquee-track flex w-max will-change-transform group-hover/marquee:[animation-play-state:paused]"
+        className="marquee-track flex w-max gap-5 will-change-transform group-hover/marquee:[animation-play-state:paused]"
         data-testid="marquee-strip"
       >
-        {loop.map(({ item, key }) => (
-          <MarqueeCard key={key} label={item.label} />
+        {loop.map(({ item, key }, index) => (
+          <MarqueeCard
+            key={key}
+            label={item.label}
+            widthClass={CARD_WIDTHS[index % CARD_WIDTHS.length]}
+          />
         ))}
       </div>
       <style>{`
@@ -77,7 +98,8 @@ export function NewsMarquee({
 					}
 					@keyframes marquee-scroll {
 						from { transform: translateX(0); }
-						to { transform: translateX(-50%); }
+						/* -50% minus half the 20px track gap keeps the loop seamless. */
+						to { transform: translateX(calc(-50% - 10px)); }
 					}
 				}
 			`}</style>

@@ -49,4 +49,22 @@ describe("NewsMarquee", () => {
     expect(labels[0]).toContain("Explore KIPK 2026");
     expect(labels[1]).toContain("Pelatihan Divisi KIF");
   });
+
+  it("cycles the Figma card widths [460, 280, 440, 300, 420]", () => {
+    render(<NewsMarquee items={FASE_A_ITEMS} />);
+
+    const cards = screen.getAllByTestId("marquee-card");
+    const expected = [
+      "w-[460px]",
+      "w-[280px]",
+      "w-[440px]",
+      "w-[300px]",
+      "w-[420px]",
+    ];
+    cards.forEach((card, index) => {
+      expect(card.className).toContain(expected[index % expected.length]);
+      expect(card.className).toContain("h-[380px]");
+      expect(card.className).toContain("rounded-3xl");
+    });
+  });
 });

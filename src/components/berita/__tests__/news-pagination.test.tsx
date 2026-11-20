@@ -14,6 +14,17 @@ describe("NewsPagination", () => {
     expect(screen.getAllByText(/Halaman 1 dari 2/).length).toBeGreaterThan(0);
   });
 
+  it("styles the eyebrow uppercase bold and the summary medium", () => {
+    render(<NewsPagination page={1} totalPages={2} totalItems={8} />);
+
+    const eyebrow = screen.getByText("Halaman 1 dari 2");
+    expect(eyebrow.className).toContain("uppercase");
+    expect(eyebrow.className).toContain("font-bold");
+    expect(
+      screen.getByText("Total 8 berita dipublikasikan").className,
+    ).toContain("font-medium");
+  });
+
   it("marks the current page gold with aria-current", () => {
     render(<NewsPagination page={2} totalPages={3} totalItems={8} />);
 

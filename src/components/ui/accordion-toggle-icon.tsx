@@ -3,15 +3,15 @@ export function AccordionToggleIcon({ expanded }: { expanded: boolean }) {
     <svg
       aria-hidden="true"
       focusable="false"
-      viewBox="0 0 16 16"
+      viewBox="0 0 28 28"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="2"
       strokeLinecap="round"
-      className="h-4 w-4 shrink-0 text-[#1C1C1C]"
+      className="h-7 w-7 shrink-0 text-[#1C1C1C]"
     >
-      <line x1="2.75" y1="8" x2="13.25" y2="8" />
-      {expanded ? null : <line x1="8" y1="2.75" x2="8" y2="13.25" />}
+      <line x1="5" y1="14" x2="23" y2="14" />
+      {expanded ? null : <line x1="14" y1="5" x2="14" y2="23" />}
     </svg>
   );
 }

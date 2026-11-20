@@ -21,9 +21,10 @@ function pageHref(basePath: string, page: number) {
 }
 
 /**
- * Pagination bar for the news list (spec §7): "Halaman X dari Y — Total Z
- * berita dipublikasikan" on the left; ‹ Sebelumnya, numbered circles with
- * the gold current page, Berikutnya › on the right.
+ * Pagination bar for the news list (spec §7): eyebrow "Halaman X dari Y" +
+ * "Total Z berita dipublikasikan" summary on the left; ‹ Sebelumnya,
+ * numbered quick-switcher circles with the gold current page, Berikutnya ›
+ * on the right.
  */
 export function NewsPagination({
   page,
@@ -103,53 +104,53 @@ export function NewsPagination({
     <nav
       aria-label="Navigasi halaman berita"
       className={cn(
-        "flex flex-wrap items-center justify-between gap-4",
+        "flex flex-wrap items-center justify-between gap-4 pt-8",
         className,
       )}
       {...props}
     >
-      <p className="text-sm text-[#404040]">
-        <span className="font-semibold text-[#1C1C1C]">
+      <div className="flex flex-col gap-2.5">
+        <p className="text-xs font-bold text-[#1C1C1C] uppercase">
           Halaman {page} dari {totalPages}
-        </span>
-        <span aria-hidden="true"> — </span>
-        <span className="sr-only">
-          Halaman {page} dari {totalPages} —{" "}
-        </span>
-        Total {totalItems} berita dipublikasikan
-      </p>
+        </p>
+        <p className="text-sm font-medium text-[#404040]">
+          Total {totalItems} berita dipublikasikan
+        </p>
+      </div>
       <div className="flex items-center gap-2">
         {prevControl}
-        {pages.map((pageNumber) =>
-          pageNumber === page ? (
-            <span
-              key={pageNumber}
-              aria-current="page"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F6D34A] text-sm font-semibold text-[#1C1C1C]"
-            >
-              {pageNumber}
-            </span>
-          ) : basePath ? (
-            <Link
-              key={pageNumber}
-              href={pageHref(basePath, pageNumber)}
-              aria-label={`Halaman ${pageNumber}`}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#E8E5DA] bg-white text-sm font-semibold text-[#404040] hover:bg-[#FBF6DF]"
-            >
-              {pageNumber}
-            </Link>
-          ) : (
-            <button
-              key={pageNumber}
-              type="button"
-              aria-label={`Halaman ${pageNumber}`}
-              onClick={() => onPageChange?.(pageNumber)}
-              className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#E8E5DA] bg-white text-sm font-semibold text-[#404040] hover:bg-[#FBF6DF]"
-            >
-              {pageNumber}
-            </button>
-          ),
-        )}
+        <div className="flex items-center gap-1 rounded-xl p-1">
+          {pages.map((pageNumber) =>
+            pageNumber === page ? (
+              <span
+                key={pageNumber}
+                aria-current="page"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F6D34A] text-[13px] font-semibold text-[#1C1C1C]"
+              >
+                {pageNumber}
+              </span>
+            ) : basePath ? (
+              <Link
+                key={pageNumber}
+                href={pageHref(basePath, pageNumber)}
+                aria-label={`Halaman ${pageNumber}`}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#E8E5DA] bg-white text-[13px] font-medium text-[#404040] hover:bg-[#FBF6DF]"
+              >
+                {pageNumber}
+              </Link>
+            ) : (
+              <button
+                key={pageNumber}
+                type="button"
+                aria-label={`Halaman ${pageNumber}`}
+                onClick={() => onPageChange?.(pageNumber)}
+                className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#E8E5DA] bg-white text-[13px] font-medium text-[#404040] hover:bg-[#FBF6DF]"
+              >
+                {pageNumber}
+              </button>
+            ),
+          )}
+        </div>
         {nextControl}
       </div>
     </nav>
