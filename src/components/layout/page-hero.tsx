@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/utils/cn";
 
@@ -34,30 +35,17 @@ export function PageHero({
         className,
       )}
     >
-      {/* Batik accent approximation (kawung motif, right side) */}
-      <svg
+      {/* Batik kawung accent (Figma "Batik kawung · Aksen latar" 224:2572:
+          600×400 anchored right, wrapper opacity-10, rosettes opacity-20). */}
+      <Image
+        src="/images/batik-kawung-accent.svg"
+        alt=""
+        width={560}
+        height={258}
+        unoptimized
         aria-hidden="true"
-        focusable="false"
-        viewBox="0 0 640 294"
-        className="pointer-events-none absolute inset-y-0 right-0 h-full w-160 text-gold-bright"
-      >
-        <g fill="none" stroke="currentColor" strokeWidth="1.5">
-          {[0, 1, 2, 3, 4].map((row) =>
-            [0, 1, 2, 3, 4].map((col) => (
-              <ellipse
-                key={`${row}-${col}`}
-                cx={520 + col * 64 - (row % 2) * 32}
-                cy={36 + row * 64}
-                rx={26}
-                ry={30}
-                transform={`rotate(45 ${520 + col * 64 - (row % 2) * 32} ${
-                  36 + row * 64
-                })`}
-              />
-            )),
-          )}
-        </g>
-      </svg>
+        className="pointer-events-none absolute inset-y-0 right-0 h-full w-140 object-cover opacity-10"
+      />
       <div className="relative mx-auto flex w-full max-w-300 flex-col gap-3 px-4 py-16 sm:px-6 xl:px-0">
         <nav aria-label="Breadcrumb">
           <p className="text-13 font-medium text-body-muted">

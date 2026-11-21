@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { heroCopy, heroStats, heroTrustLinks } from "../data";
@@ -40,13 +41,25 @@ function PlayCircle({ className }: { className?: string }) {
 }
 
 /**
- * Hero (spec §1): batik kawung approximation via CSS gradients, gold ring +
- * photo placeholder, three floating stat cards.
+ * Hero (spec §1): real batik kawung full-bleed pattern (Figma 224:2814,
+ * 1536×768, stroke #E0B400) over the section, gold ring + photo placeholder,
+ * three floating stat cards.
  */
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-white">
-      <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
+      {/* Batik kawung · Latar penuh (Figma 224:2814): full-bleed behind
+          content, subtle gold strokes on the cream→gold gradient. */}
+      <Image
+        src="/images/batik-kawung.svg"
+        alt=""
+        width={1536}
+        height={768}
+        unoptimized
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30"
+      />
+      <div className="relative mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
         <div className="grid items-center gap-12 py-14 lg:min-h-161 lg:cols-hero-a lg:gap-8 lg:py-16">
           <div className="flex flex-col items-start gap-6">
             <h1 className="text-44 leading-hero tracking-t2 text-ink sm:text-56 lg:text-7xl lg:leading-hero-lg">
@@ -113,20 +126,6 @@ export function HeroSection() {
               style={{
                 background:
                   "radial-gradient(circle at center, rgba(246,211,74,0.14) 0%, rgba(246,211,74,0.34) 68%, rgba(224,180,0,0.5) 100%)",
-              }}
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 opacity-40 lg:opacity-55"
-              style={{
-                backgroundImage:
-                  "radial-gradient(rgba(224,180,0,0.5) 1.2px, transparent 1.2px), radial-gradient(rgba(224,180,0,0.28) 1.2px, transparent 1.2px)",
-                backgroundSize: "28px 28px, 56px 56px",
-                backgroundPosition: "0 0, 14px 14px",
-                maskImage:
-                  "radial-gradient(circle at center, black 30%, transparent 78%)",
-                WebkitMaskImage:
-                  "radial-gradient(circle at center, black 30%, transparent 78%)",
               }}
             />
             <div
