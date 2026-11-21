@@ -43,7 +43,9 @@ test.describe("Berita detail page", () => {
       page.getByRole("heading", { level: 1, name: "Verifikasi KIPK SNBP" }),
     ).toBeVisible();
     await expect(
-      page.getByText(/Pengelola KIPK Universitas Negeri Jakarta \(UNJ\)/),
+      page
+        .getByTestId("article-header")
+        .getByText(/Pengelola KIPK Universitas Negeri Jakarta \(UNJ\)/),
     ).toBeVisible();
     await expect(
       page.getByText(/Rabu 08 April 2026 · \d+ menit baca/),
