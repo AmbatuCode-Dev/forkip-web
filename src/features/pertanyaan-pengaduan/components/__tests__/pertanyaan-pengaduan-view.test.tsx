@@ -28,31 +28,51 @@ describe("PertanyaanPengaduanView", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders the KIF delegation line and all 8 faculty tiles", () => {
+  it("renders the kontak delegasi rail eyebrow, heading, and caption", () => {
     render(<PertanyaanPengaduanView />);
 
+    const rail = screen.getByText("KONTAK DELEGASI FAKULTAS");
+    expect(rail).toBeInTheDocument();
     expect(
-      screen.getByText("Pilih delegasi fakultas Anda untuk menghubungi KIF:"),
+      screen.getByRole("heading", {
+        level: 2,
+        name: "Hubungi delegasi fakultasmu.",
+      }),
     ).toBeInTheDocument();
-    for (const code of [
-      "FIP",
-      "FBS",
-      "FMIPA",
-      "FISH",
-      "FT",
-      "FPsi",
-      "FEB",
-      "FIKK",
-    ]) {
+    expect(
+      screen.getByText(
+        /Sampaikan pertanyaan, pengaduan, keluhan, atau aspirasi lewat WhatsApp/,
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it("renders all 8 faculty rows with full names and placeholder hrefs", () => {
+    render(<PertanyaanPengaduanView />);
+
+    const rows = [
+      ["FMIPA", "Fakultas Matematika dan Ilmu Pengetahuan Alam"],
+      ["FT", "Fakultas Teknik"],
+      ["FBS", "Fakultas Bahasa dan Seni"],
+      ["FPsi", "Fakultas Psikologi"],
+      ["FISH", "Fakultas Ilmu Sosial dan Hukum"],
+      ["FEB", "Fakultas Ekonomi dan Bisnis"],
+      ["FIKK", "Fakultas Ilmu Keolahragaan dan Kesehatan"],
+      ["FIP", "Fakultas Ilmu Pendidikan"],
+    ];
+    for (const [code, fullName] of rows) {
+      const link = screen.getByRole("link", {
+        name: `Hubungi delegasi ${code} via WhatsApp`,
+      });
+      expect(link).toHaveAttribute("href", "#");
+      expect(within(link).getByText(code)).toBeInTheDocument();
+      expect(within(link).getByText(fullName)).toBeInTheDocument();
       expect(
-        screen.getByRole("link", {
-          name: `Hubungi delegasi ${code} via WhatsApp`,
-        }),
-      ).toHaveAttribute("href", "#");
+        within(link).getByText("Hubungi via WhatsApp"),
+      ).toBeInTheDocument();
     }
   });
 
-  it("styles FIKK as the outlined tile and FIP as a solid color tile", () => {
+  it("styles FIKK as the outlined row and FIP with its faculty color", () => {
     render(<PertanyaanPengaduanView />);
 
     const fikk = screen.getByRole("link", {
@@ -78,6 +98,6 @@ describe("PertanyaanPengaduanView", () => {
     const card = note.closest("section");
     expect(card).not.toBeNull();
     expect(card?.className).toContain("bg-gold-pale");
-    expect(card?.className).toContain("rounded-14");
+    expect(card?.className).toContain("rounded-2xl");
   });
 });

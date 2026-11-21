@@ -21,18 +21,31 @@ test.describe("Pertanyaan & Pengaduan page", () => {
         .getByText("Pertanyaan & Pengaduan"),
     ).toBeVisible();
 
+    await expect(page.getByText("KONTAK DELEGASI FAKULTAS")).toBeVisible();
     await expect(
-      page.getByText("Pilih delegasi fakultas Anda untuk menghubungi KIF:"),
+      page.getByRole("heading", { name: "Hubungi delegasi fakultasmu." }),
     ).toBeVisible();
+    for (const fullName of [
+      "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "Fakultas Teknik",
+      "Fakultas Bahasa dan Seni",
+      "Fakultas Psikologi",
+      "Fakultas Ilmu Sosial dan Hukum",
+      "Fakultas Ekonomi dan Bisnis",
+      "Fakultas Ilmu Keolahragaan dan Kesehatan",
+      "Fakultas Ilmu Pendidikan",
+    ]) {
+      await expect(page.getByText(fullName)).toBeVisible();
+    }
     for (const code of [
-      "FIP",
-      "FBS",
       "FMIPA",
-      "FISH",
       "FT",
+      "FBS",
       "FPsi",
+      "FISH",
       "FEB",
       "FIKK",
+      "FIP",
     ]) {
       await expect(
         page.getByRole("link", {
