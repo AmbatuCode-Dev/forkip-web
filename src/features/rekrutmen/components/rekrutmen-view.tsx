@@ -1,3 +1,4 @@
+import { ArrowRight } from "@coolicons/react";
 import Link from "next/link";
 import { PageHero } from "@/components/layout/page-hero";
 import { buttonVariants } from "@/components/ui/button";
@@ -58,7 +59,7 @@ export function RekrutmenView() {
             className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-gold-ink transition-colors hover:text-gold-deep focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
             {divisiInfo.linkLabel}
-            <span aria-hidden="true">→</span>
+            <ArrowRight size={14} aria-hidden="true" className="shrink-0" />
           </Link>
         </section>
 

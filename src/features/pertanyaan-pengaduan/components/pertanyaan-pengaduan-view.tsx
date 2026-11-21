@@ -1,3 +1,4 @@
+import { ArrowRight } from "@coolicons/react";
 import { PageHero } from "@/components/layout/page-hero";
 import { cn } from "@/utils/cn";
 import {
@@ -76,7 +77,11 @@ export function PertanyaanPengaduanView() {
                   </span>
                   <span className="flex shrink-0 items-center gap-2 text-sm font-semibold">
                     Hubungi via WhatsApp
-                    <span aria-hidden="true">→</span>
+                    <ArrowRight
+                      size={14}
+                      aria-hidden="true"
+                      className="shrink-0"
+                    />
                   </span>
                 </a>
               </li>

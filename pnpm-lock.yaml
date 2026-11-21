@@ -166,6 +166,9 @@ importers:
 
   .:
     dependencies:
+      '@coolicons/react':
+        specifier: ^5.4.0
+        version: 5.4.0(react@19.3.0)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -412,6 +415,11 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
+
+  '@coolicons/react@5.4.0':
+    resolution: {integrity: sha512-3bU001F0PL62tjh2XtuusWrsJXGzV4qd2vVXCUe01LRWaoAmMmdo9sr5dyTz6EhaxCRfRkAAyxi1uGiYXG86vA==}
+    peerDependencies:
+      react: '>=18'
 
   '@csstools/css-calc@3.4.4':
     resolution: {integrity: sha512-Jwo1Z8DUsZ8xVOLBdLMfhjJFvWD6pqaUTlBNQZ+qIB2i9g7yG8kd/UBJj2c9J9Twr+u87cjy9BjkmfvMbyOk3Q==}
@@ -2968,6 +2976,10 @@ snapshots:
 
   '@biomejs/cli-win32-x64@2.6.8':
     optional: true
+
+  '@coolicons/react@5.4.0(react@19.3.0)':
+    dependencies:
+      react: 19.3.0
 
   '@csstools/css-calc@3.4.4(@csstools/css-parser-algorithms@4.0.3(@csstools/css-tokenizer@4.0.3))(@csstools/css-tokenizer@4.0.3)':
     dependencies:

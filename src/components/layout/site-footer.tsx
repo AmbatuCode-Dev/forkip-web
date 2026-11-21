@@ -1,3 +1,4 @@
+import { Instagram, Mail, Tiktok, X } from "@coolicons/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,7 +10,7 @@ interface FooterLink {
 interface SocialLink {
   readonly label: string;
   readonly href: string;
-  readonly icon: string;
+  readonly Icon: React.ComponentType<{ className?: string }>;
 }
 
 const menuLinks: readonly FooterLink[] = [
@@ -44,22 +45,22 @@ const socialLinks: readonly SocialLink[] = [
   {
     label: "Instagram Forum KIP-K UNJ",
     href: "https://www.instagram.com/forkipunj.official",
-    icon: "/images/icon-instagram.svg",
+    Icon: Instagram,
   },
   {
     label: "X (Twitter) Forum KIP-K UNJ",
     href: "https://x.com/forumkipk_unj",
-    icon: "/images/icon-x.svg",
+    Icon: X,
   },
   {
     label: "TikTok Forum KIP-K UNJ",
     href: "https://www.tiktok.com/@forkipunj",
-    icon: "/images/icon-tiktok.svg",
+    Icon: Tiktok,
   },
   {
     label: "Email humasnyaforkip@gmail.com",
     href: "mailto:humasnyaforkip@gmail.com",
-    icon: "/images/icon-envelope.svg",
+    Icon: Mail,
   },
 ];
 
@@ -99,14 +100,7 @@ export function SiteFooter() {
                   }
                   className="inline-flex size-10 items-center justify-center rounded-full border border-border-sand bg-white transition-colors hover:bg-surface-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
-                  <Image
-                    src={social.icon}
-                    alt=""
-                    width={20}
-                    height={20}
-                    unoptimized
-                    className="size-5"
-                  />
+                  <social.Icon className="size-5" />
                 </a>
               ))}
             </div>

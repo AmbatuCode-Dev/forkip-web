@@ -1,3 +1,4 @@
+import { ArrowRight } from "@coolicons/react";
 import Link from "next/link";
 import { NewsMarquee } from "@/components/berita/news-marquee";
 import { NewsMediaPlaceholder } from "@/components/berita/news-media-placeholder";
@@ -41,12 +42,11 @@ export function BeritaSection() {
               className="group mt-auto inline-flex items-center gap-2 self-start rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               Baca selengkapnya
-              <span
+              <ArrowRight
+                size={15}
                 aria-hidden="true"
-                className="transition-transform group-hover:translate-x-0.5"
-              >
-                →
-              </span>
+                className="shrink-0 transition-transform group-hover:translate-x-0.5"
+              />
             </Link>
           </article>
 
@@ -68,12 +68,11 @@ export function BeritaSection() {
                     className="group mt-3 inline-flex items-center gap-2 rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     Baca selengkapnya
-                    <span
+                    <ArrowRight
+                      size={15}
                       aria-hidden="true"
-                      className="transition-transform group-hover:translate-x-0.5"
-                    >
-                      →
-                    </span>
+                      className="shrink-0 transition-transform group-hover:translate-x-0.5"
+                    />
                   </Link>
                 </li>
               ))}

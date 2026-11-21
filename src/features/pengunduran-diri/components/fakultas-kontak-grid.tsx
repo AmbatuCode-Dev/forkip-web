@@ -1,3 +1,4 @@
+import { ArrowRight } from "@coolicons/react";
 import { fakultasKontak } from "../data/fakultas-kontak";
 
 /**
@@ -40,12 +41,11 @@ export function FakultasKontakGrid() {
                   Hubungi via WhatsApp
                 </span>
               </span>
-              <span
+              <ArrowRight
+                size={18}
                 aria-hidden="true"
-                className="text-lg leading-none font-medium"
-              >
-                →
-              </span>
+                className="shrink-0 font-medium"
+              />
             </a>
           </li>
         ))}

@@ -1,3 +1,4 @@
+import { ArrowRight } from "@coolicons/react";
 import { cn } from "@/utils/cn";
 
 /** Placeholder WhatsApp link (TODO: real delegation deep links). */
@@ -49,12 +50,11 @@ export function FacultyContactGrid({ items, label }: FacultyContactGridProps) {
                   Hubungi via WhatsApp
                 </span>
               </span>
-              <span
+              <ArrowRight
+                size={18}
                 aria-hidden="true"
-                className="text-lg leading-none font-medium"
-              >
-                →
-              </span>
+                className="shrink-0 font-medium"
+              />
             </a>
           </li>
         ))}

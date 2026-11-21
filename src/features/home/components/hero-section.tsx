@@ -1,3 +1,4 @@
+import { Play } from "@coolicons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
@@ -27,15 +28,12 @@ function PlayCircle({ className }: { className?: string }) {
         "inline-flex size-11.5 shrink-0 items-center justify-center rounded-full bg-gold"
       }
     >
-      <svg
-        viewBox="0 0 12 12"
+      <Play
+        size={12}
+        title="Putar video"
         fill="currentColor"
-        focusable="false"
         className="size-3 text-ink"
-      >
-        <title>Putar video</title>
-        <path d="M3.5 2.2v7.6a.5.5 0 0 0 .77.42l5.2-3.8a.5.5 0 0 0 0-.84l-5.2-3.8a.5.5 0 0 0-.77.42Z" />
-      </svg>
+      />
     </span>
   );
 }

@@ -1,3 +1,4 @@
+import { ArrowLeft } from "@coolicons/react";
 import Link from "next/link";
 import { cn } from "@/utils/cn";
 
@@ -28,7 +29,7 @@ export function ArticleBreadcrumb({ title }: { readonly title: string }) {
   );
 }
 
-/** "Kembali ke Berita" back-link (spec §A): 15 SemiBold gold-ink with ←. */
+/** "Kembali ke Berita" back-link (spec §A): 15 SemiBold gold-ink with arrow. */
 export function ArticleBackLink() {
   return (
     <Link
@@ -39,7 +40,7 @@ export function ArticleBackLink() {
       )}
       data-testid="article-back-link"
     >
-      <span aria-hidden="true">←</span>
+      <ArrowLeft size={15} aria-hidden="true" className="shrink-0" />
       Kembali ke Berita
     </Link>
   );

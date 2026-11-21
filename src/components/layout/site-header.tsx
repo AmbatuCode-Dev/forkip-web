@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronDownSmall } from "@coolicons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -192,18 +193,11 @@ export function SiteHeader() {
                   )}
                 >
                   {entry.label}
-                  <Image
-                    src={
-                      openMenu === entry.id
-                        ? "/images/chevron-down-flipped.svg"
-                        : "/images/chevron-down.svg"
-                    }
-                    alt=""
-                    width={9}
-                    height={4.5}
-                    unoptimized
+                  <ChevronDownSmall
+                    size={16}
+                    aria-hidden="true"
                     className={cn(
-                      "transition-transform duration-200",
+                      "shrink-0 transition-transform duration-200",
                       openMenu === entry.id && "rotate-180",
                     )}
                   />

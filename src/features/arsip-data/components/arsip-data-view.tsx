@@ -1,3 +1,4 @@
+import { ArrowRight } from "@coolicons/react";
 import { PageHero } from "@/components/layout/page-hero";
 import { arsipHero, direktoriRail, divisionArchives } from "../data";
 
@@ -56,7 +57,11 @@ export function ArsipDataView() {
                     className="inline-flex items-center gap-2 text-sm font-semibold text-gold-ink transition-colors hover:text-gold-deep focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     {division.linkLabel}
-                    <span aria-hidden="true">→</span>
+                    <ArrowRight
+                      size={14}
+                      aria-hidden="true"
+                      className="shrink-0"
+                    />
                   </a>
                 </div>
               </li>

@@ -1,10 +1,11 @@
+import { ArrowRight } from "@coolicons/react";
 import Link from "next/link";
 import { layananSection, services } from "../data";
 import { ServiceIconGlyph } from "./service-icon";
 
 /**
  * Layanan Forkip UNJ (spec §5): 3×2 grid of service cards with icon tile,
- * division pill, description and "Buka halaman →" link.
+ * division pill, description and "Buka halaman" arrow link.
  */
 export function LayananSection() {
   return (
@@ -47,12 +48,11 @@ export function LayananSection() {
                 className="group inline-flex items-center gap-2 self-start rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
               >
                 Buka halaman
-                <span
+                <ArrowRight
+                  size={15}
                   aria-hidden="true"
-                  className="transition-transform group-hover:translate-x-0.5"
-                >
-                  →
-                </span>
+                  className="shrink-0 transition-transform group-hover:translate-x-0.5"
+                />
               </Link>
             </article>
           ))}
