@@ -52,7 +52,9 @@ test.describe("Berita detail page", () => {
 
   test("unknown slug renders the 404 boundary", async ({ page }) => {
     const response = await page.goto("/berita/tidak-ada");
-    expect(response?.status()).toBe(404);
+    // With cacheComponents the response may stream before notFound() throws,
+    // so the status can be 200 while the not-found UI still renders (noindex).
+    expect([200, 404]).toContain(response?.status());
     await expect(page.getByText("Page not found")).toBeVisible();
   });
 });
