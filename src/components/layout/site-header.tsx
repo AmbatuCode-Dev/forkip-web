@@ -152,7 +152,7 @@ export function SiteHeader() {
           className="flex shrink-0 items-center gap-2.5 rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
         >
           <Image
-            src="/images/logo-kipk-unj.png"
+            src="/images/logo-mark.svg"
             alt=""
             width={38}
             height={38}

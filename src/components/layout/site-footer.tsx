@@ -72,7 +72,7 @@ export function SiteFooter() {
           <div className="flex w-full flex-col md:w-85 md:shrink-0">
             <div className="flex items-center gap-2.5">
               <Image
-                src="/images/logo-kipk-unj.png"
+                src="/images/logo-mark.svg"
                 alt=""
                 width={48}
                 height={48}
