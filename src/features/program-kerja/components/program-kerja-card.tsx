@@ -18,6 +18,8 @@ export function ProgramKerjaCard({
       <NewsMediaPlaceholder
         label={item.photoLabel}
         variant={item.photoVariant}
+        width={560}
+        height={188}
         className="h-47"
       />
       <span className="inline-flex w-fit items-center rounded-full bg-gold-soft px-3 py-1.5 text-xs font-bold text-gold-ink">

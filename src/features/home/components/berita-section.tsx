@@ -29,6 +29,8 @@ export function BeritaSection() {
           <article className="flex flex-col gap-4">
             <NewsMediaPlaceholder
               label={beritaSection.feature.photoLabel}
+              width={440}
+              height={260}
               className="h-65"
             />
             <h3 className="mt-2 text-3xl leading-9 font-bold text-ink">

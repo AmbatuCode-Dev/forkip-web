@@ -123,16 +123,23 @@ describe("BerandaPage", () => {
     expect(
       screen.getByRole("heading", { level: 3, name: "Explore KIP-K" }),
     ).toBeInTheDocument();
-    // Exact counts: teasers render once; BUSAMAKIP, Verifikasi KIPK SNBP and
-    // Gelar KIPK also appear twice more as duplicated marquee card labels.
+    // Exact counts: teasers render once as text; marquee card labels are no
+    // longer DOM text (baked into the placehold.co image), so each duplicated
+    // strip card is asserted via its img alt instead.
     const expectedCounts: Record<string, number> = {
       "Pelatihan KIF": 1,
-      BUSAMAKIP: 3,
-      "Verifikasi KIPK SNBP": 3,
-      "Gelar KIPK": 3,
+      BUSAMAKIP: 1,
+      "Verifikasi KIPK SNBP": 1,
+      "Gelar KIPK": 1,
     };
     for (const [title, count] of Object.entries(expectedCounts)) {
       expect(screen.getAllByText(title)).toHaveLength(count);
+    }
+    for (const label of ["BUSAMAKIP", "Verifikasi KIPK SNBP", "Gelar KIPK"]) {
+      // The marquee loop duplicates each card, so 2 img per label.
+      expect(
+        screen.getAllByAltText(`Foto ${label} (placeholder)`),
+      ).toHaveLength(2);
     }
     expect(
       screen.getByRole("link", { name: "Lihat semua Berita" }),

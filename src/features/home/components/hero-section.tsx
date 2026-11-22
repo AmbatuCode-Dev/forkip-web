@@ -2,6 +2,7 @@ import { Play } from "@coolicons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { PlaceholdImage } from "@/components/ui/placehold-image";
 import { heroCopy, heroStats, heroTrustLinks } from "../data";
 import type { HeroStat } from "../types";
 
@@ -132,11 +133,12 @@ export function HeroSection() {
               style={{ width: 400, height: 400 }}
             />
 
-            <div className="relative z-10 flex h-95 w-85 max-w-full items-center justify-center rounded-2xl bg-gradient-to-br from-gold-soft via-gold-soft to-gold-soft-strong shadow-dropdown">
-              <span className="px-6 text-center text-sm text-body-muted">
-                {heroCopy.photoLabel}
-              </span>
-            </div>
+            <PlaceholdImage
+              label={heroCopy.photoLabel}
+              width={340}
+              height={380}
+              className="relative z-10 h-95 w-85 max-w-full rounded-2xl object-cover shadow-dropdown"
+            />
 
             <div className="pointer-events-none absolute inset-0 z-20">
               <div className="absolute top-2 right-0 hidden sm:block lg:-right-2">

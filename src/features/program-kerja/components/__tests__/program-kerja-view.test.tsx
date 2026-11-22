@@ -45,8 +45,10 @@ describe("ProgramKerjaView", () => {
         within(card as HTMLElement).getByText("Program Kerja"),
       ).toBeInTheDocument();
       expect(
-        within(card as HTMLElement).getByText(`Foto ${title} (placeholder)`),
-      ).toBeInTheDocument();
+        within(card as HTMLElement).getByRole("img", {
+          name: `Foto ${title} (placeholder)`,
+        }),
+      ).toHaveAttribute("src", expect.stringContaining("placehold.co"));
     }
   });
 

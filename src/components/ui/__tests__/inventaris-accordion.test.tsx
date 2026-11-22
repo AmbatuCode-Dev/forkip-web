@@ -81,7 +81,9 @@ describe("InventarisAccordion", () => {
       />,
     );
 
-    expect(screen.getByText("Foto HT")).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Foto HT (placeholder)" }),
+    ).toHaveAttribute("src", expect.stringContaining("placehold.co"));
     expect(screen.queryByText("Penyewaan HT")).not.toBeInTheDocument();
     expect(screen.getByText(/Jumlah yang tersedia:/)).toBeInTheDocument();
     expect(

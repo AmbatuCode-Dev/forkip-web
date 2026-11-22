@@ -17,7 +17,9 @@ describe("NewsMarquee", () => {
     render(<NewsMarquee items={FASE_A_ITEMS} />);
 
     for (const { label } of FASE_A_ITEMS) {
-      expect(screen.getAllByText(label).length).toBeGreaterThanOrEqual(2);
+      expect(
+        screen.getAllByAltText(`Foto ${label} (placeholder)`).length,
+      ).toBeGreaterThanOrEqual(2);
     }
   });
 
@@ -32,22 +34,23 @@ describe("NewsMarquee", () => {
   it("reorders cards for fase B", () => {
     render(<NewsMarquee items={FASE_A_ITEMS} fase="B" />);
 
-    const strip = screen.getByTestId("marquee-strip");
-    expect(strip.textContent).toContain("BUSAMAKIP");
-    expect(strip.textContent?.indexOf("BUSAMAKIP")).toBeLessThan(
-      strip.textContent?.indexOf("Explore KIPK 2026") ??
-        Number.POSITIVE_INFINITY,
+    const alts = screen
+      .getAllByTestId("marquee-card")
+      .map((card) => card.querySelector("img")?.getAttribute("alt"));
+    expect(alts).toContain("Foto BUSAMAKIP (placeholder)");
+    expect(alts.indexOf("Foto BUSAMAKIP (placeholder)")).toBeLessThan(
+      alts.indexOf("Foto Explore KIPK 2026 (placeholder)"),
     );
   });
 
   it("keeps fase A order untouched by default", () => {
     render(<NewsMarquee items={FASE_A_ITEMS} />);
 
-    const labels = screen
+    const alts = screen
       .getAllByTestId("marquee-card")
-      .map((card) => card.textContent);
-    expect(labels[0]).toContain("Explore KIPK 2026");
-    expect(labels[1]).toContain("Pelatihan Divisi KIF");
+      .map((card) => card.querySelector("img")?.getAttribute("alt"));
+    expect(alts[0]).toContain("Explore KIPK 2026");
+    expect(alts[1]).toContain("Pelatihan Divisi KIF");
   });
 
   it("cycles the Figma card widths [460, 280, 440, 300, 420]", () => {
@@ -59,6 +62,10 @@ describe("NewsMarquee", () => {
       expect(card.className).toContain(expected[index % expected.length]);
       expect(card.className).toContain("h-95");
       expect(card.className).toContain("rounded-3xl");
+      expect(card.querySelector("img")).toHaveAttribute(
+        "src",
+        expect.stringContaining("placehold.co"),
+      );
     });
   });
 });

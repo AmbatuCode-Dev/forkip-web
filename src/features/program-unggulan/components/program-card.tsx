@@ -21,6 +21,8 @@ export function ProgramCard({
       <NewsMediaPlaceholder
         label={card.photoLabel}
         variant={variant}
+        width={368}
+        height={170}
         className="h-42.5 w-full"
       />
       <p className="flex-1 text-15 leading-6 text-body">{card.excerpt}</p>

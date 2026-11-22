@@ -20,6 +20,8 @@ export function PengumumanCard({
       <NewsMediaPlaceholder
         label={pengumuman.photoLabel}
         variant={variant}
+        width={640}
+        height={260}
         className="h-65 w-full rounded-none"
       />
       <div className="flex flex-col gap-4 p-6 sm:p-8">

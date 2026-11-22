@@ -60,6 +60,8 @@ export function ProgramSpotlightSection() {
 
       <NewsMediaPlaceholder
         label={programSpotlight.photoLabel}
+        width={480}
+        height={560}
         className="h-105 w-full lg:h-140"
       />
     </section>

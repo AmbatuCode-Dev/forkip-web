@@ -1,6 +1,7 @@
 "use client";
 
 import type { ComponentProps } from "react";
+import { PlaceholdImage } from "@/components/ui/placehold-image";
 import { cn } from "@/utils/cn";
 
 export interface NewsMarqueeItem {
@@ -16,27 +17,33 @@ export interface NewsMarqueeProps extends ComponentProps<"div"> {
 }
 
 /** Figma card widths cycle [460, 280, 440, 300, 420] across the strip. */
-const CARD_WIDTHS = ["w-115", "w-70", "w-110", "w-75", "w-105"];
+const CARD_WIDTHS = [
+  { cls: "w-115", px: 460 },
+  { cls: "w-70", px: 280 },
+  { cls: "w-110", px: 440 },
+  { cls: "w-75", px: 300 },
+  { cls: "w-105", px: 420 },
+] as const;
 
 function MarqueeCard({
   label,
   widthClass,
-}: NewsMarqueeItem & { widthClass: string }) {
+  px,
+}: NewsMarqueeItem & { widthClass: string; px: number }) {
   return (
     <div
       className={cn(
-        "relative flex h-95 shrink-0 items-center justify-center rounded-3xl bg-gradient-to-br from-gold-soft to-gold-soft-strong",
+        "relative h-95 shrink-0 overflow-hidden rounded-3xl",
         widthClass,
       )}
       data-testid="marquee-card"
     >
-      <span className="text-sm font-semibold text-body-muted">
-        Foto {label} (placeholder)
-      </span>
-      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pr-4 pl-3 text-sm font-bold text-ink shadow-xs">
-        <span aria-hidden="true" className="h-2 w-2 rounded-full bg-gold" />
-        {label}
-      </span>
+      <PlaceholdImage
+        label={label}
+        width={px}
+        height={380}
+        className="h-full w-full object-cover"
+      />
     </div>
   );
 }
@@ -78,7 +85,8 @@ export function NewsMarquee({
           <MarqueeCard
             key={key}
             label={item.label}
-            widthClass={CARD_WIDTHS[index % CARD_WIDTHS.length]}
+            widthClass={CARD_WIDTHS[index % CARD_WIDTHS.length].cls}
+            px={CARD_WIDTHS[index % CARD_WIDTHS.length].px}
           />
         ))}
       </div>

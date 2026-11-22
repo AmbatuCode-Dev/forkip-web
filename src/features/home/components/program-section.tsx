@@ -1,3 +1,4 @@
+import { PlaceholdImage } from "@/components/ui/placehold-image";
 import { programCards, programSection, programSpotlight } from "../data";
 
 function PhotoPlaceholder({
@@ -8,18 +9,12 @@ function PhotoPlaceholder({
   className?: string;
 }) {
   return (
-    <div
-      className={
-        className ??
-        "relative flex items-center justify-center rounded-2xl bg-gradient-to-br from-gold-soft to-gold-soft-strong"
-      }
-    >
-      <span className="px-6 text-center text-sm text-body-muted">{label}</span>
-      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white py-2 pr-4 pl-3 text-xs font-semibold text-ink shadow-xs">
-        <span aria-hidden="true" className="size-2 rounded-full bg-gold" />
-        {label}
-      </span>
-    </div>
+    <PlaceholdImage
+      label={label}
+      width={480}
+      height={560}
+      className={className ?? "h-105 w-full rounded-2xl object-cover lg:h-140"}
+    />
   );
 }
 
@@ -71,7 +66,7 @@ export function ProgramSection() {
 
           <PhotoPlaceholder
             label={programSpotlight.photoLabel}
-            className="relative flex h-105 items-center justify-center rounded-2xl bg-gradient-to-br from-gold-soft to-gold-soft-strong lg:h-140"
+            className="h-105 w-full rounded-2xl object-cover lg:h-140"
           />
         </div>
 
@@ -84,11 +79,12 @@ export function ProgramSection() {
               <h3 className="min-h-18 text-lg leading-7 font-semibold text-ink">
                 {card.title}
               </h3>
-              <div className="relative flex h-42.5 items-center justify-center rounded-2xl bg-gradient-to-br from-gold-soft to-gold-soft-strong">
-                <span className="px-6 text-center text-sm text-body-muted">
-                  {card.photoLabel}
-                </span>
-              </div>
+              <PlaceholdImage
+                label={card.photoLabel}
+                width={368}
+                height={170}
+                className="h-42.5 w-full rounded-2xl object-cover"
+              />
               <p className="flex-1 text-sm leading-5 text-body-muted">
                 {card.excerpt}
               </p>

@@ -13,6 +13,8 @@ export function ArticleHeroMedia({ media }: { readonly media: ArticleMedia }) {
         <NewsMediaPlaceholder
           label={media.label}
           variant={1}
+          width={960}
+          height={380}
           className="h-95 w-full rounded-2xl"
         />
         <span className="absolute top-4 left-4 inline-flex items-center rounded-full bg-slate px-3 py-1.5 text-sm text-white shadow-xs">

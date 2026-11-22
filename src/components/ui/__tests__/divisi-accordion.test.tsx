@@ -87,7 +87,9 @@ describe("DivisiAccordion", () => {
       />,
     );
 
-    expect(screen.getByText("Foto BPHI")).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Foto BPHI (placeholder)" }),
+    ).toHaveAttribute("src", expect.stringContaining("placehold.co"));
     expect(screen.queryByText("BPHI")).not.toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: /BPHI — Badan Pengurus Harian Inti/ }),
