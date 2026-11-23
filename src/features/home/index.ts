@@ -2,7 +2,6 @@ export { BerandaPage } from "./components/beranda-page";
 export type {
   Division,
   Faculty,
-  HeroStat,
   NewsFeature,
   NewsTeaser,
   NumberedItem,

@@ -1,7 +1,6 @@
 import type {
   Division,
   Faculty,
-  HeroStat,
   NewsFeature,
   NewsTeaser,
   NumberedItem,
@@ -15,24 +14,6 @@ import type {
  * Long body copy transcribed from the Figma frame where the spec references a
  * text dump that is not in the repo — those entries carry a TODO comment.
  */
-
-export const heroStats: readonly HeroStat[] = [
-  {
-    eyebrow: "Divisi FORKIP UNJ",
-    value: "7 Divisi",
-    detail: "BPHI, PSDM, HUMAS, KIF, ADVOKASI, SOSDIKLAT, BKK",
-  },
-  {
-    eyebrow: "Delegasi KIF",
-    value: "8 Fakultas",
-    detail: "FMIPA, FT, FBS, FPsi, FISH, FEB, FIKK, FIP",
-  },
-  {
-    eyebrow: "Layanan mahasiswa",
-    value: "DONAT",
-    detail: "Pertanyaan & Pengaduan, Penyewaan, Pengunduran diri KIPK",
-  },
-];
 
 export const heroCopy = {
   titleLight: "Forum",

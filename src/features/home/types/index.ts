@@ -1,12 +1,3 @@
-export interface HeroStat {
-  /** Small muted label above the big value (e.g. "Divisi FORKIP UNJ"). */
-  eyebrow: string;
-  /** Big bold value (e.g. "7 Divisi"). */
-  value: string;
-  /** Small muted detail line below the value. */
-  detail: string;
-}
-
 export interface Faculty {
   code: string;
 }
