@@ -236,6 +236,12 @@
   );
 }
 
+/* Quiet panel behind the Delegasi logo — derived from the surface token so
+   the pinned stage needs no blur or arbitrary colour. */
+@utility bg-delegasi-panel {
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+}
+
 @utility transition-height {
   transition-property: height;
 }

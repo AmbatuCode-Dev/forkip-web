@@ -32,6 +32,54 @@ test.describe("Beranda", () => {
     ).toBeVisible();
   });
 
+  test("builds the Delegasi logo and tracks the active faculty", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    const scrolly = await page
+      .getByTestId("delegasi-scrolly")
+      .evaluate((el) => {
+        const node = el as HTMLElement;
+        return {
+          top: node.getBoundingClientRect().top + window.scrollY,
+          height: node.offsetHeight,
+        };
+      });
+
+    const pinDistance = scrolly.height - (page.viewportSize()?.height ?? 900);
+    const scrollTo = (fraction: number) =>
+      page.evaluate(
+        ({ top, distance, part }) => window.scrollTo(0, top + distance * part),
+        { top: scrolly.top, distance: pinDistance, part: fraction },
+      );
+
+    await scrollTo(0.5);
+    await expect(page.getByTestId("delegasi-title")).toBeVisible();
+
+    await scrollTo(1.02);
+    await expect(page.getByTestId("delegasi-logo")).toHaveAttribute(
+      "data-state",
+      "complete",
+    );
+
+    await expect
+      .poll(async () => {
+        await scrollTo(0.45);
+        const mid = await page
+          .locator('[data-active="true"]')
+          .first()
+          .getAttribute("data-faculty-code");
+        await scrollTo(1.02);
+        const end = await page
+          .locator('[data-active="true"]')
+          .first()
+          .getAttribute("data-faculty-code");
+        return mid !== null && end !== null && mid !== end;
+      })
+      .toBe(true);
+  });
+
   test("renders the main sections in order", async ({ page }) => {
     await page.goto("/");
 
