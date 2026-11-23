@@ -3,6 +3,7 @@
 import { ChevronDownSmall } from "@coolicons/react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
@@ -109,12 +110,40 @@ const navEntries: readonly NavEntry[] = [
 ];
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState<DropdownId | null>(null);
+  const [overHero, setOverHero] = useState(pathname === "/");
   const headerRef = useRef<HTMLElement | null>(null);
 
   const closeMenu = useCallback(() => {
     setOpenMenu(null);
   }, []);
+
+  // Only the home route overlays the hero; every other route keeps the solid
+  // white header. The hero pulls itself under this sticky header, so we flip
+  // to solid exactly when its bottom edge passes the header's bottom edge.
+  useEffect(() => {
+    if (pathname !== "/") {
+      setOverHero(false);
+      return;
+    }
+
+    const update = () => {
+      const hero = document.getElementById("home-hero");
+      const headerHeight = headerRef.current?.offsetHeight ?? 0;
+      setOverHero(
+        hero ? hero.getBoundingClientRect().bottom > headerHeight : false,
+      );
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -143,13 +172,30 @@ export function SiteHeader() {
     setOpenMenu((current) => (current === id ? null : id));
   };
 
+  const focusRing = overHero
+    ? "focus-visible:ring-white"
+    : "focus-visible:ring-ring";
+  const navText = overHero
+    ? "text-white/90 hover:text-white"
+    : "text-body hover:text-ink";
+  const activeNavText = overHero ? "text-gold" : "text-gold-ink";
+
   return (
-    <header ref={headerRef} className="sticky top-0 z-40 bg-white">
+    <header
+      ref={headerRef}
+      className={cn(
+        "sticky top-0 z-40 transition-colors duration-300",
+        overHero ? "bg-transparent" : "bg-white",
+      )}
+    >
       <div className="mx-auto flex h-18 w-full max-w-300 items-center justify-between gap-6 px-4 sm:px-6 xl:px-0">
         <Link
           href="/"
           onClick={closeMenu}
-          className="flex shrink-0 items-center gap-2.5 rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+          className={cn(
+            "flex shrink-0 items-center gap-2.5 rounded-md focus-visible:ring-2 focus-visible:outline-none",
+            focusRing,
+          )}
         >
           <Image
             src="/images/logo-mark.svg"
@@ -159,7 +205,12 @@ export function SiteHeader() {
             priority
             className="size-9.5 object-contain"
           />
-          <span className="text-19 font-extrabold tracking-t04 text-ink max-sm:hidden">
+          <span
+            className={cn(
+              "text-19 font-extrabold tracking-t04 max-sm:hidden",
+              overHero ? "text-white" : "text-ink",
+            )}
+          >
             {siteConfig.name}
           </span>
         </Link>
@@ -174,7 +225,11 @@ export function SiteHeader() {
                 key={entry.href}
                 href={entry.href}
                 onClick={closeMenu}
-                className="rounded-md py-2.75 text-sm font-medium text-body transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                className={cn(
+                  "rounded-md py-2.75 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none",
+                  navText,
+                  focusRing,
+                )}
               >
                 {entry.label}
               </Link>
@@ -186,10 +241,9 @@ export function SiteHeader() {
                   aria-controls={`${entry.id}-menu`}
                   onClick={() => toggleMenu(entry.id)}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-md py-2.75 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
-                    openMenu === entry.id
-                      ? "text-gold-ink"
-                      : "text-body hover:text-ink",
+                    "flex items-center gap-1.5 rounded-md py-2.75 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none",
+                    openMenu === entry.id ? activeNavText : navText,
+                    focusRing,
                   )}
                 >
                   {entry.label}
@@ -246,6 +300,7 @@ export function SiteHeader() {
           className={cn(
             buttonVariants({ variant: "gold", size: "cta" }),
             "h-11.25 py-3.25",
+            focusRing,
           )}
         >
           Pertanyaan &amp; Pengaduan

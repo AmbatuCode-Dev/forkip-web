@@ -13,8 +13,6 @@ const svgPath = join(root, "src", "app", "icon.svg");
 const outDir = join(root, "src", "app");
 mkdirSync(outDir, { recursive: true });
 
-const svg = await sharp(svgPath, { density: 300 });
-
 // PNG icons (Next.js app icon convention reads icon.svg + png sizes)
 for (const size of [192, 512]) {
   await sharp(svgPath, { density: 300 })

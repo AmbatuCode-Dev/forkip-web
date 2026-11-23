@@ -24,6 +24,17 @@ test.describe("Beranda", () => {
     ).toBeVisible();
   });
 
+  test("shows the hero photo and the stats band", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(
+      page.getByRole("img", { name: /mahasiswa.*UNJ/ }),
+    ).toBeVisible();
+    await expect(page.getByTestId("home-stats-band")).toContainText(
+      /7 Divisi[\s\S]*8 Fakultas[\s\S]*DONAT/,
+    );
+  });
+
   test("renders the main sections in order", async ({ page }) => {
     await page.goto("/");
 

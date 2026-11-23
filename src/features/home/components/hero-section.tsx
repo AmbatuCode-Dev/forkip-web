@@ -2,23 +2,12 @@ import { Play } from "@coolicons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { PlaceholdImage } from "@/components/ui/placehold-image";
-import { heroCopy, heroStats, heroTrustLinks } from "../data";
-import type { HeroStat } from "../types";
+import { heroCopy, heroTrustLinks } from "../data";
+import { HeroMotion } from "./hero-motion";
+import { HeroStatsBand } from "./hero-stats-band";
 
-function StatCard({ stat }: { stat: HeroStat }) {
-  return (
-    <div className="pointer-events-auto w-57.5 max-w-full rounded-14 bg-white p-4 shadow-dropdown">
-      <p className="text-10 font-semibold tracking-wide12 text-body-muted uppercase">
-        {stat.eyebrow}
-      </p>
-      <p className="mt-1 text-2xl leading-8 font-extrabold tracking-t05 text-ink">
-        {stat.value}
-      </p>
-      <p className="mt-1 text-11 leading-4 text-body-muted">{stat.detail}</p>
-    </div>
-  );
-}
+const HERO_PHOTO_ALT =
+  "Foto bersama mahasiswa penerima KIP-K UNJ di depan gedung Universitas Negeri Jakarta";
 
 function PlayCircle({ className }: { className?: string }) {
   return (
@@ -40,120 +29,111 @@ function PlayCircle({ className }: { className?: string }) {
 }
 
 /**
- * Hero (spec §1): real batik kawung full-bleed pattern (Figma 224:2814,
- * 1536×768, stroke #E0B400) over the section, gold ring + photo placeholder,
- * three floating stat cards.
+ * Hero (redesign): the real KIP-K UNJ group photo runs edge to edge under a
+ * shaped sky scrim. Copy sits in the open sky, upper-left; the stats move to a
+ * slim light band below so the group and the UNJ sign stay visible.
  */
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-white">
-      {/* Batik kawung · Latar penuh (Figma 224:2814): full-bleed behind
-          content, subtle gold strokes on the cream→gold gradient. */}
-      <Image
-        src="/images/batik-kawung.svg"
-        alt=""
-        width={1536}
-        height={768}
-        unoptimized
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30"
-      />
-      <div className="relative mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
-        <div className="grid items-center gap-12 py-14 lg:min-h-161 lg:cols-hero-a lg:gap-8 lg:py-16">
-          <div className="flex flex-col items-start gap-6">
-            <h1 className="text-44 leading-hero tracking-t2 text-ink sm:text-56 lg:text-7xl lg:leading-hero-lg">
-              <span className="block font-light">{heroCopy.titleLight}</span>
-              <span className="block font-extrabold">{heroCopy.titleBold}</span>
-            </h1>
-            <p className="max-w-140 text-base leading-6 text-body">
-              {heroCopy.subtitle}
-            </p>
+    <>
+      <section
+        id="home-hero"
+        className="relative isolate -mt-18 min-h-svh overflow-hidden bg-ink"
+      >
+        <HeroMotion>
+          <div data-hero-photo className="absolute inset-x-0 inset-hero-photo">
+            <Image
+              src="/images/forkip-unj-beranda.webp"
+              alt={HERO_PHOTO_ALT}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-hero-mobile lg:object-hero-desktop"
+            />
+          </div>
 
-            <div className="flex flex-wrap items-center gap-6">
-              <Link
-                href={heroCopy.ctaHref}
-                className={buttonVariants({
-                  variant: "gold",
-                  size: "cta",
-                  className: "h-9 px-6 text-15",
-                })}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-hero-scrim max-sm:bg-hero-scrim-mobile"
+          />
+
+          <div className="relative mx-auto flex min-h-svh w-full max-w-300 flex-col px-4 pt-24 pb-10 sm:px-6 sm:pt-28 lg:pt-32 xl:px-0">
+            <div className="flex max-w-140 flex-col gap-3 sm:gap-5">
+              <h1
+                data-hero-reveal
+                className="text-44 leading-hero tracking-t2 text-white sm:text-56 lg:text-7xl lg:leading-hero-lg"
               >
-                {heroCopy.cta}
-              </Link>
-              <a
-                href="https://www.youtube.com/watch?v=G338TUmvp1Q"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="group flex items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-              >
-                <PlayCircle className="inline-flex size-11.5 shrink-0 items-center justify-center rounded-full bg-gold transition-transform group-hover:scale-105" />
-                <span className="flex flex-col gap-0.5">
-                  <span className="text-15 leading-5 font-semibold text-ink">
-                    {heroCopy.videoLabelStrong}
-                  </span>
-                  <span className="text-xs leading-4 text-body-muted">
-                    {heroCopy.videoLabelMuted}
-                  </span>
+                <span className="block font-light">{heroCopy.titleLight}</span>
+                <span className="block font-extrabold">
+                  {heroCopy.titleBold}
                 </span>
-              </a>
+              </h1>
+
+              <p
+                data-hero-reveal
+                className="max-w-140 text-sm leading-5 text-white/90 sm:text-base sm:leading-6"
+              >
+                {heroCopy.subtitle}
+              </p>
+
+              <div
+                data-hero-reveal
+                className="flex flex-wrap items-center gap-3 sm:gap-5"
+              >
+                <Link
+                  href={heroCopy.ctaHref}
+                  className={buttonVariants({
+                    variant: "gold",
+                    size: "cta",
+                    className: "h-9 px-6 text-15 focus-visible:ring-white",
+                  })}
+                >
+                  {heroCopy.cta}
+                </Link>
+                <a
+                  href="https://www.youtube.com/watch?v=G338TUmvp1Q"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="group flex items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                >
+                  <PlayCircle className="inline-flex size-11.5 shrink-0 items-center justify-center rounded-full bg-gold transition-transform group-hover:scale-105" />
+                  <span className="flex flex-col gap-0.5">
+                    <span className="text-15 leading-5 font-semibold text-white">
+                      {heroCopy.videoLabelStrong}
+                    </span>
+                    <span className="text-xs leading-4 text-white/75">
+                      {heroCopy.videoLabelMuted}
+                    </span>
+                  </span>
+                </a>
+              </div>
+
+              <ul
+                data-hero-reveal
+                className="flex flex-wrap items-center gap-x-4 gap-y-1 sm:gap-x-6 sm:gap-y-2"
+              >
+                {heroTrustLinks.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="flex items-center gap-2 rounded-md text-sm text-white/90 transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:text-base"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="size-2 rounded-full bg-gold"
+                      />
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
-              {heroTrustLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="flex items-center gap-2 rounded-md text-base leading-6 text-body transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="size-2 rounded-full bg-gold"
-                    />
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
-
-          <div className="relative flex min-h-105 items-center justify-center lg:min-h-140">
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 rounded-3xl lg:-inset-y-6"
-              style={{
-                background:
-                  "radial-gradient(circle at center, rgba(246,211,74,0.14) 0%, rgba(246,211,74,0.34) 68%, rgba(224,180,0,0.5) 100%)",
-              }}
-            />
-            <div
-              aria-hidden="true"
-              className="absolute rounded-full border-10 border-white/70 shadow-glow"
-              style={{ width: 400, height: 400 }}
-            />
-
-            <PlaceholdImage
-              label={heroCopy.photoLabel}
-              width={340}
-              height={380}
-              className="relative z-10 h-95 w-85 max-w-full rounded-2xl object-cover shadow-dropdown"
-            />
-
-            <div className="pointer-events-none absolute inset-0 z-20">
-              <div className="absolute top-2 right-0 hidden sm:block lg:-right-2">
-                <StatCard stat={heroStats[0]} />
-              </div>
-              <div className="absolute top-1/2 left-0 hidden -translate-y-1/2 sm:block lg:-left-2">
-                <StatCard stat={heroStats[1]} />
-              </div>
-              <div className="absolute right-2 bottom-2 hidden sm:block lg:-right-4 lg:bottom-0">
-                <StatCard stat={heroStats[2]} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </HeroMotion>
+      </section>
+      <HeroStatsBand />
+    </>
   );
 }

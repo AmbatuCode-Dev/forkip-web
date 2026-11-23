@@ -199,6 +199,43 @@
   backdrop-filter: blur(2px);
 }
 
+/* Hero photo framing. The group shot is 4:3; these keep the UNJ sign and the
+   faces inside the crop at every breakpoint without arbitrary utilities. */
+@utility object-hero-mobile {
+  object-position: 42% 50%;
+}
+
+@utility object-hero-desktop {
+  object-position: 50% 42%;
+}
+
+/* Overscan gives the scrubbed parallax room to travel without exposing an
+   edge. It does not scale or re-crop the image. */
+@utility inset-hero-photo {
+  top: -4%;
+  bottom: -4%;
+}
+
+/* Shaped top-down scrim: protects the upper-left copy over the sky, then
+   clears before the group and the UNJ sign. Phones get a stronger wash. */
+@utility bg-hero-scrim {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-ink) 85%, transparent) 0%,
+    color-mix(in srgb, var(--color-ink) 55%, transparent) 50%,
+    transparent 82%
+  );
+}
+
+@utility bg-hero-scrim-mobile {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-ink) 90%, transparent) 0%,
+    color-mix(in srgb, var(--color-ink) 70%, transparent) 50%,
+    transparent 82%
+  );
+}
+
 @utility transition-height {
   transition-property: height;
 }
