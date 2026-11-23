@@ -47,6 +47,39 @@ test.describe("Beranda", () => {
     ).toBeVisible();
   });
 
+  test("wheel scrolling moves the page content", async ({ page }) => {
+    await page.goto("/");
+
+    // Lenis marks the root element while the smooth-scroll engine is active.
+    await expect(page.locator("html")).toHaveClass(/lenis/);
+
+    await page.mouse.move(640, 400);
+    await page.mouse.wheel(0, 1500);
+
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY))
+      .toBeGreaterThan(0);
+  });
+
+  test.describe("with reduced motion", () => {
+    test.use({ reducedMotion: "reduce" });
+
+    test("native scrolling still works without the smooth-scroll engine", async ({
+      page,
+    }) => {
+      await page.goto("/");
+
+      await expect(page.locator("html")).not.toHaveClass(/lenis/);
+
+      await page.mouse.move(640, 400);
+      await page.mouse.wheel(0, 800);
+
+      await expect
+        .poll(() => page.evaluate(() => window.scrollY))
+        .toBeGreaterThan(0);
+    });
+  });
+
   test("renders the 404 page and navigates back to beranda", async ({
     page,
   }) => {
