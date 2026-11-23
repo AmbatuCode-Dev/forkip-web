@@ -48,3 +48,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# agent skills (restore from skills-lock.json with `npx skills experimental_install`)
+/.agents/
