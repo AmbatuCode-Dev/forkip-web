@@ -14,7 +14,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    const lenis = new Lenis({ lerp: 0.25, smoothWheel: true });
     const tick = (time: number) => {
       lenis.raf(time * 1000);
     };
