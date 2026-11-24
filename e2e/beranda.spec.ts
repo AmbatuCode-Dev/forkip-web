@@ -43,9 +43,7 @@ test.describe("Beranda", () => {
     const items = page.getByTestId("fungsi-section").getByRole("listitem");
     await expect(items).toHaveCount(4);
 
-    await expect(
-      page.getByTitle("Video Forum KIPK UNJ"),
-    ).toBeVisible();
+    await expect(page.getByTitle("Video Forum KIPK UNJ")).toBeVisible();
   });
 
   test("respects prefers-reduced-motion on the Fungsi section", async ({

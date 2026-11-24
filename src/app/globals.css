@@ -255,6 +255,13 @@
   [data-motion="pending"] [data-hero-reveal] {
     visibility: hidden;
   }
+
+  /* FungsiSection: hold the reveal targets invisible until the scroll-triggered
+     timeline starts, so the stagger actually plays when the section is seen. */
+  [data-fungsi-motion="pending"] [data-fungsi-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 }
 
 /* News marquee loop (NewsMarquee); applied via motion-safe:animate-marquee-scroll. */
