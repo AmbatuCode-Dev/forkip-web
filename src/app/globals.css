@@ -246,6 +246,17 @@
   transition-property: height;
 }
 
+/* HeroMotion ships `data-motion="pending"` in its SSR markup. Hide the
+   authored copy until its effect installs the GSAP `from` tween, otherwise
+   the opaque first paint flashes, snaps to opacity 0 and animates again.
+   Reduced-motion users never match this query; JS-disabled users get the
+   <noscript> override rendered by HeroMotion. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-motion="pending"] [data-hero-reveal] {
+    visibility: hidden;
+  }
+}
+
 /* News marquee loop (NewsMarquee); applied via motion-safe:animate-marquee-scroll. */
 @keyframes marquee-scroll {
   from {

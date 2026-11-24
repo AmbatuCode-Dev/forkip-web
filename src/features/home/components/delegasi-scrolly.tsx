@@ -47,6 +47,10 @@ const LEVEL_DURATION = 1;
 const FIRST_LEVEL_TIME = TRACE_DURATION + BASE_DURATION + FLAME_DURATION;
 const TIMELINE_DURATION = FIRST_LEVEL_TIME + LEVEL_DURATION * LEVELS.length;
 
+/** Pin length in viewport heights. Two keeps the six beats from being skipped
+    by one wheel gesture while Lenis lerps at 0.25. */
+const PIN_VIEWPORTS = 2;
+
 // Visual order is bottom-up: the first built pair sits at the bottom of each
 // rail so the leader lines follow the same build order as the petals.
 const LEFT_CODES = ["FBS", "FIKK", "FEB", "FIP"] as const;
@@ -168,6 +172,10 @@ export function DelegasiScrolly() {
 
       let traceGroup: SVGGElement | null = null;
 
+      // The static "complete" markup is the reduced-motion/SSR fallback. With
+      // motion enabled the reveal starts from nothing, so announce that here.
+      logoRef.current?.setAttribute("data-state", "building");
+
       const context = gsap.context(() => {
         const base = root.querySelector('[data-logo-group="base"]');
         const flame = root.querySelector('[data-logo-group="flame"]');
@@ -227,11 +235,17 @@ export function DelegasiScrolly() {
           scrollTrigger: {
             trigger: root,
             start: "top top",
-            end: () => `+=${window.innerHeight * 1}`,
+            end: () => `+=${window.innerHeight * PIN_VIEWPORTS}`,
             pin: stage,
             scrub: true,
             anticipatePin: 1,
             invalidateOnRefresh: true,
+            // Publish the trigger's own measurements so consumers (including
+            // the e2e spec) never have to guess the pin distance from layout.
+            onRefresh: (self) => {
+              root.dataset.scrollStart = String(self.start);
+              root.dataset.scrollEnd = String(self.end);
+            },
             onUpdate: (self) => {
               logoRef.current?.setAttribute(
                 "data-state",
@@ -257,6 +271,12 @@ export function DelegasiScrolly() {
             },
           },
         });
+
+        const trigger = timeline.scrollTrigger;
+        if (trigger) {
+          root.dataset.scrollStart = String(trigger.start);
+          root.dataset.scrollEnd = String(trigger.end);
+        }
 
         if (tracePaths.length > 0) {
           timeline.to(
@@ -296,6 +316,11 @@ export function DelegasiScrolly() {
       return () => {
         context.revert();
         traceGroup?.remove();
+        // A runtime switch to reduced motion shows the static final logo, so
+        // the state must no longer claim the reveal is still building.
+        logoRef.current?.setAttribute("data-state", "complete");
+        delete root.dataset.scrollStart;
+        delete root.dataset.scrollEnd;
         activeRef.current = null;
         setActiveCode(null);
       };
@@ -314,21 +339,21 @@ export function DelegasiScrolly() {
     <div ref={rootRef} data-testid="delegasi-scrolly" className="relative">
       <div
         ref={stageRef}
-        className="z-0 flex min-h-svh w-full flex-col justify-start bg-gold-soft/50 px-4 pt-26 pb-4 sm:px-6 sm:pt-28 sm:pb-6"
+        className="z-0 flex h-svh w-full flex-col justify-start overflow-hidden bg-gold-soft/50 px-4 pt-18 pb-3 sm:px-6 sm:pt-22 sm:pb-5"
       >
-        <div className="mx-auto mb-4 max-w-180 text-center">
+        <div className="mx-auto mb-2 max-w-180 shrink-0 text-center sm:mb-4">
           <h2
             data-testid="delegasi-title"
-            className="text-28 leading-9 font-semibold tracking-t05 text-ink sm:text-34 sm:leading-11 lg:text-38 lg:leading-12"
+            className="text-24 leading-8 font-semibold tracking-t05 text-ink sm:text-34 sm:leading-11 lg:text-38 lg:leading-12"
           >
             {delegasiSection.title}
           </h2>
-          <p className="mx-auto mt-2 max-w-160 text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
+          <p className="mx-auto mt-1 max-w-160 text-13 leading-5 text-body-muted sm:mt-2 sm:text-base sm:leading-6">
             {delegasiSection.subtitle}
           </p>
         </div>
 
-        <div className="mx-auto grid w-full max-w-300 flex-1 grid-cols-1 items-center gap-8 lg:grid-cols-4 lg:gap-8">
+        <div className="mx-auto grid min-h-0 w-full max-w-300 flex-1 grid-cols-1 items-center gap-2 sm:gap-4 lg:grid-cols-4 lg:gap-8">
           <ul className="hidden flex-col gap-0.5 sm:flex sm:gap-2">
             {LEFT_CODES.map((code) => {
               const faculty = facultyFor(code);
@@ -343,7 +368,7 @@ export function DelegasiScrolly() {
             })}
           </ul>
 
-          <ul className="flex flex-col gap-0.5 sm:hidden">
+          <ul className="grid grid-cols-2 gap-x-2 gap-y-0 sm:hidden">
             {MOBILE_CODES.map((code) => {
               const faculty = facultyFor(code);
               return faculty ? (
@@ -358,23 +383,20 @@ export function DelegasiScrolly() {
             })}
           </ul>
 
-          <div className="relative mx-auto w-full max-w-160 rounded-20 p-6 bg-delegasi-panel sm:p-10 lg:col-span-2">
+          <div className="relative mx-auto flex min-h-0 w-full max-w-160 items-center justify-center rounded-20 p-3 bg-delegasi-panel sm:p-6 lg:col-span-2 lg:p-10">
             <div
               ref={logoRef}
               data-testid="delegasi-logo"
               data-state="complete"
               className="w-full"
             >
-              <DelegasiLogo
-                aria-hidden="true"
-                className="h-auto w-full motion-reduce:hidden"
-              />
+              <DelegasiLogo className="h-auto max-h-[32svh] w-full object-contain motion-reduce:hidden sm:max-h-[42svh]" />
               <Image
                 src="/images/forkip-logo-scrolly.svg"
                 alt="Lambang Forum KIPK UNJ dengan delapan warna fakultas"
                 width={742}
                 height={742}
-                className="hidden h-auto w-full motion-reduce:block"
+                className="hidden h-auto max-h-[32svh] w-full object-contain motion-reduce:block sm:max-h-[42svh]"
               />
             </div>
           </div>

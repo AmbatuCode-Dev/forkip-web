@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="id" className={`${jakartaSans.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
+      <body className="flex min-h-svh flex-col bg-background font-sans text-foreground">
         <AppProvider>
           <SiteHeader />
           <main className="flex-1">{children}</main>

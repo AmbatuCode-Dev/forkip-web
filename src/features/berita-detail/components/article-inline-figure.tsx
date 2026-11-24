@@ -2,8 +2,9 @@ import { NewsMediaPlaceholder } from "@/components/berita/news-media-placeholder
 import type { ArticleFigure } from "../types";
 
 /**
- * Inline documentation figure between body paragraphs (spec §A): gradient
- * placeholder with a dark badge caption ("02 / 04 · Dokumentasi").
+ * Inline documentation figure between body paragraphs (spec §A): a
+ * PlaceholdImage tile with a dark badge caption ("02 / 04 · Dokumentasi").
+ * Its label is baked into the placehold.co ?text= URL and exposed via alt.
  */
 export function ArticleInlineFigure({
   figure,

@@ -4,7 +4,7 @@
  * NewsPost data in src/features/berita; copy stays verbatim from that data.
  */
 export interface ArticleMedia {
-  /** NewsMediaPlaceholder label (white pill + center caption). */
+  /** PlaceholdImage label baked into the ?text= URL and exposed via alt. */
   readonly label: string;
   /** Dark stage badge, e.g. "01 / 04 · Dokumentasi". */
   readonly badge: string;
