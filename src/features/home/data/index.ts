@@ -24,7 +24,6 @@ export const heroCopy = {
   ctaHref: "/pertanyaan-pengaduan",
   videoLabelStrong: "Tonton Video",
   videoLabelMuted: "Forum KIPK UNJ",
-  photoLabel: "Foto kegiatan Forkip UNJ",
 } as const;
 
 export const heroTrustLinks: readonly {

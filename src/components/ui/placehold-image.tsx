@@ -30,6 +30,8 @@ export function PlaceholdImage({
       width={width}
       height={height}
       unoptimized
+      // Keeps a coloured tile visible when placehold.co is blocked or offline.
+      style={{ backgroundColor: `#${BG[variant]}` }}
       className={className}
     />
   );

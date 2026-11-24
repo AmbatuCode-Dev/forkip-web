@@ -10,11 +10,22 @@ import { type ReactNode, useEffect, useRef } from "react";
  * builds the animations when motion is welcome, and its cleanup reverts the
  * context — so a reduced-motion preference (including a runtime change) can
  * never leave a reveal element stuck at opacity: 0.
+ *
+ * The server renders `data-motion="pending"`; globals.css hides the reveal
+ * targets until this effect clears it. `<noscript>` restores visibility when
+ * JavaScript is unavailable.
  */
 export function HeroMotion({ children }: { children: ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const root = rootRef.current;
+    // Clear on every path, including the no-matchMedia fallback and cleanup:
+    // a stale "pending" marker would hide the copy permanently.
+    if (root) {
+      root.dataset.motion = "ready";
+    }
+
     // jsdom has no matchMedia; there the static first frame is correct.
     if (typeof window.matchMedia !== "function") {
       return;
@@ -52,11 +63,23 @@ export function HeroMotion({ children }: { children: ReactNode }) {
       return () => context.revert();
     });
 
-    return () => media.revert();
+    return () => {
+      media.revert();
+      if (root) {
+        root.dataset.motion = "ready";
+      }
+    };
   }, []);
 
   return (
-    <div ref={rootRef} className="relative min-h-svh w-full">
+    <div
+      ref={rootRef}
+      data-motion="pending"
+      className="relative min-h-svh w-full"
+    >
+      <noscript>
+        <style>{`[data-motion="pending"] [data-hero-reveal] { visibility: visible !important; }`}</style>
+      </noscript>
       {children}
     </div>
   );

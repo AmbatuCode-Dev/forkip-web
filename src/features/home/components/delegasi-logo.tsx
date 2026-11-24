@@ -1,13 +1,15 @@
 import type { SVGProps } from "react";
 
 /**
- * Grouped Forum KIPK UNJ logo. Path data is copied verbatim from
- * the user-edited Logo-Forkip.svg; the groups are the reveal units
- * for the Delegasi scroll.
+ * Grouped Forum KIPK UNJ logo. Path data must stay verbatim identical to the
+ * reduced-motion asset at public/images/forkip-logo-scrolly.svg; the test in
+ * __tests__/delegasi-logo.test.tsx fails when either side drifts. The groups
+ * are the reveal units for the Delegasi scroll.
  */
 export function DelegasiLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
+      role="img"
       viewBox="0 0 742 742"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

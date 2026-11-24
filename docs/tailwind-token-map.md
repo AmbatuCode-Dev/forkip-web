@@ -1,6 +1,6 @@
 # Tailwind arbitrary-value → token/utility map (Figma parity)
 
-Replace EVERY arbitrary class in your assigned files with the right-hand side. Preserve prefixes (sm:, lg:, hover:, focus-visible:, etc.) and class order semantics. Tokens/utilities already exist in src/app/globals.css — do NOT edit globals.css.
+Replace EVERY arbitrary class in your assigned files with the right-hand side. Preserve prefixes (sm:, lg:, hover:, focus-visible:, etc.) and class order semantics. Tokens/utilities already exist in src/app/globals.css — do NOT edit globals.css, with one documented exception: the full-screen hero and Delegasi scrollytelling redesigns added app-level `@utility` rules directly to globals.css (listed under "Custom utilities" below). Those rules are already merged — use them, but do not re-add or remove them.
 
 ## Colors
 bg-[#F6D34A]→bg-gold · bg-[#E0B400]→bg-gold-dark · bg-[#FBF6DF]→bg-gold-soft · bg-[#FBFAF6]→bg-surface-50 · bg-[#F4F2EA]→bg-surface-100 · bg-[#FFF3C4]→bg-gold-pale · bg-[#1E6E5E]→bg-teal-ink · bg-[#DCEEEA]→bg-teal-pale · bg-[#122338]→bg-navy · bg-[#1F2937]→bg-slate · bg-[#FDFCF8]→bg-cream · bg-[#F3F0E7]→bg-sand · bg-[#E8C4A0]→bg-tan · bg-[#F6E6A8]→bg-olive
@@ -39,3 +39,11 @@ mt-10→mt-2.5 mt-47→mt-11.75 pl-144→pl-36 pl-30→pl-7.5 pt-72→pt-18 py-1
 
 ## Misc
 bg-[radial-gradient(ellipse_at_50%_35%,#6D5A2C_0%,#3B2E13_52%,#1D1709_100%)]→bg-night-radial · text-[clamp(1.1rem,2.7vw,2.6rem)]→text-clamp-hero · backdrop-blur-[2px]→backdrop-blur-2 · transition-[height]→transition-height · border-[10px]→border-10
+
+## Custom utilities (the globals.css exception)
+
+The full-screen hero (`c603044`) and Delegasi scrollytelling (`da044fc`) redesigns define these app-level `@utility` rules directly in `src/app/globals.css`. They are already merged — use them instead of re-introducing arbitrary values; do not re-add or remove them.
+
+object-hero-mobile→object-position 42% 50% (hero photo, phones) · object-hero-desktop→object-position 50% 42% (hero photo, lg+) · inset-hero-photo→top/bottom -4% overscan for the parallax · bg-hero-scrim→top-down ink scrim over the hero photo · bg-hero-scrim-mobile→stronger ink scrim on phones · bg-delegasi-panel→surface-tinted translucent panel (72%)
+
+Preserve prefixes as usual, e.g. `lg:object-hero-desktop` and `max-sm:bg-hero-scrim-mobile`.

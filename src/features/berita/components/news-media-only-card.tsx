@@ -73,6 +73,7 @@ function BusamakipStage() {
 }
 
 function GelarKipkStage() {
+  // Deliberate hand-built illustration: an exception to the placehold-image sweep.
   return (
     <div className="relative flex h-75 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-gold-soft via-gold-soft-strong to-wheat">
       <div

@@ -29,7 +29,7 @@ describe("BerandaPage", () => {
     }
   });
 
-  it("renders the Delegasi Fakultas heading and 8 faculty chips", () => {
+  it("renders the Delegasi Fakultas heading and 8 faculty rail rows", () => {
     render(<BerandaPage />);
 
     expect(

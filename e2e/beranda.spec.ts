@@ -37,31 +37,66 @@ test.describe("Beranda", () => {
   }) => {
     await page.goto("/");
 
-    const scrolly = await page
-      .getByTestId("delegasi-scrolly")
-      .evaluate((el) => {
-        const node = el as HTMLElement;
-        return {
-          top: node.getBoundingClientRect().top + window.scrollY,
-          height: node.offsetHeight,
-        };
-      });
+    const scrolly = page.getByTestId("delegasi-scrolly");
+    const logo = page.getByTestId("delegasi-logo");
 
-    const pinDistance = scrolly.height - (page.viewportSize()?.height ?? 900);
+    // These attributes come from ScrollTrigger's own refresh, so they only
+    // exist once the pin is installed. Measuring offsetHeight before that
+    // point yields the unpinned (1×vh) layout and every scroll lands wrong.
+    await expect(scrolly).toHaveAttribute("data-scroll-end", /\d/);
+    await expect(page.locator(".pin-spacer")).toHaveCount(1);
+
+    const { start, end } = await scrolly.evaluate((el) => {
+      const node = el as HTMLElement;
+      return {
+        start: Number(node.dataset.scrollStart),
+        end: Number(node.dataset.scrollEnd),
+      };
+    });
+    expect(end).toBeGreaterThan(start);
+
     const scrollTo = (fraction: number) =>
       page.evaluate(
-        ({ top, distance, part }) => window.scrollTo(0, top + distance * part),
-        { top: scrolly.top, distance: pinDistance, part: fraction },
+        ({ start, end, part }) =>
+          window.scrollTo(0, start + (end - start) * part),
+        { start, end, part: fraction },
       );
 
     await scrollTo(0.5);
     await expect(page.getByTestId("delegasi-title")).toBeVisible();
 
+    // Assert a real mid-reveal, not the SSR "complete" value: level 2 is
+    // wiping in, level 4 is still hidden, a faculty rail is highlighted and
+    // the logo reports that it is still building.
+    await expect
+      .poll(async () => {
+        await scrollTo(0.6);
+        return page.evaluate(() => {
+          const root = document.querySelector(
+            '[data-testid="delegasi-scrolly"]',
+          );
+          const opacity = (group: string) => {
+            const el = root?.querySelector(`[data-logo-group="${group}"]`);
+            return el ? Number(getComputedStyle(el).opacity) : -1;
+          };
+          const highlighted =
+            root?.querySelectorAll('[data-active="true"]').length ?? 0;
+          const state = root
+            ?.querySelector('[data-testid="delegasi-logo"]')
+            ?.getAttribute("data-state");
+          return (
+            opacity("level-2") > 0 &&
+            opacity("level-2") < 1 &&
+            opacity("level-4") === 0 &&
+            highlighted > 0 &&
+            state === "building"
+          );
+        });
+      })
+      .toBe(true);
+
     await scrollTo(1.02);
-    await expect(page.getByTestId("delegasi-logo")).toHaveAttribute(
-      "data-state",
-      "complete",
-    );
+    await expect(logo).toHaveAttribute("data-state", "complete");
 
     await expect
       .poll(async () => {
@@ -71,11 +106,11 @@ test.describe("Beranda", () => {
           .first()
           .getAttribute("data-faculty-code");
         await scrollTo(1.02);
-        const end = await page
+        const endCode = await page
           .locator('[data-active="true"]')
           .first()
           .getAttribute("data-faculty-code");
-        return mid !== null && end !== null && mid !== end;
+        return mid !== null && endCode !== null && mid !== endCode;
       })
       .toBe(true);
   });
@@ -134,6 +169,44 @@ test.describe("Beranda", () => {
         .poll(() => page.evaluate(() => window.scrollY))
         .toBeGreaterThan(0);
     });
+  });
+
+  test("resets scroll on navigation and restores it on back", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    await page.mouse.move(640, 400);
+    await page.mouse.wheel(0, 1800);
+    // Let Lenis settle before recording the origin, otherwise the recorded
+    // value lags the wheel target and cannot be compared with restoration.
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY))
+      .toBeGreaterThan(1500);
+    const before = await page.evaluate(() => window.scrollY);
+
+    await page
+      .getByRole("banner")
+      .getByRole("link", { name: "Pertanyaan & Pengaduan" })
+      .click();
+
+    await expect(page).toHaveURL(/\/pertanyaan-pengaduan$/);
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+
+    await page.goBack();
+
+    await expect(page).toHaveURL("/");
+    await expect
+      .poll(
+        () =>
+          page.evaluate(
+            (expected) =>
+              Math.abs(window.scrollY - expected) < window.innerHeight,
+            before,
+          ),
+        { timeout: 10_000 },
+      )
+      .toBe(true);
   });
 
   test("renders the 404 page and navigates back to beranda", async ({

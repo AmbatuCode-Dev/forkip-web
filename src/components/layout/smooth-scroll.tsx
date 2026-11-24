@@ -8,27 +8,27 @@ import { type ReactNode, useEffect } from "react";
 
 export function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
     gsap.registerPlugin(ScrollTrigger);
 
-    const lenis = new Lenis({ lerp: 0.25, smoothWheel: true });
-    const tick = (time: number) => {
-      lenis.raf(time * 1000);
-    };
+    const mm = gsap.matchMedia();
 
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const lenis = new Lenis({ lerp: 0.25, smoothWheel: true });
+      const tick = (time: number) => {
+        lenis.raf(time * 1000);
+      };
+
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(tick);
+
+      return () => {
+        gsap.ticker.remove(tick);
+        lenis.destroy();
+      };
+    });
 
     return () => {
-      gsap.ticker.remove(tick);
-      lenis.destroy();
-      for (const trigger of ScrollTrigger.getAll()) {
-        trigger.kill();
-      }
+      mm.revert();
     };
   }, []);
 

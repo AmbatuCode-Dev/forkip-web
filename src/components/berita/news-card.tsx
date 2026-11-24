@@ -27,7 +27,8 @@ export interface NewsCardProps extends ComponentProps<"article"> {
 /**
  * Paginated news list card (spec §7): media stage + thumbnail strip on the
  * left, date/photo pills + title + paragraphs on the right. Selected
- * thumbnail gets the gold ring; media are gradient placeholders.
+ * thumbnail gets the gold ring; media are PlaceholdImage tiles whose label
+ * is baked into the placehold.co ?text= URL and exposed via the image alt.
  */
 export function NewsCard({
   dateLabel,

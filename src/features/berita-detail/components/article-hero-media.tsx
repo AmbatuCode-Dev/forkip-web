@@ -2,9 +2,10 @@ import { NewsMediaPlaceholder } from "@/components/berita/news-media-placeholder
 import type { ArticleMedia } from "../types";
 
 /**
- * Main "Foto utama" block (spec §A): 960-wide gold-gradient stage with the
+ * Main "Foto utama" block (spec §A): 960-wide PlaceholdImage tile with the
  * dark photo badge and a caption row below, reusing NewsMediaPlaceholder
- * and the NewsCard media-strip pattern (badge 14 Regular here).
+ * and the NewsCard media-strip pattern (badge 14 Regular here). The label is
+ * baked into the placehold.co ?text= URL and exposed via the image alt.
  */
 export function ArticleHeroMedia({ media }: { readonly media: ArticleMedia }) {
   return (
