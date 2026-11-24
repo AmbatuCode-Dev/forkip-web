@@ -39,15 +39,23 @@ const LEVELS: readonly (readonly [string, string])[] = [
   ["FBS", "FT"],
 ];
 
+/** Timeline beats, shared by the reveal and the matching pointer highlight. */
+const TRACE_DURATION = 1;
+const BASE_DURATION = 0.5;
+const FLAME_DURATION = 0.5;
+const LEVEL_DURATION = 1;
+const FIRST_LEVEL_TIME = TRACE_DURATION + BASE_DURATION + FLAME_DURATION;
+const TIMELINE_DURATION = FIRST_LEVEL_TIME + LEVEL_DURATION * LEVELS.length;
+
 // Visual order is bottom-up: the first built pair sits at the bottom of each
 // rail so the leader lines follow the same build order as the petals.
-const LEFT_CODES = ["FIKK", "FBS", "FEB", "FIP"] as const;
-const RIGHT_CODES = ["FPsi", "FT", "FMIPA", "FISH"] as const;
+const LEFT_CODES = ["FBS", "FIKK", "FEB", "FIP"] as const;
+const RIGHT_CODES = ["FT", "FPsi", "FMIPA", "FISH"] as const;
 const MOBILE_CODES = [
-  "FIKK",
-  "FPsi",
   "FBS",
   "FT",
+  "FIKK",
+  "FPsi",
   "FMIPA",
   "FEB",
   "FIP",
@@ -158,21 +166,68 @@ export function DelegasiScrolly() {
         return;
       }
 
+      let traceGroup: SVGGElement | null = null;
+
       const context = gsap.context(() => {
         const base = root.querySelector('[data-logo-group="base"]');
         const flame = root.querySelector('[data-logo-group="flame"]');
+        const svg = root.querySelector("svg");
         const levels = LEVELS.map((_, index) =>
           root.querySelector(`[data-logo-group="level-${index + 1}"]`),
         );
 
         gsap.set([base, flame, ...levels], { opacity: 0 });
 
+        // Each petal wipes outward from the centre: right petals are clipped
+        // from the right, left petals mirror by being clipped from the left.
+        const petals = levels.map((level) =>
+          Array.from(level?.querySelectorAll("path") ?? []).map((path) => {
+            const petal = path as SVGPathElement;
+            const box = petal.getBBox();
+            const isLeft = box.x + box.width / 2 < 371;
+            gsap.set(petal, {
+              clipPath: isLeft
+                ? "inset(0% 0% 0% 100%)"
+                : "inset(0% 100% 0% 0%)",
+            });
+            return petal;
+          }),
+        );
+
+        // Stroke-only clones of every real artwork path (base, all four
+        // levels and the flame) are drawn first, then faded as the fills build.
+        const traceSelector = "[data-logo-group] path";
+        const tracePaths: SVGPathElement[] = [];
+        if (svg) {
+          traceGroup = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "g",
+          ) as SVGGElement;
+          traceGroup.setAttribute("data-logo-trace", "");
+          traceGroup.setAttribute("aria-hidden", "true");
+          svg.appendChild(traceGroup);
+
+          root.querySelectorAll(traceSelector).forEach((source) => {
+            const clone = source.cloneNode(true) as SVGPathElement;
+            clone.setAttribute("fill", "none");
+            clone.setAttribute("stroke-width", "2");
+            clone.style.stroke = "var(--color-ink)";
+            traceGroup?.appendChild(clone);
+            const length = clone.getTotalLength();
+            gsap.set(clone, {
+              strokeDasharray: length,
+              strokeDashoffset: length,
+            });
+            tracePaths.push(clone);
+          });
+        }
+
         const timeline = gsap.timeline({
           defaults: { ease: "none" },
           scrollTrigger: {
             trigger: root,
             start: "top top",
-            end: () => `+=${window.innerHeight * 2}`,
+            end: () => `+=${window.innerHeight * 1}`,
             pin: stage,
             scrub: true,
             anticipatePin: 1,
@@ -182,9 +237,17 @@ export function DelegasiScrolly() {
                 "data-state",
                 self.progress >= 0.99 ? "complete" : "building",
               );
+              // Highlight the same level the timeline is currently revealing:
+              // 1 → 2 → 3 → 4, matching the colours appearing in the logo.
               const step = Math.min(
                 LEVELS.length,
-                Math.max(0, Math.ceil(self.progress * (LEVELS.length + 1)) - 1),
+                Math.max(
+                  0,
+                  Math.ceil(
+                    (self.progress * TIMELINE_DURATION - FIRST_LEVEL_TIME) /
+                      LEVEL_DURATION,
+                  ),
+                ),
               );
               const next = step === 0 ? null : LEVELS[step - 1][0];
               if (next !== activeRef.current) {
@@ -195,17 +258,44 @@ export function DelegasiScrolly() {
           },
         });
 
+        if (tracePaths.length > 0) {
+          timeline.to(
+            tracePaths,
+            { strokeDashoffset: 0, duration: TRACE_DURATION },
+            0,
+          );
+        }
         timeline
-          .to(base, { opacity: 1, duration: 0.5 })
-          .to(flame, { opacity: 1, duration: 0.5 })
-          .to(levels[0], { opacity: 1, duration: 1 })
-          .to(levels[1], { opacity: 1, duration: 1 })
-          .to(levels[2], { opacity: 1, duration: 1 })
-          .to(levels[3], { opacity: 1, duration: 1 });
+          .to(base, { opacity: 1, duration: BASE_DURATION }, TRACE_DURATION)
+          .to(
+            flame,
+            { opacity: 1, duration: FLAME_DURATION },
+            TRACE_DURATION + BASE_DURATION,
+          );
+        if (traceGroup) {
+          timeline.to(
+            traceGroup,
+            { opacity: 0, duration: BASE_DURATION + FLAME_DURATION },
+            TRACE_DURATION,
+          );
+        }
+
+        levels.forEach((level, index) => {
+          const start = FIRST_LEVEL_TIME + index * LEVEL_DURATION;
+          timeline.to(level, { opacity: 1, duration: LEVEL_DURATION }, start);
+          petals[index].forEach((petal) => {
+            timeline.to(
+              petal,
+              { clipPath: "inset(0% 0% 0% 0%)", duration: LEVEL_DURATION },
+              start,
+            );
+          });
+        });
       }, root);
 
       return () => {
         context.revert();
+        traceGroup?.remove();
         activeRef.current = null;
         setActiveCode(null);
       };
@@ -224,7 +314,7 @@ export function DelegasiScrolly() {
     <div ref={rootRef} data-testid="delegasi-scrolly" className="relative">
       <div
         ref={stageRef}
-        className="z-0 flex min-h-svh w-full flex-col justify-start bg-gold-soft/50 px-4 pt-19 pb-4 sm:px-6 sm:pt-20 sm:pb-6"
+        className="z-0 flex min-h-svh w-full flex-col justify-start bg-gold-soft/50 px-4 pt-26 pb-4 sm:px-6 sm:pt-28 sm:pb-6"
       >
         <div className="mx-auto mb-4 max-w-180 text-center">
           <h2
