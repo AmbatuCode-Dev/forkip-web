@@ -32,6 +32,38 @@ test.describe("Beranda", () => {
     ).toBeVisible();
   });
 
+  test("renders the Fungsi dan Tujuan section with the video", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    const heading = page.getByRole("heading", { name: "Fungsi dan Tujuan" });
+    await expect(heading).toBeVisible();
+
+    const items = page.getByTestId("fungsi-section").getByRole("listitem");
+    await expect(items).toHaveCount(4);
+
+    await expect(
+      page.getByTitle("Video Forum KIPK UNJ"),
+    ).toBeVisible();
+  });
+
+  test("respects prefers-reduced-motion on the Fungsi section", async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+
+    await expect(
+      page.getByRole("heading", { name: "Fungsi dan Tujuan" }),
+    ).toBeVisible();
+    await expect(
+      page.getByTestId("fungsi-section").getByRole("listitem"),
+    ).toHaveCount(4);
+    // With reduced motion the whole section is instantly usable.
+    await expect(page.getByTitle("Video Forum KIPK UNJ")).toBeVisible();
+  });
+
   test("builds the Delegasi logo and tracks the active faculty", async ({
     page,
   }) => {
