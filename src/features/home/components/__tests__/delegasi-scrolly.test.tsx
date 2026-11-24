@@ -146,7 +146,7 @@ describe("DelegasiScrolly", () => {
     expect(engine.timelines).toHaveLength(1);
 
     const trigger = triggerVars();
-    expect(trigger.end()).toBe(`+=${window.innerHeight * 2}`);
+    expect(trigger.end()).toBe(`+=${window.innerHeight * 3.5}`);
     expect(trigger.pin).toBe(root.firstElementChild);
 
     act(() => trigger.onRefresh({ start: 120, end: 1560 }));
