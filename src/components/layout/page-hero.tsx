@@ -1,5 +1,9 @@
+"use client";
+
+import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { cn } from "@/utils/cn";
 
 export interface PageHeroProps {
@@ -28,8 +32,33 @@ export function PageHero({
   titleSize = "md",
   className,
 }: PageHeroProps) {
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el || typeof window.matchMedia !== "function") return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.from("[data-hero-reveal]", {
+        y: 18,
+        opacity: 0,
+        duration: 0.55,
+        stagger: 0.08,
+        ease: "power3.out",
+      });
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={heroRef}
       className={cn(
         "relative overflow-hidden bg-gradient-to-r from-gold-soft via-gold-mid to-gold",
         className,
@@ -47,7 +76,7 @@ export function PageHero({
         className="pointer-events-none absolute inset-y-0 right-0 h-full w-140 object-cover opacity-10"
       />
       <div className="relative mx-auto flex w-full max-w-300 flex-col gap-3 px-4 py-16 sm:px-6 xl:px-0">
-        <nav aria-label="Breadcrumb">
+        <nav aria-label="Breadcrumb" data-hero-reveal>
           <p className="text-13 font-medium text-body-muted">
             <Link
               href={breadcrumb.href}

@@ -168,7 +168,29 @@ export function SiteHeader() {
     };
   }, [closeMenu]);
 
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearHoverTimeout = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  }, []);
+
+  const handleMouseEnter = (id: DropdownId) => {
+    clearHoverTimeout();
+    setOpenMenu(id);
+  };
+
+  const handleMouseLeave = () => {
+    clearHoverTimeout();
+    hoverTimeoutRef.current = setTimeout(() => {
+      setOpenMenu(null);
+    }, 150);
+  };
+
   const toggleMenu = (id: DropdownId) => {
+    clearHoverTimeout();
     setOpenMenu((current) => (current === id ? null : id));
   };
 
@@ -234,7 +256,13 @@ export function SiteHeader() {
                 {entry.label}
               </Link>
             ) : (
-              <div key={entry.id} className="relative flex h-18 items-center">
+              // biome-ignore lint/a11y/noStaticElementInteractions: hover wrapper for dropdown menu
+              <div
+                key={entry.id}
+                className="relative flex h-18 items-center"
+                onMouseEnter={() => handleMouseEnter(entry.id)}
+                onMouseLeave={handleMouseLeave}
+              >
                 <button
                   type="button"
                   aria-expanded={openMenu === entry.id}
@@ -259,7 +287,7 @@ export function SiteHeader() {
                 {openMenu === entry.id ? (
                   <div
                     id={`${entry.id}-menu`}
-                    className="absolute top-full -left-14.5 z-50 w-105 rounded-18 border border-border-sand bg-white p-6 shadow-dropdown"
+                    className="absolute top-full left-0 z-50 w-96 max-w-[calc(100vw-2rem)] rounded-18 border border-border-sand bg-white p-6 shadow-dropdown"
                   >
                     <p className="text-13 leading-5 font-semibold text-body-muted">
                       {entry.heading}
@@ -272,9 +300,6 @@ export function SiteHeader() {
                             onClick={closeMenu}
                             className="flex items-center gap-3 rounded-10 p-2 transition-colors hover:bg-surface-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                           >
-                            <span className="inline-flex h-7 shrink-0 items-center justify-center rounded-md bg-surface-50 px-2.5 text-9 leading-5 font-semibold text-ink-soft">
-                              {item.chip}
-                            </span>
                             <span className="flex min-w-0 flex-col gap-1">
                               <span className="text-15 leading-6 font-semibold text-ink">
                                 {item.title}

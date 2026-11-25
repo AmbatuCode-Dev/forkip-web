@@ -1,4 +1,5 @@
 export { BerandaPage } from "./components/beranda-page";
+export { useSectionReveal } from "./components/use-section-reveal";
 export type {
   Division,
   Faculty,

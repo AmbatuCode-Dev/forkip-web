@@ -1,6 +1,7 @@
 import { Instagram, Mail, Tiktok, X } from "@coolicons/react";
 import Image from "next/image";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 interface FooterLink {
   readonly label: string;
@@ -29,16 +30,6 @@ const lainnyaLinks: readonly FooterLink[] = [
   { label: "Rekrutmen Anggota Baru Forkip UNJ 2026", href: "/rekrutmen" },
   { label: "Form Pengunduran diri dari KIPK", href: "/pengunduran-diri" },
   { label: "Arsip Data Tiap Divisi", href: "/arsip-data" },
-];
-
-const kontakItems: readonly {
-  readonly label: string;
-  readonly value: string;
-}[] = [
-  { label: "Instagram", value: "@forkipunj.official" },
-  { label: "X", value: "@forumkipk_unj" },
-  { label: "TikTok", value: "@forkipunj" },
-  { label: "Gmail", value: "humasnyaforkip@gmail.com" },
 ];
 
 const socialLinks: readonly SocialLink[] = [
@@ -146,20 +137,26 @@ export function SiteFooter() {
             <h2 className="text-13 font-bold tracking-wide12 text-ink uppercase">
               Kontak
             </h2>
-            <ul className="mt-2.5 flex flex-col gap-3.5 leading-5">
-              {kontakItems.map((item) => (
-                <li
-                  key={item.label}
-                  className="text-sm leading-5 font-medium text-body"
-                >
-                  {item.label} {item.value}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-4 flex h-35 items-center justify-center rounded-2xl border border-border-sand bg-surface-200">
-              <span className="text-13 font-semibold text-ink-soft">
-                Peta lokasi
-              </span>
+            <div className="mt-3">
+              <Link
+                href="/pertanyaan-pengaduan"
+                className={buttonVariants({
+                  variant: "gold",
+                  size: "sm",
+                  className: "rounded-full px-5 text-13 font-semibold",
+                })}
+              >
+                Hubungi Kami
+              </Link>
+            </div>
+            <div className="mt-4 overflow-hidden rounded-2xl border border-border-sand bg-surface-200">
+              <iframe
+                title="Peta lokasi Forum KIP-K UNJ"
+                src="https://www.google.com/maps?q=Universitas+Negeri+Jakarta+Kampus+A&output=embed"
+                className="h-35 w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </div>
