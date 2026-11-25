@@ -1,5 +1,11 @@
+"use client";
+
+import Link from "next/link";
+import { useRef } from "react";
+import { buttonVariants } from "@/components/ui/button";
 import { PlaceholdImage } from "@/components/ui/placehold-image";
 import { programCards, programSection, programSpotlight } from "../data";
+import { useSectionReveal } from "./use-section-reveal";
 
 function PhotoPlaceholder({
   label,
@@ -22,17 +28,29 @@ function PhotoPlaceholder({
  * Program Unggulan (spec §7): Kampung KIP-K UNJ spotlight + 3 program cards.
  */
 export function ProgramSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useSectionReveal(sectionRef);
+
   return (
-    <section className="bg-white py-24">
+    <section ref={sectionRef} className="bg-white py-24">
       <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
-        <h2 className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50">
+        <h2
+          data-reveal-heading
+          className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50"
+        >
           {programSection.title}
         </h2>
-        <p className="mx-auto mt-4 max-w-205 text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
+        <p
+          data-reveal-heading
+          className="mx-auto mt-4 max-w-205 text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6"
+        >
           {programSection.subtitle}
         </p>
 
-        <div className="mt-14 grid items-center gap-10 rounded-20 bg-surface-50 p-6 sm:p-10 lg:cols-spotlight">
+        <div
+          data-reveal-item
+          className="mt-14 grid items-center gap-10 rounded-20 bg-surface-50 p-6 sm:p-10 lg:cols-spotlight"
+        >
           <div>
             <h3 className="text-32 leading-10 font-bold text-ink sm:text-40 sm:leading-12">
               {programSpotlight.title}
@@ -74,6 +92,7 @@ export function ProgramSection() {
           {programCards.map((card) => (
             <article
               key={card.title}
+              data-reveal-item
               className="flex flex-col gap-4 rounded-2xl bg-surface-50 p-6"
             >
               <h3 className="min-h-18 text-lg leading-7 font-semibold text-ink">
@@ -88,9 +107,16 @@ export function ProgramSection() {
               <p className="flex-1 text-sm leading-5 text-body-muted">
                 {card.excerpt}
               </p>
-              <span className="inline-flex h-9 items-center justify-center rounded-full bg-gold px-5 text-sm font-semibold text-ink">
+              <Link
+                href="/program-unggulan"
+                className={buttonVariants({
+                  variant: "gold",
+                  size: "sm",
+                  className: "h-9 rounded-full px-5 text-sm font-semibold",
+                })}
+              >
                 {card.cta}
-              </span>
+              </Link>
             </article>
           ))}
         </div>

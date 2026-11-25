@@ -1,20 +1,33 @@
+"use client";
+
 import { ArrowRight } from "@coolicons/react";
 import Link from "next/link";
+import { useRef } from "react";
 import { layananSection, services } from "../data";
 import { ServiceIconGlyph } from "./service-icon";
+import { useSectionReveal } from "./use-section-reveal";
 
 /**
  * Layanan Forkip UNJ (spec §5): 3×2 grid of service cards with icon tile,
  * division pill, description and "Buka halaman" arrow link.
  */
 export function LayananSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useSectionReveal(sectionRef);
+
   return (
-    <section className="bg-white py-24">
+    <section ref={sectionRef} className="bg-white py-24">
       <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
-        <h2 className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50">
+        <h2
+          data-reveal-heading
+          className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50"
+        >
           {layananSection.title}
         </h2>
-        <p className="mx-auto mt-3 max-w-160 text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6">
+        <p
+          data-reveal-heading
+          className="mx-auto mt-3 max-w-160 text-center text-sm leading-5 text-body-muted sm:text-base sm:leading-6"
+        >
           {layananSection.subtitle}
         </p>
 
@@ -22,6 +35,7 @@ export function LayananSection() {
           {services.map((service) => (
             <article
               key={service.href}
+              data-reveal-item
               className="flex flex-col gap-4 rounded-2xl border border-border-sand bg-white p-6 shadow-xs"
             >
               <div className="flex items-start justify-between gap-3">
@@ -30,9 +44,6 @@ export function LayananSection() {
                     icon={service.icon}
                     className="size-6 text-gold-ink"
                   />
-                </span>
-                <span className="rounded-full bg-gold-soft px-3 py-1.5 text-9 font-semibold text-gold-ink">
-                  {service.division}
                 </span>
               </div>
               <div className="flex flex-1 flex-col gap-3">

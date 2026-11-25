@@ -7,7 +7,7 @@ import { PengumumanCard } from "./pengumuman-card";
  */
 export function PengumumanContent() {
   return (
-    <div className="mx-auto flex w-full max-w-300 flex-col gap-8 px-4 pt-12 pb-20 sm:px-6 xl:px-0">
+    <div className="mx-auto grid w-full max-w-300 grid-cols-1 gap-8 px-4 pt-12 pb-20 sm:px-6 lg:grid-cols-2 xl:px-0">
       {pengumumanList.map((pengumuman, index) => (
         <PengumumanCard
           key={pengumuman.id}

@@ -58,7 +58,10 @@ export function DivisiAccordion({
               label={imageLabel}
               width={96}
               height={64}
-              className="h-16 w-24 shrink-0 rounded object-cover"
+              className={cn(
+                "h-16 shrink-0 rounded object-cover transition-all duration-300 motion-reduce:transition-none",
+                expanded ? "w-0 opacity-0 -mr-6" : "w-24 opacity-100",
+              )}
             />
           ) : (
             <span className="shrink-0 rounded-md bg-surface-50 px-3 py-1.5 text-9 leading-5 font-semibold text-ink-soft">
@@ -74,11 +77,32 @@ export function DivisiAccordion({
       <section
         id={regionId}
         aria-labelledby={headingId}
-        hidden={!expanded}
-        className="overflow-hidden transition-height duration-300 motion-reduce:transition-none"
+        aria-hidden={!expanded}
+        style={{ visibility: expanded ? "visible" : "hidden" }}
+        className={cn(
+          "grid transition-[grid-template-rows,opacity,visibility] duration-300 ease-out motion-reduce:transition-none",
+          expanded
+            ? "visible grid-rows-[1fr] opacity-100"
+            : "invisible grid-rows-[0fr] opacity-0",
+        )}
       >
-        <div className="flex max-w-275 flex-col gap-3 pr-6 pb-7 pl-6 sm:pr-12 sm:pl-36">
-          <p className="text-15 leading-6 text-body">{body}</p>
+        <div className="overflow-hidden">
+          <div
+            className={cn(
+              "flex flex-col gap-5 pr-6 pb-7 pl-6 sm:pr-12",
+              imageLabel ? "sm:flex-row sm:items-start" : "max-w-275 sm:pl-36",
+            )}
+          >
+            {imageLabel && (
+              <PlaceholdImage
+                label={imageLabel}
+                width={320}
+                height={224}
+                className="h-48 w-full shrink-0 rounded-xl object-cover sm:h-52 sm:w-72"
+              />
+            )}
+            <p className="text-15 leading-6 text-body">{body}</p>
+          </div>
         </div>
       </section>
     </div>
