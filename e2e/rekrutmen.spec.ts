@@ -18,7 +18,7 @@ test.describe("Rekrutmen page", () => {
     const banner = page.getByRole("banner");
     await banner.getByRole("button", { name: "Organisasi" }).click();
     await expect(
-      banner.getByRole("link", { name: /^SDM Rekrutmen Anggota Baru/ }),
+      banner.getByRole("link", { name: /^Rekrutmen Anggota Baru/ }),
     ).toBeVisible();
     await expect(page.getByText("SUDAH DITUTUP").first()).toBeVisible();
     await expect(

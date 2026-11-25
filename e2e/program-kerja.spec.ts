@@ -18,7 +18,7 @@ test.describe("Program Kerja page", () => {
     const banner = page.getByRole("banner");
     await banner.getByRole("button", { name: "Organisasi" }).click();
     await expect(
-      banner.getByRole("link", { name: /^PK Program Kerja/ }),
+      banner.getByRole("link", { name: /^Program Kerja/ }),
     ).toBeVisible();
     await expect(
       page.getByRole("link", { name: "AD ART FORUM KIP-KULIAH UNJ.pdf" }),

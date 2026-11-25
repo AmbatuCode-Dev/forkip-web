@@ -132,7 +132,7 @@ Three complementary tools enforce this:
   - Located in `e2e/` (one spec per route) and configured in `playwright.config.ts` targeting Chromium.
   - Runs against `pnpm dev --port 3000` locally and `pnpm start --port 3000` in CI (`CI=true`).
   - **Locator conventions (avoid strict-mode failures):**
-    - Header nav items under the **Layanan / Organisasi dropdowns are NOT top-level banner links**. Do not assert `getByRole('banner').getByRole('link', { name })` for them; either open the dropdown (`getByRole('button', { name: 'Organisasi' })`) and assert the link inside, or assert the page breadcrumb/H1 instead. Dropdown link accessible names include the division chip + title + description, so anchor with a regex (e.g. `/^PK Program Kerja/`).
+    - Header nav items under the **Layanan / Organisasi dropdowns are NOT top-level banner links**. Do not assert `getByRole('banner').getByRole('link', { name })` for them; either open the dropdown (`getByRole('button', { name: 'Organisasi' })`) and assert the link inside, or assert the page breadcrumb/H1 instead. Dropdown link accessible names are title + description (no division chip), so anchor with a regex (e.g. `/^Program Kerja/`).
     - Use `exact: true` for headings/text that are substrings of other elements (e.g. "Verifikasi Berkas KIPK Jalur SNBP" also appears inside the longer "Pengumuman Hasil Verifikasi … (Eligible)" title, and a date string can appear in both a paragraph and a detail row).
     - Scope repeated labels (e.g. "Beranda", "Pertanyaan & Pengaduan") to `banner`, `Breadcrumb` nav, or footer to avoid multi-match.
 
