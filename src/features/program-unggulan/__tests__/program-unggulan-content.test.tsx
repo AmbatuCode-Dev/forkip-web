@@ -56,9 +56,9 @@ describe("ProgramUnggulanContent", () => {
 
     const links = screen.getAllByRole("link", { name: "Arsip Kegiatan" });
     expect(links).toHaveLength(programCards.length + 1);
-    for (const link of links) {
-      // Placeholder hrefs until real activity-archive URLs are provided.
-      expect(link).toHaveAttribute("href", "#");
+    expect(links[0]).toHaveAttribute("href", "#");
+    for (const link of links.slice(1)) {
+      expect(link).toHaveAttribute("href", "/pertanyaan-pengaduan");
     }
   });
 });

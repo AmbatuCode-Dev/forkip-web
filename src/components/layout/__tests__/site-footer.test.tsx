@@ -65,13 +65,16 @@ describe("SiteFooter", () => {
     ).toHaveAttribute("href", "mailto:humasnyaforkip@gmail.com");
   });
 
-  it("renders contact details, map placeholder, and copyright", () => {
+  it("renders contact CTA, map embed, and copyright", () => {
     render(<SiteFooter />);
 
-    expect(screen.getByText(/@forkipunj\.official/)).toBeInTheDocument();
-    expect(screen.getByText(/@forumkipk_unj/)).toBeInTheDocument();
-    expect(screen.getByText(/humasnyaforkip@gmail\.com/)).toBeInTheDocument();
-    expect(screen.getByText("Peta lokasi")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Hubungi Kami" })).toHaveAttribute(
+      "href",
+      "/pertanyaan-pengaduan",
+    );
+    expect(
+      screen.getByTitle("Peta lokasi Forum KIP-K UNJ"),
+    ).toBeInTheDocument();
     expect(
       screen.getByText("© 2026 Forum KIP-K Universitas Negeri Jakarta"),
     ).toBeInTheDocument();
