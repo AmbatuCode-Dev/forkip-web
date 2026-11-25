@@ -1,6 +1,10 @@
+![FORKIP UNJ — Portal Informasi & Layanan KIP-K UNJ](docs/assets/readme-header.svg)
+
 # forkip-web
 
 Next.js 16 App Router boilerplate configured with TypeScript, Tailwind CSS v4, feature-based architecture, Zod environment validation, Biome, Vitest, Playwright, and Lefthook.
+
+> Regenerate the header after brand or layout changes: `node scripts/generate-readme-header.mjs` (preview: `node scripts/render-svg-preview.mjs`).
 
 See [ARCHITECTURE.md](./ARCHITECTURE.md) for architectural conventions, module boundaries, and design decisions.
 
