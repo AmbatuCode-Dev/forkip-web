@@ -132,7 +132,9 @@ export function SiteHeader() {
       const hero = document.getElementById("home-hero");
       const headerHeight = headerRef.current?.offsetHeight ?? 0;
       setOverHero(
-        hero ? hero.getBoundingClientRect().bottom > headerHeight : false,
+        hero
+          ? hero.getBoundingClientRect().bottom > headerHeight
+          : window.scrollY < 100,
       );
     };
 
