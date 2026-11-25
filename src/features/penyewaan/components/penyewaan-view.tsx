@@ -1,6 +1,10 @@
+"use client";
+
+import { useRef } from "react";
 import { PageHero as SharedPageHero } from "@/components/layout/page-hero";
 import { buttonVariants } from "@/components/ui/button";
 import { InventarisAccordion } from "@/components/ui/inventaris-accordion";
+import { useSectionReveal } from "@/features/home";
 import { cn } from "@/utils/cn";
 import {
   adminContactLinks,
@@ -11,6 +15,9 @@ import {
 } from "../data";
 
 export function PenyewaanView() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  useSectionReveal(contentRef);
+
   return (
     <>
       <SharedPageHero
@@ -19,10 +26,14 @@ export function PenyewaanView() {
         subtitle={penyewaanHero.description}
       />
 
-      <div className="mx-auto flex w-full max-w-300 flex-col gap-10 px-4 pt-18 pb-24 sm:px-4 xl:px-0">
+      <div
+        ref={contentRef}
+        className="mx-auto flex w-full max-w-300 flex-col gap-10 px-4 pt-18 pb-24 sm:px-4 xl:px-0"
+      >
         {/* Note card — 1200×96, gold tint #FFF3C4 (Figma frame 224:2568) */}
         <section
           aria-label="Catatan penyewaan"
+          data-reveal-item
           className="flex flex-col gap-4 rounded-14 bg-gold-pale py-6 pr-12 pl-7.5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
         >
           <p className="max-w-200 text-base leading-6 font-medium text-ink-soft">

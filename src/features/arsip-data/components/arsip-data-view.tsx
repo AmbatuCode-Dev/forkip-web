@@ -1,8 +1,15 @@
+"use client";
+
 import { ArrowRight } from "@coolicons/react";
+import { useRef } from "react";
 import { PageHero } from "@/components/layout/page-hero";
+import { useSectionReveal } from "@/features/home";
 import { arsipHero, direktoriRail, divisionArchives } from "../data";
 
 export function ArsipDataView() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  useSectionReveal(contentRef);
+
   return (
     <>
       <PageHero
@@ -12,13 +19,19 @@ export function ArsipDataView() {
         subtitle={arsipHero.description}
       />
 
-      <div className="mx-auto w-full max-w-300 px-4 pt-18 pb-24 sm:px-4 xl:px-0">
+      <div
+        ref={contentRef}
+        className="mx-auto w-full max-w-300 px-4 pt-18 pb-24 sm:px-4 xl:px-0"
+      >
         <section
           aria-labelledby="direktori-heading"
           className="flex flex-col gap-12 lg:flex-row lg:gap-12"
         >
           {/* Left rail — 240px, 3-line heading (Figma frame 224:3597) */}
-          <div className="flex w-full flex-col gap-4 lg:w-60 lg:shrink-0">
+          <div
+            data-reveal-heading
+            className="flex w-full flex-col gap-4 lg:w-60 lg:shrink-0"
+          >
             <p className="text-xs font-bold tracking-wide12 text-gold-ink uppercase">
               {direktoriRail.eyebrow}
             </p>
@@ -38,6 +51,7 @@ export function ArsipDataView() {
             {divisionArchives.map((division) => (
               <li
                 key={division.number}
+                data-reveal-item
                 className="flex min-h-24 items-center justify-between gap-6 border-b border-border-sand"
               >
                 <div className="flex min-w-0 items-baseline gap-4 sm:gap-6">

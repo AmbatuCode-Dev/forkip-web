@@ -1,6 +1,10 @@
+"use client";
+
+import { useRef } from "react";
 import { PageHero } from "@/components/layout/page-hero";
 import { Button } from "@/components/ui/button";
 import { FacultyContactGrid } from "@/components/ui/faculty-contact-grid";
+import { useSectionReveal } from "@/features/home";
 import {
   delegasiAdvoLabel,
   donatDanHibahHero,
@@ -13,6 +17,9 @@ import {
  * delegation grid, and the restricted hibah transparency card.
  */
 export function DonatDanHibahView() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  useSectionReveal(contentRef);
+
   return (
     <>
       <PageHero
@@ -21,12 +28,21 @@ export function DonatDanHibahView() {
         subtitle={donatDanHibahHero.description}
       />
 
-      <div className="mx-auto flex w-full max-w-300 flex-col gap-10 px-4 pt-18 pb-24 sm:px-4 xl:px-0">
-        <FacultyContactGrid items={fakultasKontak} label={delegasiAdvoLabel} />
+      <div
+        ref={contentRef}
+        className="mx-auto flex w-full max-w-300 flex-col gap-10 px-4 pt-18 pb-24 sm:px-4 xl:px-0"
+      >
+        <div data-reveal-item>
+          <FacultyContactGrid
+            items={fakultasKontak}
+            label={delegasiAdvoLabel}
+          />
+        </div>
 
         {/* Transparency card — white, border-sand, r16 */}
         <section
           aria-labelledby="transparansi-hibah-heading"
+          data-reveal-item
           className="flex flex-col gap-4 rounded-2xl border border-border-sand bg-white px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
         >
           <div className="flex flex-col gap-1">

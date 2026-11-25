@@ -1,5 +1,9 @@
+"use client";
+
 import { ArrowRight } from "@coolicons/react";
+import { useRef } from "react";
 import { PageHero } from "@/components/layout/page-hero";
+import { useSectionReveal } from "@/features/home";
 import { cn } from "@/utils/cn";
 import {
   fakultasKontak,
@@ -18,6 +22,9 @@ const WHATSAPP_HREF = "#";
  * as inline styles (FIKK renders as the outlined variant).
  */
 export function PertanyaanPengaduanView() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  useSectionReveal(contentRef);
+
   return (
     <>
       <PageHero
@@ -29,14 +36,20 @@ export function PertanyaanPengaduanView() {
         subtitle={pertanyaanPengaduanHero.description}
       />
 
-      <div className="mx-auto flex w-full max-w-300 flex-col gap-8 px-4 pt-18 pb-24 sm:px-4 xl:px-0">
+      <div
+        ref={contentRef}
+        className="mx-auto flex w-full max-w-300 flex-col gap-8 px-4 pt-18 pb-24 sm:px-4 xl:px-0"
+      >
         {/* Kontak delegasi · Indeks fakultas (rail + rows, gap 48) */}
         <section
           aria-label="Kontak delegasi fakultas"
           className="flex flex-col gap-10 lg:flex-row lg:gap-12"
         >
           {/* Left rail — 240px, 3-line heading */}
-          <div className="flex w-full flex-col gap-4 lg:w-60 lg:shrink-0">
+          <div
+            data-reveal-heading
+            className="flex w-full flex-col gap-4 lg:w-60 lg:shrink-0"
+          >
             <p className="text-xs leading-6 font-bold tracking-wide12 text-gold-ink uppercase">
               {kontakRail.eyebrow}
             </p>
@@ -51,7 +64,7 @@ export function PertanyaanPengaduanView() {
           {/* Faculty delegation rows */}
           <ul className="flex min-w-0 flex-1 flex-col gap-3">
             {fakultasKontak.map((faculty) => (
-              <li key={faculty.code}>
+              <li key={faculty.code} data-reveal-item>
                 <a
                   href={WHATSAPP_HREF}
                   className={cn(

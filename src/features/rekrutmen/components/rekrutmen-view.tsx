@@ -1,7 +1,11 @@
+"use client";
+
 import { ArrowRight } from "@coolicons/react";
 import Link from "next/link";
+import { useRef } from "react";
 import { PageHero } from "@/components/layout/page-hero";
 import { buttonVariants } from "@/components/ui/button";
+import { useSectionReveal } from "@/features/home";
 import { cn } from "@/utils/cn";
 import {
   divisiInfo,
@@ -25,6 +29,9 @@ const STATUS_PILL_CLASS =
  * Below xl the title wraps, so the pill renders in flow atop the content.
  */
 export function RekrutmenView() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  useSectionReveal(contentRef);
+
   return (
     <>
       <div className="relative">
@@ -43,7 +50,10 @@ export function RekrutmenView() {
         </div>
       </div>
 
-      <div className="mx-auto flex w-full max-w-300 flex-col gap-10 px-4 pt-18 pb-24 sm:px-4 xl:px-0">
+      <div
+        ref={contentRef}
+        className="mx-auto flex w-full max-w-300 flex-col gap-10 px-4 pt-18 pb-24 sm:px-4 xl:px-0"
+      >
         <span className={cn(STATUS_PILL_CLASS, "w-fit xl:hidden")}>
           {recruitmentStatus.label}
         </span>
@@ -51,6 +61,7 @@ export function RekrutmenView() {
         {/* Divisi info card */}
         <section
           aria-label="Info divisi"
+          data-reveal-item
           className="flex flex-col gap-3 rounded-2xl border border-border-sand bg-white px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
         >
           <p className="text-base leading-6 text-body">{divisiInfo.text}</p>
