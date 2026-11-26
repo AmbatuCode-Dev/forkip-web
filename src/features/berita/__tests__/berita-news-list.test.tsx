@@ -11,10 +11,16 @@ function renderPage(page: number) {
   );
 }
 
+function expectPlaceholder(label: string) {
+  expect(
+    screen.getByRole("img", { name: `Foto ${label} (placeholder)` }),
+  ).toBeInTheDocument();
+}
+
 describe("BeritaNewsList", () => {
-  it("keeps the five posts on two pages as normal news cards", () => {
+  it("keeps the five posts on two pages", () => {
     expect(newsPosts).toHaveLength(5);
-    expect(newsPosts.every((post) => post.mediaOnly === false)).toBe(true);
+    expect(newsPosts.map((post) => post.photoCount)).toEqual([1, 4, 3, 4, 4]);
     expect(getNewsPage(1).map((post) => post.slug)).toEqual([
       "explore-kipk-2026",
       "pelatihan-divisi-kif",
@@ -26,7 +32,7 @@ describe("BeritaNewsList", () => {
     ]);
   });
 
-  it("renders page 1 with supplied dates, counts, captions and paragraphs", () => {
+  it("renders page 1 with supplied dates, image labels and paragraphs", () => {
     renderPage(1);
 
     for (const title of [
@@ -44,25 +50,13 @@ describe("BeritaNewsList", () => {
       screen.getByText("Diupload pada: 22 Februari 2026"),
     ).toBeInTheDocument();
     expect(screen.getAllByText(/Diupload pada:/)).toHaveLength(2);
-    expect(screen.getByText("1 Foto")).toBeInTheDocument();
-    expect(screen.getByText("4 Foto")).toBeInTheDocument();
-    expect(screen.getByText("3 Foto")).toBeInTheDocument();
 
-    expect(
-      screen.getByText("Dokumentasi sosialisasi Explore KIPK 2026."),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("Dokumentasi Pelatihan Divisi KIF 2026."),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        "Dokumentasi buka puasa bersama mahasiswa KIP Kuliah UNJ.",
-      ),
-    ).toBeInTheDocument();
-    // The client left the gallery badge blank: fall back to a photo counter.
-    expect(screen.getByText("01 / 01 · Foto")).toBeInTheDocument();
-    expect(screen.getByText("01 / 04 · Foto")).toBeInTheDocument();
-    expect(screen.getByText("01 / 03 · Foto")).toBeInTheDocument();
+    expectPlaceholder("Dokumentasi sosialisasi Explore KIPK 2026.");
+    expectPlaceholder("Dokumentasi Pelatihan Divisi KIF 2026.");
+    expectPlaceholder(
+      "Dokumentasi buka puasa bersama mahasiswa KIP Kuliah UNJ.",
+    );
+    expect(screen.getAllByRole("img")).toHaveLength(3);
 
     expect(
       screen.getByText(
@@ -79,20 +73,23 @@ describe("BeritaNewsList", () => {
       screen.getByText(/Pada 5 Maret 2026, FORKIP UNJ menggelar BUSAMAKIP/),
     ).toBeInTheDocument();
     expect(screen.queryByText(/Menyusul/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/^\d+ Foto$/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/· Foto/)).not.toBeInTheDocument();
   });
 
-  it("renders BUSAMAKIP as a three-photo card without an upload date", () => {
+  it("renders BUSAMAKIP without an upload date and links its card to the article", () => {
     renderPage(1);
 
     const card = screen.getByTestId("news-card-busamakip");
-    expect(
-      screen.queryByTestId("news-media-only-card"),
-    ).not.toBeInTheDocument();
     expect(within(card).queryByText(/Diupload pada:/)).not.toBeInTheDocument();
-    expect(within(card).getByText("3 Foto")).toBeInTheDocument();
+    expect(card).toHaveAttribute("href", "/berita/busamakip");
     expect(
-      within(card).getAllByRole("button", { name: /Lihat foto/ }),
-    ).toHaveLength(3);
+      within(card).getByRole("img", {
+        name: "Foto Dokumentasi buka puasa bersama mahasiswa KIP Kuliah UNJ. (placeholder)",
+      }),
+    ).toBeInTheDocument();
+    expect(within(card).queryAllByRole("button")).toHaveLength(0);
+    expect(within(card).queryByText(/Foto/)).not.toBeInTheDocument();
   });
 
   it("renders pagination text and ?halaman=2 links", () => {
@@ -120,16 +117,12 @@ describe("BeritaNewsList", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("Diupload pada: 8 April 2026")).toBeInTheDocument();
     expect(screen.getAllByText(/Diupload pada:/)).toHaveLength(1);
-    expect(screen.getAllByText("4 Foto")).toHaveLength(2);
 
-    expect(
-      screen.getByText(
-        "Dokumentasi verifikasi berkas KIP Kuliah jalur SNBP 2026.",
-      ),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("Dokumentasi Gelar KIPK 2026."),
-    ).toBeInTheDocument();
+    expectPlaceholder(
+      "Dokumentasi verifikasi berkas KIP Kuliah jalur SNBP 2026.",
+    );
+    expectPlaceholder("Dokumentasi Gelar KIPK 2026.");
+    expect(screen.getAllByRole("img")).toHaveLength(2);
 
     expect(
       screen.getByText(
@@ -142,11 +135,14 @@ describe("BeritaNewsList", () => {
       ),
     ).toBeInTheDocument();
 
-    const gelar = screen.getByTestId("news-card-gelar-kipk");
-    expect(within(gelar).queryByText(/Diupload pada:/)).not.toBeInTheDocument();
     expect(
-      within(gelar).getAllByRole("button", { name: /Lihat foto/ }),
-    ).toHaveLength(4);
+      screen.getByTestId("news-card-verifikasi-kipk-snbp"),
+    ).toHaveAttribute("href", "/berita/verifikasi-kipk-snbp");
+    const gelar = screen.getByTestId("news-card-gelar-kipk");
+    expect(gelar).toHaveAttribute("href", "/berita/gelar-kipk");
+    expect(within(gelar).queryByText(/Diupload pada:/)).not.toBeInTheDocument();
     expect(screen.queryByText(/Menyusul/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/^\d+ Foto$/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/· Foto/)).not.toBeInTheDocument();
   });
 });

@@ -19,37 +19,59 @@ test.describe("Berita page", () => {
     }
 
     const explore = page.getByTestId("news-card-explore-kipk-2026");
+    await expect(explore).toHaveAttribute("href", "/berita/explore-kipk-2026");
     await expect(
       explore.getByText("Diupload pada: 18 Februari 2026"),
     ).toBeVisible();
-    await expect(explore.getByText("1 Foto")).toBeVisible();
     await expect(
-      explore.getByText("Dokumentasi sosialisasi Explore KIPK 2026."),
+      explore.getByRole("img", {
+        name: "Foto Dokumentasi sosialisasi Explore KIPK 2026. (placeholder)",
+      }),
     ).toBeVisible();
-    await expect(explore.getByText("01 / 01 · Foto")).toBeVisible();
 
     const pelatihan = page.getByTestId("news-card-pelatihan-divisi-kif");
+    await expect(pelatihan).toHaveAttribute(
+      "href",
+      "/berita/pelatihan-divisi-kif",
+    );
     await expect(
       pelatihan.getByText("Diupload pada: 22 Februari 2026"),
     ).toBeVisible();
-    await expect(pelatihan.getByText("4 Foto")).toBeVisible();
     await expect(
-      pelatihan.getByText("Dokumentasi Pelatihan Divisi KIF 2026."),
+      pelatihan.getByRole("img", {
+        name: "Foto Dokumentasi Pelatihan Divisi KIF 2026. (placeholder)",
+      }),
     ).toBeVisible();
 
     const busamakip = page.getByTestId("news-card-busamakip");
+    await expect(busamakip).toHaveAttribute("href", "/berita/busamakip");
     await expect(busamakip.getByText(/Diupload pada:/)).toHaveCount(0);
-    await expect(busamakip.getByText("3 Foto")).toBeVisible();
     await expect(
-      busamakip.getByText(
-        "Dokumentasi buka puasa bersama mahasiswa KIP Kuliah UNJ.",
-      ),
+      busamakip.getByRole("img", {
+        name: "Foto Dokumentasi buka puasa bersama mahasiswa KIP Kuliah UNJ. (placeholder)",
+      }),
     ).toBeVisible();
-    await expect(page.getByTestId("news-media-only-card")).toHaveCount(0);
+
+    await expect(
+      page.locator('[data-testid^="news-card-"]').getByRole("button"),
+    ).toHaveCount(0);
+    await expect(page.getByText(/^\d+ Foto$/)).toHaveCount(0);
+    await expect(page.getByText(/· Foto/)).toHaveCount(0);
     await expect(page.getByText(/Menyusul/)).toHaveCount(0);
 
     await expect(page.getByText(/Total 5 berita dipublikasikan/)).toBeVisible();
     await expect(page.getByRole("link", { name: "Halaman 2" })).toBeVisible();
+  });
+
+  test("clicking a card navigates to its article", async ({ page }) => {
+    await page.goto("/berita");
+
+    await page.getByTestId("news-card-explore-kipk-2026").click();
+
+    await expect(page).toHaveURL(/\/berita\/explore-kipk-2026$/);
+    await expect(
+      page.getByRole("heading", { level: 1, name: "Explore KIPK 2026" }),
+    ).toBeVisible();
   });
 
   test("renders page 2 via ?halaman=2 with supplied cards", async ({
@@ -65,23 +87,28 @@ test.describe("Berita page", () => {
     ).toBeVisible();
 
     const snbp = page.getByTestId("news-card-verifikasi-kipk-snbp");
+    await expect(snbp).toHaveAttribute("href", "/berita/verifikasi-kipk-snbp");
     await expect(snbp.getByText("Diupload pada: 8 April 2026")).toBeVisible();
-    await expect(snbp.getByText("4 Foto")).toBeVisible();
     await expect(
-      snbp.getByText(
-        "Dokumentasi verifikasi berkas KIP Kuliah jalur SNBP 2026.",
-      ),
+      snbp.getByRole("img", {
+        name: "Foto Dokumentasi verifikasi berkas KIP Kuliah jalur SNBP 2026. (placeholder)",
+      }),
     ).toBeVisible();
     await expect(
       snbp.getByText(/Pengelola KIP Kuliah UNJ melaksanakan verifikasi berkas/),
     ).toBeVisible();
 
     const gelar = page.getByTestId("news-card-gelar-kipk");
+    await expect(gelar).toHaveAttribute("href", "/berita/gelar-kipk");
     await expect(gelar.getByText(/Diupload pada:/)).toHaveCount(0);
-    await expect(gelar.getByText("4 Foto")).toBeVisible();
-    await expect(gelar.getByText("Dokumentasi Gelar KIPK 2026.")).toBeVisible();
+    await expect(
+      gelar.getByRole("img", {
+        name: "Foto Dokumentasi Gelar KIPK 2026. (placeholder)",
+      }),
+    ).toBeVisible();
     await expect(page.getByText(/Menyusul/)).toHaveCount(0);
-    await expect(page.getByTestId("news-media-only-card")).toHaveCount(0);
+    await expect(page.getByText(/^\d+ Foto$/)).toHaveCount(0);
+    await expect(page.getByText(/· Foto/)).toHaveCount(0);
 
     await expect(page.getByText(/Total 5 berita dipublikasikan/)).toBeVisible();
     await expect(
