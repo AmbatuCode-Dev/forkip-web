@@ -59,8 +59,8 @@ export function SiteFooter() {
   return (
     <footer className="bg-surface-100">
       <div className="mx-auto w-full max-w-300 px-4 pt-20 pb-9 sm:px-6 xl:px-0">
-        <div className="flex flex-col gap-12 md:flex-row md:gap-14">
-          <div className="flex w-full flex-col md:w-85 md:shrink-0">
+        <div className="flex flex-col gap-12 lg:flex-row lg:gap-14">
+          <div className="flex w-full flex-col lg:w-85 lg:shrink-0">
             <div className="flex items-center gap-2.5">
               <Image
                 src="/images/logo-mark.svg"

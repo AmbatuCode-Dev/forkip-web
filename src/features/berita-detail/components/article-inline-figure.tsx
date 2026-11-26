@@ -22,7 +22,7 @@ export function ArticleInlineFigure({
           variant={((figure.position % 3) + 1) as 1 | 2 | 3}
           width={640}
           height={300}
-          className="h-75 w-full rounded-2xl"
+          className="h-56 w-full rounded-2xl sm:h-75"
         />
         <span className="absolute top-4 left-4 inline-flex items-center rounded-full bg-slate px-3 py-1.5 text-sm text-white shadow-xs">
           {figure.badge}

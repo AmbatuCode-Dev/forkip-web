@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDownSmall } from "@coolicons/react";
+import { ChevronDownSmall, Menu, X } from "@coolicons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -109,6 +109,139 @@ const navEntries: readonly NavEntry[] = [
   { kind: "link", label: "Berita", href: "/berita" },
 ];
 
+/**
+ * Compact disclosure for < lg. Kept as its own client component so the
+ * interactive state stays isolated from the rest of the header. Every desktop
+ * route and the CTA are reachable here; the panel is hidden from the
+ * accessibility tree until the toggle opens it.
+ */
+function MobileNav({
+  pathname,
+  overHero,
+  focusRing,
+}: {
+  readonly pathname: string;
+  readonly overHero: boolean;
+  readonly focusRing: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
+  const lastPathnameRef = useRef(pathname);
+
+  // A route change always collapses the disclosure.
+  useEffect(() => {
+    if (lastPathnameRef.current !== pathname) {
+      lastPathnameRef.current = pathname;
+      setOpen(false);
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    const handleMouseDown = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (panelRef.current?.contains(target)) return;
+      if (toggleRef.current?.contains(target)) return;
+      setOpen(false);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleMouseDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleMouseDown);
+    };
+  }, [open]);
+
+  return (
+    <>
+      <button
+        ref={toggleRef}
+        type="button"
+        aria-expanded={open}
+        aria-controls="mobile-navigation"
+        aria-label={open ? "Tutup navigasi" : "Buka navigasi"}
+        onClick={() => setOpen((value) => !value)}
+        className={cn(
+          "inline-flex size-10 shrink-0 items-center justify-center rounded-lg border lg:hidden",
+          overHero
+            ? "border-white/40 text-white"
+            : "border-border-sand text-ink",
+          focusRing,
+        )}
+      >
+        {open ? (
+          <X size={20} aria-hidden="true" />
+        ) : (
+          <Menu size={20} aria-hidden="true" />
+        )}
+      </button>
+      <nav
+        id="mobile-navigation"
+        ref={panelRef}
+        aria-label="Navigasi seluler"
+        hidden={!open}
+        className="absolute inset-x-0 top-full z-50 max-h-nav-panel overflow-y-auto border-t border-border-sand bg-white px-4 py-5 shadow-dropdown sm:px-6 lg:hidden"
+      >
+        <ul className="flex flex-col">
+          {navEntries.map((entry) =>
+            entry.kind === "link" ? (
+              <li key={entry.href}>
+                <Link
+                  href={entry.href}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-lg px-3 py-2.5 text-base font-medium text-ink transition-colors hover:bg-surface-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                >
+                  {entry.label}
+                </Link>
+              </li>
+            ) : (
+              <li key={entry.id} className="mt-2">
+                <p className="px-3 text-xs font-semibold tracking-wide12 text-body-muted uppercase">
+                  {entry.label}
+                </p>
+                <ul className="mt-1 flex flex-col">
+                  {entry.items.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className="block rounded-lg px-3 py-2 text-sm font-medium text-body transition-colors hover:bg-surface-50 hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                      >
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ),
+          )}
+        </ul>
+        <Link
+          href="/pertanyaan-pengaduan"
+          onClick={() => setOpen(false)}
+          className={cn(
+            buttonVariants({ variant: "gold", size: "cta" }),
+            "mt-5 w-full justify-center",
+            focusRing,
+          )}
+        >
+          Pertanyaan &amp; Pengaduan
+        </Link>
+      </nav>
+    </>
+  );
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState<DropdownId | null>(null);
@@ -213,7 +346,7 @@ export function SiteHeader() {
         overHero ? "bg-transparent" : "bg-white",
       )}
     >
-      <div className="mx-auto flex h-18 w-full max-w-300 items-center justify-between gap-6 px-4 sm:px-6 xl:px-0">
+      <div className="relative mx-auto flex h-18 w-full max-w-300 items-center justify-between gap-6 px-4 sm:px-6 xl:px-0">
         <Link
           href="/"
           onClick={closeMenu}
@@ -232,7 +365,7 @@ export function SiteHeader() {
           />
           <span
             className={cn(
-              "text-lg font-extrabold tracking-t04 max-sm:hidden",
+              "hidden text-lg font-extrabold tracking-t04 sm:inline",
               overHero ? "text-white" : "text-ink",
             )}
           >
@@ -242,7 +375,7 @@ export function SiteHeader() {
 
         <nav
           aria-label="Navigasi utama"
-          className="hidden items-center gap-7 lg:flex"
+          className="hidden items-center gap-4 lg:flex xl:gap-7"
         >
           {navEntries.map((entry) =>
             entry.kind === "link" ? (
@@ -322,17 +455,25 @@ export function SiteHeader() {
           )}
         </nav>
 
-        <Link
-          href="/pertanyaan-pengaduan"
-          onClick={closeMenu}
-          className={cn(
-            buttonVariants({ variant: "gold", size: "cta" }),
-            "h-11.25 py-3.25",
-            focusRing,
-          )}
-        >
-          Pertanyaan &amp; Pengaduan
-        </Link>
+        <div className="hidden lg:block">
+          <Link
+            href="/pertanyaan-pengaduan"
+            onClick={closeMenu}
+            className={cn(
+              buttonVariants({ variant: "gold", size: "cta" }),
+              "h-11.25 py-3.25",
+              focusRing,
+            )}
+          >
+            Pertanyaan &amp; Pengaduan
+          </Link>
+        </div>
+
+        <MobileNav
+          pathname={pathname}
+          overHero={overHero}
+          focusRing={focusRing}
+        />
       </div>
     </header>
   );

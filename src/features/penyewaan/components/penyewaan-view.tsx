@@ -36,7 +36,7 @@ export function PenyewaanView() {
         <section
           aria-label="Catatan penyewaan"
           data-reveal-item
-          className="flex flex-col gap-4 rounded-14 bg-gold-pale py-6 pr-12 pl-7.5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+          className="flex flex-col gap-4 rounded-14 bg-gold-pale px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:pr-12 sm:pl-7.5"
         >
           <p className="max-w-200 text-base leading-6 font-medium text-ink-soft">
             {penyewaanCopy.note}
@@ -75,7 +75,7 @@ export function PenyewaanView() {
             <iframe
               title={googleFormEmbed.title}
               src={googleFormEmbed.embedUrl}
-              className="h-140 w-full border-0"
+              className="h-100 w-full border-0 sm:h-140"
               loading="lazy"
             />
           ) : null}

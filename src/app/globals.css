@@ -258,6 +258,12 @@
   max-height: 46svh;
 }
 
+/* Mobile nav disclosure: leave room for the 4.5rem sticky header while the
+   panel scrolls on short viewports. */
+@utility max-h-nav-panel {
+  max-height: calc(100svh - 4.5rem);
+}
+
 /* HeroMotion ships `data-motion="pending"` in its SSR markup. Hide the
    authored copy until its effect installs the GSAP `from` tween, otherwise
    the opaque first paint flashes, snaps to opacity 0 and animates again.

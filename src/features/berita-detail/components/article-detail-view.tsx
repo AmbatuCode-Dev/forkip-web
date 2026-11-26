@@ -16,7 +16,7 @@ export function ArticleDetailView({
   readonly article: ArticleDetailContent;
 }) {
   return (
-    <div className="mx-auto w-full max-w-300 px-4 pt-56 pb-96 sm:px-6 xl:px-0">
+    <div className="mx-auto w-full max-w-300 px-4 pt-12 pb-20 sm:px-6 sm:pt-16 sm:pb-32 md:pt-24 lg:pt-56 lg:pb-96 xl:px-0">
       <div className="flex flex-col gap-8">
         <ArticleBreadcrumb title={article.title} />
 
@@ -27,13 +27,10 @@ export function ArticleDetailView({
           <span className="inline-flex items-center rounded-full bg-gold-soft px-3 py-1.5 text-xs font-bold text-gold-ink">
             Berita
           </span>
-          <h1 className="text-5xl leading-15 font-extrabold tracking-t05 text-ink">
+          <h1 className="text-3xl leading-10 font-extrabold tracking-t05 text-ink sm:text-4xl sm:leading-12 lg:text-5xl lg:leading-15">
             {article.title}
           </h1>
-          <p
-            className="max-w-160 text-xl font-medium text-body"
-            style={{ lineHeight: "30px" }}
-          >
+          <p className="max-w-160 text-lg leading-7 font-medium text-body sm:text-xl sm:leading-7.5">
             {article.subtitle}
           </p>
           <div className="flex flex-wrap items-center gap-3 text-sm text-body-muted">
@@ -58,7 +55,9 @@ export function ArticleDetailView({
         <div className="flex max-w-180 flex-col gap-8">
           {article.paragraphs.map((paragraph, index) => (
             <div key={paragraph.slice(0, 48)} className="flex flex-col gap-8">
-              <p className="text-lg leading-8 text-body">{paragraph}</p>
+              <p className="text-base leading-7 text-body sm:text-lg sm:leading-8">
+                {paragraph}
+              </p>
               {article.figures[index] ? (
                 <ArticleInlineFigure figure={article.figures[index]} />
               ) : null}

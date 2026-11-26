@@ -22,13 +22,13 @@ export function PengumumanCard({
         variant={variant}
         width={640}
         height={260}
-        className="h-65 w-full rounded-none"
+        className="h-56 w-full rounded-none sm:h-65"
       />
       <div className="flex flex-col gap-4 p-6 sm:p-8">
         <span className="inline-flex self-start rounded-full bg-gold-pale px-3 py-1.5 text-xs font-semibold text-gold-ink">
           {pengumuman.tag}
         </span>
-        <h2 className="text-3xl leading-10 font-bold text-ink">
+        <h2 className="text-2xl leading-8 font-bold text-ink sm:text-3xl sm:leading-10">
           {pengumuman.title}
         </h2>
 

@@ -68,7 +68,7 @@ export function PertanyaanPengaduanView() {
                 <a
                   href={WHATSAPP_HREF}
                   className={cn(
-                    "flex min-h-18.5 items-center justify-between gap-6 rounded-10 px-5 py-3 transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none",
+                    "flex min-h-18.5 flex-col items-start justify-center gap-3 rounded-10 px-5 py-3 transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none sm:flex-row sm:items-center sm:justify-between sm:gap-6",
                     faculty.outline
                       ? "border border-teal bg-white text-ink"
                       : "border border-transparent text-white",

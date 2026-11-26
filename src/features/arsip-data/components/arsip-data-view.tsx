@@ -52,13 +52,13 @@ export function ArsipDataView() {
               <li
                 key={division.number}
                 data-reveal-item
-                className="flex min-h-24 items-center justify-between gap-6 border-b border-border-sand"
+                className="flex min-h-24 flex-col items-start justify-center gap-3 border-b border-border-sand py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:py-0"
               >
                 <div className="flex min-w-0 items-baseline gap-4 sm:gap-6">
                   <span className="w-8 shrink-0 text-sm text-body-muted tabular-nums">
                     {division.number}
                   </span>
-                  <span className="text-xl leading-8 font-bold tracking-wide text-ink uppercase">
+                  <span className="text-lg leading-7 font-bold tracking-wide break-words text-ink uppercase sm:text-xl sm:leading-8">
                     {division.name}
                   </span>
                 </div>

@@ -8,16 +8,16 @@ import type { NewsPost } from "../types";
  */
 export function BeritaNewsCard({ post }: { readonly post: NewsPost }) {
   const titleClass =
-    "text-3xl leading-9 font-extrabold tracking-tight text-ink";
+    "text-2xl leading-8 font-extrabold tracking-tight text-ink sm:text-3xl sm:leading-9";
 
   return (
-    <article className="h-96 overflow-hidden border-b border-border-sand pb-10">
+    <article className="overflow-hidden border-b border-border-sand pb-10 lg:h-96">
       <Link
         href={`/berita/${post.slug}`}
         data-testid={`news-card-${post.slug}`}
-        className="grid h-full grid-cols-1 gap-8 lg:cols-580 lg:gap-12"
+        className="grid grid-cols-1 gap-8 lg:h-full lg:cols-580 lg:gap-12"
       >
-        <div className="relative h-full min-h-48 overflow-hidden rounded-2xl border border-border-sand bg-surface-100">
+        <div className="relative h-56 overflow-hidden rounded-2xl border border-border-sand bg-surface-100 sm:h-72 lg:h-full lg:min-h-48">
           <PlaceholdImage
             label={post.gallery?.caption ?? post.title}
             width={640}

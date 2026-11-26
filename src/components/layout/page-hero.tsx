@@ -73,7 +73,7 @@ export function PageHero({
         height={258}
         unoptimized
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 right-0 h-full w-140 object-cover opacity-10"
+        className="pointer-events-none absolute inset-y-0 right-0 h-full w-80 object-cover opacity-10 sm:w-140"
       />
       <div className="relative mx-auto flex w-full max-w-300 flex-col gap-3 px-4 py-16 sm:px-6 xl:px-0">
         <nav aria-label="Breadcrumb" data-hero-reveal>

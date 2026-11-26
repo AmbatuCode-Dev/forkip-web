@@ -50,9 +50,9 @@ export function DivisiAccordion({
         aria-controls={regionId}
         id={headingId}
         onClick={() => setExpanded((value) => !value)}
-        className="flex h-26 w-full cursor-pointer items-center justify-between gap-6 px-4 text-left focus-visible:ring-2 focus-visible:ring-gold-ink focus-visible:outline-none sm:px-6"
+        className="flex h-26 w-full cursor-pointer items-center justify-between gap-3 px-4 text-left focus-visible:ring-2 focus-visible:ring-gold-ink focus-visible:outline-none sm:gap-6 sm:px-6"
       >
-        <span className="flex min-w-0 items-center gap-6">
+        <span className="flex min-w-0 items-center gap-3 sm:gap-6">
           {imageLabel ? (
             <PlaceholdImage
               label={imageLabel}

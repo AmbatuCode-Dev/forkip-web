@@ -66,7 +66,7 @@ export function AlurPengunduranDiriCard() {
       </h2>
 
       <div className="rounded-2xl border border-border-sand bg-white p-5 sm:p-8">
-        <div className="rounded-2xl bg-cream px-4 py-16 sm:px-8">
+        <div className="rounded-2xl bg-cream px-4 py-10 sm:px-8 sm:py-16">
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:justify-start sm:gap-8">
             <KipkMark />
             <p className="relative rounded-2xl bg-navy px-5 py-10 text-center text-clamp-hero leading-tight font-extrabold tracking-tight text-white shadow-stamp-6 sm:px-12">
@@ -74,14 +74,14 @@ export function AlurPengunduranDiriCard() {
             </p>
           </div>
 
-          <ol className="relative mt-24 grid grid-cols-2 gap-x-3 gap-y-32 lg:grid-cols-4 lg:gap-x-6">
+          <ol className="relative mt-10 grid grid-cols-2 gap-x-3 gap-y-10 sm:mt-16 sm:gap-y-14 lg:mt-24 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-32">
             {alurSteps.map((item) => (
               <li
                 key={item.step}
                 className={`relative flex flex-col items-center text-center ${STEP_POSITION[item.step]}`}
               >
                 <AlurStepIcon icon={item.icon} className="size-24 sm:size-28" />
-                <p className="mt-8 w-full rounded-xl bg-navy px-3 py-9 text-sm leading-snug font-bold text-white shadow-stamp-4 sm:text-base">
+                <p className="mt-6 w-full rounded-xl bg-navy px-3 py-6 text-sm leading-snug font-bold text-white shadow-stamp-4 sm:mt-8 sm:py-9 sm:text-base">
                   {item.title}
                 </p>
                 {item.step <= 3 ? (

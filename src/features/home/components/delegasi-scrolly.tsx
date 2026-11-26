@@ -49,6 +49,10 @@ const TIMELINE_DURATION = FIRST_LEVEL_TIME + LEVEL_DURATION * LEVELS.length;
 /** Pin length in viewport heights — generous scroll budget for the ink & paper beats. */
 const PIN_VIEWPORTS = 3.5;
 
+/** The scrubbed pin is a desktop-only moment; mobile stays a plain stack. */
+const PIN_QUERY =
+  "(min-width: 1024px) and (prefers-reduced-motion: no-preference)";
+
 const LEFT_CODES = ["FBS", "FIKK", "FEB", "FIP"] as const;
 const RIGHT_CODES = ["FT", "FPsi", "FMIPA", "FISH"] as const;
 const MOBILE_CODES = [
@@ -259,15 +263,27 @@ export function DelegasiScrolly() {
   const activeRef = useRef<string | null>(null);
   const [activeCode, setActiveCode] = useState<string | null>(null);
 
+  // Leader lines only exist in the pinned desktop stage; below lg the section
+  // is a plain stack, so skip the JS measurement entirely there.
   useEffect(() => {
     const grid = gridRef.current;
     const leaderSvg = leaderSvgRef.current;
-    if (!grid || !leaderSvg) return;
+    if (!grid || !leaderSvg || typeof window.matchMedia !== "function") return;
 
-    const syncLeaders = () => updateLeaderGeometry(grid, leaderSvg);
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const syncLeaders = () => {
+      if (desktop.matches) updateLeaderGeometry(grid, leaderSvg);
+    };
     syncLeaders();
-    window.addEventListener("resize", syncLeaders);
-    return () => window.removeEventListener("resize", syncLeaders);
+
+    if (typeof desktop.addEventListener === "function") {
+      desktop.addEventListener("change", syncLeaders);
+      return () => desktop.removeEventListener("change", syncLeaders);
+    }
+    if (typeof desktop.addListener === "function") {
+      desktop.addListener(syncLeaders);
+      return () => desktop.removeListener(syncLeaders);
+    }
   }, []);
 
   useEffect(() => {
@@ -281,7 +297,7 @@ export function DelegasiScrolly() {
 
     const media = gsap.matchMedia();
 
-    media.add("(prefers-reduced-motion: no-preference)", () => {
+    media.add(PIN_QUERY, () => {
       let traceGroup: SVGGElement | null = null;
       logoRef.current?.setAttribute("data-state", "building");
 
@@ -587,7 +603,7 @@ export function DelegasiScrolly() {
     <div ref={rootRef} data-testid="delegasi-scrolly" className="relative">
       <div
         ref={stageRef}
-        className="relative z-0 flex h-svh w-full flex-col justify-center gap-10 overflow-hidden bg-surface-100 px-4 pt-16 pb-4 sm:gap-16 sm:px-6 sm:pt-20 sm:pb-6 lg:gap-20"
+        className="relative z-0 flex w-full flex-col justify-center gap-10 overflow-hidden bg-surface-100 px-4 pt-16 pb-4 sm:gap-16 sm:px-6 sm:pt-20 sm:pb-6 lg:h-svh lg:gap-20"
       >
         {/* Procedural archival paper grain + ink SVG filters */}
         <svg

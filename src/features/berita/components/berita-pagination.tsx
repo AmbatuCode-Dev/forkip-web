@@ -47,7 +47,7 @@ export function BeritaPagination({
           — Total {totalItems} berita dipublikasikan
         </p>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-end gap-2">
         {prevDisabled ? (
           <span
             aria-disabled="true"

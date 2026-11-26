@@ -22,7 +22,7 @@ export function BeritaNewsList({
   return (
     <section
       aria-labelledby="berita-list-heading"
-      className="-mx-4 flex flex-col gap-10 sm:-mx-6"
+      className="-mx-4 flex flex-col gap-10 sm:-mx-6 xl:mx-0"
     >
       <h2 id="berita-list-heading" className="sr-only">
         Daftar berita

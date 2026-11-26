@@ -52,7 +52,7 @@ export function HeroSection() {
 
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-hero-scrim max-sm:bg-hero-scrim-mobile"
+          className="absolute inset-0 bg-hero-scrim-mobile sm:bg-hero-scrim"
         />
 
         <div className="relative mx-auto flex min-h-svh w-full max-w-300 flex-col px-4 pt-24 pb-10 sm:px-6 sm:pt-28 lg:pt-32 xl:px-0">
