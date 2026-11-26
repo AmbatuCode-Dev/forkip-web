@@ -242,6 +242,13 @@
   transition-property: grid-template-rows, opacity, visibility;
 }
 
+/* Mobile nav disclosure: opacity + translate make it drop in from under the
+   sticky header. Keeping visibility in the transition delays the hide until
+   the fade finishes; motion-reduce:transition-none switches that off. */
+@utility transition-nav-panel {
+  transition-property: opacity, translate, visibility;
+}
+
 @utility grid-rows-1fr {
   grid-template-rows: 1fr;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDownSmall, Menu, X } from "@coolicons/react";
+import { ChevronDownSmall, Close, Menu } from "@coolicons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -180,17 +180,26 @@ function MobileNav({
         )}
       >
         {open ? (
-          <X size={20} aria-hidden="true" />
+          <Close size={20} aria-hidden="true" />
         ) : (
           <Menu size={20} aria-hidden="true" />
         )}
       </button>
+      {/* Keep the panel mounted so it can animate; inert + aria-hidden make the
+          collapsed state non-interactive and invisible to assistive tech. */}
       <nav
         id="mobile-navigation"
         ref={panelRef}
         aria-label="Navigasi seluler"
-        hidden={!open}
-        className="absolute inset-x-0 top-full z-50 max-h-nav-panel overflow-y-auto border-t border-border-sand bg-white px-4 py-5 shadow-dropdown sm:px-6 lg:hidden"
+        aria-hidden={!open}
+        inert={!open}
+        className={cn(
+          "absolute inset-x-0 top-full z-50 max-h-nav-panel overflow-y-auto border-t border-border-sand bg-white px-4 py-5 shadow-dropdown sm:px-6 lg:hidden",
+          "transition-nav-panel duration-200 ease-out motion-reduce:transition-none",
+          open
+            ? "visible translate-y-0 opacity-100"
+            : "invisible -translate-y-2 opacity-0",
+        )}
       >
         <ul className="flex flex-col">
           {navEntries.map((entry) =>
