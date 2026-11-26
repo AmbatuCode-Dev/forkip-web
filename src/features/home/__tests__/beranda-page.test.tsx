@@ -189,5 +189,19 @@ describe("BerandaPage", () => {
     expect(
       screen.getByRole("link", { name: "Lihat semua Berita" }),
     ).toHaveAttribute("href", "/berita");
+
+    // The feature card and each teaser link straight to their Berita article
+    // via the slug carried in the home data (no title-to-slug lookup table).
+    const bacaLinks = screen.getAllByRole("link", {
+      name: "Baca selengkapnya",
+    });
+    expect(bacaLinks).toHaveLength(5);
+    expect(bacaLinks.map((link) => link.getAttribute("href"))).toEqual([
+      "/berita/explore-kipk-2026",
+      "/berita/pelatihan-divisi-kif",
+      "/berita/busamakip",
+      "/berita/verifikasi-kipk-snbp",
+      "/berita/gelar-kipk",
+    ]);
   });
 });

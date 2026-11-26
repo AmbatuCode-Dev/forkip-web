@@ -8,14 +8,6 @@ import { NewsMediaPlaceholder } from "@/components/berita/news-media-placeholder
 import { beritaMarqueeItems, beritaSection } from "../data";
 import { useSectionReveal } from "./use-section-reveal";
 
-const BERITA_SLUG_BY_TITLE: Record<string, string> = {
-  "Explore KIPK 2026": "explore-kipk-2026",
-  "Pelatihan Divisi KIF": "pelatihan-divisi-kif",
-  BUSAMAKIP: "busamakip",
-  "Verifikasi KIPK SNBP": "verifikasi-kipk-snbp",
-  "Gelar KIPK": "gelar-kipk",
-};
-
 /**
  * Berita Forkip UNJ (spec §8): shared NewsMarquee + "Ringkasan berita" split
  * (feature card left, editorial rows right) + CTA row.
@@ -61,7 +53,7 @@ export function BeritaSection() {
               {beritaSection.feature.summary}
             </p>
             <Link
-              href={`/berita/${BERITA_SLUG_BY_TITLE[beritaSection.feature.title] ?? ""}`}
+              href={`/berita/${beritaSection.feature.slug}`}
               className="group mt-auto inline-flex items-center gap-2 self-start rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               Baca selengkapnya
@@ -87,7 +79,7 @@ export function BeritaSection() {
                     {teaser.summary}
                   </p>
                   <Link
-                    href={`/berita/${BERITA_SLUG_BY_TITLE[teaser.title] ?? ""}`}
+                    href={`/berita/${teaser.slug}`}
                     className="group mt-3 inline-flex items-center gap-2 rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     Baca selengkapnya

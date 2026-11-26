@@ -284,32 +284,37 @@ export const beritaSection = {
     "Halaman ini dikelola oleh divisi Humas Forkip UNJ sebagai sarana berbagi informasi, dan transparansi laporan kegiatan yang dilakukan oleh Forkip UNJ",
   feature: {
     title: "Explore KIPK 2026",
+    slug: "explore-kipk-2026",
     summary:
       "Pada 12 Februari 2026, FORKIP UNJ menyelenggarakan Explore KIPK 2026 untuk memperkenalkan program Kartu Indonesia Pintar Kuliah (KIP-K) kepada peserta dari berbagai sekolah di Jakarta dan sekitarnya.",
     photoLabel: "Explore KIPK 2026",
-  } as NewsFeature,
+  } as NewsFeature & { readonly slug: string },
   teasers: [
     {
       title: "Pelatihan Divisi KIF",
+      slug: "pelatihan-divisi-kif",
       summary:
         "FORKIP UNJ mengadakan Pelatihan Divisi KIF pada 21 Februari 2026. Kegiatan ini membekali staf dengan pemahaman tentang tugas Koordinator Integrasi Fakultas dan perannya dalam kepengurusan forum.",
     },
     {
       title: "BUSAMAKIP",
+      slug: "busamakip",
       summary:
         "Pada 5 Maret 2026, FORKIP UNJ menggelar BUSAMAKIP, kegiatan buka puasa bersama mahasiswa penerima KIP Kuliah. Acara berlangsung di Aula Bung Hatta, lantai 2 Gedung Pascasarjana UNJ.",
     },
     {
       title: "Verifikasi KIPK SNBP",
+      slug: "verifikasi-kipk-snbp",
       summary:
         "Pengelola KIP Kuliah UNJ melaksanakan verifikasi berkas calon penerima KIP Kuliah jalur Seleksi Nasional Berdasarkan Prestasi (SNBP) pada 6–10 April 2026. Verifikasi berlangsung di Aula Latief Hendraningrat, Gedung Dewi Sartika, Kampus A UNJ.",
     },
     {
       title: "Gelar KIPK",
+      slug: "gelar-kipk",
       summary:
         "Pada 4 April 2026, FORKIP UNJ menyelenggarakan Gelar KIPK sebagai ruang bagi mahasiswa untuk mengembangkan keterampilan kreatif dan digital. Sesi berbagi membahas fotografi digital, desain dengan Canva, dan pemanfaatan kecerdasan buatan (AI).",
     },
-  ] as readonly NewsTeaser[],
+  ] as readonly (NewsTeaser & { readonly slug: string })[],
   ctaLabel: "Laporan kegiatan Forkip UNJ",
   ctaButton: "Lihat semua Berita",
   ctaHref: "/berita",
