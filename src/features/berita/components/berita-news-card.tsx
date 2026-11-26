@@ -7,10 +7,7 @@ import type { NewsPost } from "../types";
  * The whole card is a single link to its article page.
  */
 export function BeritaNewsCard({ post }: { readonly post: NewsPost }) {
-  const titleClass =
-    post.slug === "explore-kipk-2026"
-      ? "text-38 leading-12 font-extrabold tracking-tight text-ink"
-      : "text-28 leading-9 font-extrabold tracking-tight text-ink";
+  const titleClass = "text-28 leading-9 font-extrabold tracking-tight text-ink";
 
   return (
     <article className="h-96 overflow-hidden border-b border-border-sand pb-10">
@@ -32,7 +29,7 @@ export function BeritaNewsCard({ post }: { readonly post: NewsPost }) {
           <div className="space-y-2">
             <h3 className={titleClass}>{post.title}</h3>
             {post.uploadedLabel ? (
-              <p className="text-12 text-body-muted">
+              <p className="text-10 text-body-muted">
                 Diupload pada: {post.uploadedLabel}
               </p>
             ) : null}
