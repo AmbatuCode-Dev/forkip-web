@@ -1,5 +1,4 @@
 import { getNewsPage, totalNewsPages } from "../data/news-posts";
-import { BERITA_PAGE_SIZE } from "../types";
 import { BeritaNewsList } from "./berita-news-list";
 
 /**
@@ -28,5 +27,3 @@ export async function BeritaNewsSection({
     />
   );
 }
-
-export { BERITA_PAGE_SIZE };

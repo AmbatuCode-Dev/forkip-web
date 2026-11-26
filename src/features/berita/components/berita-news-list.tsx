@@ -2,14 +2,6 @@ import { newsPosts } from "../data/news-posts";
 import type { NewsPost } from "../types";
 import { BeritaNewsCard } from "./berita-news-card";
 import { BeritaPagination } from "./berita-pagination";
-import { NewsMediaOnlyCard } from "./news-media-only-card";
-
-function NewsListItem({ post }: { post: NewsPost }) {
-  if (post.mediaOnly) {
-    return <NewsMediaOnlyCard post={post} />;
-  }
-  return <BeritaNewsCard post={post} />;
-}
 
 export interface BeritaNewsListProps {
   readonly page: number;
@@ -37,7 +29,7 @@ export function BeritaNewsList({
       </h2>
       <div className="flex flex-col gap-12">
         {posts.map((post) => (
-          <NewsListItem key={post.slug} post={post} />
+          <BeritaNewsCard key={post.slug} post={post} />
         ))}
       </div>
       <BeritaPagination

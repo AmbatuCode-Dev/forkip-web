@@ -11,7 +11,6 @@ export const newsPosts: readonly NewsPost[] = [
     title: "Explore KIPK 2026",
     uploadedLabel: "18 Februari 2026",
     photoCount: 1,
-    mediaOnly: false,
     page: 1,
     gallery: {
       caption: "Dokumentasi sosialisasi Explore KIPK 2026.",
@@ -27,7 +26,6 @@ export const newsPosts: readonly NewsPost[] = [
     title: "Pelatihan Divisi KIF",
     uploadedLabel: "22 Februari 2026",
     photoCount: 4,
-    mediaOnly: false,
     page: 1,
     gallery: {
       caption: "Dokumentasi Pelatihan Divisi KIF 2026.",
@@ -41,7 +39,6 @@ export const newsPosts: readonly NewsPost[] = [
     slug: "busamakip",
     title: "BUSAMAKIP",
     photoCount: 3,
-    mediaOnly: false,
     page: 1,
     gallery: {
       caption: "Dokumentasi buka puasa bersama mahasiswa KIP Kuliah UNJ.",
@@ -56,7 +53,6 @@ export const newsPosts: readonly NewsPost[] = [
     title: "Verifikasi KIPK SNBP",
     uploadedLabel: "8 April 2026",
     photoCount: 4,
-    mediaOnly: false,
     page: 2,
     gallery: {
       caption: "Dokumentasi verifikasi berkas KIP Kuliah jalur SNBP 2026.",
@@ -70,7 +66,6 @@ export const newsPosts: readonly NewsPost[] = [
     slug: "gelar-kipk",
     title: "Gelar KIPK",
     photoCount: 4,
-    mediaOnly: false,
     page: 2,
     gallery: {
       caption: "Dokumentasi Gelar KIPK 2026.",
