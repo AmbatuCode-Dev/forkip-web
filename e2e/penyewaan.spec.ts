@@ -6,6 +6,17 @@ const ADMIN_2_URL = "https://wa.me/6281945811412";
 const FORM_EMBED_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLScfwQjAb9KO5YMIcz4MHXrEwkvF0VTSavvLqS9CpEl5jSgpZg/viewform?embedded=true";
 
+const AVAILABILITY = "Hubungi admin BKK untuk mengetahui ketersediaan barang.";
+const FOOTNOTE =
+  "Foto merupakan ilustrasi. Hubungi admin BKK untuk detail barang.";
+const HT_PARAGRAPH =
+  "Radio dua arah (HT) untuk koordinasi tim selama kegiatan. Perangkat mendukung beberapa kanal komunikasi dan dilengkapi earpiece.";
+const SPEAKER_PARAGRAPH =
+  "Pengeras suara dan mikrofon untuk mendukung kegiatan di dalam maupun di luar ruangan.";
+
+const joinedBody = (paragraph: string) =>
+  `${AVAILABILITY} ${paragraph} ${FOOTNOTE}`;
+
 test.describe("Penyewaan page", () => {
   test("loads with hero, admin links, embedded form, inventory and footer", async ({
     page,
@@ -41,7 +52,9 @@ test.describe("Penyewaan page", () => {
       page.getByRole("link", { name: "Admin BKK 2" }),
     ).toHaveAttribute("href", ADMIN_2_URL);
 
-    await expect(page.getByText("GOOGLE FORM TERTANAM")).toBeVisible();
+    await expect(
+      page.getByText("GOOGLE FORM TERTANAM", { exact: true }),
+    ).toHaveCount(0);
     await expect(
       page.getByRole("heading", {
         name: "Peminjaman Barang Forkip UNJ 2026",
@@ -65,11 +78,26 @@ test.describe("Penyewaan page", () => {
         page.getByRole("button", { name: new RegExp(title) }),
       ).toBeVisible();
     }
+    for (const label of [
+      "Placeholder ilustrasi Handy Talky",
+      "Placeholder ilustrasi Speaker dan Mic",
+      "Placeholder ilustrasi Kompor Portable",
+      "Placeholder ilustrasi Nesting",
+      "Placeholder ilustrasi Proyektor",
+    ]) {
+      const images = page.getByRole("img", {
+        name: `Foto ${label} (placeholder)`,
+      });
+      await expect(images).toHaveCount(
+        label === "Placeholder ilustrasi Handy Talky" ? 2 : 1,
+      );
+      await expect(images.last()).toBeVisible();
+    }
     await expect(
-      page.getByRole("img", {
-        name: "Foto Placeholder ilustrasi Handy Talky (placeholder)",
-      }),
+      page.getByText(joinedBody(HT_PARAGRAPH)).first(),
     ).toBeVisible();
+    await expect(page.getByText(AVAILABILITY, { exact: true })).toHaveCount(0);
+    await expect(page.getByText(FOOTNOTE, { exact: true })).toHaveCount(0);
 
     await expect(
       page.getByRole("heading", { name: "Butuh info selengkapnya?" }),
@@ -95,16 +123,18 @@ test.describe("Penyewaan page", () => {
     const handyTalky = page.getByRole("button", { name: /Handy Talky/ });
     await expect(handyTalky).toHaveAttribute("aria-expanded", "true");
     await expect(
-      page.getByText(
-        "Radio dua arah (HT) untuk koordinasi tim selama kegiatan. Perangkat mendukung beberapa kanal komunikasi dan dilengkapi earpiece.",
-      ),
+      page.getByText(joinedBody(HT_PARAGRAPH)).first(),
     ).toBeVisible();
 
     const speaker = page.getByRole("button", { name: /Speaker dan Mic/ });
+    const speakerBody = joinedBody(SPEAKER_PARAGRAPH);
     await expect(speaker).toHaveAttribute("aria-expanded", "false");
+    await expect(page.getByText(speakerBody).first()).toBeHidden();
     await speaker.click();
     await expect(speaker).toHaveAttribute("aria-expanded", "true");
+    await expect(page.getByText(speakerBody).first()).toBeVisible();
     await speaker.click();
     await expect(speaker).toHaveAttribute("aria-expanded", "false");
+    await expect(page.getByText(speakerBody).first()).toBeHidden();
   });
 });

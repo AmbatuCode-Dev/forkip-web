@@ -15,7 +15,6 @@ export interface AdminContactLink {
 }
 
 export interface GoogleFormEmbed {
-  readonly label: string;
   readonly title: string;
   readonly url: string;
   readonly embedUrl: string;

@@ -30,7 +30,6 @@ export const adminContactLinks: readonly AdminContactLink[] = [
 ];
 
 export const googleFormEmbed: GoogleFormEmbed = {
-  label: "GOOGLE FORM TERTANAM",
   title: "Peminjaman Barang Forkip UNJ 2026",
   url: "https://docs.google.com/forms/d/e/1FAIpQLScfwQjAb9KO5YMIcz4MHXrEwkvF0VTSavvLqS9CpEl5jSgpZg/viewform",
   embedUrl:

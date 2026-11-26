@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { PageHero as SharedPageHero } from "@/components/layout/page-hero";
 import { buttonVariants } from "@/components/ui/button";
-import { InventarisAccordion } from "@/components/ui/inventaris-accordion";
+import { DivisiAccordion } from "@/components/ui/divisi-accordion";
 import { useSectionReveal } from "@/features/home";
 import { cn } from "@/utils/cn";
 import { isActionableHref } from "@/utils/is-actionable-href";
@@ -67,9 +67,6 @@ export function PenyewaanView() {
           className="flex flex-col gap-4 rounded-2xl border border-border-sand bg-white p-6"
         >
           <div className="text-center">
-            <p className="text-11 font-semibold tracking-wide12 text-body-muted uppercase">
-              {googleFormEmbed.label}
-            </p>
             <h2 className="text-15 font-semibold text-ink">
               {googleFormEmbed.title}
             </h2>
@@ -97,14 +94,14 @@ export function PenyewaanView() {
           </h2>
           <div className="flex flex-col gap-4">
             {inventarisItems.map((item) => (
-              <InventarisAccordion
+              <DivisiAccordion
                 key={item.title}
                 chip={item.chip}
                 imageLabel={item.imageLabel}
                 title={item.title}
-                meta={item.meta}
-                paragraphs={item.paragraphs}
-                footnote={item.footnote}
+                body={[item.meta, ...item.paragraphs, item.footnote]
+                  .filter(Boolean)
+                  .join(" ")}
                 defaultExpanded={item.defaultExpanded}
               />
             ))}
