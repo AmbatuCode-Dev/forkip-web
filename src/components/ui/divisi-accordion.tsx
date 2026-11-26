@@ -60,7 +60,7 @@ export function DivisiAccordion({
               height={64}
               className={cn(
                 "h-16 shrink-0 rounded object-cover transition-all duration-300 motion-reduce:transition-none",
-                expanded ? "w-0 opacity-0 -mr-6" : "w-24 opacity-100",
+                expanded ? "-mr-6 w-0 opacity-0" : "w-24 opacity-100",
               )}
             />
           ) : (
@@ -80,10 +80,10 @@ export function DivisiAccordion({
         aria-hidden={!expanded}
         style={{ visibility: expanded ? "visible" : "hidden" }}
         className={cn(
-          "grid transition-[grid-template-rows,opacity,visibility] duration-300 ease-out motion-reduce:transition-none",
+          "grid transition-accordion duration-300 ease-out motion-reduce:transition-none",
           expanded
-            ? "visible grid-rows-[1fr] opacity-100"
-            : "invisible grid-rows-[0fr] opacity-0",
+            ? "visible grid-rows-1fr opacity-100"
+            : "invisible grid-rows-0fr opacity-0",
         )}
       >
         <div className="overflow-hidden">

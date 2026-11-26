@@ -290,7 +290,7 @@ export function SiteHeader() {
                 {openMenu === entry.id ? (
                   <div
                     id={`${entry.id}-menu`}
-                    className="absolute top-full left-0 z-50 w-96 max-w-[calc(100vw-2rem)] rounded-18 border border-border-sand bg-white p-6 shadow-dropdown"
+                    className="absolute top-full left-0 z-50 w-96 max-w-viewport-inset rounded-18 border border-border-sand bg-white p-6 shadow-dropdown"
                   >
                     <p className="text-sm leading-5 font-semibold text-body-muted">
                       {entry.heading}

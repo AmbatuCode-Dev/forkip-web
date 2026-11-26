@@ -200,14 +200,14 @@ function TornPaperScrap({
       <div
         data-scrap-code={compact ? undefined : code}
         style={{ transform: `rotate(${rot}deg)` }}
-        className="drop-shadow-[0_3px_6px_rgba(45,35,20,0.12)]"
+        className="drop-shadow-scrap"
       >
         <div
           style={{ clipPath: clip }}
           className={cn(
-            "relative bg-[#FBF9F2] text-[#221E1A] transition-colors duration-200",
+            "relative bg-paper text-paper-ink transition-colors duration-200",
             compact ? "px-3 py-2" : "px-4 py-3",
-            isActive && "bg-[#FFFDF7]",
+            isActive && "bg-paper-raised",
           )}
         >
           <div
@@ -229,7 +229,7 @@ function TornPaperScrap({
           </div>
           <p
             className={cn(
-              "mt-0.5 text-xs leading-tight text-[#4D463D]",
+              "mt-0.5 text-xs leading-tight text-paper-muted",
               side === "left" && !compact && "text-right",
             )}
           >
@@ -587,7 +587,7 @@ export function DelegasiScrolly() {
     <div ref={rootRef} data-testid="delegasi-scrolly" className="relative">
       <div
         ref={stageRef}
-        className="relative z-0 flex h-svh w-full flex-col justify-center gap-10 overflow-hidden bg-[#F4F2EA] px-4 pt-16 pb-4 sm:gap-16 sm:px-6 sm:pt-20 sm:pb-6 lg:gap-20"
+        className="relative z-0 flex h-svh w-full flex-col justify-center gap-10 overflow-hidden bg-surface-100 px-4 pt-16 pb-4 sm:gap-16 sm:px-6 sm:pt-20 sm:pb-6 lg:gap-20"
       >
         {/* Procedural archival paper grain + ink SVG filters */}
         <svg
@@ -754,7 +754,7 @@ export function DelegasiScrolly() {
                   filter: "url(#delegasi-ink-wash)",
                   mixBlendMode: "multiply",
                 }}
-                className="h-auto max-h-[34svh] w-full object-contain sm:max-h-[46svh]"
+                className="h-auto max-h-logo-mobile w-full object-contain sm:max-h-logo-desktop"
               />
             </div>
           </div>

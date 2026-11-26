@@ -91,11 +91,16 @@
   --color-tan: #e8c4a0;
   --color-olive: #f6e6a8;
   --color-clay: #c2705a;
+  --color-paper: #fbf9f2;
+  --color-paper-ink: #221e1a;
+  --color-paper-raised: #fffdf7;
+  --color-paper-muted: #4d463d;
   --color-stone: #9c9c8c;
   --color-wheat: #e8d9a0;
   --color-night-1: #6d5a2c;
   --color-night-2: #3b2e13;
   --color-night-3: #1d1709;
+
   /* Font sizes use Tailwind's standard semantic scale (text-xs … text-6xl). */
   --leading-14: 0.875rem;
   --leading-17: 1.0625rem;
@@ -118,6 +123,7 @@
   --shadow-glow: 0 0 40px rgb(246 211 74 / 45%);
   --shadow-card-sm: 0 2px 0 rgb(0 0 0 / 4%);
   --shadow-card-up: 0 -2px 6px rgb(0 0 0 / 4%);
+  --drop-shadow-scrap: 0 3px 6px rgb(45 35 20 / 12%);
   --shadow-stamp-4: 4px 4px 0 #e0b400;
   --shadow-stamp-6: 6px 6px 0 #e0b400;
   --animate-marquee-scroll: marquee-scroll 30s linear infinite;
@@ -225,6 +231,31 @@
 
 @utility transition-height {
   transition-property: height;
+}
+
+/* Exact-value replacements for former arbitrary utilities (Figma parity). */
+@utility max-w-viewport-inset {
+  max-width: calc(100vw - 2rem);
+}
+
+@utility transition-accordion {
+  transition-property: grid-template-rows, opacity, visibility;
+}
+
+@utility grid-rows-1fr {
+  grid-template-rows: 1fr;
+}
+
+@utility grid-rows-0fr {
+  grid-template-rows: 0fr;
+}
+
+@utility max-h-logo-mobile {
+  max-height: 34svh;
+}
+
+@utility max-h-logo-desktop {
+  max-height: 46svh;
 }
 
 /* HeroMotion ships `data-motion="pending"` in its SSR markup. Hide the
