@@ -229,7 +229,7 @@ function TornPaperScrap({
           </div>
           <p
             className={cn(
-              "mt-0.5 text-11 leading-tight text-[#4D463D]",
+              "mt-0.5 text-xs leading-tight text-[#4D463D]",
               side === "left" && !compact && "text-right",
             )}
           >
@@ -684,11 +684,11 @@ export function DelegasiScrolly() {
         <div className="relative z-10 mx-auto max-w-180 shrink-0 text-center">
           <h2
             data-testid="delegasi-title"
-            className="text-24 leading-8 font-semibold tracking-t05 text-ink sm:text-34 sm:leading-11 lg:text-38 lg:leading-12"
+            className="text-2xl leading-8 font-semibold tracking-t05 text-ink sm:text-4xl sm:leading-11 lg:text-4xl lg:leading-12"
           >
             {delegasiSection.title}
           </h2>
-          <p className="mx-auto mt-1 max-w-160 text-13 leading-5 text-body-muted sm:mt-2 sm:text-base sm:leading-6">
+          <p className="mx-auto mt-1 max-w-160 text-sm leading-5 text-body-muted sm:mt-2 sm:text-base sm:leading-6">
             {delegasiSection.subtitle}
           </p>
         </div>

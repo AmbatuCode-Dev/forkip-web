@@ -36,7 +36,7 @@ export function ProgramSection() {
       <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
         <h2
           data-reveal-heading
-          className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50"
+          className="text-center text-4xl leading-11 font-extrabold tracking-t08 text-ink sm:text-5xl sm:leading-50"
         >
           {programSection.title}
         </h2>
@@ -52,13 +52,13 @@ export function ProgramSection() {
           className="mt-14 grid items-center gap-10 rounded-20 bg-surface-50 p-6 sm:p-10 lg:cols-spotlight"
         >
           <div>
-            <h3 className="text-32 leading-10 font-bold text-ink sm:text-40 sm:leading-12">
+            <h3 className="text-3xl leading-10 font-bold text-ink sm:text-4xl sm:leading-12">
               {programSpotlight.title}
             </h3>
             {programSpotlight.paragraphs.map((paragraph) => (
               <p
                 key={paragraph.slice(0, 24)}
-                className="mt-4 text-15 leading-6 text-body"
+                className="mt-4 text-base leading-6 text-body"
               >
                 {paragraph}
               </p>
@@ -70,14 +70,14 @@ export function ProgramSection() {
                     aria-hidden="true"
                     className="mt-2 size-2 shrink-0 rounded-full bg-gold"
                   />
-                  <p className="text-15 leading-6 text-body">
+                  <p className="text-base leading-6 text-body">
                     <span className="font-bold text-ink">{bullet.label}</span>:{" "}
                     {bullet.text}
                   </p>
                 </li>
               ))}
             </ul>
-            <p className="mt-5 text-15 leading-6 text-body">
+            <p className="mt-5 text-base leading-6 text-body">
               {programSpotlight.closing}
             </p>
           </div>

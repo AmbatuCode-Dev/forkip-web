@@ -87,7 +87,7 @@ export function FungsiSection({ motion = true }: FungsiSectionProps) {
           <div>
             <h2
               data-fungsi-reveal
-              className="text-24 leading-8 font-semibold tracking-t05 text-ink sm:text-34 sm:leading-11 lg:text-38 lg:leading-12"
+              className="text-2xl leading-8 font-semibold tracking-t05 text-ink sm:text-4xl sm:leading-11 lg:text-4xl lg:leading-12"
             >
               {fungsiSection.title}
             </h2>
@@ -105,10 +105,10 @@ export function FungsiSection({ motion = true }: FungsiSectionProps) {
                   data-fungsi-reveal
                   className="flex items-start gap-4"
                 >
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gold-soft text-15 font-bold text-gold-ink">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gold-soft text-base font-bold text-gold-ink">
                     {index + 1}
                   </span>
-                  <p className="text-15 leading-6 text-body">{item.text}</p>
+                  <p className="text-base leading-6 text-body">{item.text}</p>
                 </li>
               ))}
             </ol>

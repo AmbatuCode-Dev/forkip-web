@@ -35,7 +35,7 @@ export function ArticleBackLink() {
     <Link
       href="/berita"
       className={cn(
-        "inline-flex items-center gap-2 rounded-sm text-15 font-semibold text-gold-ink",
+        "inline-flex items-center gap-2 rounded-sm text-base font-semibold text-gold-ink",
         "transition-colors hover:text-gold-deep focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
       )}
       data-testid="article-back-link"

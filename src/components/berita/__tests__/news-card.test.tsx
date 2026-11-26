@@ -78,7 +78,7 @@ describe("NewsCard", () => {
     );
 
     const heading = screen.getByRole("heading", { name: "Explore KIPK 2026" });
-    expect(heading.className).toContain("text-38");
+    expect(heading.className).toContain("text-4xl");
     expect(heading.className).toContain("leading-12");
     expect(screen.getByText("01 / 04 · Foto")).toBeInTheDocument();
     expect(
@@ -99,12 +99,12 @@ describe("NewsCard", () => {
       />,
     );
 
-    expect(screen.getByText("01 / 04 · Foto").className).toContain("text-11");
+    expect(screen.getByText("01 / 04 · Foto").className).toContain("text-xs");
     expect(screen.getByText("Suasana sosialisasi").className).toContain(
       "leading-4",
     );
     expect(
       screen.getByRole("heading", { name: "Explore KIPK 2026" }).className,
-    ).toContain("text-28");
+    ).toContain("text-3xl");
   });
 });

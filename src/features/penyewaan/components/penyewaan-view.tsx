@@ -49,7 +49,7 @@ export function PenyewaanView() {
                   key={link.label}
                   href={link.href}
                   className={cn(
-                    "inline-flex h-10 items-center justify-center rounded-full px-5 text-13 font-semibold text-ink transition-colors focus-visible:ring-2 focus-visible:ring-gold-ink focus-visible:outline-none",
+                    "inline-flex h-10 items-center justify-center rounded-full px-5 text-sm font-semibold text-ink transition-colors focus-visible:ring-2 focus-visible:ring-gold-ink focus-visible:outline-none",
                     index === 0
                       ? "bg-gold hover:bg-gold-dark"
                       : "border border-gold-outline bg-white hover:bg-gold-soft",
@@ -67,7 +67,7 @@ export function PenyewaanView() {
           className="flex flex-col gap-4 rounded-2xl border border-border-sand bg-white p-6"
         >
           <div className="text-center">
-            <h2 className="text-15 font-semibold text-ink">
+            <h2 className="text-base font-semibold text-ink">
               {googleFormEmbed.title}
             </h2>
           </div>
@@ -88,7 +88,7 @@ export function PenyewaanView() {
         >
           <h2
             id="inventaris-heading"
-            className="text-32 leading-9 font-semibold text-ink"
+            className="text-3xl leading-9 font-semibold text-ink"
           >
             {penyewaanCopy.inventarisHeading}
           </h2>

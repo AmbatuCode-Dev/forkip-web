@@ -71,7 +71,7 @@ export function VisiMisiSection() {
       <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
         <h2
           data-vm-title
-          className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50"
+          className="text-center text-4xl leading-11 font-extrabold tracking-t08 text-ink sm:text-5xl sm:leading-50"
         >
           {visiMisiSection.title}
         </h2>
@@ -81,7 +81,7 @@ export function VisiMisiSection() {
             data-vm-card
             className="rounded-2xl bg-gradient-to-b from-gold-soft to-gold-soft-strong p-8 sm:p-10"
           >
-            <h3 className="text-3xl leading-38 font-bold text-ink sm:text-38 sm:leading-12">
+            <h3 className="text-3xl leading-38 font-bold text-ink sm:text-4xl sm:leading-12">
               Visi
             </h3>
             <ol className="mt-6 flex flex-col gap-6">
@@ -91,10 +91,10 @@ export function VisiMisiSection() {
                   data-vm-item
                   className="flex items-start gap-4"
                 >
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-gold text-13 font-bold text-ink">
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-gold text-sm font-bold text-ink">
                     {index + 1}
                   </span>
-                  <p className="text-15 leading-6 text-body">{item.text}</p>
+                  <p className="text-base leading-6 text-body">{item.text}</p>
                 </li>
               ))}
             </ol>
@@ -104,7 +104,7 @@ export function VisiMisiSection() {
             data-vm-card
             className="rounded-2xl border border-border-sand bg-white p-8 shadow-xs sm:p-10"
           >
-            <h3 className="text-3xl leading-38 font-bold text-ink sm:text-38 sm:leading-12">
+            <h3 className="text-3xl leading-38 font-bold text-ink sm:text-4xl sm:leading-12">
               Misi
             </h3>
             <ol className="mt-6 flex flex-col gap-5">
@@ -114,10 +114,10 @@ export function VisiMisiSection() {
                   data-vm-item
                   className="flex items-start gap-4"
                 >
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-gold-soft text-13 font-bold text-gold-ink">
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-gold-soft text-sm font-bold text-gold-ink">
                     {index + 1}
                   </span>
-                  <p className="text-15 leading-6 text-body">{item.text}</p>
+                  <p className="text-base leading-6 text-body">{item.text}</p>
                 </li>
               ))}
             </ol>

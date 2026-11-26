@@ -20,7 +20,7 @@ export function LayananSection() {
       <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
         <h2
           data-reveal-heading
-          className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50"
+          className="text-center text-4xl leading-11 font-extrabold tracking-t08 text-ink sm:text-5xl sm:leading-50"
         >
           {layananSection.title}
         </h2>
@@ -56,7 +56,7 @@ export function LayananSection() {
               </div>
               <Link
                 href={service.href}
-                className="group inline-flex items-center gap-2 self-start rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                className="group inline-flex items-center gap-2 self-start rounded-md text-base font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
               >
                 Buka halaman
                 <ArrowRight

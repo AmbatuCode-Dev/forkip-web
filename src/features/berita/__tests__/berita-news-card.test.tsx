@@ -58,7 +58,7 @@ describe("BeritaNewsCard", () => {
         `Diupload pada: ${post.uploadedLabel}`,
       );
       expect(title.nextElementSibling).toHaveClass(
-        "text-10",
+        "text-xs",
         "text-body-muted",
       );
     }
@@ -78,7 +78,7 @@ describe("BeritaNewsCard", () => {
 
   it("uses one title size across cards and drops carousel-era text", () => {
     const explore = renderCard(postBySlug("explore-kipk-2026"));
-    expect(within(explore).getByRole("heading")).toHaveClass("text-28");
+    expect(within(explore).getByRole("heading")).toHaveClass("text-3xl");
     expect(within(explore).queryByText(/^\d+ Foto$/)).not.toBeInTheDocument();
     expect(within(explore).queryByText(/· Foto/)).not.toBeInTheDocument();
     expect(
@@ -88,7 +88,7 @@ describe("BeritaNewsCard", () => {
     cleanup();
 
     const other = renderCard(postBySlug("pelatihan-divisi-kif"));
-    expect(within(other).getByRole("heading")).toHaveClass("text-28");
+    expect(within(other).getByRole("heading")).toHaveClass("text-3xl");
     expect(within(other).queryByText(/^\d+ Foto$/)).not.toBeInTheDocument();
     expect(within(other).queryByText(/· Foto/)).not.toBeInTheDocument();
     expect(within(other).queryByTestId("news-stage")).not.toBeInTheDocument();

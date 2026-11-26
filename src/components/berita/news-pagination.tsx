@@ -125,7 +125,7 @@ export function NewsPagination({
               <span
                 key={pageNumber}
                 aria-current="page"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold text-13 font-semibold text-ink"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold text-sm font-semibold text-ink"
               >
                 {pageNumber}
               </span>
@@ -134,7 +134,7 @@ export function NewsPagination({
                 key={pageNumber}
                 href={pageHref(basePath, pageNumber)}
                 aria-label={`Halaman ${pageNumber}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-sand bg-white text-13 font-medium text-body hover:bg-gold-soft"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-sand bg-white text-sm font-medium text-body hover:bg-gold-soft"
               >
                 {pageNumber}
               </Link>
@@ -144,7 +144,7 @@ export function NewsPagination({
                 type="button"
                 aria-label={`Halaman ${pageNumber}`}
                 onClick={() => onPageChange?.(pageNumber)}
-                className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border-sand bg-white text-13 font-medium text-body hover:bg-gold-soft"
+                className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border-sand bg-white text-sm font-medium text-body hover:bg-gold-soft"
               >
                 {pageNumber}
               </button>

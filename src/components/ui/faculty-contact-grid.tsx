@@ -27,7 +27,7 @@ export interface FacultyContactGridProps {
 export function FacultyContactGrid({ items, label }: FacultyContactGridProps) {
   return (
     <section aria-label={label} className="flex flex-col gap-4">
-      <h2 className="text-13 font-normal text-body">{label}</h2>
+      <h2 className="text-sm font-normal text-body">{label}</h2>
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((faculty) => (
           <li key={faculty.code}>
@@ -45,7 +45,7 @@ export function FacultyContactGrid({ items, label }: FacultyContactGridProps) {
               aria-label={`Hubungi delegasi ${faculty.code} via WhatsApp`}
             >
               <span className="flex flex-col gap-1 text-left">
-                <span className="text-22 font-bold">{faculty.code}</span>
+                <span className="text-xl font-bold">{faculty.code}</span>
                 <span className="text-xs font-normal">
                   Hubungi via WhatsApp
                 </span>

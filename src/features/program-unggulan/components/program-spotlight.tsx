@@ -18,14 +18,14 @@ export function ProgramSpotlightSection() {
       <div>
         <h2
           id="program-spotlight-heading"
-          className="text-32 leading-10 font-bold text-ink sm:text-40 sm:leading-12"
+          className="text-3xl leading-10 font-bold text-ink sm:text-4xl sm:leading-12"
         >
           {programSpotlight.title}
         </h2>
         {programSpotlight.paragraphs.map((paragraph) => (
           <p
             key={paragraph.slice(0, 24)}
-            className="mt-4 text-15 leading-6 text-body"
+            className="mt-4 text-base leading-6 text-body"
           >
             {paragraph}
           </p>
@@ -37,14 +37,14 @@ export function ProgramSpotlightSection() {
                 aria-hidden="true"
                 className="mt-2 size-2 shrink-0 rounded-full bg-gold"
               />
-              <p className="text-15 leading-6 text-body">
+              <p className="text-base leading-6 text-body">
                 <span className="font-bold text-ink">{bullet.label}</span>:{" "}
                 {bullet.text}
               </p>
             </li>
           ))}
         </ul>
-        <p className="mt-5 text-15 leading-6 text-body">
+        <p className="mt-5 text-base leading-6 text-body">
           {programSpotlight.closing}
         </p>
         {isActionableHref(programSpotlight.ctaHref) && (

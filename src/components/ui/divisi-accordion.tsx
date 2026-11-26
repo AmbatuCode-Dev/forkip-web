@@ -64,11 +64,11 @@ export function DivisiAccordion({
               )}
             />
           ) : (
-            <span className="shrink-0 rounded-md bg-surface-50 px-3 py-1.5 text-9 leading-5 font-semibold text-ink-soft">
+            <span className="shrink-0 rounded-md bg-surface-50 px-3 py-1.5 text-xs leading-5 font-semibold text-ink-soft">
               {chip}
             </span>
           )}
-          <span className="truncate text-22 leading-8 font-semibold text-ink">
+          <span className="truncate text-xl leading-8 font-semibold text-ink">
             {title}
           </span>
         </span>
@@ -101,7 +101,7 @@ export function DivisiAccordion({
                 className="h-48 w-full shrink-0 rounded-xl object-cover sm:h-52 sm:w-72"
               />
             )}
-            <p className="text-15 leading-6 text-body">{body}</p>
+            <p className="text-base leading-6 text-body">{body}</p>
           </div>
         </div>
       </section>

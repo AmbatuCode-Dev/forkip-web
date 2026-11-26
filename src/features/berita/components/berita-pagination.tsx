@@ -70,7 +70,7 @@ export function BeritaPagination({
               <span
                 key={number}
                 aria-current="page"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold text-13 font-semibold text-ink"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold text-sm font-semibold text-ink"
               >
                 {number}
               </span>
@@ -79,7 +79,7 @@ export function BeritaPagination({
                 key={number}
                 href={pageHref(number)}
                 aria-label={`Halaman ${number}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-sand bg-white text-13 font-medium text-body hover:bg-gold-soft"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-sand bg-white text-sm font-medium text-body hover:bg-gold-soft"
               >
                 {number}
               </Link>

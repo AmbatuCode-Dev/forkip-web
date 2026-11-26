@@ -37,11 +37,11 @@ export function ArsipDataView() {
             </p>
             <h2
               id="direktori-heading"
-              className="text-28 leading-38 font-semibold text-ink"
+              className="text-3xl leading-38 font-semibold text-ink"
             >
               {direktoriRail.heading}
             </h2>
-            <p className="max-w-46.25 text-13 leading-6 text-body-muted">
+            <p className="max-w-46.25 text-sm leading-6 text-body-muted">
               {direktoriRail.caption}
             </p>
           </div>
@@ -55,15 +55,15 @@ export function ArsipDataView() {
                 className="flex min-h-24 items-center justify-between gap-6 border-b border-border-sand"
               >
                 <div className="flex min-w-0 items-baseline gap-4 sm:gap-6">
-                  <span className="w-8 shrink-0 text-13 text-body-muted tabular-nums">
+                  <span className="w-8 shrink-0 text-sm text-body-muted tabular-nums">
                     {division.number}
                   </span>
-                  <span className="text-22 leading-8 font-bold tracking-wide text-ink uppercase">
+                  <span className="text-xl leading-8 font-bold tracking-wide text-ink uppercase">
                     {division.name}
                   </span>
                 </div>
                 <div className="flex shrink-0 items-center gap-4 sm:gap-6">
-                  <span className="hidden text-13 text-body-muted sm:inline">
+                  <span className="hidden text-sm text-body-muted sm:inline">
                     {division.accessLabel}
                   </span>
                   <a

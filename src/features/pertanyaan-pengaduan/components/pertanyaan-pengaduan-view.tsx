@@ -53,7 +53,7 @@ export function PertanyaanPengaduanView() {
             <p className="text-xs leading-6 font-bold tracking-wide12 text-gold-ink uppercase">
               {kontakRail.eyebrow}
             </p>
-            <h2 className="text-28 leading-38 font-bold text-ink">
+            <h2 className="text-3xl leading-38 font-bold text-ink">
               {kontakRail.heading}
             </h2>
             <p className="text-sm leading-6 text-body-muted">
@@ -81,7 +81,7 @@ export function PertanyaanPengaduanView() {
                   aria-label={`Hubungi delegasi ${faculty.code} via WhatsApp`}
                 >
                   <span className="flex min-w-0 flex-col gap-0.5 text-left">
-                    <span className="text-22 leading-7 font-extrabold">
+                    <span className="text-xl leading-7 font-extrabold">
                       {faculty.code}
                     </span>
                     <span className="text-sm leading-6 font-normal">

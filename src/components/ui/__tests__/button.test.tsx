@@ -31,7 +31,7 @@ describe("Button", () => {
     expect(classes).toContain("hover:bg-gold-dark");
     expect(classes).toContain("py-3.25");
     expect(classes).toContain("px-6");
-    expect(classes).toContain("text-15");
+    expect(classes).toContain("text-base");
   });
 
   it("exposes buttonVariants helper via cva", () => {

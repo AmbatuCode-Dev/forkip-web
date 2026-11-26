@@ -14,7 +14,7 @@ export function FakultasKontakGrid() {
     >
       <h2
         id="fakultas-kontak-heading"
-        className="text-13 font-normal text-body"
+        className="text-sm font-normal text-body"
       >
         Klik tombol di bawah untuk menghubungi delegasi KIF Fakultas:
       </h2>
@@ -36,7 +36,7 @@ export function FakultasKontakGrid() {
               aria-label={`Hubungi delegasi KIF ${faculty.code} via WhatsApp`}
             >
               <span className="flex flex-col gap-1 text-left">
-                <span className="text-22 font-bold">{faculty.code}</span>
+                <span className="text-xl font-bold">{faculty.code}</span>
                 <span className="text-xs font-normal">
                   Hubungi via WhatsApp
                 </span>

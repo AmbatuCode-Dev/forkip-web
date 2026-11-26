@@ -69,7 +69,7 @@ export function SiteFooter() {
                 height={48}
                 className="size-12 object-contain"
               />
-              <span className="text-19 font-extrabold tracking-t04 text-ink">
+              <span className="text-lg font-extrabold tracking-t04 text-ink">
                 Forum KIPK UNJ
               </span>
             </div>
@@ -98,7 +98,7 @@ export function SiteFooter() {
           </div>
 
           <nav aria-label="Menu footer" className="flex-1">
-            <h2 className="text-13 font-bold tracking-wide12 text-ink uppercase">
+            <h2 className="text-sm font-bold tracking-wide12 text-ink uppercase">
               Menu
             </h2>
             <ul className="mt-2.5 flex flex-col gap-3.5 leading-5">
@@ -116,7 +116,7 @@ export function SiteFooter() {
           </nav>
 
           <nav aria-label="Lainnya footer" className="flex-1">
-            <h2 className="text-13 font-bold tracking-wide12 text-ink uppercase">
+            <h2 className="text-sm font-bold tracking-wide12 text-ink uppercase">
               Lainnya
             </h2>
             <ul className="mt-2.5 flex flex-col gap-3.5 leading-5">
@@ -134,7 +134,7 @@ export function SiteFooter() {
           </nav>
 
           <div className="flex-1">
-            <h2 className="text-13 font-bold tracking-wide12 text-ink uppercase">
+            <h2 className="text-sm font-bold tracking-wide12 text-ink uppercase">
               Kontak
             </h2>
             <div className="mt-3">
@@ -143,7 +143,7 @@ export function SiteFooter() {
                 className={buttonVariants({
                   variant: "gold",
                   size: "sm",
-                  className: "rounded-full px-5 text-13 font-semibold",
+                  className: "rounded-full px-5 text-sm font-semibold",
                 })}
               >
                 Hubungi Kami
@@ -162,7 +162,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-11.75 h-px bg-surface-200" />
-        <p className="mt-12 text-13 leading-17 font-medium text-body-muted">
+        <p className="mt-12 text-sm leading-17 font-medium text-body-muted">
           © 2026 Forum KIP-K Universitas Negeri Jakarta
         </p>
       </div>

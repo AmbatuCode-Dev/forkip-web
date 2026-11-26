@@ -27,7 +27,7 @@ export function ArticleDetailView({
           <span className="inline-flex items-center rounded-full bg-gold-soft px-3 py-1.5 text-xs font-bold text-gold-ink">
             Berita
           </span>
-          <h1 className="text-52 leading-15 font-extrabold tracking-t05 text-ink">
+          <h1 className="text-5xl leading-15 font-extrabold tracking-t05 text-ink">
             {article.title}
           </h1>
           <p
@@ -37,7 +37,7 @@ export function ArticleDetailView({
             {article.subtitle}
           </p>
           <div className="flex flex-wrap items-center gap-3 text-sm text-body-muted">
-            <span className="text-15 font-semibold text-ink">
+            <span className="text-base font-semibold text-ink">
               {article.author}
             </span>
             <span aria-hidden="true">·</span>

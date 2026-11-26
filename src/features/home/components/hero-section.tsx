@@ -59,7 +59,7 @@ export function HeroSection() {
           <div className="flex max-w-140 flex-col gap-3 sm:gap-5">
             <h1
               data-hero-reveal
-              className="text-44 leading-hero tracking-t2 text-white sm:text-56 lg:text-7xl lg:leading-hero-lg"
+              className="text-5xl leading-hero tracking-t2 text-white sm:text-6xl lg:text-7xl lg:leading-hero-lg"
             >
               <span className="block font-light">{heroCopy.titleLight}</span>
               <span className="block font-extrabold">{heroCopy.titleBold}</span>
@@ -81,7 +81,7 @@ export function HeroSection() {
                 className={buttonVariants({
                   variant: "gold",
                   size: "cta",
-                  className: "h-9 px-6 text-15 focus-visible:ring-white",
+                  className: "h-9 px-6 text-base focus-visible:ring-white",
                 })}
               >
                 {heroCopy.cta}
@@ -94,7 +94,7 @@ export function HeroSection() {
               >
                 <PlayCircle className="inline-flex size-11.5 shrink-0 items-center justify-center rounded-full bg-gold transition-transform group-hover:scale-105" />
                 <span className="flex flex-col gap-0.5">
-                  <span className="text-15 leading-5 font-semibold text-white">
+                  <span className="text-base leading-5 font-semibold text-white">
                     {heroCopy.videoLabelStrong}
                   </span>
                   <span className="text-xs leading-4 text-white/75">

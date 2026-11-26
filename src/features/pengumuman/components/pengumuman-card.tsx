@@ -28,25 +28,25 @@ export function PengumumanCard({
         <span className="inline-flex self-start rounded-full bg-gold-pale px-3 py-1.5 text-xs font-semibold text-gold-ink">
           {pengumuman.tag}
         </span>
-        <h2 className="text-32 leading-10 font-bold text-ink">
+        <h2 className="text-3xl leading-10 font-bold text-ink">
           {pengumuman.title}
         </h2>
 
         {pengumuman.paragraphs.map((paragraph) => (
-          <p key={paragraph} className="text-15 leading-6 text-body">
+          <p key={paragraph} className="text-base leading-6 text-body">
             {paragraph}
           </p>
         ))}
 
         {pengumuman.detailIntro ? (
-          <p className="text-15 leading-6 text-body">
+          <p className="text-base leading-6 text-body">
             {pengumuman.detailIntro}
           </p>
         ) : null}
         {pengumuman.details ? (
           <dl className="flex flex-col gap-1.5">
             {pengumuman.details.map((row) => (
-              <div key={row.label} className="flex gap-2 text-15 leading-6">
+              <div key={row.label} className="flex gap-2 text-base leading-6">
                 <dt className="shrink-0 font-semibold text-ink">
                   {row.label}:
                 </dt>
@@ -57,13 +57,13 @@ export function PengumumanCard({
         ) : null}
 
         {pengumuman.lines?.map((line) => (
-          <p key={line} className="text-15 leading-6 text-body">
+          <p key={line} className="text-base leading-6 text-body">
             {line}
           </p>
         ))}
 
         {pengumuman.note ? (
-          <p className="rounded-xl bg-gold-pale px-4 py-3 text-15 leading-6 text-ink-soft">
+          <p className="rounded-xl bg-gold-pale px-4 py-3 text-base leading-6 text-ink-soft">
             {pengumuman.note}
           </p>
         ) : null}

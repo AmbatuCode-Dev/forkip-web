@@ -30,7 +30,7 @@ export function ProgramUnggulanContent() {
         <h2
           id="program-lain-heading"
           data-reveal-heading
-          className="text-32 leading-10 font-bold text-ink"
+          className="text-3xl leading-10 font-bold text-ink"
         >
           {programLainTitle}
         </h2>

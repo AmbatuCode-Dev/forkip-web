@@ -77,7 +77,7 @@ export function PageHero({
       />
       <div className="relative mx-auto flex w-full max-w-300 flex-col gap-3 px-4 py-16 sm:px-6 xl:px-0">
         <nav aria-label="Breadcrumb" data-hero-reveal>
-          <p className="text-13 font-medium text-body-muted">
+          <p className="text-sm font-medium text-body-muted">
             <Link
               href={breadcrumb.href}
               className="rounded-sm transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
@@ -92,8 +92,8 @@ export function PageHero({
           className={cn(
             "font-bold tracking-t05 text-ink",
             titleSize === "lg"
-              ? "text-4xl leading-11 sm:text-52 sm:leading-15"
-              : "text-34 leading-10 sm:text-52 sm:leading-15",
+              ? "text-4xl leading-11 sm:text-5xl sm:leading-15"
+              : "text-4xl leading-10 sm:text-5xl sm:leading-15",
           )}
         >
           {title}

@@ -232,7 +232,7 @@ export function SiteHeader() {
           />
           <span
             className={cn(
-              "text-19 font-extrabold tracking-t04 max-sm:hidden",
+              "text-lg font-extrabold tracking-t04 max-sm:hidden",
               overHero ? "text-white" : "text-ink",
             )}
           >
@@ -292,7 +292,7 @@ export function SiteHeader() {
                     id={`${entry.id}-menu`}
                     className="absolute top-full left-0 z-50 w-96 max-w-[calc(100vw-2rem)] rounded-18 border border-border-sand bg-white p-6 shadow-dropdown"
                   >
-                    <p className="text-13 leading-5 font-semibold text-body-muted">
+                    <p className="text-sm leading-5 font-semibold text-body-muted">
                       {entry.heading}
                     </p>
                     <ul className="mt-2 flex flex-col gap-3">
@@ -304,7 +304,7 @@ export function SiteHeader() {
                             className="flex items-center gap-3 rounded-10 p-2 transition-colors hover:bg-surface-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                           >
                             <span className="flex min-w-0 flex-col gap-1">
-                              <span className="text-15 leading-6 font-semibold text-ink">
+                              <span className="text-base leading-6 font-semibold text-ink">
                                 {item.title}
                               </span>
                               <span className="text-sm leading-5 text-body-muted">

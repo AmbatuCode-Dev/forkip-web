@@ -81,7 +81,7 @@ export function AlurPengunduranDiriCard() {
                 className={`relative flex flex-col items-center text-center ${STEP_POSITION[item.step]}`}
               >
                 <AlurStepIcon icon={item.icon} className="size-24 sm:size-28" />
-                <p className="mt-8 w-full rounded-xl bg-navy px-3 py-9 text-13 leading-snug font-bold text-white shadow-stamp-4 sm:text-15">
+                <p className="mt-8 w-full rounded-xl bg-navy px-3 py-9 text-sm leading-snug font-bold text-white shadow-stamp-4 sm:text-base">
                   {item.title}
                 </p>
                 {item.step <= 3 ? (

@@ -79,10 +79,10 @@ export function RekrutmenView() {
           aria-label={googleFormEmbed.title}
           className="flex h-65 flex-col items-center justify-center gap-2 rounded-2xl border border-border-sand bg-white px-6 text-center"
         >
-          <p className="text-11 font-semibold tracking-wide12 text-body-muted">
+          <p className="text-xs font-semibold tracking-wide12 text-body-muted">
             {googleFormEmbed.label}
           </p>
-          <h2 className="text-15 font-semibold text-ink">
+          <h2 className="text-base font-semibold text-ink">
             {googleFormEmbed.title}
           </h2>
           {/* TODO: replace with real <iframe> embed of the Google Form. */}

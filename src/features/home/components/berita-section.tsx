@@ -21,7 +21,7 @@ export function BeritaSection() {
       <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
         <h2
           data-reveal-heading
-          className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50"
+          className="text-center text-4xl leading-11 font-extrabold tracking-t08 text-ink sm:text-5xl sm:leading-50"
         >
           {beritaSection.title}
         </h2>
@@ -49,12 +49,12 @@ export function BeritaSection() {
             <h3 className="mt-2 text-3xl leading-9 font-bold text-ink">
               {beritaSection.feature.title}
             </h3>
-            <p className="text-15 leading-6 text-body-muted">
+            <p className="text-base leading-6 text-body-muted">
               {beritaSection.feature.summary}
             </p>
             <Link
               href={`/berita/${beritaSection.feature.slug}`}
-              className="group mt-auto inline-flex items-center gap-2 self-start rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+              className="group mt-auto inline-flex items-center gap-2 self-start rounded-md text-base font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               Baca selengkapnya
               <ArrowRight
@@ -80,7 +80,7 @@ export function BeritaSection() {
                   </p>
                   <Link
                     href={`/berita/${teaser.slug}`}
-                    className="group mt-3 inline-flex items-center gap-2 rounded-md text-15 font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                    className="group mt-3 inline-flex items-center gap-2 rounded-md text-base font-semibold text-gold-ink transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     Baca selengkapnya
                     <ArrowRight
@@ -99,7 +99,7 @@ export function BeritaSection() {
               </p>
               <Link
                 href={beritaSection.ctaHref}
-                className="mt-4 inline-flex h-9 items-center justify-center rounded-full bg-gold px-6 text-15 font-semibold text-ink transition-colors hover:bg-gold-dark focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                className="mt-4 inline-flex h-9 items-center justify-center rounded-full bg-gold px-6 text-base font-semibold text-ink transition-colors hover:bg-gold-dark focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
               >
                 {beritaSection.ctaButton}
               </Link>

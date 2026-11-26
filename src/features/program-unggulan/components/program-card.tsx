@@ -26,7 +26,7 @@ export function ProgramCard({
         height={170}
         className="h-42.5 w-full"
       />
-      <p className="flex-1 text-15 leading-6 text-body">{card.excerpt}</p>
+      <p className="flex-1 text-base leading-6 text-body">{card.excerpt}</p>
       {isActionableHref(card.ctaHref) && (
         <a
           href={card.ctaHref}

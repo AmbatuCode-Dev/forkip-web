@@ -1,6 +1,6 @@
 # Tailwind arbitrary-value → token/utility map (Figma parity)
 
-Replace EVERY arbitrary class in your assigned files with the right-hand side. Preserve prefixes (sm:, lg:, hover:, focus-visible:, etc.) and class order semantics. Tokens/utilities already exist in src/app/globals.css — do NOT edit globals.css, with one documented exception: the full-screen hero and Delegasi scrollytelling redesigns added app-level `@utility` rules directly to globals.css (listed under "Custom utilities" below). Those rules are already merged — use them, but do not re-add or remove them.
+Replace EVERY arbitrary class in your assigned files with the right-hand side. Preserve prefixes (sm:, lg:, hover:, focus-visible:, etc.) and class order semantics. Tokens/utilities already exist in src/app/globals.css — do NOT edit globals.css, except for the documented custom utilities and the semantic font-size/line-height scale (see below). The full-screen hero and Delegasi scrollytelling redesigns added app-level `@utility` rules directly to globals.css (listed under "Custom utilities" below). Those rules are already merged — use them, but do not re-add or remove them.
 
 ## Colors
 bg-[#F6D34A]→bg-gold · bg-[#E0B400]→bg-gold-dark · bg-[#FBF6DF]→bg-gold-soft · bg-[#FBFAF6]→bg-surface-50 · bg-[#F4F2EA]→bg-surface-100 · bg-[#FFF3C4]→bg-gold-pale · bg-[#1E6E5E]→bg-teal-ink · bg-[#DCEEEA]→bg-teal-pale · bg-[#122338]→bg-navy · bg-[#1F2937]→bg-slate · bg-[#FDFCF8]→bg-cream · bg-[#F3F0E7]→bg-sand · bg-[#E8C4A0]→bg-tan · bg-[#F6E6A8]→bg-olive
@@ -9,13 +9,14 @@ border-[#E8E5DA]→border-border-sand · border-[#C9A227]→border-gold-outline 
 ring-[#7A5B00]→ring-gold-ink · ring-[#F6D34A]→ring-gold
 from-[#FBF6DF]→from-gold-soft · from-[#C2705A]→from-clay · via-[#FBF6DF]→via-gold-soft · via-[#F6EFAF]→via-gold-soft-strong · via-[#FAE9A8]→via-gold-mid · via-[#C2705A]→via-clay · to-[#F6EFAF]→to-gold-soft-strong · to-[#F6D34A]→to-gold · to-[#9C9C8C]→to-stone · to-[#E8D9A0]→to-wheat
 
-## Font size (text-[Npx]→text-N unless standard)
-6→text-6 7→text-7 8→text-8 9→text-9 10→text-10 11→text-11 13→text-13 15→text-15 19→text-19 22→text-22 26→text-26 28→text-28 32→text-32 34→text-34 38→text-38 40→text-40 42→text-42 44→text-44 52→text-52 56→text-56
-Standard: 20→text-xl 30→text-3xl 36→text-4xl 72→text-7xl
+## Font size (standard semantic scale; no custom text-N tokens)
+9px → text-xs (0.75rem) · 10px → text-xs · 11px → text-xs · 13px → text-sm (0.875rem) · 15px → text-base (1rem) · 19px → text-lg (1.125rem) · 22px → text-xl (1.25rem) · 24px → text-2xl (1.5rem) · 26px → text-2xl · 28px → text-3xl (1.875rem) · 32px → text-3xl · 34px → text-4xl (2.25rem) · 38px → text-4xl · 40px → text-4xl · 42px → text-5xl (3rem) · 44px → text-5xl · 52px → text-5xl · 56px → text-6xl (3.75rem)
+The numeric `--text-*` tokens were removed from `globals.css`; use the semantic utilities above and preserve any `sm:`/`lg:` prefixes.
 
-## Line height
-14→leading-14 16→leading-4 17→leading-17 18→leading-18 20→leading-5 22→leading-22 24→leading-6 26→leading-26 32→leading-8 36→leading-9 38→leading-38 40→leading-10 44→leading-11 48→leading-12 50→leading-50 60→leading-15
-leading-[1.05]→leading-hero · lg:leading-[1.1]→lg:leading-hero-lg
+## Line height (custom tokens are rem values, 16px = 1rem)
+14px → leading-14 (0.875rem) · 17px → leading-17 (1.0625rem) · 18px → leading-18 (1.125rem) · 22px → leading-22 (1.375rem) · 26px → leading-26 (1.625rem) · 38px → leading-38 (2.375rem) · 50px → leading-50 (3.125rem)
+16px → leading-4 · 20px → leading-5 · 24px → leading-6 · 32px → leading-8 · 36px → leading-9 · 40px → leading-10 · 44px → leading-11 · 48px → leading-12 · 60px → leading-15
+leading-[1.05]→leading-hero (2.8875rem) · lg:leading-[1.1]→lg:leading-hero-lg (4.95rem)
 
 ## Tracking
 -0.4px→tracking-t04 · -0.5px→tracking-t05 · -0.8px→tracking-t08 · -2px→tracking-t2 · 1.2px→tracking-wide12

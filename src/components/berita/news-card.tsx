@@ -70,7 +70,7 @@ export function NewsCard({
             <span
               className={cn(
                 "absolute top-4 left-4 inline-flex items-center rounded-full bg-slate px-3 py-1.5 font-bold text-white shadow-xs",
-                small ? "text-11" : "text-xs",
+                small ? "text-xs" : "text-xs",
               )}
             >
               {stageBadge}
@@ -81,7 +81,7 @@ export function NewsCard({
           <p
             className={cn(
               "font-semibold text-ink",
-              small ? "text-xs leading-4" : "text-13 leading-18",
+              small ? "text-xs leading-4" : "text-sm leading-18",
             )}
           >
             {caption}
@@ -131,14 +131,14 @@ export function NewsCard({
         <h3
           className={cn(
             "font-extrabold tracking-tight text-ink",
-            lead ? "text-38 leading-12" : "text-28 leading-9",
+            lead ? "text-4xl leading-12" : "text-3xl leading-9",
           )}
         >
           {title}
         </h3>
         <div className="space-y-3">
           {paragraphs.map((paragraph) => (
-            <p key={paragraph} className="text-15 leading-6 text-body">
+            <p key={paragraph} className="text-base leading-6 text-body">
               {paragraph}
             </p>
           ))}

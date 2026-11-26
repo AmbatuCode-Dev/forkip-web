@@ -20,7 +20,7 @@ export function DivisiSection() {
       <div className="mx-auto w-full max-w-300 px-4 sm:px-6 xl:px-0">
         <h2
           data-reveal-heading
-          className="text-center text-34 leading-11 font-extrabold tracking-t08 text-ink sm:text-42 sm:leading-50"
+          className="text-center text-4xl leading-11 font-extrabold tracking-t08 text-ink sm:text-5xl sm:leading-50"
         >
           {divisiSection.title}
         </h2>
@@ -49,7 +49,7 @@ export function DivisiSection() {
           data-reveal-item
           className="mt-10 flex flex-col items-center gap-4 rounded-2xl bg-gold-soft px-6 py-12 text-center"
         >
-          <p className="text-13 font-medium tracking-wide text-body-muted uppercase">
+          <p className="text-sm font-medium tracking-wide text-body-muted uppercase">
             {dikelolaSection.eyebrow}
           </p>
           <p className="text-base leading-6 font-semibold text-ink sm:text-lg sm:leading-7">
@@ -60,7 +60,7 @@ export function DivisiSection() {
             className={buttonVariants({
               variant: "gold",
               size: "cta",
-              className: "px-6 text-15",
+              className: "px-6 text-base",
             })}
           >
             {dikelolaSection.cta}
