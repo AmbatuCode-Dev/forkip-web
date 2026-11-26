@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Berita detail page", () => {
-  test("renders Explore KIPK 2026 article with breadcrumb and meta", async ({
+  test("renders Explore KIPK 2026 with breadcrumb, date and single photo", async ({
     page,
   }) => {
     await page.goto("/berita/explore-kipk-2026");
@@ -20,15 +20,23 @@ test.describe("Berita detail page", () => {
     ).toBeVisible();
     await expect(page.getByText("Humas Forkip UNJ")).toBeVisible();
     await expect(
-      page.getByText(/Rabu 18 Februari 2026 · \d+ menit baca/),
+      page.getByText(/18 Februari 2026 · \d+ menit baca/),
     ).toBeVisible();
 
+    // The lead sentence is also the subtitle; .last() targets the body paragraph.
     await expect(
-      page.getByText(
-        /Pada tanggal 12 Februari 2026, Explore KIPK 2026 merupakan program sosialisasi/,
-      ),
+      page
+        .getByText(
+          /Pada 12 Februari 2026, FORKIP UNJ menyelenggarakan Explore KIPK 2026/,
+        )
+        .last(),
     ).toBeVisible();
     await expect(page.getByTestId("article-hero-media")).toBeVisible();
+    await expect(page.getByText("01 / 01 · Foto")).toBeVisible();
+    await expect(
+      page.getByText("Dokumentasi sosialisasi Explore KIPK 2026."),
+    ).toBeVisible();
+    await expect(page.getByTestId("article-figure-2")).toHaveCount(0);
     await expect(page.getByText("Kembali ke Berita")).toBeVisible();
     await expect(page.getByTestId("article-back-link")).toHaveAttribute(
       "href",
@@ -36,7 +44,9 @@ test.describe("Berita detail page", () => {
     );
   });
 
-  test("renders a second post (Verifikasi KIPK SNBP)", async ({ page }) => {
+  test("renders Verifikasi KIPK SNBP with the April date and four photos", async ({
+    page,
+  }) => {
     await page.goto("/berita/verifikasi-kipk-snbp");
 
     await expect(
@@ -45,11 +55,48 @@ test.describe("Berita detail page", () => {
     await expect(
       page
         .getByTestId("article-header")
-        .getByText(/Pengelola KIPK Universitas Negeri Jakarta \(UNJ\)/),
+        .getByText(/Pengelola KIP Kuliah UNJ melaksanakan verifikasi berkas/),
+    ).toBeVisible();
+    await expect(page.getByText(/8 April 2026 · \d+ menit baca/)).toBeVisible();
+    await expect(page.getByText("01 / 04 · Foto")).toBeVisible();
+    await expect(page.getByTestId("article-figure-4")).toBeVisible();
+  });
+
+  test("hides the date for BUSAMAKIP until one is official", async ({
+    page,
+  }) => {
+    await page.goto("/berita/busamakip");
+
+    await expect(
+      page.getByRole("heading", { level: 1, name: "BUSAMAKIP" }),
+    ).toBeVisible();
+    const header = page.getByTestId("article-header");
+    await expect(header.getByText(/Menyusul|Februari|April/)).toHaveCount(0);
+    await expect(header.getByText(/^\d+ menit baca$/)).toBeVisible();
+    await expect(page.getByText("01 / 03 · Foto")).toBeVisible();
+    await expect(
+      page.getByText(
+        "Dokumentasi buka puasa bersama mahasiswa KIP Kuliah UNJ.",
+      ),
+    ).toBeVisible();
+    await expect(page.getByTestId("article-figure-3")).toBeVisible();
+  });
+
+  test("renders Gelar KIPK with its gallery and no placeholder date", async ({
+    page,
+  }) => {
+    await page.goto("/berita/gelar-kipk");
+
+    await expect(
+      page.getByRole("heading", { level: 1, name: "Gelar KIPK" }),
     ).toBeVisible();
     await expect(
-      page.getByText(/Rabu 08 April 2026 · \d+ menit baca/),
-    ).toBeVisible();
+      page.getByTestId("article-header").getByText(/Menyusul/),
+    ).toHaveCount(0);
+    await expect(page.getByTestId("article-hero-media")).toBeVisible();
+    await expect(page.getByText("01 / 04 · Foto")).toBeVisible();
+    await expect(page.getByText("Dokumentasi Gelar KIPK 2026.")).toBeVisible();
+    await expect(page.getByTestId("article-figure-4")).toBeVisible();
   });
 
   test("unknown slug renders the 404 boundary", async ({ page }) => {

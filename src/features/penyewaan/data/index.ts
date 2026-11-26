@@ -4,80 +4,101 @@ import type {
   GoogleFormEmbed,
   InventarisItem,
   PageHeroContent,
+  PenyewaanCopy,
 } from "../types";
 
-// TODO(ggm): ganti dengan salinan final dari BKK untuk 4 item yang masih mock.
+// Klien memakai satu nomor untuk kedua tombol Admin BKK — konfirmasi sebelum publikasi.
+const adminBkk1Url =
+  "https://wa.me/6281945811412?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20penyewaan%20inventaris%20FORKIP%20UNJ.";
+const adminBkk2Url = "https://wa.me/6281945811412";
+
 export const penyewaanHero: PageHeroContent = {
   breadcrumbLabel: "Penyewaan",
   title: "Penyewaan Inventaris Forkip UNJ",
   description:
-    "Dikelola oleh BKK (Biro Kebendaharaan dan keuangan) dengan harga yang terjangkau",
+    "BKK FORKIP UNJ mengelola penyewaan inventaris yang dapat digunakan untuk mendukung berbagai kegiatan.",
+};
+
+export const penyewaanCopy: PenyewaanCopy = {
+  note: "Silakan hubungi admin BKK sebelum mengisi formulir peminjaman.",
+  inventarisHeading: "Inventaris yang kami sewakan",
 };
 
 export const adminContactLinks: readonly AdminContactLink[] = [
-  { label: "Admin BKK 1", href: "#" }, // TODO: link WhatsApp admin BKK 1
-  { label: "Admin BKK 2", href: "#" }, // TODO: link WhatsApp admin BKK 2
+  { label: "Admin BKK 1", href: adminBkk1Url },
+  { label: "Admin BKK 2", href: adminBkk2Url },
 ];
 
 export const googleFormEmbed: GoogleFormEmbed = {
   label: "GOOGLE FORM TERTANAM",
-  title: "Peminjaman Barang Inventaris BKK 2026",
-  // TODO: embed real Google Form URL via iframe once provided by BKK.
+  title: "Peminjaman Barang Forkip UNJ 2026",
+  url: "https://docs.google.com/forms/d/e/1FAIpQLScfwQjAb9KO5YMIcz4MHXrEwkvF0VTSavvLqS9CpEl5jSgpZg/viewform",
+  embedUrl:
+    "https://docs.google.com/forms/d/e/1FAIpQLScfwQjAb9KO5YMIcz4MHXrEwkvF0VTSavvLqS9CpEl5jSgpZg/viewform?embedded=true",
 };
+
+const availability = "Hubungi admin BKK untuk mengetahui ketersediaan barang.";
+const photoFootnote =
+  "Foto merupakan ilustrasi. Hubungi admin BKK untuk detail barang.";
 
 export const inventarisItems: readonly InventarisItem[] = [
   {
     chip: "Penyewaan HT",
+    imageLabel: "Placeholder ilustrasi Handy Talky",
     title: "Handy Talky",
-    meta: "Jumlah yang tersedia: banyak pcs (include earpiece)",
+    meta: availability,
     paragraphs: [
-      "Handy Talky merupakan perangkat radio komunikasi dua arah yang digunakan untuk mendukung komunikasi dan koordinasi tim. Perangkat ini beroperasi pada frekuensi VHF/UHF dengan sistem two-way radio (TX/RX), memiliki daya output sekitar 5 watt, serta mampu menjangkau jarak komunikasi kurang lebih 1 hingga 5 km tergantung kondisi lingkungan. Handy Talky dilengkapi kanal multi-channel yang dapat disesuaikan dengan kebutuhan pengguna.",
+      "Radio dua arah (HT) untuk koordinasi tim selama kegiatan. Perangkat mendukung beberapa kanal komunikasi dan dilengkapi earpiece.",
     ],
-    footnote:
-      "(gambar hanya ilustrasi, untuk info selengkapnya silakan hubungi admin BKK)",
+    footnote: photoFootnote,
     defaultExpanded: true,
   },
   {
-    chip: "Penyewaan Speaker",
+    chip: "Penyewaan Perangkat Audio",
+    imageLabel: "Placeholder ilustrasi Speaker dan Mic",
     title: "Speaker dan Mic",
-    meta: "Jumlah yang tersedia: 1 Set",
-    // TODO: real copy from BKK.
+    meta: availability,
     paragraphs: [
-      "Speaker dan mic disewakan dalam satu set siap pakai untuk mendukung kegiatan seperti seminar, pelatihan, dan pertemuan organisasi di lingkungan UNJ.",
+      "Pengeras suara dan mikrofon untuk mendukung kegiatan di dalam maupun di luar ruangan.",
     ],
+    footnote: photoFootnote,
   },
   {
-    chip: "Penyewaan Masak",
+    chip: "Penyewaan Kompor",
+    imageLabel: "Placeholder ilustrasi Kompor Portable",
     title: "Kompor Portable",
-    meta: "Jumlah yang tersedia: banyak Set",
-    // TODO: real copy from BKK.
+    meta: availability,
     paragraphs: [
-      "Kompor portable tersedia dalam jumlah banyak dan umumnya dipinjam untuk kegiatan bazar, kuliner, maupun acara dakwah yang membutuhkan peralatan memasak serbaguna.",
+      "Kompor ringkas dengan kaki lipat yang mudah dibawa. Kompor menggunakan gas butana dalam kemasan kaleng.",
     ],
+    footnote: photoFootnote,
   },
   {
-    chip: "Penyewaan Nesting",
+    chip: "Penyewaan Peralatan Masak",
+    imageLabel: "Placeholder ilustrasi Nesting",
     title: "Nesting",
-    meta: "Jumlah yang tersedia: banyak Set",
-    // TODO: real copy from BKK.
+    meta: availability,
     paragraphs: [
-      "Set nesting berisi peralatan masak bertingkat yang praktis untuk kegiatan memasak bersama, catering sederhana, maupun program pengabdian masyarakat.",
+      "Set peralatan masak berbahan aluminium anodisasi yang ringan dan dikemas dalam tas jaring. Set yang tercantum meliputi panci, wajan, dua mangkuk, sendok nasi, dan spons pembersih.",
     ],
+    footnote: photoFootnote,
   },
   {
     chip: "Penyewaan Proyektor",
+    imageLabel: "Placeholder ilustrasi Proyektor",
     title: "Proyektor",
-    meta: "Jumlah yang tersedia: 1 Set",
-    // TODO: real copy from BKK.
+    meta: availability,
     paragraphs: [
-      "Proyektor disewakan lengkap dalam satu set untuk mendukung presentasi, screening film, serta kegiatan akademik maupun non-akademik organisasi.",
+      "Proyektor multimedia untuk menampilkan materi presentasi atau video pada layar yang lebih besar.",
     ],
+    footnote: photoFootnote,
   },
 ];
 
 export const contactCta: ContactCta = {
   title: "Butuh info selengkapnya?",
-  description: "Hubungi admin BKK sebelum mengisi form peminjaman.",
+  description:
+    "Tanyakan ketersediaan barang dan ketentuan penyewaan kepada admin BKK sebelum mengisi formulir.",
   actionLabel: "Admin BKK 1",
-  actionHref: "#", // TODO: link WhatsApp admin BKK 1
+  actionHref: adminBkk1Url,
 };

@@ -6,7 +6,7 @@ import { renderWithProviders, screen } from "@/testing/test-utils";
 afterEach(cleanup);
 
 describe("ProgramUnggulanHero", () => {
-  it("renders breadcrumb, H1, and the strategic-initiative intro copy", () => {
+  it("renders breadcrumb, H1, and the program unggulan intro copy", () => {
     renderWithProviders(<ProgramUnggulanHero />);
 
     expect(
@@ -17,7 +17,9 @@ describe("ProgramUnggulanHero", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("Beranda")).toBeInTheDocument();
     expect(
-      screen.getByText(/rangkaian inisiatif strategis yang dirancang/),
+      screen.getByText(
+        /mendukung pengembangan akademik dan keterampilan mahasiswa penerima KIP Kuliah/,
+      ),
     ).toBeInTheDocument();
   });
 });

@@ -5,4 +5,5 @@ export type {
   GoogleFormEmbed,
   InventarisItem,
   PageHeroContent,
+  PenyewaanCopy,
 } from "./types";

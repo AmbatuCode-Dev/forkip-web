@@ -1,5 +1,6 @@
 import { NewsMediaPlaceholder } from "@/components/berita/news-media-placeholder";
 import { buttonVariants } from "@/components/ui/button";
+import { isActionableHref } from "@/utils/is-actionable-href";
 import type { ProgramCard as ProgramCardType } from "../types";
 
 /**
@@ -26,16 +27,18 @@ export function ProgramCard({
         className="h-42.5 w-full"
       />
       <p className="flex-1 text-15 leading-6 text-body">{card.excerpt}</p>
-      <a
-        href={card.ctaHref}
-        className={buttonVariants({
-          variant: "gold",
-          size: "cta",
-          className: "self-start",
-        })}
-      >
-        {card.cta}
-      </a>
+      {isActionableHref(card.ctaHref) && (
+        <a
+          href={card.ctaHref}
+          className={buttonVariants({
+            variant: "gold",
+            size: "cta",
+            className: "self-start",
+          })}
+        >
+          {card.cta}
+        </a>
+      )}
     </article>
   );
 }

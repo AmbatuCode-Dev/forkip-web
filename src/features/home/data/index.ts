@@ -169,51 +169,45 @@ export const services: readonly Service[] = [
 export const divisiSection = {
   title: "Mengenal Divisi FORKIP UNJ",
   subtitle:
-    "Forum KIP-Kuliah Universitas Negeri Jakarta (FORKIP UNJ) terdiri dari beberapa divisi strategis yang bekerja sama untuk menyejahterakan mahasiswa penerima KIP-K dan berkontribusi bagi masyarakat.",
+    "Forum KIP-Kuliah Universitas Negeri Jakarta (FORKIP UNJ) memiliki divisi yang bekerja sama untuk mendukung mahasiswa penerima KIP Kuliah dan berkontribusi kepada masyarakat.",
 } as const;
 
 export const divisions: readonly Division[] = [
   {
     chip: "BPHI",
-    title: "BPHI — Badan Pengurus Harian Inti",
+    title: "BPHI - Badan Pengurus Harian Inti",
     defaultExpanded: true,
-    body: "Badan Pengurus Harian Inti merupakan motor penggerak utama sekaligus pusat komando dalam struktur organisasi FORKIP UNJ. Terdiri dari Ketua, Wakil Ketua, Sekretaris umum, dan Bendahara umum, divisi ini bertanggung jawab penuh dalam menentukan arah kebijakan strategis, mengawasi kinerja seluruh divisi, serta mengelola manajemen administrasi dan keuangan organisasi secara transparan dan akuntabel demi kelancaran visi misi selama satu periode kepengurusan.",
+    body: "BPHI terdiri atas Ketua, Wakil Ketua, Sekretaris Umum, dan Bendahara Umum. BPHI menetapkan arah kebijakan organisasi, mengawasi kinerja divisi, serta mengoordinasikan administrasi dan keuangan selama satu periode kepengurusan.",
   },
   {
     chip: "PSDM",
-    title: "PSDM — Pengembangan Sumber Daya Manusia",
-    // TODO: replace with real copy from Figma when available.
-    body: "PSDM bertanggung jawab mengembangkan potensi anggota FORKIP UNJ melalui pelatihan, workshop, dan kegiatan pengembangan diri yang berkelanjutan.",
+    title: "PSDM - Pengembangan Sumber Daya Manusia",
+    body: "PSDM mengelola kaderisasi FORKIP UNJ, mulai dari perekrutan hingga pengembangan kemampuan pengurus dan anggota. Divisi ini juga membina lingkungan kerja yang mendukung kolaborasi dan menyiapkan regenerasi kepemimpinan.",
   },
   {
     chip: "HUMAS",
-    title: "HUMAS — Hubungan Masyarakat",
-    // TODO: replace with real copy from Figma when available.
-    body: "HUMAS mengelola informasi, publikasi, dan dokumentasi kegiatan FORKIP UNJ serta menjalin komunikasi dengan masyarakat luas.",
+    title: "HUMAS - Hubungan Masyarakat",
+    body: "Humas mengelola komunikasi publik dan kanal informasi digital FORKIP UNJ. Divisi ini menjalin hubungan dengan pihak kampus dan organisasi eksternal serta menyampaikan informasi mengenai kegiatan dan capaian forum.",
   },
   {
     chip: "KIF",
-    title: "KIF — Koordinator Integrasi Fakultas",
-    // TODO: replace with real copy from Figma when available.
-    body: "KIF menjadi penghubung FORKIP UNJ dengan delegasi fakultas di seluruh UNJ, memastikan aspirasi mahasiswa penerima KIP-K tersampaikan dengan baik.",
+    title: "KIF - Koordinator Integrasi Fakultas",
+    body: "KIF mengoordinasikan komunikasi terkait KIP Kuliah di tingkat universitas dan fakultas. Divisi ini menyalurkan informasi ke setiap fakultas serta menghimpun data dan aspirasi mahasiswa penerima KIP Kuliah.",
   },
   {
     chip: "ADVOKASI",
-    title: "ADVOKASI — Divisi Advokasi",
-    // TODO: replace with real copy from Figma when available.
-    body: "Advokasi mengawal hak dan kepentingan mahasiswa penerima KIP-K UNJ, termasuk pengelolaan layanan DONAT dan pendampingan pengaduan.",
+    title: "ADVOKASI - Divisi Advokasi",
+    body: "Advokasi mendampingi mahasiswa penerima KIP Kuliah dalam memperoleh layanan terkait hak mereka. Divisi ini memantau kebijakan bantuan pendidikan, membantu mahasiswa menghadapi kendala administrasi atau pencairan dana pinjaman (Donat), serta menyampaikan kendala tersebut kepada pengelola KIP Kuliah.",
   },
   {
     chip: "SOSDIKLAT",
-    title: "SOSDIKLAT — Sosial, Pendidikan, dan Pelatihan",
-    // TODO: replace with real copy from Figma when available.
-    body: "SOSDIKLAT menyelenggarakan kegiatan sosial, pendidikan, dan pelatihan bagi mahasiswa penerima KIP-K maupun masyarakat sekitar.",
+    title: "SOSDIKLAT - Sosial, Pendidikan, dan Pelatihan",
+    body: "Sosdiklat membantu mahasiswa mengembangkan kemampuan akademik dan nonakademik melalui kegiatan edukasi dan pelatihan keterampilan. Divisi ini juga menyelenggarakan aksi sosial sebagai sarana pengabdian kepada masyarakat.",
   },
   {
     chip: "BKK",
-    title: "BKK — Biro Kebendaharaan dan keuangan",
-    // TODO: replace with real copy from Figma when available.
-    body: "BKK mengelola keuangan, perkantoran, dan penyewaan inventaris FORKIP UNJ secara transparan dan akuntabel.",
+    title: "BKK - Biro Kebendaharaan dan Keuangan",
+    body: "BKK bekerja di bawah koordinasi Bendahara Umum. Unit ini mengelola kegiatan usaha, penyewaan inventaris, dan penjualan FORKIP UNJ, serta mencatat dan mengawasi pemasukan dan pengeluaran dari kegiatan tersebut.",
   },
 ];
 
@@ -227,63 +221,60 @@ export const dikelolaSection = {
 export const programSection = {
   title: "Program Unggulan Forkip UNJ",
   subtitle:
-    "Program Unggulan merupakan rangkaian inisiatif strategis yang dirancang untuk mengoptimalkan potensi mahasiswa penerima KIP Kuliah. Mencakup berbagai bidang, mulai dari pengembangan akademik, peningkatan soft skills, hingga aksi pengabdian masyarakat, guna mencetak generasi yang cerdas, kreatif, dan kontributif bagi universitas maupun bangsa.",
+    "Program unggulan FORKIP UNJ mendukung pengembangan akademik dan keterampilan mahasiswa penerima KIP Kuliah, sekaligus membuka ruang bagi mereka untuk berkontribusi melalui pengabdian kepada masyarakat.",
 } as const;
 
 export const programSpotlight: ProgramSpotlight = {
   title: "Kampung KIP-K UNJ",
   paragraphs: [
-    "Kampung KIP-K UNJ adalah agenda tahunan strategis yang diselenggarakan oleh Direktorat Kemahasiswaan dan Alumni UNJ sebagai kawah candradimuka bagi para awardee KIP Kuliah. Berlokasi di Bumi Perkemahan (Buperta) Cibubur, kegiatan ini mengusung misi utama untuk menumbuhkan resiliensi atau ketahanmalangan sebagai soft skill krusial dalam menyelesaikan studi dan menghadapi tantangan dunia kerja.",
-    "Selama tiga hari, sebanyak ribuan peserta ditempa melalui serangkaian kegiatan intensif yang dirancang untuk membangun kemandirian dan soliditas, antara lain:",
+    "Kampung KIP-K UNJ merupakan agenda tahunan Direktorat Kemahasiswaan dan Alumni UNJ bagi mahasiswa penerima KIP Kuliah. Selama tiga hari di Bumi Perkemahan Cibubur, peserta berlatih menghadapi tantangan, bekerja sama, dan membangun kemandirian.",
+    "Rangkaian kegiatan mencakup latihan di alam terbuka, pembekalan akademik, pengembangan kepemimpinan, serta kegiatan olahraga dan seni.",
   ],
   bullets: [
     {
       label: "Resiliensi & Kemandirian",
-      text: "Simulasi bertahan hidup di alam terbuka dengan membangun tenda secara mandiri, melatih daya juang dan kemampuan beradaptasi dalam keterbatasan.",
+      text: "Peserta berlatih beradaptasi di alam terbuka, antara lain dengan mendirikan tenda secara mandiri.",
     },
     {
       label: "Talk Show Akademik",
-      text: "Pembekalan materi khusus dari para Wakil Dekan Bidang I se-lingkungan UNJ mengenai strategi sukses lulus tepat waktu dan tips navigasi akademik.",
+      text: "Para Wakil Dekan Bidang I di lingkungan UNJ berbagi strategi untuk merencanakan studi dan lulus tepat waktu.",
     },
     {
       label: "Kepemimpinan & Karakter",
-      text: 'Sesi motivasi untuk menanamkan jiwa kepemimpinan sesuai tema "Lead The Future", guna mencetak pemimpin perubahan di masa depan.',
+      text: "Sesi bertema Lead The Future mengajak peserta mengembangkan kemampuan memimpin dan mengambil peran dalam perubahan.",
     },
     {
       label: "Solidaritas & Kreativitas",
-      text: "Mempererat silaturahmi melalui kegiatan olahraga, kompetisi antar peserta, dan malam pentas seni sebagai ruang ekspresi bakat mahasiswa.",
+      text: "Olahraga, kompetisi, dan pentas seni menjadi ruang bagi peserta untuk menjalin pertemanan dan menampilkan bakat.",
     },
   ],
   closing:
-    "Melalui Kampung KIP-K, kami berkomitmen memastikan bahwa mahasiswa penerima beasiswa tidak hanya unggul secara akademis, tetapi juga memiliki mentalitas tangguh, karakter yang kuat, dan optimisme tinggi dalam menempuh perjalanan akademik di Universitas Negeri Jakarta.",
+    "Pengalaman ini membantu mahasiswa membangun kesiapan akademik, ketangguhan, dan kemampuan bekerja sama selama menempuh pendidikan di UNJ.",
   cta: "Arsip Kegiatan",
-  photoLabel: "Foto Kampung KIP-K UNJ",
+  photoLabel: "Kampung KIP-K UNJ",
 };
 
 export const programCards: readonly ProgramCard[] = [
   {
-    title: "Explore KIPK UNJ: Jembatan Informasi Menuju Pendidikan Tinggi",
-    // TODO: verify transcription against Figma text dump when available.
+    title: "Explore KIP-Kuliah",
     excerpt:
-      "Explore KIPK 2026 adalah program sosialisasi strategis yang diselenggarakan oleh FORUM KIP-K UNJ sebagai manifestasi dedikasi…",
+      "Explore KIP-Kuliah memperkenalkan program KIP Kuliah kepada siswa dari sekolah di Jabodetabek. Melalui sosialisasi dan sesi berbagi pengalaman dengan penerima KIP Kuliah, siswa mempelajari proses pendaftaran dan mendapat gambaran tentang kehidupan kampus di UNJ.",
     cta: "Arsip Kegiatan",
-    photoLabel: "Foto Explore KIPK",
+    photoLabel: "Explore KIP-Kuliah",
   },
   {
-    title: "INDIKASI: Ikatan Dedikasi KIPK Mengabdi Sepenuh Hati",
-    // TODO: verify transcription against Figma text dump when available.
+    title: "Indikasi",
     excerpt:
-      "INDIKASI merupakan agenda tahunan unggulan Forum KIP-K UNJ yang menjadi wujud nyata kepedulian sosial mahasiswa penerima KIP Kuliah…",
+      "INDIKASI (Ikatan Dedikasi KIPK Mengabdi Sepenuh Hati) merupakan program pengabdian tahunan FORKIP UNJ. Pada 2025, mahasiswa penerima KIP Kuliah terlibat dalam sosialisasi warga, edukasi dan pendampingan, serta kegiatan sosial yang disesuaikan dengan kebutuhan masyarakat setempat.",
     cta: "Arsip Kegiatan",
-    photoLabel: "Foto INDIKASI",
+    photoLabel: "Indikasi",
   },
   {
-    title: "KIP-K UNJ: Informasi Beasiswa Kampus",
-    // TODO: verify transcription against Figma text dump when available.
+    title: "Sosialisasi KIP-K Kuliah",
     excerpt:
-      "Forum KIP-K UNJ menyediakan informasi dan pendampingan bagi calon mahasiswa penerima KIP Kuliah di Universitas Negeri Jakarta.",
+      "Sosialisasi ini membantu calon mahasiswa mengenal program KIP Kuliah dan memahami informasi dasar terkait pendaftaran.",
     cta: "Arsip Kegiatan",
-    photoLabel: "Foto KIP-K UNJ",
+    photoLabel: "Sosialisasi KIP-K Kuliah",
   },
 ];
 
@@ -292,31 +283,31 @@ export const beritaSection = {
   subtitle:
     "Halaman ini dikelola oleh divisi Humas Forkip UNJ sebagai sarana berbagi informasi, dan transparansi laporan kegiatan yang dilakukan oleh Forkip UNJ",
   feature: {
-    title: "Explore KIP-K",
+    title: "Explore KIPK 2026",
     summary:
-      "Pada tanggal 12 Februari 2026, Forkip UNJ mengadakan acara penting.",
-    photoLabel: "Foto Explore KIP-K",
+      "Pada 12 Februari 2026, FORKIP UNJ menyelenggarakan Explore KIPK 2026 untuk memperkenalkan program Kartu Indonesia Pintar Kuliah (KIP-K) kepada peserta dari berbagai sekolah di Jakarta dan sekitarnya.",
+    photoLabel: "Explore KIPK 2026",
   } as NewsFeature,
   teasers: [
     {
-      title: "Pelatihan KIF",
-      // TODO: verify transcription against Figma text dump when available.
-      summary: "Pada tanggal 21 Februari 2026, Divisi KIF melakukan pelatihan.",
+      title: "Pelatihan Divisi KIF",
+      summary:
+        "FORKIP UNJ mengadakan Pelatihan Divisi KIF pada 21 Februari 2026. Kegiatan ini membekali staf dengan pemahaman tentang tugas Koordinator Integrasi Fakultas dan perannya dalam kepengurusan forum.",
     },
     {
       title: "BUSAMAKIP",
-      // TODO: verify transcription against Figma text dump when available.
-      summary: "Pada tanggal 05 Maret 2026, kami telah melaksanakan acara.",
+      summary:
+        "Pada 5 Maret 2026, FORKIP UNJ menggelar BUSAMAKIP, kegiatan buka puasa bersama mahasiswa penerima KIP Kuliah. Acara berlangsung di Aula Bung Hatta, lantai 2 Gedung Pascasarjana UNJ.",
     },
     {
       title: "Verifikasi KIPK SNBP",
-      // TODO: verify transcription against Figma text dump when available.
-      summary: "Terlaksana pada 6-10 April.",
+      summary:
+        "Pengelola KIP Kuliah UNJ melaksanakan verifikasi berkas calon penerima KIP Kuliah jalur Seleksi Nasional Berdasarkan Prestasi (SNBP) pada 6–10 April 2026. Verifikasi berlangsung di Aula Latief Hendraningrat, Gedung Dewi Sartika, Kampus A UNJ.",
     },
     {
       title: "Gelar KIPK",
-      // TODO: verify transcription against Figma text dump when available.
-      summary: "Terlaksana pada tanggal 4 April 2026.",
+      summary:
+        "Pada 4 April 2026, FORKIP UNJ menyelenggarakan Gelar KIPK sebagai ruang bagi mahasiswa untuk mengembangkan keterampilan kreatif dan digital. Sesi berbagi membahas fotografi digital, desain dengan Canva, dan pemanfaatan kecerdasan buatan (AI).",
     },
   ] as readonly NewsTeaser[],
   ctaLabel: "Laporan kegiatan Forkip UNJ",

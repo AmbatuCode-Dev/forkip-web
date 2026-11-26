@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { PlaceholdImage } from "@/components/ui/placehold-image";
 import { useSectionReveal } from "@/features/home";
+import { isActionableHref } from "@/utils/is-actionable-href";
 import { programCards, programLainTitle } from "../data";
 import { ProgramSpotlightSection } from "./program-spotlight";
 
@@ -52,16 +53,18 @@ export function ProgramUnggulanContent() {
               <p className="flex-1 text-sm leading-5 text-body-muted">
                 {card.excerpt}
               </p>
-              <Link
-                href="/pertanyaan-pengaduan"
-                className={buttonVariants({
-                  variant: "gold",
-                  size: "sm",
-                  className: "h-9 rounded-full px-5 text-sm font-semibold",
-                })}
-              >
-                {card.cta}
-              </Link>
+              {isActionableHref(card.ctaHref) && (
+                <Link
+                  href={card.ctaHref}
+                  className={buttonVariants({
+                    variant: "gold",
+                    size: "sm",
+                    className: "h-9 rounded-full px-5 text-sm font-semibold",
+                  })}
+                >
+                  {card.cta}
+                </Link>
+              )}
             </article>
           ))}
         </div>

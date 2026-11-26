@@ -218,9 +218,11 @@ export function BeritaNewsCard({ post }: { readonly post: NewsPost }) {
 
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center rounded-full bg-gold-soft px-3 py-1.5 text-xs font-bold text-gold-ink">
-            Diupload pada: {post.uploadedLabel}
-          </span>
+          {post.uploadedLabel ? (
+            <span className="inline-flex items-center rounded-full bg-gold-soft px-3 py-1.5 text-xs font-bold text-gold-ink">
+              Diupload pada: {post.uploadedLabel}
+            </span>
+          ) : null}
           <span className="inline-flex items-center rounded-full border border-border-sand bg-white px-3 py-1.5 text-xs font-semibold text-body">
             {post.photoCount} Foto
           </span>

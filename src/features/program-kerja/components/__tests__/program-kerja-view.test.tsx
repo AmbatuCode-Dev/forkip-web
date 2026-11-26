@@ -1,11 +1,12 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { ProgramKerjaView } from "@/features/program-kerja";
 import { cleanup, render, screen, within } from "@/testing/test-utils";
+import { programKerjaItems } from "../../data";
 
 afterEach(cleanup);
 
 describe("ProgramKerjaView", () => {
-  it("renders hero and the AD/ART PDF file row", () => {
+  it("renders hero and the AD/ART PDF file row without a placeholder link", () => {
     render(<ProgramKerjaView />);
 
     expect(
@@ -16,13 +17,18 @@ describe("ProgramKerjaView", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Disusun berdasarkan AD/ART FORUM KIP-K UNIVERSITAS NEGERI JAKARTA",
+        "Program kerja 2026 disusun berdasarkan Anggaran Dasar dan Anggaran Rumah Tangga (AD/ART) Forum KIP-K Universitas Negeri Jakarta.",
       ),
     ).toBeInTheDocument();
     expect(screen.getByText("PDF")).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: "AD ART FORUM KIP-KULIAH UNJ.pdf" }),
-    ).toHaveAttribute("href", "#");
+      screen.getByText("AD ART FORUM KIP-KULIAH UNJ.pdf"),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "AD ART FORUM KIP-KULIAH UNJ.pdf",
+      }),
+    ).toBeNull();
   });
 
   it("renders all 5 program cards with tag pill and photo placeholder", () => {
@@ -52,40 +58,41 @@ describe("ProgramKerjaView", () => {
     }
   });
 
-  it("renders the Explore KIP-Kuliah body copy", () => {
+  it("renders the supplied body copy on the first three cards only", () => {
     render(<ProgramKerjaView />);
 
-    expect(
-      screen.getByText(
-        /Pada tanggal 12 Februari 2026, Explore KIPK 2026 merupakan program sosialisasi/,
-      ),
-    ).toBeInTheDocument();
-  });
-
-  it("shows both buttons on the first 3 cards and only Laporan on the last 2", () => {
-    render(<ProgramKerjaView />);
-
-    expect(
-      screen.getAllByRole("link", { name: "Arsip Kegiatan" }),
-    ).toHaveLength(3);
-    expect(
-      screen.getAllByRole("link", { name: "Laporan Program Kerja" }),
-    ).toHaveLength(5);
+    for (const body of [
+      "FORKIP UNJ mengadakan sosialisasi KIP Kuliah pada 12 Februari 2026 bagi peserta dari sekolah di Jakarta dan sekitarnya. Kegiatan ini membantu calon mahasiswa memahami pendaftaran, persyaratan, dan tahapan seleksi KIP Kuliah.",
+      "FORKIP UNJ mengadakan buka puasa bersama pada 5 Maret 2026 di Aula Bung Hatta, Gedung Pascasarjana UNJ, untuk mempererat silaturahmi mahasiswa penerima KIP Kuliah.",
+      "Pada 6–10 April 2026, Pengelola KIP Kuliah UNJ memeriksa kesesuaian data dan kelengkapan berkas calon penerima KIP Kuliah jalur SNBP.",
+    ]) {
+      expect(screen.getByText(body)).toBeInTheDocument();
+    }
 
     for (const title of ["Verif Akademik SNBT", "Sosialisasi KIPK"]) {
       const card = screen
         .getByRole("heading", { level: 3, name: title })
-        .closest("article");
-      expect(
-        within(card as HTMLElement).queryByRole("link", {
-          name: "Arsip Kegiatan",
-        }),
-      ).toBeNull();
-      expect(
-        within(card as HTMLElement).getByRole("link", {
-          name: "Laporan Program Kerja",
-        }),
-      ).toHaveAttribute("href", "#");
+        .closest("article") as HTMLElement;
+      expect(card.querySelector("p")).toBeNull();
     }
+  });
+
+  it("keeps the Arsip/Laporan split in the data but renders no placeholder action links", () => {
+    expect(programKerjaItems.map((item) => item.hasArchive)).toEqual([
+      true,
+      true,
+      true,
+      false,
+      false,
+    ]);
+
+    render(<ProgramKerjaView />);
+
+    expect(
+      screen.queryAllByRole("link", { name: "Arsip Kegiatan" }),
+    ).toHaveLength(0);
+    expect(
+      screen.queryAllByRole("link", { name: "Laporan Program Kerja" }),
+    ).toHaveLength(0);
   });
 });

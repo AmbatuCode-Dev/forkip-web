@@ -17,7 +17,7 @@ export interface ProgramSpotlight {
   readonly bullets: readonly ProgramBullet[];
   readonly closing: string;
   readonly cta: string;
-  /** Placeholder href ("#") until the real activity-archive URL is provided. */
+  /** Archive URL; "#" while a public URL is not yet available. */
   readonly ctaHref: string;
   /**
    * Subject for NewsMediaPlaceholder, which renders "Foto {label}
@@ -30,7 +30,7 @@ export interface ProgramCard {
   readonly title: string;
   readonly excerpt: string;
   readonly cta: string;
-  /** Placeholder href ("#") until the real activity-archive URL is provided. */
+  /** Archive URL; "#" while a public URL is not yet available. */
   readonly ctaHref: string;
   /** Subject for NewsMediaPlaceholder ("Foto {label}"). */
   readonly photoLabel: string;

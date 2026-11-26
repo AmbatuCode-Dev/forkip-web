@@ -193,7 +193,8 @@ export function SiteHeader() {
 
   const toggleMenu = (id: DropdownId) => {
     clearHoverTimeout();
-    setOpenMenu((current) => (current === id ? null : id));
+    // Hover may already have opened the menu; a click must not close it again.
+    setOpenMenu(id);
   };
 
   const focusRing = overHero

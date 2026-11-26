@@ -4,6 +4,11 @@ export interface PageHeroContent {
   readonly description: string;
 }
 
+export interface PenyewaanCopy {
+  readonly note: string;
+  readonly inventarisHeading: string;
+}
+
 export interface AdminContactLink {
   readonly label: string;
   readonly href: string;
@@ -12,10 +17,13 @@ export interface AdminContactLink {
 export interface GoogleFormEmbed {
   readonly label: string;
   readonly title: string;
+  readonly url: string;
+  readonly embedUrl: string;
 }
 
 export interface InventarisItem {
   readonly chip: string;
+  readonly imageLabel?: string;
   readonly title: string;
   readonly meta: string;
   readonly paragraphs: string[];

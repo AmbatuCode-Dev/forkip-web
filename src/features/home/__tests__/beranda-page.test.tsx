@@ -73,13 +73,13 @@ describe("BerandaPage", () => {
     render(<BerandaPage />);
 
     const titles = [
-      "BPHI — Badan Pengurus Harian Inti",
-      "PSDM — Pengembangan Sumber Daya Manusia",
-      "HUMAS — Hubungan Masyarakat",
-      "KIF — Koordinator Integrasi Fakultas",
-      "ADVOKASI — Divisi Advokasi",
-      "SOSDIKLAT — Sosial, Pendidikan, dan Pelatihan",
-      "BKK — Biro Kebendaharaan dan keuangan",
+      "BPHI - Badan Pengurus Harian Inti",
+      "PSDM - Pengembangan Sumber Daya Manusia",
+      "HUMAS - Hubungan Masyarakat",
+      "KIF - Koordinator Integrasi Fakultas",
+      "ADVOKASI - Divisi Advokasi",
+      "SOSDIKLAT - Sosial, Pendidikan, dan Pelatihan",
+      "BKK - Biro Kebendaharaan dan Keuangan",
     ];
     for (const title of titles) {
       const toggle = screen.getByRole("button", { name: new RegExp(title) });
@@ -90,6 +90,11 @@ describe("BerandaPage", () => {
       name: new RegExp(titles[0]),
     });
     expect(bphiToggle).toHaveAttribute("aria-expanded", "true");
+    expect(
+      screen.getByText(
+        "BPHI terdiri atas Ketua, Wakil Ketua, Sekretaris Umum, dan Bendahara Umum. BPHI menetapkan arah kebijakan organisasi, mengawasi kinerja divisi, serta mengoordinasikan administrasi dan keuangan selama satu periode kepengurusan.",
+      ),
+    ).toBeVisible();
   });
 
   it("renders the YouTube embed for Video Forum KIPK UNJ", () => {
@@ -108,26 +113,51 @@ describe("BerandaPage", () => {
     expect(
       screen.getByRole("heading", { level: 3, name: "Kampung KIP-K UNJ" }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Kampung KIP-K UNJ merupakan agenda tahunan Direktorat Kemahasiswaan dan Alumni UNJ bagi mahasiswa penerima KIP Kuliah. Selama tiga hari di Bumi Perkemahan Cibubur, peserta berlatih menghadapi tantangan, bekerja sama, dan membangun kemandirian.",
+      ),
+    ).toBeVisible();
+    expect(
+      screen.getByText(
+        /Peserta berlatih beradaptasi di alam terbuka, antara lain dengan mendirikan tenda secara mandiri\./,
+      ),
+    ).toBeVisible();
+    expect(
+      screen.getByText(
+        "Pengalaman ini membantu mahasiswa membangun kesiapan akademik, ketangguhan, dan kemampuan bekerja sama selama menempuh pendidikan di UNJ.",
+      ),
+    ).toBeVisible();
     for (const title of [
-      "Explore KIPK UNJ: Jembatan Informasi Menuju Pendidikan Tinggi",
-      "INDIKASI: Ikatan Dedikasi KIPK Mengabdi Sepenuh Hati",
-      "KIP-K UNJ: Informasi Beasiswa Kampus",
+      "Explore KIP-Kuliah",
+      "Indikasi",
+      "Sosialisasi KIP-K Kuliah",
     ]) {
       // Each card title appears exactly once (marquee uses different labels).
       expect(screen.getAllByText(title)).toHaveLength(1);
     }
+    expect(
+      screen.getByText(
+        "Sosialisasi ini membantu calon mahasiswa mengenal program KIP Kuliah dan memahami informasi dasar terkait pendaftaran.",
+      ),
+    ).toBeVisible();
   });
   it("renders the berita feature and editorial teasers", () => {
     render(<BerandaPage />);
 
     expect(
-      screen.getByRole("heading", { level: 3, name: "Explore KIP-K" }),
+      screen.getByRole("heading", { level: 3, name: "Explore KIPK 2026" }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Pada 12 Februari 2026, FORKIP UNJ menyelenggarakan Explore KIPK 2026 untuk memperkenalkan program Kartu Indonesia Pintar Kuliah (KIP-K) kepada peserta dari berbagai sekolah di Jakarta dan sekitarnya.",
+      ),
+    ).toBeVisible();
     // Exact counts: teasers render once as text; marquee card labels are no
     // longer DOM text (baked into the placehold.co image), so each duplicated
     // strip card is asserted via its img alt instead.
     const expectedCounts: Record<string, number> = {
-      "Pelatihan KIF": 1,
+      "Pelatihan Divisi KIF": 1,
       BUSAMAKIP: 1,
       "Verifikasi KIPK SNBP": 1,
       "Gelar KIPK": 1,
@@ -135,11 +165,26 @@ describe("BerandaPage", () => {
     for (const [title, count] of Object.entries(expectedCounts)) {
       expect(screen.getAllByText(title)).toHaveLength(count);
     }
-    for (const label of ["BUSAMAKIP", "Verifikasi KIPK SNBP", "Gelar KIPK"]) {
-      // The marquee loop duplicates each card, so 2 img per label.
+    for (const summary of [
+      "FORKIP UNJ mengadakan Pelatihan Divisi KIF pada 21 Februari 2026. Kegiatan ini membekali staf dengan pemahaman tentang tugas Koordinator Integrasi Fakultas dan perannya dalam kepengurusan forum.",
+      "Pada 5 Maret 2026, FORKIP UNJ menggelar BUSAMAKIP, kegiatan buka puasa bersama mahasiswa penerima KIP Kuliah. Acara berlangsung di Aula Bung Hatta, lantai 2 Gedung Pascasarjana UNJ.",
+      "Pengelola KIP Kuliah UNJ melaksanakan verifikasi berkas calon penerima KIP Kuliah jalur Seleksi Nasional Berdasarkan Prestasi (SNBP) pada 6–10 April 2026. Verifikasi berlangsung di Aula Latief Hendraningrat, Gedung Dewi Sartika, Kampus A UNJ.",
+      "Pada 4 April 2026, FORKIP UNJ menyelenggarakan Gelar KIPK sebagai ruang bagi mahasiswa untuk mengembangkan keterampilan kreatif dan digital. Sesi berbagi membahas fotografi digital, desain dengan Canva, dan pemanfaatan kecerdasan buatan (AI).",
+    ]) {
+      expect(screen.getByText(summary)).toBeVisible();
+    }
+    for (const label of [
+      "Explore KIPK 2026",
+      "BUSAMAKIP",
+      "Verifikasi KIPK SNBP",
+      "Gelar KIPK",
+    ]) {
+      // The marquee loop duplicates each card, so 2 img per label; the
+      // feature placeholder adds one more for "Explore KIPK 2026".
+      const expected = label === "Explore KIPK 2026" ? 3 : 2;
       expect(
         screen.getAllByAltText(`Foto ${label} (placeholder)`),
-      ).toHaveLength(2);
+      ).toHaveLength(expected);
     }
     expect(
       screen.getByRole("link", { name: "Lihat semua Berita" }),

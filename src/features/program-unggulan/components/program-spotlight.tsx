@@ -1,5 +1,6 @@
 import { NewsMediaPlaceholder } from "@/components/berita/news-media-placeholder";
 import { buttonVariants } from "@/components/ui/button";
+import { isActionableHref } from "@/utils/is-actionable-href";
 import { programSpotlight } from "../data";
 
 /**
@@ -46,16 +47,18 @@ export function ProgramSpotlightSection() {
         <p className="mt-5 text-15 leading-6 text-body">
           {programSpotlight.closing}
         </p>
-        <a
-          href={programSpotlight.ctaHref}
-          className={buttonVariants({
-            variant: "gold",
-            size: "cta",
-            className: "mt-6",
-          })}
-        >
-          {programSpotlight.cta}
-        </a>
+        {isActionableHref(programSpotlight.ctaHref) && (
+          <a
+            href={programSpotlight.ctaHref}
+            className={buttonVariants({
+              variant: "gold",
+              size: "cta",
+              className: "mt-6",
+            })}
+          >
+            {programSpotlight.cta}
+          </a>
+        )}
       </div>
 
       <NewsMediaPlaceholder

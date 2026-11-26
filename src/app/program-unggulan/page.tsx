@@ -7,7 +7,7 @@ import {
 export const metadata: Metadata = {
   title: "Program Unggulan Forkip UNJ",
   description:
-    "Rangkaian inisiatif strategis Forum KIP-K UNJ: Kampung KIP-K UNJ, Explore KIPK, INDIKASI, dan informasi beasiswa kampus.",
+    "Program unggulan FORKIP UNJ mendukung pengembangan akademik dan keterampilan mahasiswa penerima KIP Kuliah, sekaligus membuka ruang bagi mereka untuk berkontribusi melalui pengabdian kepada masyarakat.",
 };
 
 export default function ProgramUnggulanPage() {

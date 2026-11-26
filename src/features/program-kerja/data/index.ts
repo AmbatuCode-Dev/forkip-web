@@ -4,7 +4,7 @@ export const programKerjaHero: PageHeroContent = {
   breadcrumbLabel: "Program Kerja",
   title: "Program Kerja Forkip UNJ 2026",
   description:
-    "Disusun berdasarkan AD/ART FORUM KIP-K UNIVERSITAS NEGERI JAKARTA",
+    "Program kerja 2026 disusun berdasarkan Anggaran Dasar dan Anggaran Rumah Tangga (AD/ART) Forum KIP-K Universitas Negeri Jakarta.",
 };
 
 export const adArtFile: PdfFile = {
@@ -24,19 +24,21 @@ export const programKerjaItems: readonly ProgramKerjaItem[] = [
     title: "Explore KIP-Kuliah",
     photoLabel: "Explore KIP-Kuliah",
     photoVariant: 1,
-    body: "Pada tanggal 12 Februari 2026, Explore KIPK 2026 merupakan program sosialisasi yang diselenggarakan oleh FORUM KIP-K UNJ sebagai bentuk komitmen dalam memperluas akses informasi mengenai Program Kartu Indonesia Pintar Kuliah (KIP-K). Kegiatan ini menghadirkan perwakilan mahasiswa dari berbagai sekolah di wilayah Jakarta dan sekitarnya untuk mendapatkan pemahaman yang komprehensif terkait KIP-K.",
+    body: "FORKIP UNJ mengadakan sosialisasi KIP Kuliah pada 12 Februari 2026 bagi peserta dari sekolah di Jakarta dan sekitarnya. Kegiatan ini membantu calon mahasiswa memahami pendaftaran, persyaratan, dan tahapan seleksi KIP Kuliah.",
     hasArchive: true,
   },
   {
     title: "BUSAMAKIP",
     photoLabel: "BUSAMAKIP",
     photoVariant: 2,
+    body: "FORKIP UNJ mengadakan buka puasa bersama pada 5 Maret 2026 di Aula Bung Hatta, Gedung Pascasarjana UNJ, untuk mempererat silaturahmi mahasiswa penerima KIP Kuliah.",
     hasArchive: true,
   },
   {
     title: "Verif Akademik SNBP",
     photoLabel: "Verif Akademik SNBP",
     photoVariant: 3,
+    body: "Pada 6–10 April 2026, Pengelola KIP Kuliah UNJ memeriksa kesesuaian data dan kelengkapan berkas calon penerima KIP Kuliah jalur SNBP.",
     hasArchive: true,
   },
   {

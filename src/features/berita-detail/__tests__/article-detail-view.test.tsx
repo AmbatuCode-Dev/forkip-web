@@ -7,20 +7,23 @@ import { toArticleDetailContent } from "../data";
 
 afterEach(cleanup);
 
-const explore = newsPosts.find((post) => post.slug === "explore-kipk-2026");
-
-function renderExplore() {
-  if (!explore) {
-    throw new Error("explore-kipk-2026 post missing from newsPosts");
+function postBySlug(slug: string) {
+  const post = newsPosts.find((candidate) => candidate.slug === slug);
+  if (!post) {
+    throw new Error(`${slug} post missing from newsPosts`);
   }
+  return post;
+}
+
+function renderArticle(slug: string) {
   renderWithProviders(
-    <ArticleDetailView article={toArticleDetailContent(explore)} />,
+    <ArticleDetailView article={toArticleDetailContent(postBySlug(slug))} />,
   );
 }
 
 describe("ArticleDetailView", () => {
   it("renders breadcrumb with Beranda, Berita, and the post title", () => {
-    renderExplore();
+    renderArticle("explore-kipk-2026");
 
     const breadcrumb = screen.getByRole("navigation", {
       name: "Breadcrumb",
@@ -34,97 +37,101 @@ describe("ArticleDetailView", () => {
     expect(within(breadcrumb).getByText("Explore KIPK 2026")).toBeVisible();
   });
 
-  it("renders the Berita tag pill, H1, subtitle, and meta row", () => {
-    renderExplore();
+  it("renders the Berita tag pill, H1, derived subtitle, and dated meta row", () => {
+    renderArticle("explore-kipk-2026");
 
-    const tagPill = within(screen.getByTestId("article-header")).getByText(
-      "Berita",
-      { exact: true },
-    );
-    expect(tagPill).toBeInTheDocument();
+    const header = screen.getByTestId("article-header");
+    expect(
+      within(header).getByText("Berita", { exact: true }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { level: 1, name: "Explore KIPK 2026" }),
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        "Program sosialisasi FORUM KIP-K UNJ untuk memperluas akses informasi KIP-K bagi siswa di Jakarta dan sekitarnya.",
-      ),
-    ).toBeInTheDocument();
+    const explore = postBySlug("explore-kipk-2026");
+    expect(within(header).getByText(explore.paragraphs[0])).toBeInTheDocument();
     expect(screen.getByText("Humas Forkip UNJ")).toBeInTheDocument();
     expect(
-      screen.getByText(/Rabu 18 Februari 2026 · \d+ menit baca/),
+      screen.getByText(/18 Februari 2026 · \d+ menit baca/),
     ).toBeInTheDocument();
   });
 
-  it("renders the hero media block with badge and caption", () => {
-    renderExplore();
+  it("renders the single-photo hero with fallback badge and supplied caption", () => {
+    renderArticle("explore-kipk-2026");
 
     expect(screen.getByTestId("article-hero-media")).toBeInTheDocument();
-    expect(screen.getByText("01 / 04 · Dokumentasi")).toBeInTheDocument();
+    expect(screen.getByText("01 / 01 · Foto")).toBeInTheDocument();
     expect(
-      screen.getByText("Sesi pembukaan & sosialisasi program KIP-K UNJ"),
+      screen.getByText("Dokumentasi sosialisasi Explore KIPK 2026."),
     ).toBeInTheDocument();
+    expect(screen.queryByTestId("article-figure-2")).not.toBeInTheDocument();
   });
 
-  it("renders every verbatim paragraph and inline figures", () => {
-    renderExplore();
+  it("renders every supplied paragraph and one figure per extra photo", () => {
+    renderArticle("pelatihan-divisi-kif");
 
     expect(
       screen.getByText(
-        /Pada tanggal 12 Februari 2026, Explore KIPK 2026 merupakan program sosialisasi/,
+        /FORKIP UNJ mengadakan Pelatihan Divisi KIF pada 21 Februari 2026. Kegiatan ini membekali staf/,
       ),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(
-        /Melalui kegiatan ini, FORUM KIP-K UNJ memberikan penjelasan mengenai mekanisme pendaftaran/,
-      ),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        /Explore KIPK 2026 diharapkan menjadi jembatan informasi antara mahasiswa/,
-      ),
+      screen.getByText(/Peserta mempelajari cara menyampaikan informasi/),
     ).toBeInTheDocument();
 
-    const paragraphs = explore?.paragraphs.length ?? 0;
+    const pelatihan = postBySlug("pelatihan-divisi-kif");
     expect(screen.getAllByRole("paragraph").length).toBeGreaterThanOrEqual(
-      paragraphs,
+      pelatihan.paragraphs.length,
     );
     expect(screen.getByTestId("article-figure-2")).toBeInTheDocument();
-    expect(screen.getByText("02 / 04 · Dokumentasi")).toBeInTheDocument();
-    expect(screen.getByText("03 / 04 · Dokumentasi")).toBeInTheDocument();
-    expect(screen.getByText("04 / 04 · Dokumentasi")).toBeInTheDocument();
+    expect(screen.getByTestId("article-figure-4")).toBeInTheDocument();
+    expect(screen.getByText("02 / 04 · Foto")).toBeInTheDocument();
+    expect(screen.getByText("04 / 04 · Foto")).toBeInTheDocument();
+  });
+
+  it("omits the date but still shows the read time for pending posts", () => {
+    renderArticle("busamakip");
+
+    const header = screen.getByTestId("article-header");
+    expect(within(header).queryByText(/Menyusul/)).not.toBeInTheDocument();
+    expect(
+      within(header).queryByText(/Februari|April/),
+    ).not.toBeInTheDocument();
+    expect(within(header).getByText(/^\d+ menit baca$/)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /Pada 5 Maret 2026, FORKIP UNJ menggelar BUSAMAKIP, kegiatan buka puasa bersama mahasiswa penerima KIP Kuliah. Acara berlangsung/,
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText("01 / 03 · Foto")).toBeInTheDocument();
+    expect(screen.getByTestId("article-figure-3")).toBeInTheDocument();
+    expect(screen.queryByTestId("article-figure-4")).not.toBeInTheDocument();
+  });
+
+  it("renders Gelar KIPK with its gallery and no placeholder date", () => {
+    renderArticle("gelar-kipk");
+
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Gelar KIPK" }),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId("article-hero-media")).toBeInTheDocument();
+    expect(screen.getByText("01 / 04 · Foto")).toBeInTheDocument();
+    expect(
+      screen.getByText("Dokumentasi Gelar KIPK 2026."),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId("article-figure-4")).toBeInTheDocument();
+    expect(screen.queryByText(/Menyusul/)).not.toBeInTheDocument();
   });
 
   it("links Kembali ke Berita to /berita", () => {
-    renderExplore();
+    renderArticle("verifikasi-kipk-snbp");
 
     expect(screen.getByTestId("article-back-link")).toHaveAttribute(
       "href",
       "/berita",
     );
     expect(screen.getByText("Kembali ke Berita")).toBeInTheDocument();
-  });
-
-  it("omits the hero media block for posts without photos", () => {
-    const gelar = newsPosts.find((post) => post.slug === "gelar-kipk");
-    if (!gelar) {
-      throw new Error("gelar-kipk post missing from newsPosts");
-    }
-    renderWithProviders(
-      <ArticleDetailView article={toArticleDetailContent(gelar)} />,
-    );
-
-    expect(screen.queryByTestId("article-hero-media")).not.toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { level: 1, name: "Gelar KIPK" }),
+      screen.getByText(/8 April 2026 · \d+ menit baca/),
     ).toBeInTheDocument();
-  });
-});
-
-describe("getArticleDetail", () => {
-  it("returns content for a known slug and undefined for unknown slugs", () => {
-    expect(toArticleDetailContent(explore ?? newsPosts[0]).slug).toBe(
-      "explore-kipk-2026",
-    );
   });
 });

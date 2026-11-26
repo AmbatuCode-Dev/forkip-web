@@ -4,7 +4,7 @@ export const nonProgramHero: PageHeroContent = {
   breadcrumbLabel: "Non Program Kerja",
   title: "Non Program Kerja Forkip UNJ 2026",
   description:
-    "Disusun berdasarkan AD/ART FORUM KIP-K UNIVERSITAS NEGERI JAKARTA",
+    "Daftar kegiatan di luar program kerja 2026 disusun berdasarkan Anggaran Dasar dan Anggaran Rumah Tangga (AD/ART) Forum KIP-K Universitas Negeri Jakarta.",
 };
 
 export const adArtFile: PdfFile = {
@@ -24,7 +24,7 @@ export const nonProgramItems: readonly NonProgramItem[] = [
     title: "Pelatihan Anggota KIF",
     photoLabel: "Pelatihan Anggota KIF",
     photoVariant: 1,
-    body: "Pelatihan Divisi KIF (Koordinator Integrasi Fakultas) FORUM KIP-K UNJ 2026, merupakan agenda persiapan yang diselenggarakan untuk membekali Staff KIF dengan pemahaman yang komprehensif mengenai peran, fungsi, serta tanggung jawabnya dalam struktur organisasi FORKIP UNJ.",
+    body: "Pelatihan ini membekali staf KIF dengan pemahaman tentang tanggung jawab mereka sebagai penghubung informasi di tingkat fakultas. Peserta mempelajari alur koordinasi untuk menyampaikan informasi, menghimpun aspirasi, dan menindaklanjuti kendala mahasiswa.",
   },
   {
     title: "KANTIN (Kumpul Rutin)",

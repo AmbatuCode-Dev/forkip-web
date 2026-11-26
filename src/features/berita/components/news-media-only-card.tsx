@@ -105,11 +105,13 @@ export function NewsMediaOnlyCard({ post }: { post: NewsPost }) {
     >
       {post.slug === "gelar-kipk" ? <GelarKipkStage /> : <BusamakipStage />}
       <div className="space-y-4">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center rounded-full bg-gold-soft px-3 py-1.5 text-xs font-semibold text-gold-ink">
-            Diupload pada: {post.uploadedLabel}
-          </span>
-        </div>
+        {post.uploadedLabel ? (
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center rounded-full bg-gold-soft px-3 py-1.5 text-xs font-semibold text-gold-ink">
+              Diupload pada: {post.uploadedLabel}
+            </span>
+          </div>
+        ) : null}
         <h3 className="text-28 leading-9 font-bold tracking-tight text-ink">
           {post.title}
         </h3>

@@ -9,8 +9,8 @@ import { beritaMarqueeItems, beritaSection } from "../data";
 import { useSectionReveal } from "./use-section-reveal";
 
 const BERITA_SLUG_BY_TITLE: Record<string, string> = {
-  "Explore KIP-K": "explore-kipk-2026",
-  "Pelatihan KIF": "pelatihan-divisi-kif",
+  "Explore KIPK 2026": "explore-kipk-2026",
+  "Pelatihan Divisi KIF": "pelatihan-divisi-kif",
   BUSAMAKIP: "busamakip",
   "Verifikasi KIPK SNBP": "verifikasi-kipk-snbp",
   "Gelar KIPK": "gelar-kipk",

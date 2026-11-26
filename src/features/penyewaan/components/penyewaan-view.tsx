@@ -6,11 +6,13 @@ import { buttonVariants } from "@/components/ui/button";
 import { InventarisAccordion } from "@/components/ui/inventaris-accordion";
 import { useSectionReveal } from "@/features/home";
 import { cn } from "@/utils/cn";
+import { isActionableHref } from "@/utils/is-actionable-href";
 import {
   adminContactLinks,
   contactCta,
   googleFormEmbed,
   inventarisItems,
+  penyewaanCopy,
   penyewaanHero,
 } from "../data";
 
@@ -37,39 +39,49 @@ export function PenyewaanView() {
           className="flex flex-col gap-4 rounded-14 bg-gold-pale py-6 pr-12 pl-7.5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
         >
           <p className="max-w-200 text-base leading-6 font-medium text-ink-soft">
-            Penyewaan barang, harap menghubungi admin BKK dengan klik tombol
-            berikut sebelum isi form di bawah.
+            {penyewaanCopy.note}
           </p>
           <div className="flex shrink-0 flex-wrap items-center gap-7">
-            {adminContactLinks.map((link, index) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={cn(
-                  "inline-flex h-10 items-center justify-center rounded-full px-5 text-13 font-semibold text-ink transition-colors focus-visible:ring-2 focus-visible:ring-gold-ink focus-visible:outline-none",
-                  index === 0
-                    ? "bg-gold hover:bg-gold-dark"
-                    : "border border-gold-outline bg-white hover:bg-gold-soft",
-                )}
-              >
-                {link.label}
-              </a>
-            ))}
+            {adminContactLinks
+              .filter((link) => isActionableHref(link.href))
+              .map((link, index) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={cn(
+                    "inline-flex h-10 items-center justify-center rounded-full px-5 text-13 font-semibold text-ink transition-colors focus-visible:ring-2 focus-visible:ring-gold-ink focus-visible:outline-none",
+                    index === 0
+                      ? "bg-gold hover:bg-gold-dark"
+                      : "border border-gold-outline bg-white hover:bg-gold-soft",
+                  )}
+                >
+                  {link.label}
+                </a>
+              ))}
           </div>
         </section>
 
-        {/* Google Form embed placeholder — 1200×260 white card */}
+        {/* Google Form embed */}
         <section
           aria-label={googleFormEmbed.title}
-          className="flex h-65 flex-col items-center justify-center gap-2 rounded-2xl border border-border-sand bg-white px-6 text-center"
+          className="flex flex-col gap-4 rounded-2xl border border-border-sand bg-white p-6"
         >
-          <p className="text-11 font-semibold tracking-wide12 text-body-muted uppercase">
-            {googleFormEmbed.label}
-          </p>
-          <h2 className="text-15 font-semibold text-ink">
-            {googleFormEmbed.title}
-          </h2>
-          {/* TODO: replace with real <iframe> embed of the Google Form. */}
+          <div className="text-center">
+            <p className="text-11 font-semibold tracking-wide12 text-body-muted uppercase">
+              {googleFormEmbed.label}
+            </p>
+            <h2 className="text-15 font-semibold text-ink">
+              {googleFormEmbed.title}
+            </h2>
+          </div>
+          {isActionableHref(googleFormEmbed.embedUrl) ? (
+            <iframe
+              title={googleFormEmbed.title}
+              src={googleFormEmbed.embedUrl}
+              className="h-140 w-full border-0"
+              loading="lazy"
+            />
+          ) : null}
         </section>
 
         {/* Inventaris list */}
@@ -81,13 +93,14 @@ export function PenyewaanView() {
             id="inventaris-heading"
             className="text-32 leading-9 font-semibold text-ink"
           >
-            Inventaris yang kami sewakan
+            {penyewaanCopy.inventarisHeading}
           </h2>
           <div className="flex flex-col gap-4">
             {inventarisItems.map((item) => (
               <InventarisAccordion
                 key={item.title}
                 chip={item.chip}
+                imageLabel={item.imageLabel}
                 title={item.title}
                 meta={item.meta}
                 paragraphs={item.paragraphs}
@@ -105,18 +118,20 @@ export function PenyewaanView() {
         >
           <h2 className="text-xl font-bold text-ink">{contactCta.title}</h2>
           <p className="text-sm text-body-muted">{contactCta.description}</p>
-          <a
-            href={contactCta.actionHref}
-            className={cn(
-              buttonVariants({
-                variant: "gold",
-                size: "md",
-                className: "mt-3 px-6",
-              }),
-            )}
-          >
-            {contactCta.actionLabel}
-          </a>
+          {isActionableHref(contactCta.actionHref) ? (
+            <a
+              href={contactCta.actionHref}
+              className={cn(
+                buttonVariants({
+                  variant: "gold",
+                  size: "md",
+                  className: "mt-3 px-6",
+                }),
+              )}
+            >
+              {contactCta.actionLabel}
+            </a>
+          ) : null}
         </section>
       </div>
     </>

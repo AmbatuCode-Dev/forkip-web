@@ -9,15 +9,6 @@ import type {
 /** Author shown in the detail meta row (spec §A). */
 export const ARTICLE_AUTHOR = "Humas Forkip UNJ";
 
-/**
- * One-line summaries under the H1; spec §A provides the copy for
- * Explore KIPK 2026. Other posts fall back to their first sentence.
- */
-const SUBTITLE_BY_SLUG: Readonly<Record<string, string>> = {
-  "explore-kipk-2026":
-    "Program sosialisasi FORUM KIP-K UNJ untuk memperluas akses informasi KIP-K bagi siswa di Jakarta dan sekitarnya.",
-};
-
 /** ~200 words per minute, minimum 1 (spec §A meta row read time). */
 function estimateReadMinutes(paragraphs: readonly string[]): number {
   const words = paragraphs.join(" ").split(/\s+/).filter(Boolean).length;
@@ -30,11 +21,8 @@ function firstSentence(paragraph: string): string {
   return sentence.trim();
 }
 
+/** One-line summary under the H1: the first sentence of the lead paragraph. */
 function subtitleFor(post: NewsPost): string {
-  const explicit = SUBTITLE_BY_SLUG[post.slug];
-  if (explicit) {
-    return explicit;
-  }
   const lead = post.paragraphs[0];
   return lead ? firstSentence(lead) : "";
 }
@@ -57,7 +45,7 @@ function figuresFor(post: NewsPost): readonly ArticleFigure[] {
     return [];
   }
   const total = String(post.photoCount).padStart(2, "0");
-  const suffix = post.gallery?.badge.split("·")[1]?.trim() ?? "Foto";
+  const suffix = post.gallery?.badge?.split("·")[1]?.trim() ?? "Foto";
   return Array.from({ length: post.photoCount - 1 }, (_, index) => {
     const position = index + 2;
     return {

@@ -4,7 +4,7 @@ import { PenyewaanView } from "@/features/penyewaan";
 export const metadata: Metadata = {
   title: "Penyewaan Inventaris Forkip UNJ",
   description:
-    "Dikelola oleh BKK (Biro Kebendaharaan dan keuangan) dengan harga yang terjangkau",
+    "BKK FORKIP UNJ mengelola penyewaan inventaris yang dapat digunakan untuk mendukung berbagai kegiatan.",
 };
 
 export default function PenyewaanPage() {

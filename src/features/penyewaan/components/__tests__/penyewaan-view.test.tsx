@@ -10,8 +10,14 @@ import {
 
 afterEach(cleanup);
 
+const ADMIN_1_URL =
+  "https://wa.me/6281945811412?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20penyewaan%20inventaris%20FORKIP%20UNJ.";
+const ADMIN_2_URL = "https://wa.me/6281945811412";
+const FORM_EMBED_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLScfwQjAb9KO5YMIcz4MHXrEwkvF0VTSavvLqS9CpEl5jSgpZg/viewform?embedded=true";
+
 describe("PenyewaanView", () => {
-  it("renders hero, note card, and Google Form placeholder", () => {
+  it("renders hero, note with real admin links, and the embedded form", () => {
     render(<PenyewaanView />);
 
     expect(
@@ -21,49 +27,70 @@ describe("PenyewaanView", () => {
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Dikelola oleh BKK \(Biro Kebendaharaan dan keuangan\)/),
-    ).toBeInTheDocument();
-    expect(
       screen.getByText(
-        /Penyewaan barang, harap menghubungi admin BKK dengan klik tombol berikut/,
+        "BKK FORKIP UNJ mengelola penyewaan inventaris yang dapat digunakan untuk mendukung berbagai kegiatan.",
       ),
     ).toBeInTheDocument();
-    expect(screen.getByText("GOOGLE FORM TERTANAM")).toBeInTheDocument();
-    expect(
-      screen.getByText("Peminjaman Barang Inventaris BKK 2026"),
-    ).toBeInTheDocument();
+
     const noteCard = screen
-      .getByText(/Penyewaan barang, harap menghubungi admin BKK/)
+      .getByText(
+        "Silakan hubungi admin BKK sebelum mengisi formulir peminjaman.",
+      )
       .closest("section");
     expect(noteCard).not.toBeNull();
-    expect(noteCard).toHaveTextContent("Admin BKK 1");
-    expect(noteCard).toHaveTextContent("Admin BKK 2");
     expect(
       within(noteCard as HTMLElement).getByRole("link", {
         name: "Admin BKK 1",
       }),
-    ).toHaveAttribute("href", "#");
+    ).toHaveAttribute("href", ADMIN_1_URL);
     expect(
       within(noteCard as HTMLElement).getByRole("link", {
         name: "Admin BKK 2",
       }),
-    ).toHaveAttribute("href", "#");
+    ).toHaveAttribute("href", ADMIN_2_URL);
+
+    expect(screen.getByText("GOOGLE FORM TERTANAM")).toBeInTheDocument();
+    expect(
+      screen.getByText("Peminjaman Barang Forkip UNJ 2026"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTitle("Peminjaman Barang Forkip UNJ 2026"),
+    ).toHaveAttribute("src", FORM_EMBED_URL);
   });
 
-  it("renders all 5 inventory accordion titles", () => {
+  it("renders the section heading and all 5 inventory items with photo labels", () => {
     render(<PenyewaanView />);
 
-    for (const title of [
-      "Handy Talky",
-      "Speaker dan Mic",
-      "Kompor Portable",
-      "Nesting",
-      "Proyektor",
-    ]) {
+    expect(
+      screen.getByRole("heading", { name: "Inventaris yang kami sewakan" }),
+    ).toBeInTheDocument();
+
+    const items = [
+      { title: "Handy Talky", label: "Placeholder ilustrasi Handy Talky" },
+      {
+        title: "Speaker dan Mic",
+        label: "Placeholder ilustrasi Speaker dan Mic",
+      },
+      {
+        title: "Kompor Portable",
+        label: "Placeholder ilustrasi Kompor Portable",
+      },
+      { title: "Nesting", label: "Placeholder ilustrasi Nesting" },
+      { title: "Proyektor", label: "Placeholder ilustrasi Proyektor" },
+    ];
+    for (const { title, label } of items) {
       expect(
         screen.getByRole("button", { name: new RegExp(title) }),
       ).toBeInTheDocument();
+      expect(
+        screen.getByRole("img", { name: `Foto ${label} (placeholder)` }),
+      ).toBeInTheDocument();
     }
+    expect(
+      screen.getAllByText(
+        "Hubungi admin BKK untuk mengetahui ketersediaan barang.",
+      ),
+    ).toHaveLength(5);
   });
 
   it("expands Handy Talky by default with body and footnote", () => {
@@ -73,12 +100,16 @@ describe("PenyewaanView", () => {
     expect(toggle).toHaveAttribute("aria-expanded", "true");
     expect(
       screen.getByText(
-        /Handy Talky merupakan perangkat radio komunikasi dua arah/,
+        /Radio dua arah \(HT\) untuk koordinasi tim selama kegiatan/,
       ),
     ).toBeVisible();
+    const regionId = toggle.getAttribute("aria-controls");
+    expect(regionId).not.toBeNull();
+    const region = document.getElementById(regionId ?? "");
+    expect(region).not.toBeNull();
     expect(
-      screen.getByText(
-        /\(gambar hanya ilustrasi, untuk info selengkapnya silakan hubungi admin BKK\)/,
+      within(region as HTMLElement).getByText(
+        "Foto merupakan ilustrasi. Hubungi admin BKK untuk detail barang.",
       ),
     ).toBeVisible();
   });
@@ -91,19 +122,26 @@ describe("PenyewaanView", () => {
 
     fireEvent.click(proyektor);
     expect(proyektor).toHaveAttribute("aria-expanded", "true");
+    expect(
+      screen.getByText(
+        "Proyektor multimedia untuk menampilkan materi presentasi atau video pada layar yang lebih besar.",
+      ),
+    ).toBeVisible();
   });
 
-  it("renders contact CTA card with gold pill", () => {
+  it("renders contact CTA with real WhatsApp button", () => {
     render(<PenyewaanView />);
 
     expect(
       screen.getByRole("heading", { name: "Butuh info selengkapnya?" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Hubungi admin BKK sebelum mengisi form peminjaman."),
+      screen.getByText(
+        "Tanyakan ketersediaan barang dan ketentuan penyewaan kepada admin BKK sebelum mengisi formulir.",
+      ),
     ).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: "Admin BKK 1" })).toHaveLength(
-      2,
-    );
+    const ctaLinks = screen.getAllByRole("link", { name: "Admin BKK 1" });
+    expect(ctaLinks).toHaveLength(2);
+    expect(ctaLinks[1]).toHaveAttribute("href", ADMIN_1_URL);
   });
 });

@@ -5,7 +5,7 @@ import { cleanup, render, screen, within } from "@/testing/test-utils";
 afterEach(cleanup);
 
 describe("NonProgramKerjaView", () => {
-  it("renders hero and the AD/ART PDF file row", () => {
+  it("renders hero and the AD/ART PDF file row without a placeholder link", () => {
     render(<NonProgramKerjaView />);
 
     expect(
@@ -16,13 +16,18 @@ describe("NonProgramKerjaView", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Disusun berdasarkan AD/ART FORUM KIP-K UNIVERSITAS NEGERI JAKARTA",
+        "Daftar kegiatan di luar program kerja 2026 disusun berdasarkan Anggaran Dasar dan Anggaran Rumah Tangga (AD/ART) Forum KIP-K Universitas Negeri Jakarta.",
       ),
     ).toBeInTheDocument();
     expect(screen.getByText("PDF")).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: "AD ART FORUM KIP-KULIAH UNJ.pdf" }),
-    ).toHaveAttribute("href", "#");
+      screen.getByText("AD ART FORUM KIP-KULIAH UNJ.pdf"),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "AD ART FORUM KIP-KULIAH UNJ.pdf",
+      }),
+    ).toBeNull();
   });
 
   it("renders all 3 non-program cards with tag pill and photo placeholder", () => {
@@ -50,30 +55,31 @@ describe("NonProgramKerjaView", () => {
     }
   });
 
-  it("renders the Pelatihan Anggota KIF body copy", () => {
+  it("renders the supplied body copy on the first card only", () => {
     render(<NonProgramKerjaView />);
 
     expect(
       screen.getByText(
-        /Pelatihan Divisi KIF \(Koordinator Integrasi Fakultas\) FORUM KIP-K UNJ 2026/,
+        "Pelatihan ini membekali staf KIF dengan pemahaman tentang tanggung jawab mereka sebagai penghubung informasi di tingkat fakultas. Peserta mempelajari alur koordinasi untuk menyampaikan informasi, menghimpun aspirasi, dan menindaklanjuti kendala mahasiswa.",
       ),
     ).toBeInTheDocument();
+
+    for (const title of ["KANTIN (Kumpul Rutin)", "Diskusi Birokrat"]) {
+      const card = screen
+        .getByRole("heading", { level: 3, name: title })
+        .closest("article") as HTMLElement;
+      expect(card.querySelector("p")).toBeNull();
+    }
   });
 
-  it("shows Arsip Kegiatan and Laporan Non Program Kerja on every card", () => {
+  it("renders no placeholder archive or report action links", () => {
     render(<NonProgramKerjaView />);
 
     expect(
-      screen.getAllByRole("link", { name: "Arsip Kegiatan" }),
-    ).toHaveLength(3);
+      screen.queryAllByRole("link", { name: "Arsip Kegiatan" }),
+    ).toHaveLength(0);
     expect(
-      screen.getAllByRole("link", { name: "Laporan Non Program Kerja" }),
-    ).toHaveLength(3);
-
-    for (const link of screen.getAllByRole("link", {
-      name: "Arsip Kegiatan",
-    })) {
-      expect(link).toHaveAttribute("href", "#");
-    }
+      screen.queryAllByRole("link", { name: "Laporan Non Program Kerja" }),
+    ).toHaveLength(0);
   });
 });

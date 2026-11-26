@@ -26,8 +26,8 @@ export interface ArticleDetailContent {
   /** One-line summary under the H1 (spec §A). */
   readonly subtitle: string;
   readonly author: string;
-  /** Verbatim uploadedLabel from the source post. */
-  readonly uploadedLabel: string;
+  /** Verbatim uploadedLabel; undefined until the official date exists. */
+  readonly uploadedLabel?: string;
   /** e.g. "1 menit baca" (computed from paragraph word count). */
   readonly readTimeLabel: string;
   /** Main "Foto utama" block; null for posts without photos. */

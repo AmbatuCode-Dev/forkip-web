@@ -1,18 +1,18 @@
 import type { PageHeroContent, ProgramCard, ProgramSpotlight } from "../types";
 
 /**
- * Indonesian copy verbatim from docs/figma-specs/missing-pages-spec.md
- * (/program-unggulan, frame 224:2142). The spotlight paragraphs, bullets and
- * closing mirror the Beranda program-section copy (home feature data); they
- * are duplicated here because features may not import each other's data.
- * "Arsip Kegiatan" hrefs are placeholders (TODO: real activity-archive URLs).
+ * Indonesian copy verbatim from content-template-terisi.md section 2
+ * (/program-unggulan). The spotlight paragraphs, bullets and closing are also
+ * used on Beranda; they are duplicated here because features may not import
+ * each other's data. An "Arsip Kegiatan" href of "#" means a public URL is not
+ * yet available — callers hide the button with isActionableHref.
  */
 
 export const programUnggulanHero: PageHeroContent = {
   breadcrumbLabel: "Program Unggulan",
   title: "Program Unggulan Forkip UNJ",
   subtitle:
-    "Program Unggulan merupakan rangkaian inisiatif strategis yang dirancang untuk mengoptimalkan potensi mahasiswa penerima KIP Kuliah. Mencakup berbagai bidang, mulai dari pengembangan akademik, peningkatan soft skills, hingga aksi pengabdian masyarakat, guna mencetak generasi yang cerdas, kreatif, dan kontributif bagi universitas maupun bangsa.",
+    "Program unggulan FORKIP UNJ mendukung pengembangan akademik dan keterampilan mahasiswa penerima KIP Kuliah, sekaligus membuka ruang bagi mereka untuk berkontribusi melalui pengabdian kepada masyarakat.",
 };
 
 export const programLainTitle = "Program lain";
@@ -20,57 +20,57 @@ export const programLainTitle = "Program lain";
 export const programSpotlight: ProgramSpotlight = {
   title: "Kampung KIP-K UNJ",
   paragraphs: [
-    "Kampung KIP-K UNJ adalah agenda tahunan strategis yang diselenggarakan oleh Direktorat Kemahasiswaan dan Alumni UNJ sebagai kawah candradimuka bagi para awardee KIP Kuliah. Berlokasi di Bumi Perkemahan (Buperta) Cibubur, kegiatan ini mengusung misi utama untuk menumbuhkan resiliensi atau ketahanmalangan sebagai soft skill krusial dalam menyelesaikan studi dan menghadapi tantangan dunia kerja.",
-    "Selama tiga hari, sebanyak ribuan peserta ditempa melalui serangkaian kegiatan intensif yang dirancang untuk membangun kemandirian dan soliditas, antara lain:",
+    "Kampung KIP-K UNJ merupakan agenda tahunan Direktorat Kemahasiswaan dan Alumni UNJ bagi mahasiswa penerima KIP Kuliah. Selama tiga hari di Bumi Perkemahan Cibubur, peserta berlatih menghadapi tantangan, bekerja sama, dan membangun kemandirian.",
+    "Rangkaian kegiatan mencakup latihan di alam terbuka, pembekalan akademik, pengembangan kepemimpinan, serta kegiatan olahraga dan seni.",
   ],
   bullets: [
     {
       label: "Resiliensi & Kemandirian",
-      text: "Simulasi bertahan hidup di alam terbuka dengan membangun tenda secara mandiri, melatih daya juang dan kemampuan beradaptasi dalam keterbatasan.",
+      text: "Peserta berlatih beradaptasi di alam terbuka, antara lain dengan mendirikan tenda secara mandiri.",
     },
     {
       label: "Talk Show Akademik",
-      text: "Pembekalan materi khusus dari para Wakil Dekan Bidang I se-lingkungan UNJ mengenai strategi sukses lulus tepat waktu dan tips navigasi akademik.",
+      text: "Para Wakil Dekan Bidang I di lingkungan UNJ berbagi strategi untuk merencanakan studi dan lulus tepat waktu.",
     },
     {
       label: "Kepemimpinan & Karakter",
-      text: "Sesi motivasi untuk menanamkan jiwa kepemimpinan sesuai tema “Lead The Future”, guna mencetak pemimpin perubahan di masa depan.",
+      text: "Sesi bertema Lead The Future mengajak peserta mengembangkan kemampuan memimpin dan mengambil peran dalam perubahan.",
     },
     {
       label: "Solidaritas & Kreativitas",
-      text: "Mempererat silaturahmi melalui kegiatan olahraga, kompetisi antar peserta, dan malam pentas seni sebagai ruang ekspresi bakat mahasiswa.",
+      text: "Olahraga, kompetisi, dan pentas seni menjadi ruang bagi peserta untuk menjalin pertemanan dan menampilkan bakat.",
     },
   ],
   closing:
-    "Melalui Kampung KIP-K, kami berkomitmen memastikan bahwa mahasiswa penerima beasiswa tidak hanya unggul secara akademis, tetapi juga memiliki mentalitas tangguh, karakter yang kuat, dan optimisme tinggi dalam menempuh perjalanan akademik di Universitas Negeri Jakarta.",
+    "Pengalaman ini membantu mahasiswa membangun kesiapan akademik, ketangguhan, dan kemampuan bekerja sama selama menempuh pendidikan di UNJ.",
   cta: "Arsip Kegiatan",
-  ctaHref: "#", // TODO: real Kampung KIP-K activity-archive URL.
+  ctaHref: "https://www.instagram.com/p/DTHm46SEf_Q/",
   photoLabel: "Kampung KIP-K UNJ",
 };
 
 export const programCards: readonly ProgramCard[] = [
   {
-    title: "Explore KIPK UNJ: Jembatan Informasi Menuju Pendidikan Tinggi",
+    title: "Explore KIP-Kuliah",
     excerpt:
-      "Explore KIPK 2026 adalah program sosialisasi strategis yang diselenggarakan oleh FORUM KIP-K UNJ sebagai manifestasi dedikasi…",
+      "Explore KIP-Kuliah memperkenalkan program KIP Kuliah kepada siswa dari sekolah di Jabodetabek. Melalui sosialisasi dan sesi berbagi pengalaman dengan penerima KIP Kuliah, siswa mempelajari proses pendaftaran dan mendapat gambaran tentang kehidupan kampus di UNJ.",
     cta: "Arsip Kegiatan",
-    ctaHref: "#", // TODO: real Explore KIPK activity-archive URL.
-    photoLabel: "Explore KIPK",
+    ctaHref: "https://www.instagram.com/p/DUvI7WwEnAd/",
+    photoLabel: "Explore KIP-Kuliah",
   },
   {
-    title: "INDIKASI: Ikatan Dedikasi KIPK Mengabdi Sepenuh Hati",
+    title: "Indikasi",
     excerpt:
-      "INDIKASI merupakan agenda tahunan unggulan Forum KIP-K UNJ yang menjadi wujud nyata kepedulian sosial mahasiswa penerima KIP Kuliah…",
+      "INDIKASI (Ikatan Dedikasi KIPK Mengabdi Sepenuh Hati) merupakan program pengabdian tahunan FORKIP UNJ. Pada 2025, mahasiswa penerima KIP Kuliah terlibat dalam sosialisasi warga, edukasi dan pendampingan, serta kegiatan sosial yang disesuaikan dengan kebutuhan masyarakat setempat.",
     cta: "Arsip Kegiatan",
-    ctaHref: "#", // TODO: real INDIKASI activity-archive URL.
-    photoLabel: "INDIKASI",
+    ctaHref: "https://www.instagram.com/p/DNz35_eYiIH/",
+    photoLabel: "Indikasi",
   },
   {
-    title: "KIP-K UNJ: Informasi Beasiswa Kampus",
+    title: "Sosialisasi KIP-K Kuliah",
     excerpt:
-      "Forum KIP-K UNJ menyediakan informasi dan pendampingan bagi calon mahasiswa penerima KIP Kuliah di Universitas Negeri Jakarta.",
+      "Sosialisasi ini membantu calon mahasiswa mengenal program KIP Kuliah dan memahami informasi dasar terkait pendaftaran.",
     cta: "Arsip Kegiatan",
-    ctaHref: "#", // TODO: real KIP-K UNJ information/archive URL.
-    photoLabel: "KIP-K UNJ",
+    ctaHref: "#", // TODO: real Sosialisasi KIP-K Kuliah archive URL.
+    photoLabel: "Sosialisasi KIP-K Kuliah",
   },
 ];

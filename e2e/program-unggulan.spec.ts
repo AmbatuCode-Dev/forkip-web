@@ -13,34 +13,75 @@ test.describe("Program Unggulan page", () => {
       }),
     ).toBeVisible();
     await expect(
+      page.getByText(
+        /Program unggulan FORKIP UNJ mendukung pengembangan akademik dan keterampilan mahasiswa penerima KIP Kuliah/,
+      ),
+    ).toBeVisible();
+    await expect(
       page
         .getByRole("navigation", { name: "Breadcrumb" })
         .getByText("Program Unggulan"),
     ).toBeVisible();
 
+    const spotlight = page.getByRole("region", { name: "Kampung KIP-K UNJ" });
     await expect(
-      page.getByRole("heading", { level: 2, name: "Kampung KIP-K UNJ" }),
+      spotlight.getByRole("heading", { level: 2, name: "Kampung KIP-K UNJ" }),
     ).toBeVisible();
     await expect(
-      page.getByText("Resiliensi & Kemandirian", { exact: true }),
+      spotlight.getByText("Resiliensi & Kemandirian", { exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByText(/Melalui Kampung KIP-K, kami berkomitmen/),
+      spotlight.getByText(
+        /Pengalaman ini membantu mahasiswa membangun kesiapan akademik/,
+      ),
     ).toBeVisible();
+    await expect(
+      spotlight.getByRole("link", { name: "Arsip Kegiatan" }),
+    ).toHaveAttribute("href", "https://www.instagram.com/p/DTHm46SEf_Q/");
 
     await expect(
       page.getByRole("heading", { level: 2, name: "Program lain" }),
     ).toBeVisible();
     for (const title of [
-      "Explore KIPK UNJ: Jembatan Informasi Menuju Pendidikan Tinggi",
-      "INDIKASI: Ikatan Dedikasi KIPK Mengabdi Sepenuh Hati",
-      "KIP-K UNJ: Informasi Beasiswa Kampus",
+      "Explore KIP-Kuliah",
+      "Indikasi",
+      "Sosialisasi KIP-K Kuliah",
     ]) {
-      await expect(page.getByRole("heading", { name: title })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: title, exact: true }),
+      ).toBeVisible();
+    }
+  });
+
+  test("links only the archive cards with a real URL and hides the placeholder", async ({
+    page,
+  }) => {
+    await page.goto("/program-unggulan");
+
+    for (const [title, href] of [
+      ["Explore KIP-Kuliah", "https://www.instagram.com/p/DUvI7WwEnAd/"],
+      ["Indikasi", "https://www.instagram.com/p/DNz35_eYiIH/"],
+    ]) {
+      const card = page.getByRole("article").filter({
+        has: page.getByRole("heading", { name: title, exact: true }),
+      });
+      await expect(
+        card.getByRole("link", { name: "Arsip Kegiatan" }),
+      ).toHaveAttribute("href", href);
     }
 
+    const sosialisasi = page.getByRole("article").filter({
+      has: page.getByRole("heading", {
+        name: "Sosialisasi KIP-K Kuliah",
+        exact: true,
+      }),
+    });
     await expect(
-      page.getByRole("link", { name: "Arsip Kegiatan" }).first(),
-    ).toBeVisible();
+      sosialisasi.getByRole("link", { name: "Arsip Kegiatan" }),
+    ).toHaveCount(0);
+
+    await expect(
+      page.getByRole("link", { name: "Arsip Kegiatan" }),
+    ).toHaveCount(3);
   });
 });

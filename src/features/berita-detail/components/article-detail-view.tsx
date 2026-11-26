@@ -42,7 +42,9 @@ export function ArticleDetailView({
             </span>
             <span aria-hidden="true">·</span>
             <span>
-              {article.uploadedLabel} · {article.readTimeLabel}
+              {article.uploadedLabel
+                ? `${article.uploadedLabel} · ${article.readTimeLabel}`
+                : article.readTimeLabel}
             </span>
           </div>
         </div>
@@ -62,6 +64,12 @@ export function ArticleDetailView({
               ) : null}
             </div>
           ))}
+          {/* Posts can supply more photos than paragraphs; show the rest. */}
+          {article.figures
+            .slice(Math.min(article.figures.length, article.paragraphs.length))
+            .map((figure) => (
+              <ArticleInlineFigure key={figure.position} figure={figure} />
+            ))}
         </div>
 
         <ArticleBackLink />

@@ -5,20 +5,20 @@ import { cleanup, fireEvent, render, screen } from "@/testing/test-utils";
 afterEach(cleanup);
 
 const BPHI_BODY =
-  "Badan Pengurus Harian merupakan motor penggerak utama sekolah pusat tertinggi di dalam struktur organisasi FORKIP UNJ.";
+  "BPHI terdiri atas Ketua, Wakil Ketua, Sekretaris Umum, dan Bendahara Umum. BPHI menetapkan arah kebijakan organisasi, mengawasi kinerja divisi, serta mengoordinasikan administrasi dan keuangan selama satu periode kepengurusan.";
 
 describe("DivisiAccordion", () => {
   it("renders collapsed by default with chip, title and plus icon", () => {
     render(
       <DivisiAccordion
         chip="BPHI"
-        title="BPHI — Badan Pengurus Harian Inti"
+        title="BPHI - Badan Pengurus Harian Inti"
         body={BPHI_BODY}
       />,
     );
 
     expect(
-      screen.getByText("BPHI — Badan Pengurus Harian Inti"),
+      screen.getByText("BPHI - Badan Pengurus Harian Inti"),
     ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /BPHI/ })).toHaveAttribute(
       "aria-expanded",
@@ -31,7 +31,7 @@ describe("DivisiAccordion", () => {
     render(
       <DivisiAccordion
         chip="BPHI"
-        title="BPHI — Badan Pengurus Harian Inti"
+        title="BPHI - Badan Pengurus Harian Inti"
         body={BPHI_BODY}
       />,
     );
@@ -48,7 +48,7 @@ describe("DivisiAccordion", () => {
     render(
       <DivisiAccordion
         chip="PSDM"
-        title="PSDM — Pengembangan Sumber Daya Manusia"
+        title="PSDM - Pengembangan Sumber Daya Manusia"
         body={BPHI_BODY}
         defaultExpanded
       />,
@@ -82,7 +82,7 @@ describe("DivisiAccordion", () => {
       <DivisiAccordion
         chip="BPHI"
         imageLabel="Foto BPHI"
-        title="BPHI — Badan Pengurus Harian Inti"
+        title="BPHI - Badan Pengurus Harian Inti"
         body={BPHI_BODY}
       />,
     );
@@ -92,7 +92,7 @@ describe("DivisiAccordion", () => {
     ).toHaveAttribute("src", expect.stringContaining("placehold.co"));
     expect(screen.queryByText("BPHI")).not.toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /BPHI — Badan Pengurus Harian Inti/ }),
+      screen.getByRole("button", { name: /BPHI - Badan Pengurus Harian Inti/ }),
     ).toBeInTheDocument();
   });
 });
