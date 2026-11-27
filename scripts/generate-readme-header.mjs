@@ -155,8 +155,8 @@ function compose() {
       <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="${GOLD_INK}" flood-opacity="0.18"/>
     </filter>
     <!-- clip coordinates are local to the nested screenshot SVG -->
-    <clipPath id="deskScreen"><rect x="0" y="0" width="1440" height="900" rx="38"/></clipPath>
-    <clipPath id="mobScreen"><rect x="0" y="0" width="390" height="844" rx="32"/></clipPath>
+    <clipPath id="deskScreen"><path d="M0 0 H1440 V862 A38 38 0 0 1 1402 900 H38 A38 38 0 0 1 0 862 Z"/></clipPath>
+    <clipPath id="mobScreen"><rect x="0" y="0" width="390" height="844" rx="24"/></clipPath>
   </defs>`);
 
   parts.push(`<rect width="${W}" height="${H}" fill="url(#bg)"/>`);
@@ -230,7 +230,7 @@ function compose() {
 
   // ── mobile mockup — right, phone bezel ──
   parts.push(`<g filter="url(#shadow)">
-    <rect x="${mx - bezel}" y="${my - bezel}" width="${mw + bezel * 2}" height="${mh + bezel * 2}" rx="40" fill="${INK}"/>
+    <rect x="${mx - bezel}" y="${my - bezel}" width="${mw + bezel * 2}" height="${mh + bezel * 2}" rx="28" fill="${INK}"/>
   </g>`);
   parts.push(`<svg x="${mx}" y="${my}" width="${mw}" height="${mh}" viewBox="0 0 390 844" preserveAspectRatio="xMidYMin slice">
     <g clip-path="url(#mobScreen)">
@@ -238,7 +238,7 @@ function compose() {
     </g>
   </svg>`);
   parts.push(
-    `<rect x="${mx - bezel}" y="${my - bezel}" width="${mw + bezel * 2}" height="${mh + bezel * 2}" rx="40" fill="none" stroke="${GOLD_DARK}" stroke-opacity="0.55"/>`,
+    `<rect x="${mx - bezel}" y="${my - bezel}" width="${mw + bezel * 2}" height="${mh + bezel * 2}" rx="28" fill="none" stroke="${GOLD_DARK}" stroke-opacity="0.55"/>`,
   );
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="FORKIP UNJ banner: Beranda page on desktop and mobile, real screenshots">${parts.join("")}</svg>`;
