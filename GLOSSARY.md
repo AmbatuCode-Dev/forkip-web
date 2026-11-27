@@ -11,3 +11,7 @@ _Avoid_: breakpoint size, screen class
 **Responsive pass**:
 A deliberate review of a page or component at every **Responsive tier** to make the existing design fit cleanly, without changing branding, copy or color.
 _Avoid_: redesign, rework
+
+**Site content**:
+Public prose and structured records shown on the site, excluding code, config and UI labels.
+_Avoid_: copy, data
