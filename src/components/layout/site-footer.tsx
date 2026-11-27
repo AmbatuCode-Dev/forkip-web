@@ -2,10 +2,26 @@ import { Instagram, Mail, Tiktok, X } from "@coolicons/react";
 import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import type { NavigationContent, SiteContent } from "@/types";
 
 interface FooterLink {
   readonly label: string;
   readonly href: string;
+}
+
+export interface SiteFooterProps {
+  readonly site: SiteContent;
+  readonly navigation: NavigationContent;
+}
+
+function footerLinks(
+  routes: NavigationContent["routes"],
+  hrefs: readonly string[],
+): readonly FooterLink[] {
+  return hrefs.map((href) => {
+    const route = routes[href];
+    return { href, label: route.footerLabel ?? route.label };
+  });
 }
 
 interface SocialLink {
@@ -13,24 +29,6 @@ interface SocialLink {
   readonly href: string;
   readonly Icon: React.ComponentType<{ className?: string }>;
 }
-
-const menuLinks: readonly FooterLink[] = [
-  { label: "Beranda", href: "/" },
-  { label: "Pengumuman", href: "/pengumuman" },
-  { label: "Program Unggulan", href: "/program-unggulan" },
-  { label: "Pertanyaan & Pengaduan", href: "/pertanyaan-pengaduan" },
-  { label: "Berita", href: "/berita" },
-  { label: "Penyewaan", href: "/penyewaan" },
-];
-
-const lainnyaLinks: readonly FooterLink[] = [
-  { label: "Donat dan Hibah", href: "/donat-dan-hibah" },
-  { label: "Program Kerja", href: "/program-kerja" },
-  { label: "Non Program Kerja", href: "/non-program-kerja" },
-  { label: "Rekrutmen Anggota Baru Forkip UNJ 2026", href: "/rekrutmen" },
-  { label: "Form Pengunduran diri dari KIPK", href: "/pengunduran-diri" },
-  { label: "Arsip Data Tiap Divisi", href: "/arsip-data" },
-];
 
 const socialLinks: readonly SocialLink[] = [
   {
@@ -55,7 +53,13 @@ const socialLinks: readonly SocialLink[] = [
   },
 ];
 
-export function SiteFooter() {
+export function SiteFooter({ site, navigation }: SiteFooterProps) {
+  const menuLinks = footerLinks(navigation.routes, navigation.footer.menu);
+  const lainnyaLinks = footerLinks(
+    navigation.routes,
+    navigation.footer.lainnya,
+  );
+
   return (
     <footer className="bg-surface-100">
       <div className="mx-auto w-full max-w-300 px-4 pt-20 pb-9 sm:px-6 xl:px-0">
@@ -70,12 +74,11 @@ export function SiteFooter() {
                 className="size-12 object-contain"
               />
               <span className="text-lg font-extrabold tracking-t04 text-ink">
-                Forum KIPK UNJ
+                {site.name}
               </span>
             </div>
             <p className="mt-4 text-sm leading-22 font-normal text-body">
-              Forum KIPK UNJ merupakan sebuah wadah untuk mengurus berbagai hal
-              yang berhubungan dengan mahasiswa penerima KIP-K di UNJ
+              {site.description}
             </p>
             <div className="mt-4 flex items-center gap-2.5">
               {socialLinks.map((social) => (

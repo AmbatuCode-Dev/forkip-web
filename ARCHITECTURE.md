@@ -102,10 +102,10 @@ Three complementary tools enforce this:
 3. **UI Primitives & Layout (`src/components/`)**
    - `src/components/ui/` holds stateless, composable primitives (`Button`, `Card`, accordions). Biome additionally forbids `ui/` from importing `@/config/*`, `@/hooks/*`, `@/features/*`, or `@/app/*` at any depth — primitives receive data via props.
    - Variant-driven components use `cva` from `class-variance-authority` combined with `cn()` from `src/utils/cn.ts` so callers can override classes safely without Tailwind conflicts.
-   - `src/components/layout/` holds structural shell components (`SiteHeader`, `SiteFooter`, `PageHero`) driven by `siteConfig`; `src/components/berita/` holds shared news UI used across features.
+   - `src/components/layout/` holds structural shell components (`SiteHeader`, `SiteFooter`, `PageHero`); the shell receives content DTOs from the root layout, and `src/components/berita/` holds shared news UI used across features.
 
-4. **Configuration & Environment (`src/config/`)**
-   - `src/config/site.ts` centralizes application name, description, and navigation items typed against `SiteConfig` in `src/types/index.ts`.
+4. **Configuration & Environment (`src/config/`, `src/lib/content/`)**
+   - `content/` holds site content as MDX files with frontmatter; `src/lib/content/` validates that frontmatter with Zod and exposes typed server-only loaders. `content/README.md` documents the format.
    - `src/config/env.ts` validates environment variables with Zod (`NODE_ENV`, `NEXT_PUBLIC_APP_URL`) and exports both `env` and a pure `parseEnv(input)` helper for deterministic testing.
 
 5. **Shared Layers (`src/testing/`, `src/types/`, `src/utils/`)**

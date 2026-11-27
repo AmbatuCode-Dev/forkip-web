@@ -1,12 +1,75 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { SiteFooter } from "@/components/layout/site-footer";
+import {
+  SiteFooter,
+  type SiteFooterProps,
+} from "@/components/layout/site-footer";
 import { cleanup, render, screen } from "@/testing/test-utils";
+import type { NavigationContent, SiteContent } from "@/types";
 
 afterEach(cleanup);
 
+const site: SiteContent = {
+  name: "Forum KIPK UNJ",
+  description:
+    "Forum KIPK UNJ merupakan sebuah wadah untuk mengurus berbagai hal yang berhubungan dengan mahasiswa penerima KIP-K di UNJ",
+};
+
+const navigation: NavigationContent = {
+  ctaLabel: "Pertanyaan & Pengaduan",
+  ctaHref: "/pertanyaan-pengaduan",
+  routes: {
+    "/": { label: "Beranda" },
+    "/pengumuman": { label: "Pengumuman" },
+    "/program-unggulan": {
+      label: "Program Unggulan Forkip UNJ",
+      shortLabel: "Program Unggulan",
+    },
+    "/pertanyaan-pengaduan": { label: "Pertanyaan & Pengaduan" },
+    "/penyewaan": {
+      label: "Penyewaan Inventaris Forkip UNJ",
+      shortLabel: "Penyewaan Inventaris",
+      footerLabel: "Penyewaan",
+    },
+    "/donat-dan-hibah": { label: "Donat dan Hibah" },
+    "/pengunduran-diri": {
+      label: "Pengunduran Diri KIPK",
+      footerLabel: "Form Pengunduran diri dari KIPK",
+    },
+    "/arsip-data": { label: "Arsip Data Tiap Divisi" },
+    "/berita": { label: "Berita" },
+    "/program-kerja": { label: "Program Kerja" },
+    "/non-program-kerja": { label: "Non Program Kerja" },
+    "/rekrutmen": {
+      label: "Rekrutmen Anggota Baru Forkip UNJ 2026",
+      shortLabel: "Rekrutmen Anggota Baru",
+    },
+  },
+  header: [],
+  footer: {
+    menu: [
+      "/",
+      "/pengumuman",
+      "/program-unggulan",
+      "/pertanyaan-pengaduan",
+      "/berita",
+      "/penyewaan",
+    ],
+    lainnya: [
+      "/donat-dan-hibah",
+      "/program-kerja",
+      "/non-program-kerja",
+      "/rekrutmen",
+      "/pengunduran-diri",
+      "/arsip-data",
+    ],
+  },
+};
+
+const props: SiteFooterProps = { site, navigation };
+
 describe("SiteFooter", () => {
   it("renders brand wordmark and description paragraph", () => {
-    render(<SiteFooter />);
+    render(<SiteFooter {...props} />);
 
     expect(screen.getAllByText("Forum KIPK UNJ").length).toBeGreaterThan(0);
     expect(
@@ -17,7 +80,7 @@ describe("SiteFooter", () => {
   });
 
   it("renders MENU, LAINNYA, and KONTAK column headings", () => {
-    render(<SiteFooter />);
+    render(<SiteFooter {...props} />);
 
     expect(screen.getByRole("heading", { name: "Menu" })).toBeInTheDocument();
     expect(
@@ -27,7 +90,7 @@ describe("SiteFooter", () => {
   });
 
   it("renders menu and lainnya links with route-map hrefs", () => {
-    render(<SiteFooter />);
+    render(<SiteFooter {...props} />);
 
     expect(
       screen.getByRole("link", { name: "Pertanyaan & Pengaduan" }),
@@ -48,8 +111,27 @@ describe("SiteFooter", () => {
     );
   });
 
+  it("prefers footerLabel over the full route label", () => {
+    render(<SiteFooter {...props} />);
+
+    expect(screen.getByRole("link", { name: "Penyewaan" })).toHaveAttribute(
+      "href",
+      "/penyewaan",
+    );
+    expect(
+      screen.queryByRole("link", {
+        name: "Penyewaan Inventaris Forkip UNJ",
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Form Pengunduran diri dari KIPK",
+      }),
+    ).toHaveAttribute("href", "/pengunduran-diri");
+  });
+
   it("renders the four social icon links", () => {
-    render(<SiteFooter />);
+    render(<SiteFooter {...props} />);
 
     expect(
       screen.getByRole("link", { name: "Instagram Forum KIP-K UNJ" }),
@@ -66,7 +148,7 @@ describe("SiteFooter", () => {
   });
 
   it("renders contact CTA, map embed, and copyright", () => {
-    render(<SiteFooter />);
+    render(<SiteFooter {...props} />);
 
     expect(screen.getByRole("link", { name: "Hubungi Kami" })).toHaveAttribute(
       "href",

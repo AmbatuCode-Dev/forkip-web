@@ -6,108 +6,25 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { buttonVariants } from "@/components/ui/button";
-import { siteConfig } from "@/config/site";
+import type {
+  HeaderDropdownEntry,
+  HeaderNavEntry,
+  NavigationContent,
+  SiteContent,
+} from "@/types";
 import { cn } from "@/utils/cn";
 
-type DropdownId = "layanan" | "organisasi";
+type DropdownId = HeaderDropdownEntry["id"];
 
-interface DropdownItem {
-  readonly chip: string;
-  readonly title: string;
-  readonly description: string;
-  readonly href: string;
+export interface SiteHeaderProps {
+  readonly site: SiteContent;
+  readonly navigation: NavigationContent;
 }
 
-interface DropdownEntry {
-  readonly kind: "dropdown";
-  readonly id: DropdownId;
-  readonly label: string;
-  readonly heading: string;
-  readonly items: readonly DropdownItem[];
+function routeLabel(routes: NavigationContent["routes"], href: string): string {
+  const route = routes[href];
+  return route.shortLabel ?? route.label;
 }
-
-interface LinkEntry {
-  readonly kind: "link";
-  readonly label: string;
-  readonly href: string;
-}
-
-type NavEntry = LinkEntry | DropdownEntry;
-
-const layananItems: readonly DropdownItem[] = [
-  {
-    chip: "KIF",
-    title: "Pertanyaan & Pengaduan",
-    description: "Sampaikan pertanyaan dan aspirasi ke KIF.",
-    href: "/pertanyaan-pengaduan",
-  },
-  {
-    chip: "BKK",
-    title: "Penyewaan Inventaris",
-    description: "Perlengkapan kegiatan melalui layanan BKK.",
-    href: "/penyewaan",
-  },
-  {
-    chip: "ADV",
-    title: "Donat dan Hibah",
-    description: "Informasi peminjaman dana dan dana hibah.",
-    href: "/donat-dan-hibah",
-  },
-  {
-    chip: "ADM",
-    title: "Pengunduran Diri KIPK",
-    description: "Panduan dan administrasi pengunduran diri.",
-    href: "/pengunduran-diri",
-  },
-  {
-    chip: "ARS",
-    title: "Arsip Data Tiap Divisi",
-    description: "Dokumen dan arsip administrasi organisasi.",
-    href: "/arsip-data",
-  },
-];
-
-const organisasiItems: readonly DropdownItem[] = [
-  {
-    chip: "PK",
-    title: "Program Kerja",
-    description: "Agenda dan kegiatan resmi FORKIP UNJ.",
-    href: "/program-kerja",
-  },
-  {
-    chip: "NPK",
-    title: "Non Program Kerja",
-    description: "Pelatihan, diskusi, dan kegiatan internal.",
-    href: "/non-program-kerja",
-  },
-  {
-    chip: "SDM",
-    title: "Rekrutmen Anggota Baru",
-    description: "Informasi penerimaan anggota FORKIP UNJ.",
-    href: "/rekrutmen",
-  },
-];
-
-const navEntries: readonly NavEntry[] = [
-  { kind: "link", label: "Beranda", href: "/" },
-  { kind: "link", label: "Pengumuman", href: "/pengumuman" },
-  { kind: "link", label: "Program Unggulan", href: "/program-unggulan" },
-  {
-    kind: "dropdown",
-    id: "layanan",
-    label: "Layanan",
-    heading: "Layanan mahasiswa",
-    items: layananItems,
-  },
-  {
-    kind: "dropdown",
-    id: "organisasi",
-    label: "Organisasi",
-    heading: "Tentang organisasi",
-    items: organisasiItems,
-  },
-  { kind: "link", label: "Berita", href: "/berita" },
-];
 
 /**
  * Compact disclosure for < lg. Kept as its own client component so the
@@ -119,10 +36,18 @@ function MobileNav({
   pathname,
   overHero,
   focusRing,
+  entries,
+  routes,
+  ctaLabel,
+  ctaHref,
 }: {
   readonly pathname: string;
   readonly overHero: boolean;
   readonly focusRing: string;
+  readonly entries: readonly HeaderNavEntry[];
+  readonly routes: NavigationContent["routes"];
+  readonly ctaLabel: string;
+  readonly ctaHref: string;
 }) {
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -202,7 +127,7 @@ function MobileNav({
         )}
       >
         <ul className="flex flex-col">
-          {navEntries.map((entry) =>
+          {entries.map((entry) =>
             entry.kind === "link" ? (
               <li key={entry.href}>
                 <Link
@@ -210,7 +135,7 @@ function MobileNav({
                   onClick={() => setOpen(false)}
                   className="block rounded-lg px-3 py-2.5 text-base font-medium text-ink transition-colors hover:bg-surface-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
-                  {entry.label}
+                  {routeLabel(routes, entry.href)}
                 </Link>
               </li>
             ) : (
@@ -226,7 +151,7 @@ function MobileNav({
                         onClick={() => setOpen(false)}
                         className="block rounded-lg px-3 py-2 text-sm font-medium text-body transition-colors hover:bg-surface-50 hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                       >
-                        {item.title}
+                        {item.label}
                       </Link>
                     </li>
                   ))}
@@ -236,7 +161,7 @@ function MobileNav({
           )}
         </ul>
         <Link
-          href="/pertanyaan-pengaduan"
+          href={ctaHref}
           onClick={() => setOpen(false)}
           className={cn(
             buttonVariants({ variant: "gold", size: "cta" }),
@@ -244,18 +169,19 @@ function MobileNav({
             focusRing,
           )}
         >
-          Pertanyaan &amp; Pengaduan
+          {ctaLabel}
         </Link>
       </nav>
     </>
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ site, navigation }: SiteHeaderProps) {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState<DropdownId | null>(null);
   const [overHero, setOverHero] = useState(pathname === "/");
   const headerRef = useRef<HTMLElement | null>(null);
+  const { ctaHref, ctaLabel, header: navEntries, routes } = navigation;
 
   const closeMenu = useCallback(() => {
     setOpenMenu(null);
@@ -378,7 +304,7 @@ export function SiteHeader() {
               overHero ? "text-white" : "text-ink",
             )}
           >
-            {siteConfig.name}
+            {site.name}
           </span>
         </Link>
 
@@ -398,7 +324,7 @@ export function SiteHeader() {
                   focusRing,
                 )}
               >
-                {entry.label}
+                {routeLabel(routes, entry.href)}
               </Link>
             ) : (
               // biome-ignore lint/a11y/noStaticElementInteractions: hover wrapper for dropdown menu
@@ -447,7 +373,7 @@ export function SiteHeader() {
                           >
                             <span className="flex min-w-0 flex-col gap-1">
                               <span className="text-base leading-6 font-semibold text-ink">
-                                {item.title}
+                                {item.label}
                               </span>
                               <span className="text-sm leading-5 text-body-muted">
                                 {item.description}
@@ -466,7 +392,7 @@ export function SiteHeader() {
 
         <div className="hidden lg:block">
           <Link
-            href="/pertanyaan-pengaduan"
+            href={ctaHref}
             onClick={closeMenu}
             className={cn(
               buttonVariants({ variant: "gold", size: "cta" }),
@@ -474,7 +400,7 @@ export function SiteHeader() {
               focusRing,
             )}
           >
-            Pertanyaan &amp; Pengaduan
+            {ctaLabel}
           </Link>
         </div>
 
@@ -482,6 +408,10 @@ export function SiteHeader() {
           pathname={pathname}
           overHero={overHero}
           focusRing={focusRing}
+          entries={navEntries}
+          routes={routes}
+          ctaLabel={ctaLabel}
+          ctaHref={ctaHref}
         />
       </div>
     </header>

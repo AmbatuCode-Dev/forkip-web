@@ -30,7 +30,7 @@ Layout: content column = `w-[1200px]` centered (`px-[120px]` on 1440 frames) →
 src/components/ui/          (extend existing primitives where they fit: button.tsx, card.tsx exist)
 src/components/layout/site-header.tsx   (REPLACE existing placeholder — keep file name/export shape)
 src/components/layout/site-footer.tsx   (REPLACE existing placeholder)
-src/config/site.ts          (update nav config to Forum KIP-K pages)
+content/navigation.mdx      (nav labels live here)
 public/images/*             (already downloaded: logo-kipk-unj.png, chevron-down.svg, chevron-down-flipped.svg, icon-instagram.svg, icon-x.svg, icon-tiktok.svg, icon-envelope.svg)
 ```
 
@@ -116,5 +116,5 @@ Component `DivisiAccordion` in `src/features/organisasi/components/` or `src/com
 
 - `pnpm biome check --write` clean, `pnpm typecheck` clean, `pnpm test` green.
 - Component tests (Vitest + Testing Library, co-located `__tests__/`): header renders nav + toggles dropdowns (open/close, click-outside), footer renders all columns/links, accordions expand/collapse with aria-expanded, marquee renders labels, pagination current-page state.
-- Do NOT run Playwright (page lanes will own E2E). Do NOT modify `src/app` routes (page lanes do that) — but DO update `src/config/site.ts` nav to the route map so pages can consume it.
+- Do NOT run Playwright (page lanes will own E2E). Do NOT modify `src/app` routes (page lanes do that) — navigation labels live in `content/navigation.mdx` and are consumed through the content loaders.
 - Commit messages: `feat(components): ...` on branch `feat/components`.
