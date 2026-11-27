@@ -1,27 +1,34 @@
 import { cleanup } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
-import { type NewsPost, newsPosts } from "@/features/berita";
+import { afterEach, beforeAll, describe, expect, it } from "vitest";
+import { getBeritaPosts } from "@/features/berita";
 import { renderWithProviders, screen, within } from "@/testing/test-utils";
+import type { NewsPostContent } from "@/types";
 import { BeritaNewsCard } from "../components/berita-news-card";
 
 afterEach(cleanup);
 
-function postBySlug(slug: string): NewsPost {
-  const post = newsPosts.find((candidate) => candidate.slug === slug);
+let posts: readonly NewsPostContent[] = [];
+
+beforeAll(async () => {
+  posts = await getBeritaPosts();
+});
+
+function postBySlug(slug: string): NewsPostContent {
+  const post = posts.find((candidate) => candidate.slug === slug);
   if (!post) {
     throw new Error(`Missing news post: ${slug}`);
   }
   return post;
 }
 
-function renderCard(post: NewsPost) {
+function renderCard(post: NewsPostContent) {
   renderWithProviders(<BeritaNewsCard post={post} />);
   return screen.getByTestId(`news-card-${post.slug}`);
 }
 
 describe("BeritaNewsCard", () => {
   it("renders exactly one placeholder image labelled with the supplied caption", () => {
-    for (const post of newsPosts) {
+    for (const post of posts) {
       cleanup();
       const card = renderCard(post);
       const images = within(card).getAllByRole("img");
@@ -33,7 +40,7 @@ describe("BeritaNewsCard", () => {
   });
 
   it("links the whole card to its article with a single focus target", () => {
-    for (const post of newsPosts) {
+    for (const post of posts) {
       cleanup();
       const card = renderCard(post);
 

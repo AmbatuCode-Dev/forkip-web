@@ -1,20 +1,27 @@
 import type { Metadata } from "next";
 import {
+  getProgramUnggulanContent,
   ProgramUnggulanContent,
   ProgramUnggulanHero,
 } from "@/features/program-unggulan";
 
-export const metadata: Metadata = {
-  title: "Program Unggulan Forkip UNJ",
-  description:
-    "Program unggulan FORKIP UNJ mendukung pengembangan akademik dan keterampilan mahasiswa penerima KIP Kuliah, sekaligus membuka ruang bagi mereka untuk berkontribusi melalui pengabdian kepada masyarakat.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { hero } = await getProgramUnggulanContent();
+  return { title: hero.title, description: hero.subtitle };
+}
 
-export default function ProgramUnggulanPage() {
+export default async function ProgramUnggulanPage() {
+  const { hero, programLainTitle, spotlight, cards } =
+    await getProgramUnggulanContent();
+
   return (
     <>
-      <ProgramUnggulanHero />
-      <ProgramUnggulanContent />
+      <ProgramUnggulanHero hero={hero} />
+      <ProgramUnggulanContent
+        spotlight={spotlight}
+        cards={cards}
+        programLainTitle={programLainTitle}
+      />
     </>
   );
 }

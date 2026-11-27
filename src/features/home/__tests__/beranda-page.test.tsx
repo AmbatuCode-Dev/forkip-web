@@ -1,20 +1,37 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { BerandaPage } from "@/features/home";
+import { getFaculties } from "@/lib/content/faculties";
+import { getHomeBerita } from "@/lib/content/home";
+import { getNewsPosts } from "@/lib/content/news";
+import { getProgramCards, getProgramSpotlight } from "@/lib/content/program";
 import { cleanup, render, screen } from "@/testing/test-utils";
+import { buildBeritaSectionContent } from "../data/berita-view";
 
 afterEach(cleanup);
 
+/** BerandaPage is async: resolve its element with content DTOs, then render. */
+async function renderPage() {
+  const [faculties, spotlight, cards, berita, posts] = await Promise.all([
+    getFaculties(),
+    getProgramSpotlight(),
+    getProgramCards(),
+    getHomeBerita(),
+    getNewsPosts(),
+  ]);
+  render(await BerandaPage({ faculties, spotlight, cards, berita, posts }));
+}
+
 describe("BerandaPage", () => {
-  it("renders the hero H1 'Forum' and 'KIPK UNJ'", () => {
-    render(<BerandaPage />);
+  it("renders the hero H1 'Forum' and 'KIPK UNJ'", async () => {
+    await renderPage();
 
     const h1 = screen.getByRole("heading", { level: 1 });
     expect(h1.textContent).toContain("Forum");
     expect(h1.textContent).toContain("KIPK UNJ");
   });
 
-  it("renders the required section headings", () => {
-    render(<BerandaPage />);
+  it("renders the required section headings", async () => {
+    await renderPage();
 
     for (const heading of [
       "Fungsi dan Tujuan",
@@ -29,8 +46,8 @@ describe("BerandaPage", () => {
     }
   });
 
-  it("renders the Delegasi Fakultas heading and 8 faculty rail rows", () => {
-    render(<BerandaPage />);
+  it("renders the Delegasi Fakultas heading and 8 faculty rail rows", async () => {
+    await renderPage();
 
     expect(
       screen.getByRole("heading", {
@@ -51,8 +68,8 @@ describe("BerandaPage", () => {
     }
   });
 
-  it("renders service card links to their pages", () => {
-    render(<BerandaPage />);
+  it("renders service card links to their pages", async () => {
+    await renderPage();
 
     for (const href of [
       "/pertanyaan-pengaduan",
@@ -69,8 +86,8 @@ describe("BerandaPage", () => {
     }
   });
 
-  it("renders all 7 division accordion titles with BPHI expanded", () => {
-    render(<BerandaPage />);
+  it("renders all 7 division accordion titles with BPHI expanded", async () => {
+    await renderPage();
 
     const titles = [
       "BPHI - Badan Pengurus Harian Inti",
@@ -97,8 +114,8 @@ describe("BerandaPage", () => {
     ).toBeVisible();
   });
 
-  it("renders the YouTube embed for Video Forum KIPK UNJ", () => {
-    render(<BerandaPage />);
+  it("renders the YouTube embed for Video Forum KIPK UNJ", async () => {
+    await renderPage();
 
     const iframe = screen.getByTitle("Video Forum KIPK UNJ");
     expect(iframe).toHaveAttribute(
@@ -107,8 +124,8 @@ describe("BerandaPage", () => {
     );
   });
 
-  it("renders the Program Unggulan spotlight and 3 program cards", () => {
-    render(<BerandaPage />);
+  it("renders the Program Unggulan spotlight and 3 program cards", async () => {
+    await renderPage();
 
     expect(
       screen.getByRole("heading", { level: 3, name: "Kampung KIP-K UNJ" }),
@@ -142,8 +159,8 @@ describe("BerandaPage", () => {
       ),
     ).toBeVisible();
   });
-  it("renders the berita feature and editorial teasers", () => {
-    render(<BerandaPage />);
+  it("renders the berita feature and editorial teasers", async () => {
+    await renderPage();
 
     expect(
       screen.getByRole("heading", { level: 3, name: "Explore KIPK 2026" }),
@@ -203,5 +220,45 @@ describe("BerandaPage", () => {
       "/berita/verifikasi-kipk-snbp",
       "/berita/gelar-kipk",
     ]);
+  });
+
+  it("derives the feature, teaser summaries and marquee labels from news posts", async () => {
+    const [berita, posts] = await Promise.all([
+      getHomeBerita(),
+      getNewsPosts(),
+    ]);
+    const view = buildBeritaSectionContent(berita, posts);
+    const postBySlug = new Map(posts.map((post) => [post.slug, post]));
+
+    expect(view.feature?.summary).toBe(
+      postBySlug.get(berita.featureSlug)?.paragraphs[0],
+    );
+    expect(view.teasers.map((teaser) => teaser.summary)).toEqual(
+      berita.teaserSlugs.map(
+        (slug) => postBySlug.get(slug)?.paragraphs[0] ?? "",
+      ),
+    );
+    expect(view.marqueeItems.map((item) => item.label)).toEqual(
+      posts.map((post) => post.title),
+    );
+  });
+
+  it("uses faculty order and names from content", async () => {
+    const faculties = await getFaculties();
+    expect(faculties.map((faculty) => faculty.code)).toEqual([
+      "FIP",
+      "FBS",
+      "FMIPA",
+      "FISH",
+      "FT",
+      "FPsi",
+      "FEB",
+      "FIKK",
+    ]);
+
+    await renderPage();
+    for (const faculty of faculties) {
+      expect(screen.getAllByText(faculty.name).length).toBeGreaterThan(0);
+    }
   });
 });

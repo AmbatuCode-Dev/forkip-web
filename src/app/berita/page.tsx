@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { BeritaHero, BeritaNewsSection } from "@/features/berita";
+import {
+  BeritaHero,
+  BeritaNewsSection,
+  beritaHero,
+  getBeritaPosts,
+} from "@/features/berita";
 
-export const metadata: Metadata = {
-  title: "Berita",
-  description:
-    "Informasi dan transparansi laporan kegiatan FORKIP UNJ, dikelola oleh divisi Humas.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: beritaHero.title, description: beritaHero.description };
+}
 
 export default async function BeritaPage({
   searchParams,
 }: PageProps<"/berita">) {
+  const posts = await getBeritaPosts();
+
   return (
     <>
       <BeritaHero />
@@ -18,7 +23,7 @@ export default async function BeritaPage({
         <Suspense
           fallback={<p className="text-sm text-body-muted">Memuat berita…</p>}
         >
-          <BeritaNewsSection searchParams={searchParams} />
+          <BeritaNewsSection searchParams={searchParams} posts={posts} />
         </Suspense>
       </div>
     </>

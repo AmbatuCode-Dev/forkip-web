@@ -5,12 +5,8 @@ import { useRef } from "react";
 import { PageHero } from "@/components/layout/page-hero";
 import { useSectionReveal } from "@/features/home";
 import { cn } from "@/utils/cn";
-import {
-  fakultasKontak,
-  kifNote,
-  kontakRail,
-  pertanyaanPengaduanHero,
-} from "../data";
+import { kifNote, kontakRail, pertanyaanPengaduanHero } from "../data";
+import type { FacultyContact } from "../types";
 
 /** Placeholder WhatsApp link (TODO: real delegation deep links). */
 const WHATSAPP_HREF = "#";
@@ -21,7 +17,11 @@ const WHATSAPP_HREF = "#";
  * the gold KIF follow-up note. Faculty colors arrive as data and are applied
  * as inline styles (FIKK renders as the outlined variant).
  */
-export function PertanyaanPengaduanView() {
+export function PertanyaanPengaduanView({
+  faculties,
+}: {
+  readonly faculties: readonly FacultyContact[];
+}) {
   const contentRef = useRef<HTMLDivElement>(null);
   useSectionReveal(contentRef);
 
@@ -63,7 +63,7 @@ export function PertanyaanPengaduanView() {
 
           {/* Faculty delegation rows */}
           <ul className="flex min-w-0 flex-1 flex-col gap-3">
-            {fakultasKontak.map((faculty) => (
+            {faculties.map((faculty) => (
               <li key={faculty.code} data-reveal-item>
                 <a
                   href={WHATSAPP_HREF}

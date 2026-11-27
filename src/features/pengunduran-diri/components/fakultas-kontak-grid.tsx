@@ -1,12 +1,15 @@
 import { ArrowRight } from "@coolicons/react";
-import { fakultasKontak } from "../data/fakultas-kontak";
+import type { FacultyContact } from "../types";
 
 /**
- * 4×2 grid of faculty WhatsApp contact tiles (spec §5). Colors follow
- * docs/design-style.md faculty tile palette; white text; hrefs are
- * placeholders (TODO real WhatsApp links).
+ * 4×2 grid of faculty WhatsApp contact tiles (spec §5). Colors come from the
+ * faculty content DTOs; white text; hrefs are supplied by content.
  */
-export function FakultasKontakGrid() {
+export function FakultasKontakGrid({
+  faculties,
+}: {
+  readonly faculties: readonly FacultyContact[];
+}) {
   return (
     <section
       aria-labelledby="fakultas-kontak-heading"
@@ -19,7 +22,7 @@ export function FakultasKontakGrid() {
         Klik tombol di bawah untuk menghubungi delegasi KIF Fakultas:
       </h2>
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {fakultasKontak.map((faculty) => (
+        {faculties.map((faculty) => (
           <li key={faculty.code}>
             <a
               href={faculty.href}

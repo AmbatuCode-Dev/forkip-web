@@ -1,12 +1,27 @@
-import { afterEach, describe, expect, it } from "vitest";
-import { PertanyaanPengaduanView } from "@/features/pertanyaan-pengaduan";
+import { afterEach, beforeAll, describe, expect, it } from "vitest";
+import {
+  type FacultyContact,
+  getPertanyaanFaculties,
+  PertanyaanPengaduanView,
+} from "@/features/pertanyaan-pengaduan";
+import { getFaculties } from "@/lib/content/faculties";
 import { cleanup, render, screen, within } from "@/testing/test-utils";
 
 afterEach(cleanup);
 
+let faculties: readonly FacultyContact[] = [];
+
+beforeAll(async () => {
+  faculties = await getPertanyaanFaculties();
+});
+
+function renderView() {
+  render(<PertanyaanPengaduanView faculties={faculties} />);
+}
+
 describe("PertanyaanPengaduanView", () => {
   it("renders hero with breadcrumb, title, and subtitle", () => {
-    render(<PertanyaanPengaduanView />);
+    renderView();
 
     expect(
       screen.getByRole("heading", {
@@ -29,7 +44,7 @@ describe("PertanyaanPengaduanView", () => {
   });
 
   it("renders the kontak delegasi rail eyebrow, heading, and caption", () => {
-    render(<PertanyaanPengaduanView />);
+    renderView();
 
     const rail = screen.getByText("KONTAK DELEGASI FAKULTAS");
     expect(rail).toBeInTheDocument();
@@ -46,26 +61,24 @@ describe("PertanyaanPengaduanView", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders all 8 faculty rows with full names and placeholder hrefs", () => {
-    render(<PertanyaanPengaduanView />);
+  it("renders all 8 faculty rows with content names, in content order", async () => {
+    renderView();
 
-    const rows = [
-      ["FMIPA", "Fakultas Matematika dan Ilmu Pengetahuan Alam"],
-      ["FT", "Fakultas Teknik"],
-      ["FBS", "Fakultas Bahasa dan Seni"],
-      ["FPsi", "Fakultas Psikologi"],
-      ["FISH", "Fakultas Ilmu Sosial dan Hukum"],
-      ["FEB", "Fakultas Ekonomi dan Bisnis"],
-      ["FIKK", "Fakultas Ilmu Keolahragaan dan Kesehatan"],
-      ["FIP", "Fakultas Ilmu Pendidikan"],
-    ];
-    for (const [code, fullName] of rows) {
-      const link = screen.getByRole("link", {
-        name: `Hubungi delegasi ${code} via WhatsApp`,
-      });
+    const contentFaculties = await getFaculties();
+    const rows = screen.getAllByRole("link", {
+      name: /Hubungi delegasi .* via WhatsApp/,
+    });
+    expect(rows).toHaveLength(contentFaculties.length);
+
+    for (const [index, faculty] of contentFaculties.entries()) {
+      const link = rows[index];
+      expect(link).toHaveAttribute(
+        "aria-label",
+        `Hubungi delegasi ${faculty.code} via WhatsApp`,
+      );
       expect(link).toHaveAttribute("href", "#");
-      expect(within(link).getByText(code)).toBeInTheDocument();
-      expect(within(link).getByText(fullName)).toBeInTheDocument();
+      expect(within(link).getByText(faculty.code)).toBeInTheDocument();
+      expect(within(link).getByText(faculty.name)).toBeInTheDocument();
       expect(
         within(link).getByText("Hubungi via WhatsApp"),
       ).toBeInTheDocument();
@@ -73,7 +86,7 @@ describe("PertanyaanPengaduanView", () => {
   });
 
   it("styles FIKK as the outlined row and FIP with its faculty color", () => {
-    render(<PertanyaanPengaduanView />);
+    renderView();
 
     const fikk = screen.getByRole("link", {
       name: "Hubungi delegasi FIKK via WhatsApp",
@@ -89,7 +102,7 @@ describe("PertanyaanPengaduanView", () => {
   });
 
   it("renders the gold note card about KIF follow-up", () => {
-    render(<PertanyaanPengaduanView />);
+    renderView();
 
     const note = screen.getByText(
       "Laporan akan ditindaklanjuti oleh Delegasi Fakultas dari Divisi KIF (Koordinator Integrasi Fakultas) Forkip UNJ.",

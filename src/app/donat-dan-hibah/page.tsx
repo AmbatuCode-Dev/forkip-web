@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { DonatDanHibahView } from "@/features/donat-dan-hibah";
+import {
+  DonatDanHibahView,
+  getDonatDanHibahFaculties,
+} from "@/features/donat-dan-hibah";
 
 export const metadata: Metadata = {
   title: "Peminjaman (DONAT)",
@@ -7,6 +10,7 @@ export const metadata: Metadata = {
     "Donat dan hibah dikelola oleh Divisi Advokasi dengan proses yang mudah dan cepat. (S&K berlaku)",
 };
 
-export default function DonatDanHibahPage() {
-  return <DonatDanHibahView />;
+export default async function DonatDanHibahPage() {
+  const faculties = await getDonatDanHibahFaculties();
+  return <DonatDanHibahView faculties={faculties} />;
 }

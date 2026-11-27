@@ -1,12 +1,18 @@
 import { cleanup } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
-import { BeritaNewsSection } from "@/features/berita";
+import { afterEach, beforeAll, describe, expect, it } from "vitest";
+import { BeritaNewsSection, getBeritaPosts } from "@/features/berita";
 import { renderWithProviders, screen } from "@/testing/test-utils";
-import { newsPosts } from "../data/news-posts";
+import type { NewsPostContent } from "@/types";
 
 afterEach(cleanup);
 
-const lastPage = Math.max(...newsPosts.map((post) => post.page));
+let posts: readonly NewsPostContent[] = [];
+
+beforeAll(async () => {
+  posts = await getBeritaPosts();
+});
+
+const lastPage = () => Math.max(...posts.map((post) => post.page));
 
 /** The pagination bar states "Halaman X dari Y" (visible + sr-only copy). */
 function expectCurrentPage(page: number, totalPages: number) {
@@ -17,12 +23,13 @@ function expectCurrentPage(page: number, totalPages: number) {
 
 /**
  * The clamp lives in BeritaNewsSection: ?halaman resolves against the
- * explicit page numbers in newsPosts. Out-of-range/invalid values fall
+ * explicit page numbers in content. Out-of-range/invalid values fall
  * back to page 1; array params (repeated query key) use the first entry.
  */
 async function renderSection(halaman: string | string[] | undefined) {
   const section = await BeritaNewsSection({
     searchParams: Promise.resolve({ halaman }),
+    posts,
   });
   renderWithProviders(section);
 }
@@ -56,12 +63,12 @@ describe("BeritaNewsSection searchParams clamp", () => {
   });
 
   it("renders the last page for ?halaman beyond the data", async () => {
-    await renderSection(String(lastPage));
+    await renderSection(String(lastPage()));
 
     expect(
       screen.getByRole("heading", { name: "Verifikasi KIPK SNBP" }),
     ).toBeInTheDocument();
-    expectCurrentPage(lastPage, 2);
+    expectCurrentPage(lastPage(), 2);
   });
 
   it("uses the first entry when ?halaman is an array", async () => {

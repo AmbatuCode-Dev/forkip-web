@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useRef } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { PlaceholdImage } from "@/components/ui/placehold-image";
-import { programCards, programSection, programSpotlight } from "../data";
+import type { ProgramCardContent, ProgramSpotlightContent } from "@/types";
+import { programSection } from "../data";
 import { useSectionReveal } from "./use-section-reveal";
 
 function PhotoPlaceholder({
@@ -27,7 +28,13 @@ function PhotoPlaceholder({
 /**
  * Program Unggulan (spec §7): Kampung KIP-K UNJ spotlight + 3 program cards.
  */
-export function ProgramSection() {
+export function ProgramSection({
+  spotlight,
+  cards,
+}: {
+  readonly spotlight: ProgramSpotlightContent;
+  readonly cards: readonly ProgramCardContent[];
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   useSectionReveal(sectionRef);
 
@@ -53,9 +60,9 @@ export function ProgramSection() {
         >
           <div>
             <h3 className="text-3xl leading-10 font-bold text-ink sm:text-4xl sm:leading-12">
-              {programSpotlight.title}
+              {spotlight.title}
             </h3>
-            {programSpotlight.paragraphs.map((paragraph) => (
+            {spotlight.paragraphs.map((paragraph) => (
               <p
                 key={paragraph.slice(0, 24)}
                 className="mt-4 text-base leading-6 text-body"
@@ -64,7 +71,7 @@ export function ProgramSection() {
               </p>
             ))}
             <ul className="mt-5 flex flex-col gap-4">
-              {programSpotlight.bullets.map((bullet) => (
+              {spotlight.bullets.map((bullet) => (
                 <li key={bullet.label} className="flex items-start gap-3">
                   <span
                     aria-hidden="true"
@@ -78,18 +85,18 @@ export function ProgramSection() {
               ))}
             </ul>
             <p className="mt-5 text-base leading-6 text-body">
-              {programSpotlight.closing}
+              {spotlight.closing}
             </p>
           </div>
 
           <PhotoPlaceholder
-            label={programSpotlight.photoLabel}
+            label={spotlight.photoLabel}
             className="h-105 w-full rounded-2xl object-cover lg:h-140"
           />
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {programCards.map((card) => (
+          {cards.map((card) => (
             <article
               key={card.title}
               data-reveal-item

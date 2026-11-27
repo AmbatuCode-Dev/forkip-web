@@ -1,16 +1,23 @@
 import { cleanup } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
-import { newsPosts } from "@/features/berita";
+import { afterEach, beforeAll, describe, expect, it } from "vitest";
+import { getBeritaPosts } from "@/features/berita";
 import { renderWithProviders, screen, within } from "@/testing/test-utils";
+import type { NewsPostContent } from "@/types";
 import { ArticleDetailView } from "../components/article-detail-view";
 import { toArticleDetailContent } from "../data";
 
 afterEach(cleanup);
 
-function postBySlug(slug: string) {
-  const post = newsPosts.find((candidate) => candidate.slug === slug);
+let posts: readonly NewsPostContent[] = [];
+
+beforeAll(async () => {
+  posts = await getBeritaPosts();
+});
+
+function postBySlug(slug: string): NewsPostContent {
+  const post = posts.find((candidate) => candidate.slug === slug);
   if (!post) {
-    throw new Error(`${slug} post missing from newsPosts`);
+    throw new Error(`${slug} post missing from content`);
   }
   return post;
 }

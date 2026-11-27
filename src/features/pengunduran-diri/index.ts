@@ -6,6 +6,7 @@ export {
   PengunduranDiriHero,
 } from "./components/pengunduran-diri-hero";
 export { TemplateSuratCard } from "./components/template-surat-card";
+export { getPengunduranDiriFaculties } from "./data/load-content";
 export type {
   AlurStep,
   AlurStepIconId,

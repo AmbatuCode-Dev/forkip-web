@@ -1,5 +1,4 @@
-import type { NewsPost } from "@/features/berita";
-import { newsPosts } from "@/features/berita";
+import type { NewsPostContent } from "@/types";
 import type {
   ArticleDetailContent,
   ArticleFigure,
@@ -22,12 +21,12 @@ function firstSentence(paragraph: string): string {
 }
 
 /** One-line summary under the H1: the first sentence of the lead paragraph. */
-function subtitleFor(post: NewsPost): string {
+function subtitleFor(post: NewsPostContent): string {
   const lead = post.paragraphs[0];
   return lead ? firstSentence(lead) : "";
 }
 
-function heroMediaFor(post: NewsPost): ArticleMedia | null {
+function heroMediaFor(post: NewsPostContent): ArticleMedia | null {
   if (post.photoCount <= 0) {
     return null;
   }
@@ -40,7 +39,7 @@ function heroMediaFor(post: NewsPost): ArticleMedia | null {
 }
 
 /** Photo 01 is the hero media; photos 02…N become inline body figures. */
-function figuresFor(post: NewsPost): readonly ArticleFigure[] {
+function figuresFor(post: NewsPostContent): readonly ArticleFigure[] {
   if (post.photoCount <= 1) {
     return [];
   }
@@ -55,8 +54,10 @@ function figuresFor(post: NewsPost): readonly ArticleFigure[] {
   });
 }
 
-/** Maps a verbatim NewsPost onto the §A detail view-model. */
-export function toArticleDetailContent(post: NewsPost): ArticleDetailContent {
+/** Maps a verbatim NewsPostContent onto the §A detail view-model. */
+export function toArticleDetailContent(
+  post: NewsPostContent,
+): ArticleDetailContent {
   return {
     slug: post.slug,
     title: post.title,
@@ -68,17 +69,4 @@ export function toArticleDetailContent(post: NewsPost): ArticleDetailContent {
     paragraphs: post.paragraphs,
     figures: figuresFor(post),
   };
-}
-
-/** Detail content for a slug; undefined for unknown slugs (→ notFound()). */
-export function getArticleDetail(
-  slug: string,
-): ArticleDetailContent | undefined {
-  const post = newsPosts.find((candidate) => candidate.slug === slug);
-  return post ? toArticleDetailContent(post) : undefined;
-}
-
-/** Every post slug, for generateStaticParams (spec §A). */
-export function articleStaticParams(): Array<{ slug: string }> {
-  return newsPosts.map((post) => ({ slug: post.slug }));
 }

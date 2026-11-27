@@ -1,13 +1,30 @@
 import { cleanup } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
-import { BeritaNewsList, getNewsPage, newsPosts } from "@/features/berita";
+import { afterEach, beforeAll, describe, expect, it } from "vitest";
+import {
+  BeritaNewsList,
+  getBeritaPosts,
+  getNewsPage,
+  totalNewsPages,
+} from "@/features/berita";
 import { renderWithProviders, screen, within } from "@/testing/test-utils";
+import type { NewsPostContent } from "@/types";
 
 afterEach(cleanup);
 
+let posts: readonly NewsPostContent[] = [];
+
+beforeAll(async () => {
+  posts = await getBeritaPosts();
+});
+
 function renderPage(page: number) {
   renderWithProviders(
-    <BeritaNewsList page={page} totalPages={2} posts={getNewsPage(page)} />,
+    <BeritaNewsList
+      page={page}
+      totalPages={totalNewsPages(posts)}
+      totalItems={posts.length}
+      posts={getNewsPage(posts, page)}
+    />,
   );
 }
 
@@ -19,14 +36,15 @@ function expectPlaceholder(label: string) {
 
 describe("BeritaNewsList", () => {
   it("keeps the five posts on two pages", () => {
-    expect(newsPosts).toHaveLength(5);
-    expect(newsPosts.map((post) => post.photoCount)).toEqual([1, 4, 3, 4, 4]);
-    expect(getNewsPage(1).map((post) => post.slug)).toEqual([
+    expect(posts).toHaveLength(5);
+    expect(posts.map((post) => post.photoCount)).toEqual([1, 4, 3, 4, 4]);
+    expect(totalNewsPages(posts)).toBe(2);
+    expect(getNewsPage(posts, 1).map((post) => post.slug)).toEqual([
       "explore-kipk-2026",
       "pelatihan-divisi-kif",
       "busamakip",
     ]);
-    expect(getNewsPage(2).map((post) => post.slug)).toEqual([
+    expect(getNewsPage(posts, 2).map((post) => post.slug)).toEqual([
       "verifikasi-kipk-snbp",
       "gelar-kipk",
     ]);

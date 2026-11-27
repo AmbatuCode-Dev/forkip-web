@@ -7,7 +7,45 @@ import {
   type RenderResult,
   renderWithProviders,
 } from "@/testing/test-utils";
+import type { FacultyRecord } from "@/types";
 import { DelegasiScrolly } from "../delegasi-scrolly";
+
+const faculties: readonly FacultyRecord[] = [
+  { code: "FIP", name: "Fakultas Ilmu Pendidikan", color: "#84BC24", order: 1 },
+  {
+    code: "FBS",
+    name: "Fakultas Bahasa dan Seni",
+    color: "#00A898",
+    order: 2,
+  },
+  {
+    code: "FMIPA",
+    name: "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+    color: "#7A1A7A",
+    order: 3,
+  },
+  {
+    code: "FISH",
+    name: "Fakultas Ilmu Sosial dan Hukum",
+    color: "#D40D12",
+    order: 4,
+  },
+  { code: "FT", name: "Fakultas Teknik", color: "#005088", order: 5 },
+  { code: "FPsi", name: "Fakultas Psikologi", color: "#00A4E4", order: 6 },
+  {
+    code: "FEB",
+    name: "Fakultas Ekonomi dan Bisnis",
+    color: "#B25A14",
+    order: 7,
+  },
+  {
+    code: "FIKK",
+    name: "Fakultas Ilmu Keolahragaan dan Kesehatan",
+    color: "#0F766E",
+    order: 8,
+    outline: true,
+  },
+];
 
 type ScrollTriggerVars = {
   end: () => string;
@@ -117,7 +155,9 @@ describe("DelegasiScrolly", () => {
   it("keeps the static complete logo when reduced motion is preferred", () => {
     engine.motion = false;
 
-    const view: RenderResult = renderWithProviders(<DelegasiScrolly />);
+    const view: RenderResult = renderWithProviders(
+      <DelegasiScrolly faculties={faculties} />,
+    );
     const root = view.getByTestId("delegasi-scrolly");
 
     expect(view.getByTestId("delegasi-logo")).toHaveAttribute(
@@ -128,13 +168,16 @@ describe("DelegasiScrolly", () => {
     expect(engine.contexts).toHaveLength(0);
     expect(engine.timelines).toHaveLength(0);
     expect(root.querySelectorAll('[data-active="true"]')).toHaveLength(0);
+    expect(
+      view.getAllByText("Fakultas Ilmu Pendidikan").length,
+    ).toBeGreaterThan(0);
 
     view.unmount();
     expect(engine.medias[0].revert).toHaveBeenCalled();
   });
 
   it("pops the pin, publishes its measurements and starts in building state", () => {
-    const view = renderWithProviders(<DelegasiScrolly />);
+    const view = renderWithProviders(<DelegasiScrolly faculties={faculties} />);
     const root = view.getByTestId("delegasi-scrolly");
 
     expect(gsap.registerPlugin).toHaveBeenCalledWith(ScrollTrigger);
@@ -155,7 +198,7 @@ describe("DelegasiScrolly", () => {
   });
 
   it("tracks a mid-reveal faculty and the completed state", () => {
-    const view = renderWithProviders(<DelegasiScrolly />);
+    const view = renderWithProviders(<DelegasiScrolly faculties={faculties} />);
     const root = view.getByTestId("delegasi-scrolly");
     const logo = view.getByTestId("delegasi-logo");
     const trigger = triggerVars();
@@ -176,7 +219,7 @@ describe("DelegasiScrolly", () => {
   });
 
   it("restores the complete state and reverts GSAP when motion is switched off", () => {
-    const view = renderWithProviders(<DelegasiScrolly />);
+    const view = renderWithProviders(<DelegasiScrolly faculties={faculties} />);
     const root = view.getByTestId("delegasi-scrolly");
     const logo = view.getByTestId("delegasi-logo");
 
@@ -203,7 +246,7 @@ describe("DelegasiScrolly", () => {
   it("stays in the static fallback without matchMedia (jsdom)", () => {
     vi.stubGlobal("matchMedia", undefined);
 
-    const view = renderWithProviders(<DelegasiScrolly />);
+    const view = renderWithProviders(<DelegasiScrolly faculties={faculties} />);
 
     expect(engine.medias).toHaveLength(0);
     expect(view.getByTestId("delegasi-logo")).toHaveAttribute(

@@ -1,17 +1,21 @@
 import { PageHero } from "@/components/layout/page-hero";
-import { programUnggulanHero } from "../data";
+import type { PageHeroContent } from "../types";
 
 /**
  * Page hero (spec /program-unggulan): breadcrumb "Beranda / Program
  * Unggulan", H1 "Program Unggulan Forkip UNJ", and the strategic-initiative
  * intro copy shared with the Beranda program section.
  */
-export function ProgramUnggulanHero() {
+export function ProgramUnggulanHero({
+  hero,
+}: {
+  readonly hero: PageHeroContent;
+}) {
   return (
     <PageHero
-      breadcrumb={{ label: programUnggulanHero.breadcrumbLabel, href: "/" }}
-      title={programUnggulanHero.title}
-      subtitle={programUnggulanHero.subtitle}
+      breadcrumb={{ label: hero.breadcrumbLabel, href: "/" }}
+      title={hero.title}
+      subtitle={hero.subtitle}
     />
   );
 }

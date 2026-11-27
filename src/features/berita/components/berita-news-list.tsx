@@ -1,4 +1,3 @@
-import { newsPosts } from "../data/news-posts";
 import type { NewsPost } from "../types";
 import { BeritaNewsCard } from "./berita-news-card";
 import { BeritaPagination } from "./berita-pagination";
@@ -6,6 +5,7 @@ import { BeritaPagination } from "./berita-pagination";
 export interface BeritaNewsListProps {
   readonly page: number;
   readonly totalPages: number;
+  readonly totalItems: number;
   readonly posts: readonly NewsPost[];
 }
 
@@ -17,6 +17,7 @@ export interface BeritaNewsListProps {
 export function BeritaNewsList({
   page,
   totalPages,
+  totalItems,
   posts,
 }: BeritaNewsListProps) {
   return (
@@ -35,7 +36,7 @@ export function BeritaNewsList({
       <BeritaPagination
         page={page}
         totalPages={totalPages}
-        totalItems={newsPosts.length}
+        totalItems={totalItems}
       />
     </section>
   );

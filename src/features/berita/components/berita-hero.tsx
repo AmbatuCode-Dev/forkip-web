@@ -1,4 +1,5 @@
 import { PageHero } from "@/components/layout/page-hero";
+import { beritaHero } from "../data/hero";
 
 /**
  * Page hero (spec §1): breadcrumb "Beranda / Berita", H1 "Berita", intro
@@ -7,9 +8,9 @@ import { PageHero } from "@/components/layout/page-hero";
 export function BeritaHero() {
   return (
     <PageHero
-      breadcrumb={{ label: "Berita", href: "/" }}
-      title="Berita"
-      subtitle="Halaman ini dikelola oleh divisi Humas Forkip UNJ sebagai sarana berbagi informasi, dan transparansi laporan kegiatan yang dilakukan oleh Forkip UNJ"
+      breadcrumb={{ label: beritaHero.breadcrumbLabel, href: "/" }}
+      title={beritaHero.title}
+      subtitle={beritaHero.description}
     />
   );
 }

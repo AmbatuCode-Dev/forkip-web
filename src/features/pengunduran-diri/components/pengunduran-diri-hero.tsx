@@ -1,4 +1,5 @@
 import { PageHero } from "@/components/layout/page-hero";
+import type { FacultyContact } from "../types";
 import { AlurPengunduranDiriCard } from "./alur-pengunduran-diri-card";
 import { FakultasKontakGrid } from "./fakultas-kontak-grid";
 import { GoogleFormEmbedCard } from "./google-form-embed-card";
@@ -22,13 +23,17 @@ export function PengunduranDiriHero() {
  * Page body (spec §2–§5): alur card, template surat card, Google Form
  * placeholder, faculty contact grid.
  */
-export function PengunduranDiriContent() {
+export function PengunduranDiriContent({
+  faculties,
+}: {
+  readonly faculties: readonly FacultyContact[];
+}) {
   return (
     <div className="mx-auto flex w-full max-w-312 flex-col gap-9 px-4 pt-12 pb-20 sm:px-6 xl:px-0">
       <AlurPengunduranDiriCard />
       <TemplateSuratCard />
       <GoogleFormEmbedCard />
-      <FakultasKontakGrid />
+      <FakultasKontakGrid faculties={faculties} />
     </div>
   );
 }

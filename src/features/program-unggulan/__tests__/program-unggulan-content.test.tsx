@@ -1,49 +1,75 @@
 import { cleanup } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
-import { ProgramUnggulanContent } from "@/features/program-unggulan";
+import { afterEach, beforeAll, describe, expect, it } from "vitest";
+import {
+  getProgramUnggulanContent,
+  ProgramUnggulanContent,
+} from "@/features/program-unggulan";
 import { renderWithProviders, screen, within } from "@/testing/test-utils";
+import type { ProgramCardContent, ProgramSpotlightContent } from "@/types";
 import { isActionableHref } from "@/utils/is-actionable-href";
-import { programCards, programSpotlight } from "../data";
 
 afterEach(cleanup);
 
+let spotlight: ProgramSpotlightContent;
+let cards: readonly ProgramCardContent[];
+let programLainTitle = "Program lain";
+
+beforeAll(async () => {
+  const content = await getProgramUnggulanContent();
+  spotlight = content.spotlight;
+  cards = content.cards;
+  programLainTitle = content.programLainTitle;
+});
+
+function renderContent() {
+  renderWithProviders(
+    <ProgramUnggulanContent
+      spotlight={spotlight}
+      cards={cards}
+      programLainTitle={programLainTitle}
+    />,
+  );
+}
+
 describe("ProgramUnggulanContent", () => {
   it("renders the Kampung KIP-K spotlight with paragraphs, bullets, and closing", () => {
-    renderWithProviders(<ProgramUnggulanContent />);
+    renderContent();
 
     const heading = screen.getByRole("heading", {
       level: 2,
-      name: programSpotlight.title,
+      name: spotlight.title,
     });
     expect(heading).toBeInTheDocument();
 
-    const spotlight = heading.closest("section");
-    expect(spotlight).not.toBeNull();
-    for (const paragraph of programSpotlight.paragraphs) {
+    const spotlightSection = heading.closest("section");
+    expect(spotlightSection).not.toBeNull();
+    for (const paragraph of spotlight.paragraphs) {
       expect(
-        within(spotlight as HTMLElement).getByText(paragraph),
+        within(spotlightSection as HTMLElement).getByText(paragraph),
       ).toBeInTheDocument();
     }
-    const bullets = within(spotlight as HTMLElement).getAllByRole("listitem");
-    expect(bullets).toHaveLength(programSpotlight.bullets.length);
-    for (const bullet of programSpotlight.bullets) {
+    const bullets = within(spotlightSection as HTMLElement).getAllByRole(
+      "listitem",
+    );
+    expect(bullets).toHaveLength(spotlight.bullets.length);
+    for (const bullet of spotlight.bullets) {
       expect(
-        within(spotlight as HTMLElement).getByText(bullet.label),
+        within(spotlightSection as HTMLElement).getByText(bullet.label),
       ).toBeInTheDocument();
     }
     expect(
-      within(spotlight as HTMLElement).getByText(programSpotlight.closing),
+      within(spotlightSection as HTMLElement).getByText(spotlight.closing),
     ).toBeInTheDocument();
   });
 
   it("renders the 'Program lain' heading and all three program cards", () => {
-    renderWithProviders(<ProgramUnggulanContent />);
+    renderContent();
 
     expect(
       screen.getByRole("heading", { level: 2, name: "Program lain" }),
     ).toBeInTheDocument();
 
-    for (const card of programCards) {
+    for (const card of cards) {
       const heading = screen.getByRole("heading", {
         level: 3,
         name: card.title,
@@ -58,18 +84,16 @@ describe("ProgramUnggulanContent", () => {
   });
 
   it("links the spotlight and actionable cards to their own archive URLs", () => {
-    renderWithProviders(<ProgramUnggulanContent />);
+    renderContent();
 
-    const spotlight = screen
-      .getByRole("heading", { level: 2, name: programSpotlight.title })
+    const spotlightSection = screen
+      .getByRole("heading", { level: 2, name: spotlight.title })
       .closest("section") as HTMLElement;
     expect(
-      within(spotlight).getByRole("link", { name: programSpotlight.cta }),
-    ).toHaveAttribute("href", programSpotlight.ctaHref);
+      within(spotlightSection).getByRole("link", { name: spotlight.cta }),
+    ).toHaveAttribute("href", spotlight.ctaHref);
 
-    for (const card of programCards.filter((item) =>
-      isActionableHref(item.ctaHref),
-    )) {
+    for (const card of cards.filter((item) => isActionableHref(item.ctaHref))) {
       const article = screen
         .getByRole("heading", { level: 3, name: card.title })
         .closest("article") as HTMLElement;
@@ -80,16 +104,16 @@ describe("ProgramUnggulanContent", () => {
   });
 
   it("hides the archive button on cards whose href is a placeholder", () => {
-    renderWithProviders(<ProgramUnggulanContent />);
+    renderContent();
 
     const links = screen.getAllByRole("link", { name: "Arsip Kegiatan" });
-    const actionableCards = programCards.filter((card) =>
+    const actionableCards = cards.filter((card) =>
       isActionableHref(card.ctaHref),
     );
     expect(links).toHaveLength(actionableCards.length + 1);
     expect(links.some((link) => link.getAttribute("href") === "#")).toBe(false);
 
-    for (const card of programCards.filter(
+    for (const card of cards.filter(
       (item) => !isActionableHref(item.ctaHref),
     )) {
       const article = screen

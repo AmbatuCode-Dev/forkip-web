@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { PertanyaanPengaduanView } from "@/features/pertanyaan-pengaduan";
+import {
+  getPertanyaanFaculties,
+  PertanyaanPengaduanView,
+} from "@/features/pertanyaan-pengaduan";
 
 export const metadata: Metadata = {
   title: "Pertanyaan & Pengaduan",
@@ -7,6 +10,7 @@ export const metadata: Metadata = {
     "Sarana pertanyaan, pengaduan, keluhan, dan aspirasi mahasiswa KIP-K UNJ melalui delegasi KIF fakultas.",
 };
 
-export default function PertanyaanPengaduanPage() {
-  return <PertanyaanPengaduanView />;
+export default async function PertanyaanPengaduanPage() {
+  const faculties = await getPertanyaanFaculties();
+  return <PertanyaanPengaduanView faculties={faculties} />;
 }

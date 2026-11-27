@@ -1,15 +1,29 @@
 import { cleanup } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
-import { PengunduranDiriContent } from "@/features/pengunduran-diri";
+import { afterEach, beforeAll, describe, expect, it } from "vitest";
+import {
+  type FacultyContact,
+  getPengunduranDiriFaculties,
+  PengunduranDiriContent,
+} from "@/features/pengunduran-diri";
+import { getFaculties } from "@/lib/content/faculties";
 import { renderWithProviders, screen, within } from "@/testing/test-utils";
 import { alurSteps } from "../data/alur-steps";
-import { fakultasKontak } from "../data/fakultas-kontak";
 
 afterEach(cleanup);
 
+let faculties: readonly FacultyContact[] = [];
+
+beforeAll(async () => {
+  faculties = await getPengunduranDiriFaculties();
+});
+
+function renderContent() {
+  renderWithProviders(<PengunduranDiriContent faculties={faculties} />);
+}
+
 describe("PengunduranDiriContent", () => {
   it("renders the alur heading, all 8 steps in order, and the Unduh Surat button", () => {
-    renderWithProviders(<PengunduranDiriContent />);
+    renderContent();
 
     const alurHeading = screen.getByRole("heading", {
       level: 2,
@@ -36,7 +50,7 @@ describe("PengunduranDiriContent", () => {
   });
 
   it("renders the Google Form placeholder", () => {
-    renderWithProviders(<PengunduranDiriContent />);
+    renderContent();
 
     expect(screen.getByText(/GOOGLE FORM TERTANAM/i)).toBeInTheDocument();
     expect(
@@ -44,16 +58,22 @@ describe("PengunduranDiriContent", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders 8 faculty cards with names, WhatsApp hint, and placeholder hrefs", () => {
-    renderWithProviders(<PengunduranDiriContent />);
+  it("renders 8 faculty cards in content order with their content hrefs", async () => {
+    renderContent();
 
-    for (const faculty of fakultasKontak) {
-      const link = screen.getByRole("link", {
-        name: `Hubungi delegasi KIF ${faculty.code} via WhatsApp`,
-      });
-      expect(link).toBeInTheDocument();
-      // Placeholder hrefs until real WhatsApp numbers are provided.
-      expect(link).toHaveAttribute("href", "#");
+    const contentFaculties = await getFaculties();
+    const links = screen.getAllByRole("link", {
+      name: /Hubungi delegasi KIF .* via WhatsApp/,
+    });
+    expect(links).toHaveLength(contentFaculties.length);
+
+    for (const [index, faculty] of contentFaculties.entries()) {
+      const link = links[index];
+      expect(link).toHaveAttribute(
+        "aria-label",
+        `Hubungi delegasi KIF ${faculty.code} via WhatsApp`,
+      );
+      expect(link).toHaveAttribute("href", faculty.whatsappHref ?? "#");
       expect(within(link).getByText(faculty.code)).toBeInTheDocument();
       expect(
         within(link).getByText("Hubungi via WhatsApp"),

@@ -8,15 +8,19 @@ import { useSectionReveal } from "@/features/home";
 import {
   delegasiAdvoLabel,
   donatDanHibahHero,
-  fakultasKontak,
   transparansiHibah,
 } from "../data";
+import type { FacultyContact } from "../types";
 
 /**
  * /donat-dan-hibah (Figma frame 224:1216): hero, Advokasi faculty WhatsApp
  * delegation grid, and the restricted hibah transparency card.
  */
-export function DonatDanHibahView() {
+export function DonatDanHibahView({
+  faculties,
+}: {
+  readonly faculties: readonly FacultyContact[];
+}) {
   const contentRef = useRef<HTMLDivElement>(null);
   useSectionReveal(contentRef);
 
@@ -33,10 +37,7 @@ export function DonatDanHibahView() {
         className="mx-auto flex w-full max-w-300 flex-col gap-10 px-4 pt-18 pb-24 sm:px-4 xl:px-0"
       >
         <div data-reveal-item>
-          <FacultyContactGrid
-            items={fakultasKontak}
-            label={delegasiAdvoLabel}
-          />
+          <FacultyContactGrid items={faculties} label={delegasiAdvoLabel} />
         </div>
 
         {/* Transparency card — white, border-sand, r16 */}

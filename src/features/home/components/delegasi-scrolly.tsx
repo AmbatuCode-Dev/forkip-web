@@ -3,22 +3,12 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
+import type { FacultyRecord } from "@/types";
 import { cn } from "@/utils/cn";
-import { delegasiSection, faculties } from "../data";
+import { delegasiSection } from "../data";
 import { DelegasiLogo } from "./delegasi-logo";
 
-/** Official faculty names and logo petal colours (no copy or data edits). */
-const FACULTY_NAMES: Readonly<Record<string, string>> = {
-  FIP: "Fakultas Ilmu Pendidikan",
-  FISH: "Fakultas Ilmu Sosial dan Hukum",
-  FMIPA: "Fakultas Matematika dan Ilmu Pengetahuan Alam",
-  FEB: "Fakultas Ekonomi dan Bisnis",
-  FT: "Fakultas Teknik",
-  FPsi: "Fakultas Psikologi",
-  FBS: "Fakultas Bahasa dan Seni",
-  FIKK: "Fakultas Ilmu Keolahragaan dan Kesehatan",
-};
-
+/** Decorative ink-wash colours for the logo petals and leader-line dots. */
 const FACULTY_COLORS: Readonly<Record<string, string>> = {
   FIP: "#688D4D",
   FISH: "#EA3C3B",
@@ -174,18 +164,16 @@ function updateLeaderGeometry(grid: HTMLElement, leaderSvg: SVGSVGElement) {
   }
 }
 
-function facultyFor(code: string) {
-  return faculties.find((faculty) => faculty.code === code);
-}
-
 function TornPaperScrap({
   code,
+  name,
   side,
   isActive,
   compact = false,
   showCode = true,
 }: {
   code: string;
+  name: string;
   side: "left" | "right";
   isActive: boolean;
   compact?: boolean;
@@ -237,7 +225,7 @@ function TornPaperScrap({
               side === "left" && !compact && "text-right",
             )}
           >
-            {FACULTY_NAMES[code]}
+            {name}
           </p>
         </div>
       </div>
@@ -254,7 +242,13 @@ function TornPaperScrap({
  * Reduced motion renders the completed paper, ink, torn-paper scraps and
  * leader lines statically (unpinned).
  */
-export function DelegasiScrolly() {
+export function DelegasiScrolly({
+  faculties,
+}: {
+  readonly faculties: readonly FacultyRecord[];
+}) {
+  const facultyFor = (code: string) =>
+    faculties.find((faculty) => faculty.code === code);
   const rootRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -750,6 +744,7 @@ export function DelegasiScrolly() {
                 <TornPaperScrap
                   key={faculty.code}
                   code={faculty.code}
+                  name={faculty.name}
                   side="left"
                   isActive={isLevelActive(faculty.code)}
                 />
@@ -782,6 +777,7 @@ export function DelegasiScrolly() {
                 <TornPaperScrap
                   key={faculty.code}
                   code={faculty.code}
+                  name={faculty.name}
                   side="right"
                   isActive={isLevelActive(faculty.code)}
                 />
@@ -797,6 +793,7 @@ export function DelegasiScrolly() {
                 <TornPaperScrap
                   key={faculty.code}
                   code={faculty.code}
+                  name={faculty.name}
                   side="right"
                   compact
                   isActive={isLevelActive(faculty.code)}

@@ -1,7 +1,7 @@
 import { NewsMediaPlaceholder } from "@/components/berita/news-media-placeholder";
 import { buttonVariants } from "@/components/ui/button";
 import { isActionableHref } from "@/utils/is-actionable-href";
-import { programSpotlight } from "../data";
+import type { ProgramSpotlight } from "../types";
 
 /**
  * "Kampung KIP-K UNJ" spotlight (spec /program-unggulan): cream card with the
@@ -9,7 +9,13 @@ import { programSpotlight } from "../data";
  * "Arsip Kegiatan" button, and the photo tile. Layout mirrors the Beranda
  * program-section spotlight (cols-spotlight split).
  */
-export function ProgramSpotlightSection() {
+export function ProgramSpotlightSection({
+  spotlight,
+}: {
+  readonly spotlight: ProgramSpotlight;
+}) {
+  const ctaHref = spotlight.ctaHref ?? "#";
+
   return (
     <section
       aria-labelledby="program-spotlight-heading"
@@ -20,9 +26,9 @@ export function ProgramSpotlightSection() {
           id="program-spotlight-heading"
           className="text-3xl leading-10 font-bold text-ink sm:text-4xl sm:leading-12"
         >
-          {programSpotlight.title}
+          {spotlight.title}
         </h2>
-        {programSpotlight.paragraphs.map((paragraph) => (
+        {spotlight.paragraphs.map((paragraph) => (
           <p
             key={paragraph.slice(0, 24)}
             className="mt-4 text-base leading-6 text-body"
@@ -31,7 +37,7 @@ export function ProgramSpotlightSection() {
           </p>
         ))}
         <ul className="mt-5 flex flex-col gap-4">
-          {programSpotlight.bullets.map((bullet) => (
+          {spotlight.bullets.map((bullet) => (
             <li key={bullet.label} className="flex items-start gap-3">
               <span
                 aria-hidden="true"
@@ -45,24 +51,24 @@ export function ProgramSpotlightSection() {
           ))}
         </ul>
         <p className="mt-5 text-base leading-6 text-body">
-          {programSpotlight.closing}
+          {spotlight.closing}
         </p>
-        {isActionableHref(programSpotlight.ctaHref) && (
+        {isActionableHref(ctaHref) && (
           <a
-            href={programSpotlight.ctaHref}
+            href={ctaHref}
             className={buttonVariants({
               variant: "gold",
               size: "cta",
               className: "mt-6",
             })}
           >
-            {programSpotlight.cta}
+            {spotlight.cta}
           </a>
         )}
       </div>
 
       <NewsMediaPlaceholder
-        label={programSpotlight.photoLabel}
+        label={spotlight.photoLabel}
         width={480}
         height={560}
         className="h-105 w-full lg:h-140"

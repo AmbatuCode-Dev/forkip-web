@@ -8,7 +8,7 @@ import {
 } from "@/features/berita-detail";
 
 /** Prerender every news-post slug at build time (spec §A). */
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return articleStaticParams();
 }
 
@@ -16,7 +16,7 @@ export async function generateMetadata({
   params,
 }: PageProps<"/berita/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleDetail(slug);
+  const article = await getArticleDetail(slug);
   if (!article) {
     return { title: "Berita" };
   }
@@ -43,7 +43,7 @@ async function Article({
   params,
 }: Pick<PageProps<"/berita/[slug]">, "params">) {
   const { slug } = await params;
-  const article = getArticleDetail(slug);
+  const article = await getArticleDetail(slug);
   if (!article) {
     notFound();
   }
