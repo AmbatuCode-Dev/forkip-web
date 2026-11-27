@@ -60,6 +60,8 @@ jobs:
           name: nextjs-build
           path: .next
           retention-days: 1
+          include-hidden-files: true
+          if-no-files-found: error
 
   e2e:
     name: Playwright E2E
