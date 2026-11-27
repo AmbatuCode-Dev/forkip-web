@@ -63,6 +63,7 @@ vi.mock("gsap", () => ({
       remove: (callback: (time: number) => void) => {
         engine.tickerCallbacks.delete(callback);
       },
+      lagSmoothing: vi.fn(),
     },
     matchMedia: () => {
       const localContexts: MatchMediaContext[] = [];

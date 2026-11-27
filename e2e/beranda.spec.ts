@@ -97,31 +97,37 @@ test.describe("Beranda", () => {
 
     // Assert a real mid-reveal, not the SSR "complete" value: level 2 is
     // wiping in, level 4 is still hidden, a faculty rail is highlighted and
-    // the logo reports that it is still building.
+    // the logo reports that it is still building. The exact scroll fraction
+    // moves when the timeline is tuned, so scan a short band of the pin
+    // instead of depending on a single magic value.
     await expect
       .poll(async () => {
-        await scrollTo(0.6);
-        return page.evaluate(() => {
-          const root = document.querySelector(
-            '[data-testid="delegasi-scrolly"]',
-          );
-          const opacity = (group: string) => {
-            const el = root?.querySelector(`[data-logo-group="${group}"]`);
-            return el ? Number(getComputedStyle(el).opacity) : -1;
-          };
-          const highlighted =
-            root?.querySelectorAll('[data-active="true"]').length ?? 0;
-          const state = root
-            ?.querySelector('[data-testid="delegasi-logo"]')
-            ?.getAttribute("data-state");
-          return (
-            opacity("level-2") > 0 &&
-            opacity("level-2") < 1 &&
-            opacity("level-4") === 0 &&
-            highlighted > 0 &&
-            state === "building"
-          );
-        });
+        for (const fraction of [0.5, 0.55, 0.6]) {
+          await scrollTo(fraction);
+          const mid = await page.evaluate(() => {
+            const root = document.querySelector(
+              '[data-testid="delegasi-scrolly"]',
+            );
+            const opacity = (group: string) => {
+              const el = root?.querySelector(`[data-logo-group="${group}"]`);
+              return el ? Number(getComputedStyle(el).opacity) : -1;
+            };
+            const highlighted =
+              root?.querySelectorAll('[data-active="true"]').length ?? 0;
+            const state = root
+              ?.querySelector('[data-testid="delegasi-logo"]')
+              ?.getAttribute("data-state");
+            return (
+              opacity("level-2") > 0 &&
+              opacity("level-2") < 1 &&
+              opacity("level-4") === 0 &&
+              highlighted > 0 &&
+              state === "building"
+            );
+          });
+          if (mid) return true;
+        }
+        return false;
       })
       .toBe(true);
 
