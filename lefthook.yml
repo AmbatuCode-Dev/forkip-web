@@ -7,6 +7,12 @@ pre-commit:
       glob: "*.{js,jsx,ts,tsx,json,jsonc,css}"
       run: pnpm exec biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
       stage_fixed: true
+    - name: lint-css
+      glob: "*.css"
+      run: pnpm lint:css
+    - name: lint-tw
+      glob: "*.tsx"
+      run: pnpm lint:tw
     - name: typecheck
       run: pnpm typecheck
 
@@ -17,3 +23,7 @@ pre-push:
       run: node scripts/protect-main.mjs push
     - name: test
       run: pnpm test
+    - name: depcruise
+      run: pnpm depcruise
+    - name: check-structure
+      run: pnpm check:structure

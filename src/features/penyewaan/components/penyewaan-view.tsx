@@ -1,0 +1,136 @@
+"use client";
+
+import { useRef } from "react";
+import { PageHero as SharedPageHero } from "@/components/layout/page-hero";
+import { buttonVariants } from "@/components/ui/button";
+import { DivisiAccordion } from "@/components/ui/divisi-accordion";
+import { useSectionReveal } from "@/features/home";
+import { cn } from "@/utils/cn";
+import { isActionableHref } from "@/utils/is-actionable-href";
+import {
+  adminContactLinks,
+  contactCta,
+  googleFormEmbed,
+  inventarisItems,
+  penyewaanCopy,
+  penyewaanHero,
+} from "../data";
+
+export function PenyewaanView() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  useSectionReveal(contentRef);
+
+  return (
+    <>
+      <SharedPageHero
+        breadcrumb={{ label: penyewaanHero.breadcrumbLabel, href: "/" }}
+        title={penyewaanHero.title}
+        subtitle={penyewaanHero.description}
+      />
+
+      <div
+        ref={contentRef}
+        className="mx-auto flex w-full max-w-300 flex-col gap-10 px-4 pt-18 pb-24 sm:px-4 xl:px-0"
+      >
+        {/* Note card — 1200×96, gold tint #FFF3C4 (Figma frame 224:2568) */}
+        <section
+          aria-label="Catatan penyewaan"
+          data-reveal-item
+          className="flex flex-col gap-4 rounded-14 bg-gold-pale px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:pr-12 sm:pl-7.5"
+        >
+          <p className="max-w-200 text-base leading-6 font-medium text-ink-soft">
+            {penyewaanCopy.note}
+          </p>
+          <div className="flex shrink-0 flex-wrap items-center gap-7">
+            {adminContactLinks
+              .filter((link) => isActionableHref(link.href))
+              .map((link, index) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={cn(
+                    "inline-flex h-10 items-center justify-center rounded-full px-5 text-sm font-semibold text-ink transition-colors focus-visible:ring-2 focus-visible:ring-gold-ink focus-visible:outline-none",
+                    index === 0
+                      ? "bg-gold hover:bg-gold-dark"
+                      : "border border-gold-outline bg-white hover:bg-gold-soft",
+                  )}
+                >
+                  {link.label}
+                </a>
+              ))}
+          </div>
+        </section>
+
+        {/* Google Form embed */}
+        <section
+          aria-label={googleFormEmbed.title}
+          className="flex flex-col gap-4 rounded-2xl border border-border-sand bg-white p-6"
+        >
+          <div className="text-center">
+            <h2 className="text-base font-semibold text-ink">
+              {googleFormEmbed.title}
+            </h2>
+          </div>
+          {isActionableHref(googleFormEmbed.embedUrl) ? (
+            <iframe
+              title={googleFormEmbed.title}
+              src={googleFormEmbed.embedUrl}
+              className="h-100 w-full border-0 sm:h-140"
+              loading="lazy"
+            />
+          ) : null}
+        </section>
+
+        {/* Inventaris list */}
+        <section
+          aria-labelledby="inventaris-heading"
+          className="flex flex-col gap-8"
+        >
+          <h2
+            id="inventaris-heading"
+            className="text-3xl leading-9 font-semibold text-ink"
+          >
+            {penyewaanCopy.inventarisHeading}
+          </h2>
+          <div className="flex flex-col gap-4">
+            {inventarisItems.map((item) => (
+              <DivisiAccordion
+                key={item.title}
+                chip={item.chip}
+                imageLabel={item.imageLabel}
+                title={item.title}
+                body={[item.meta, ...item.paragraphs, item.footnote]
+                  .filter(Boolean)
+                  .join(" ")}
+                defaultExpanded={item.defaultExpanded}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Contact CTA — 1200×187 solid #FFF3C4 (Figma frame 224:2568) */}
+        <section
+          aria-label={contactCta.title}
+          className="flex flex-col items-center gap-2 rounded-2xl bg-gold-pale px-6 py-9 text-center"
+        >
+          <h2 className="text-xl font-bold text-ink">{contactCta.title}</h2>
+          <p className="text-sm text-body-muted">{contactCta.description}</p>
+          {isActionableHref(contactCta.actionHref) ? (
+            <a
+              href={contactCta.actionHref}
+              className={cn(
+                buttonVariants({
+                  variant: "gold",
+                  size: "md",
+                  className: "mt-3 px-6",
+                }),
+              )}
+            >
+              {contactCta.actionLabel}
+            </a>
+          ) : null}
+        </section>
+      </div>
+    </>
+  );
+}

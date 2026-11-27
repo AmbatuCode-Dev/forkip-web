@@ -33,6 +33,18 @@ jobs:
       - name: Run Biome checks
         run: pnpm lint
 
+      - name: Run CSS lint (stylelint)
+        run: pnpm lint:css
+
+      - name: Run Tailwind class lint (ESLint)
+        run: pnpm lint:tw
+
+      - name: Run dependency-cruiser architecture rules
+        run: pnpm depcruise
+
+      - name: Run structure gate (ts-morph)
+        run: pnpm check:structure
+
       - name: Run TypeScript typecheck
         run: pnpm typecheck
 
@@ -48,6 +60,8 @@ jobs:
           name: nextjs-build
           path: .next
           retention-days: 1
+          include-hidden-files: true
+          if-no-files-found: error
 
   e2e:
     name: Playwright E2E

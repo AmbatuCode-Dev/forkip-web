@@ -1,3 +1,9 @@
+## Workflow rules
+
+- Ask before assuming: if there is any ambiguity in a request, no matter how small, ask the user for clarification before acting.
+- Every change must be approved by the user: present the proposed (or actual) diff and get explicit approval before considering any change done.
+- New feature = new branch: always create a new branch before starting work on a new feature, cut from `dev`, named `feat/<name>` (e.g. `feat/login-page`). Never work on features directly on `dev` or `main`.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know

@@ -20,8 +20,18 @@ describe("Button", () => {
     );
     const button = screen.getByRole("button", { name: "Disabled" });
     expect(button).toBeDisabled();
-    expect(button.className).toContain("border-border");
+    expect(button.className).toContain("border-gold-outline");
     expect(button.className).toContain("h-8");
+  });
+
+  it("styles the gold CTA per Figma (pill, 13/24 padding, dark-gold hover)", () => {
+    const classes = buttonVariants({ variant: "gold", size: "cta" });
+    expect(classes).toContain("rounded-full");
+    expect(classes).toContain("bg-gold");
+    expect(classes).toContain("hover:bg-gold-dark");
+    expect(classes).toContain("py-3.25");
+    expect(classes).toContain("px-6");
+    expect(classes).toContain("text-base");
   });
 
   it("exposes buttonVariants helper via cva", () => {

@@ -1,40 +1,40 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { siteConfig } from "@/config/site";
+import { getNavigation } from "@/lib/content/navigation";
+import { getSite } from "@/lib/content/site";
 import { AppProvider } from "./provider";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSite();
+  return {
+    title: {
+      default: site.name,
+      template: `%s | ${site.name}`,
+    },
+    description: site.description,
+  };
+}
 
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-};
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const [site, navigation] = await Promise.all([getSite(), getNavigation()]);
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
+    <html lang="id" className={`${jakartaSans.variable} h-full antialiased`}>
+      <body className="flex min-h-svh flex-col bg-background font-sans text-foreground">
         <AppProvider>
-          <SiteHeader />
+          <SiteHeader site={site} navigation={navigation} />
           <main className="flex-1">{children}</main>
-          <SiteFooter />
+          <SiteFooter site={site} navigation={navigation} />
         </AppProvider>
       </body>
     </html>

@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #111113;
-  --surface: #ffffff;
+  --background: #fbfaf6;
+  --foreground: #1c1c1c;
+  --surface: #fff;
   --surface-foreground: #111113;
   --muted: #f4f4f5;
   --muted-foreground: #52525b;
@@ -16,42 +16,21 @@
   --destructive-foreground: #fafafa;
   --ring: #18181b;
   --radius: 0.625rem;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --background: #09090b;
-    --foreground: #fafafa;
-    --surface: #111114;
-    --surface-foreground: #fafafa;
-    --muted: #18181b;
-    --muted-foreground: #a1a1aa;
-    --border: #27272a;
-    --primary: #fafafa;
-    --primary-foreground: #18181b;
-    --accent: #27272a;
-    --accent-foreground: #fafafa;
-    --destructive: #ef4444;
-    --destructive-foreground: #fafafa;
-    --ring: #d4d4d8;
-  }
-}
-
-.dark {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --surface: #111114;
-  --surface-foreground: #fafafa;
-  --muted: #18181b;
-  --muted-foreground: #a1a1aa;
-  --border: #27272a;
-  --primary: #fafafa;
-  --primary-foreground: #18181b;
-  --accent: #27272a;
-  --accent-foreground: #fafafa;
-  --destructive: #ef4444;
-  --destructive-foreground: #fafafa;
-  --ring: #d4d4d8;
+  /* Forum KIP-K UNJ — "Ritme Nusantara" tokens (docs/figma-specs/components-spec.md) */
+  --gold: #f6d34a;
+  --gold-dark: #e0b400;
+  --gold-soft: #fbf6df;
+  --gold-soft-strong: #f6efaf;
+  --gold-ink: #7a5b00;
+  --ink: #1c1c1c;
+  --ink-soft: #2b2b2b;
+  --text-body: #404040;
+  --text-body-muted: #666;
+  --border-sand: #e8e5da;
+  --surface-50: #fbfaf6;
+  --surface-100: #f4f2ea;
+  --surface-200: #e6e3d6;
 }
 
 @theme inline {
@@ -69,11 +48,257 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-ring: var(--ring);
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Forum KIP-K UNJ design tokens */
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-soft-strong: var(--gold-soft-strong);
+  --color-gold-ink: var(--gold-ink);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-body: var(--text-body);
+  --color-body-muted: var(--text-body-muted);
+  --color-border-sand: var(--border-sand);
+  --color-surface-50: var(--surface-50);
+  --color-surface-100: var(--surface-100);
+  --color-surface-200: var(--surface-200);
+  --font-sans:
+    var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --shadow-dropdown: 0px 16px 24px rgb(51 36 31 / 12%);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
+}
+
+/* Exact-value tokens for former arbitrary utilities (Figma parity). */
+@theme {
+  --color-gold-outline: #c9a227;
+  --color-gold-pale: #fff3c4;
+  --color-gold-mid: #fae9a8;
+  --color-gold-bright: #e9c94f;
+  --color-gold-deep: #5c4400;
+  --color-teal: #0f766e;
+  --color-teal-ink: #1e6e5e;
+  --color-teal-pale: #dceeea;
+  --color-navy: #122338;
+  --color-slate: #1f2937;
+  --color-cream: #fdfcf8;
+  --color-sand: #f3f0e7;
+  --color-sand-line: #d4d0c0;
+  --color-tan: #e8c4a0;
+  --color-olive: #f6e6a8;
+  --color-clay: #c2705a;
+  --color-paper: #fbf9f2;
+  --color-paper-ink: #221e1a;
+  --color-paper-raised: #fffdf7;
+  --color-paper-muted: #4d463d;
+  --color-stone: #9c9c8c;
+  --color-wheat: #e8d9a0;
+  --color-night-1: #6d5a2c;
+  --color-night-2: #3b2e13;
+  --color-night-3: #1d1709;
+
+  /* Font sizes use Tailwind's standard semantic scale (text-xs … text-6xl). */
+  --leading-14: 0.875rem;
+  --leading-17: 1.0625rem;
+  --leading-18: 1.125rem;
+  --leading-22: 1.375rem;
+  --leading-26: 1.625rem;
+  --leading-38: 2.375rem;
+  --leading-50: 3.125rem;
+  --leading-hero: 2.8875rem;
+  --leading-hero-lg: 4.95rem;
+  --tracking-t04: -0.4px;
+  --tracking-t05: -0.5px;
+  --tracking-t08: -0.8px;
+  --tracking-t2: -2px;
+  --tracking-wide12: 1.2px;
+  --radius-10: 10px;
+  --radius-14: 14px;
+  --radius-18: 18px;
+  --radius-20: 20px;
+  --shadow-glow: 0 0 40px rgb(246 211 74 / 45%);
+  --shadow-card-sm: 0 2px 0 rgb(0 0 0 / 4%);
+  --shadow-card-up: 0 -2px 6px rgb(0 0 0 / 4%);
+  --drop-shadow-scrap: 0 3px 6px rgb(45 35 20 / 12%);
+  --shadow-stamp-4: 4px 4px 0 #e0b400;
+  --shadow-stamp-6: 6px 6px 0 #e0b400;
+  --animate-marquee-scroll: marquee-scroll 30s linear infinite;
+}
+
+@utility w-62p {
+  width: 62%;
+}
+
+@utility w-78p {
+  width: 78%;
+}
+
+@utility w-86p {
+  width: 86%;
+}
+
+@utility cols-hero-a {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+}
+
+@utility cols-hero-b {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+}
+
+@utility cols-spotlight {
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+}
+
+@utility cols-420 {
+  grid-template-columns: minmax(0, 420px) 1fr;
+}
+
+@utility cols-420f {
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+}
+
+@utility cols-440 {
+  grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
+}
+
+@utility cols-580 {
+  grid-template-columns: minmax(0, 580px) 1fr;
+}
+
+@utility bg-night-radial {
+  background-image: radial-gradient(
+    ellipse at 50% 35%,
+    var(--color-night-1) 0%,
+    var(--color-night-2) 52%,
+    var(--color-night-3) 100%
+  );
+}
+
+@utility text-clamp-hero {
+  font-size: clamp(1.1rem, 2.7vw, 2.6rem);
+}
+
+@utility backdrop-blur-2 {
+  backdrop-filter: blur(2px);
+}
+
+/* Hero photo framing. The group shot is 4:3; these keep the UNJ sign and the
+   faces inside the crop at every breakpoint without arbitrary utilities. */
+@utility object-hero-mobile {
+  object-position: 42% 50%;
+}
+
+@utility object-hero-desktop {
+  object-position: 50% 42%;
+}
+
+/* Overscan gives the scrubbed parallax room to travel without exposing an
+   edge. It does not scale or re-crop the image. */
+@utility inset-hero-photo {
+  top: -4%;
+  bottom: -4%;
+}
+
+/* Shaped top-down scrim: protects the upper-left copy over the sky, then
+   clears before the group and the UNJ sign. Phones get a stronger wash. */
+@utility bg-hero-scrim {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-ink) 85%, transparent) 0%,
+    color-mix(in srgb, var(--color-ink) 55%, transparent) 50%,
+    transparent 82%
+  );
+}
+
+@utility bg-hero-scrim-mobile {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-ink) 90%, transparent) 0%,
+    color-mix(in srgb, var(--color-ink) 70%, transparent) 50%,
+    transparent 82%
+  );
+}
+
+/* Quiet panel behind the Delegasi logo — derived from the surface token so
+   the pinned stage needs no blur or arbitrary colour. */
+@utility bg-delegasi-panel {
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+}
+
+@utility transition-height {
+  transition-property: height;
+}
+
+/* Exact-value replacements for former arbitrary utilities (Figma parity). */
+@utility max-w-viewport-inset {
+  max-width: calc(100vw - 2rem);
+}
+
+@utility transition-accordion {
+  transition-property: grid-template-rows, opacity, visibility;
+}
+
+/* Mobile nav disclosure: opacity + translate make it drop in from under the
+   sticky header. Keeping visibility in the transition delays the hide until
+   the fade finishes; motion-reduce:transition-none switches that off. */
+@utility transition-nav-panel {
+  transition-property: opacity, translate, visibility;
+}
+
+@utility grid-rows-1fr {
+  grid-template-rows: 1fr;
+}
+
+@utility grid-rows-0fr {
+  grid-template-rows: 0fr;
+}
+
+@utility max-h-logo-mobile {
+  max-height: 34svh;
+}
+
+@utility max-h-logo-desktop {
+  max-height: 46svh;
+}
+
+/* Mobile nav disclosure: leave room for the 4.5rem sticky header while the
+   panel scrolls on short viewports. */
+@utility max-h-nav-panel {
+  max-height: calc(100svh - 4.5rem);
+}
+
+/* HeroMotion ships `data-motion="pending"` in its SSR markup. Hide the
+   authored copy until its effect installs the GSAP `from` tween, otherwise
+   the opaque first paint flashes, snaps to opacity 0 and animates again.
+   Reduced-motion users never match this query; JS-disabled users get the
+   <noscript> override rendered by HeroMotion. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-motion="pending"] [data-hero-reveal] {
+    visibility: hidden;
+  }
+
+  /* FungsiSection: hold the reveal targets invisible until the scroll-triggered
+     timeline starts, so the stagger actually plays when the section is seen. */
+  [data-fungsi-motion="pending"] [data-fungsi-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* News marquee loop (NewsMarquee); applied via motion-safe:animate-marquee-scroll. */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  /* -50% minus half the 20px track gap keeps the loop seamless. */
+  to {
+    transform: translateX(calc(-50% - 10px));
+  }
 }
 
 @layer base {
